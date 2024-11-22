@@ -1,0 +1,47 @@
+---
+const { resource } = Astro.params;
+import BadgeEtiquetas from "@components/badge/BadgeEtiquetas.astro";
+import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
+import Layout from "@layouts/Layout.astro";
+const { origin } = Astro.url;
+
+const content: {
+  response: {
+    idarticulo: number;
+    fecha: string;
+    titulo: string;
+    contenido: string;
+    imagen: string;
+    etiquetas: { idetiqueta: number; nombre: string }[];
+  };
+} = await fetch(`${origin}/api/articulos?ruta=${resource}`)
+  .then((res) => {
+    if (res.status === 400) {
+      throw "";
+    }
+    return res.json();
+  })
+  .catch(() => null);
+
+if (!content) {
+  return Astro.redirect("/404");
+}
+---
+
+<Layout title={content.response.titulo}>
+  <main class="prose max-w-full p-4">
+    <h1>{content.response.titulo}</h1>
+    <div set:html={content.response.contenido} />
+    <EtiquetasHeading />
+    <div class="flex gap-4 flex-wrap not-prose">
+      {
+        content.response.etiquetas.map((el) => (
+          <BadgeEtiquetas
+            nombre={el.nombre}
+            ruta={`/content/articulos/${el.idetiqueta}`}
+          />
+        ))
+      }
+    </div>
+  </main>
+</Layout>

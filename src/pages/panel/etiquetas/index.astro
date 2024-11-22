@@ -1,0 +1,10 @@
+---
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+import AddEtiqueta from "@components/forms/AddEtiqueta.vue";
+
+const { user } = Astro.locals;
+---
+
+<LayoutPanel>
+  <AddEtiqueta user={user?.id} client:load />
+</LayoutPanel>

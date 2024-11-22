@@ -1,0 +1,15 @@
+---
+interface Props {
+  nombre: string;
+  ruta: string;
+}
+const { nombre, ruta } = Astro.props;
+---
+
+<a
+  href={ruta}
+  class="badge badge-accent badge-outline hover:scale-105 transition-all duration-100 ease-in flex gap-1"
+>
+  <i class="bi bi-tag-fill"></i>
+  {nombre}
+</a>

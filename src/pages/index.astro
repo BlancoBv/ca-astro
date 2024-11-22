@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BlogsContainer from "@components/gui/BlogsContainer.astro";
+import Carousel from "@components/gui/Carousel.vue";
+---
+
+<Layout title="Cuerpo academico, computo distribuido.">
+  <main>
+    <Carousel client:visible />
+
+    <BlogsContainer />
+    <div class="grid grid-cols-2 grid-rows-2 gap-4 p-4 lg:h-96">
+      <div class="card bg-accent text-accent-content shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title">Misión</h2>
+          <p>
+            Contribuir con el mejoramiento de la formación académica de los
+            estudiantes de la carrera de Ingeniería en Sistemas computacionales
+            del Instituto tecnológico Superior de los Ríos.
+          </p>
+        </div>
+      </div>
+      <div class="card bg-secondary text-secondary-content shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title">Visión</h2>
+          <p>
+            Lograr la consolidación del cuerpo académico a través del incremento
+            de nuestra producción académica, investigación con reconocimiento
+            nacional e internacional.
+          </p>
+        </div>
+      </div>
+      <div class="card bg-neutral text-neutral-content shadow-xl col-span-2">
+        <div class="card-body">
+          <h2 class="card-title">Objetivos</h2>
+          <p>
+            Desarrollar un cuerpo académico para el desarrollo de proyectos de
+            investigación, dirección de tesís, desarrollo de aplicación de
+            sistema distribuido, así como el mejoramiento de los planes de
+            estudios de la carrera.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+<!-- <script>
+  import Aos from "aos";
+  Aos.init({
+    mirror: true,
+    once: false,
+  });
+</script> -->

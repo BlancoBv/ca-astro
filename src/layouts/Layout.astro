@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+import Header from "@components/gui/Header.astro";
+import { ViewTransitions } from "astro:transitions";
+import SideBarItems from "@components/gui/SideBarItems.vue";
+import Footer from "@components/gui/Footer.astro";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "vue3-toastify/dist/index.css";
+import NavBar from "@components/gui/NavBar.astro";
+---
+
+<!doctype html>
+<html lang="es" data-theme="winter">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Cuerpo academico de computo distribuido del Instituto Tecnologico Superior de los Ríos"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
+    <title>{title}</title>
+  </head>
+  <body class="w-screen h-screen overflow-x-hidden">
+    <div class="drawer h-full w-full">
+      <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+      <div
+        class="drawer-content h-full w-full overflow-x-hidden"
+        id="scroll-container"
+      >
+        <!-- Navbar -->
+        <Header />
+        <NavBar />
+
+        <slot class="px-4 overflow-x-hidden" />
+
+        <Footer />
+      </div>
+      <div class="drawer-side z-50">
+        <label
+          for="my-drawer-3"
+          aria-label="close sidebar"
+          class="drawer-overlay"></label>
+        <ul class="menu bg-base-200 min-h-full w-80 p-4" transition:persist>
+          <!-- Sidebar content here -->
+          <SideBarItems client:visible />
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+<style is:global>
+  * {
+    scroll-behavior: smooth;
+  }
+</style>

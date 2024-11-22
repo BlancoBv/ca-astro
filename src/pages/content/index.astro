@@ -1,0 +1,41 @@
+---
+import Layout from "@layouts/Layout.astro";
+const { origin, searchParams } = Astro.url;
+import Pagination from "@components/gui/Pagination.vue";
+import CardBlog from "@components/cards/CardBlog.astro";
+
+const page = searchParams.get("page");
+
+const eventos = await fetch(
+  `${origin}/api/blogs?status=aceptado&limit=10&page=${page ?? 0}`
+).then((res) => res.json());
+
+if (eventos.response?.blogs?.length < 1) {
+  return Astro.redirect("/404");
+}
+console.log(eventos);
+---
+
+<Layout title="Todos los eventos">
+  <main class="prose max-w-full w-full p-4">
+    <h1>Todos los eventos</h1>
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 not-prose">
+      {
+        eventos.response?.blogs.map((el: any) => (
+          <CardBlog
+            titulo={el.titulo}
+            fecha={el.fecha}
+            id={el.idblog}
+            imagen={el.imagen}
+          />
+        ))
+      }
+    </div>
+    <div class="not-prose w-full flex justify-center">
+      <Pagination
+        totalPages={eventos.response.totalPages}
+        actualPage={eventos.response.currentPage}
+      />
+    </div>
+  </main>
+</Layout>
