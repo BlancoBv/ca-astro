@@ -1,7 +1,6 @@
 import { Lucia, TimeSpan } from "lucia";
 import { Mysql2Adapter } from "@lucia-auth/adapter-mysql";
 import mysql from "mysql2/promise";
-import { Permisos } from "@model";
 
 const pool = mysql.createPool({
   host: process.env.HOST_DB,
@@ -23,7 +22,7 @@ const adapter = new Mysql2Adapter(pool, {
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
-    attributes: { secure: false, sameSite: "strict" },
+    attributes: { secure: import.meta.env.PROD ?? false, sameSite: "strict" },
   },
   sessionExpiresIn: new TimeSpan(12, "h"),
   getUserAttributes(attributes) {

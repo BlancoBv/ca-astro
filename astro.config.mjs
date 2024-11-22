@@ -16,7 +16,7 @@ export default defineConfig({
     mode: "standalone",
   }),
   server: { host: true },
-  site: "https://pokedex-2g12.onrender.com",
+  site: "https://computodistribuido.org/",
   security: {
     checkOrigin: true,
   },
