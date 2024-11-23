@@ -1,9 +1,9 @@
 import { Http2ServerResponse } from 'node:http2';
-import { p as ROUTE_TYPE_HEADER, C as decryptString, E as createSlotValueFromString, r as renderTemplate, a as renderComponent, D as DEFAULT_404_COMPONENT, F as bold, G as red, H as yellow, I as dim, J as blue, q as clientLocalsSymbol, t as clientAddressSymbol, K as REROUTABLE_STATUS_CODES, R as REROUTE_DIRECTIVE_HEADER, v as responseSentSymbol, L as getDefaultExportFromCjs } from './astro/server_PUIICibt.mjs';
-import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, g as RenderContext, h as getSetCookiesFromResponse } from './index_DuyodgRd.mjs';
-import { W as fileExtension, t as joinPaths, X as slash, Y as prependForwardSlash$1, K as removeTrailingForwardSlash, s as appendForwardSlash$1, A as AstroError, Q as LocalsNotAnObject } from './astro/assets-service_DLaPmp2u.mjs';
-import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_BSRVtDGo.mjs';
-import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_DbpdHBE5.mjs';
+import { p as ROUTE_TYPE_HEADER, C as decryptString, E as createSlotValueFromString, r as renderTemplate, a as renderComponent, D as DEFAULT_404_COMPONENT, F as bold, G as red, H as yellow, I as dim, J as blue, q as clientLocalsSymbol, t as clientAddressSymbol, K as REROUTABLE_STATUS_CODES, R as REROUTE_DIRECTIVE_HEADER, v as responseSentSymbol, L as getDefaultExportFromCjs } from './astro/server_Csy-cjiN.mjs';
+import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, g as RenderContext, h as getSetCookiesFromResponse } from './index_nZn2cEhH.mjs';
+import { W as fileExtension, t as joinPaths, X as slash, Y as prependForwardSlash$1, K as removeTrailingForwardSlash, s as appendForwardSlash$1, A as AstroError, Q as LocalsNotAnObject } from './astro/assets-service_BWWVVXRT.mjs';
+import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_CUPppi9J.mjs';
+import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_Bd6qjosC.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import fs$2 from 'node:fs';
 import http from 'node:http';

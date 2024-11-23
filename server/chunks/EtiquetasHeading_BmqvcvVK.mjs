@@ -1,4 +1,4 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute } from './astro/server_PUIICibt.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute } from './astro/server_Csy-cjiN.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org/");
 const $$BadgeEtiquetas = createComponent(($$result, $$props, $$slots) => {

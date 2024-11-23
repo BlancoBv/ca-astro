@@ -8,7 +8,7 @@ class ImageController {
     this.directory = directory;
   }
   PROD = true;
-  baseDir = this.PROD ? "dist/client" : "public";
+  baseDir = this.PROD ? "" : "public";
   __dirname = path.resolve();
   generadorNombre() {
     let d = (/* @__PURE__ */ new Date()).getTime();

@@ -1,4 +1,4 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute } from './astro/server_PUIICibt.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute } from './astro/server_Csy-cjiN.mjs';
 /* empty css                           */
 import { useQuery, keepPreviousData, useMutation } from '@tanstack/vue-query';
 import axios from 'axios';

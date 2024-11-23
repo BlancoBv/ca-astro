@@ -1,6 +1,6 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, a as renderComponent, e as renderTransition } from './astro/server_PUIICibt.mjs';
-import { f as formatDate } from './Layout_BOXDJUk2.mjs';
-import { $ as $$Image } from './_astro_assets_BDcWuZEL.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, a as renderComponent, e as renderTransition } from './astro/server_Csy-cjiN.mjs';
+import { f as formatDate } from './Layout_DsrU6E3P.mjs';
+import { $ as $$Image } from './_astro_assets_DHShhSyt.mjs';
 /* empty css                         */
 
 const $$Astro = createAstro("https://computodistribuido.org/");
