@@ -1,6 +1,6 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute } from './astro/server_Csy-cjiN.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, b as createAstro } from './astro/server_BFGjhIM4.mjs';
 
-const $$Astro = createAstro("https://computodistribuido.org");
+const $$Astro = createAstro();
 const $$BadgeEtiquetas = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BadgeEtiquetas;

@@ -1,10 +1,10 @@
 /* empty css                                   */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, u as unescapeHTML } from '../chunks/astro/server_Csy-cjiN.mjs';
-import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../chunks/EtiquetasHeading_CBn09hq8.mjs';
-import { $ as $$Layout } from '../chunks/Layout_C8K1Gfcg.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent, b as createAstro, m as maybeRenderHead, u as unescapeHTML } from '../chunks/astro/server_BFGjhIM4.mjs';
+import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../chunks/EtiquetasHeading_DS9r3wQ_.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B1i9773a.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
-const $$Astro = createAstro("https://computodistribuido.org");
+const $$Astro = createAstro();
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;

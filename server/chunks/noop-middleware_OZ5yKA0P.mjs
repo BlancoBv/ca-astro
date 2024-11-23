@@ -1,4 +1,4 @@
-import { N as NOOP_MIDDLEWARE_HEADER } from './astro/server_Csy-cjiN.mjs';
+import { N as NOOP_MIDDLEWARE_HEADER } from './astro/server_BFGjhIM4.mjs';
 
 const NOOP_MIDDLEWARE_FN = (ctx, next) => {
   ctx.request.headers.set(NOOP_MIDDLEWARE_HEADER, "true");
