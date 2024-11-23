@@ -30,7 +30,13 @@ import ThemeSwitch from "./ThemeSwitch.vue";
   </div>
   <div class="navbar-start grow justify-center lg:justify-start lg:grow-0">
     <a href="/" class="btn btn-ghost" title="Inicio">
-      <img src="/logo.png" alt="logo" class="h-full object-contain" />
+      <img
+        src="/logo.png"
+        alt="logo"
+        class="h-full object-contain"
+        width="100px"
+        height="100px"
+      />
     </a>
   </div>
   <div
@@ -62,13 +68,3 @@ import ThemeSwitch from "./ThemeSwitch.vue";
     </label> -->
   </div>
 </nav>
-<script>
-  document.addEventListener("astro:page-load", (ev) => {
-    const isDark = JSON.parse(localStorage.getItem("isDark") ?? "false");
-    if (isDark) {
-      document.documentElement.setAttribute("data-theme", "night");
-    } else {
-      document.documentElement.setAttribute("data-theme", "winter");
-    }
-  });
-</script>

@@ -74,3 +74,14 @@ import NavBar from "@components/gui/NavBar.astro";
     scroll-behavior: smooth;
   }
 </style>
+
+<script>
+  document.addEventListener("astro:page-load", (ev) => {
+    const isDark = JSON.parse(localStorage.getItem("isDark") ?? "false");
+    if (isDark) {
+      document.documentElement.setAttribute("data-theme", "night");
+    } else {
+      document.documentElement.setAttribute("data-theme", "winter");
+    }
+  });
+</script>

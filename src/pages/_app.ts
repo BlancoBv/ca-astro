@@ -10,5 +10,7 @@ export default (app: App) => {
     autoClose: 800,
     position: toast.POSITION.TOP_RIGHT,
   } as ToastContainerOptions);
-  app.use(PrimeVue, { theme: { preset: Aura } });
+  app.use(PrimeVue, {
+    theme: { preset: Aura, options: { darkModeSelector: "system" } },
+  });
 };

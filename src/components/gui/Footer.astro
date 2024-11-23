@@ -26,10 +26,10 @@ const fDate = formatYear(actualDate);
   </nav>
   <nav>
     <h6 class="footer-title">Transparencia</h6>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
+    <a class="link" href="#">About us</a>
+    <a class="link" href="#">Contact</a>
+    <a class="link" href="#">Jobs</a>
+    <a class="link" href="#">Press kit</a>
   </nav>
   <nav>
     <h6 class="footer-title">Ultima actualización</h6>
@@ -61,15 +61,20 @@ const fDate = formatYear(actualDate);
   </aside>
   <nav class="md:place-self-center md:justify-self-end">
     <div class="grid grid-flow-col gap-4 text-2xl">
-      <a href="mailto:cdistribuido2018@gmail.com" title="Mail">
-        <i class="bi bi-envelope-fill" title="correo"></i>
+      <a
+        href="mailto:cdistribuido2018@gmail.com"
+        title="Mail"
+        aria-label="Correo"
+      >
+        <i class="bi bi-envelope-fill"></i>
       </a>
       <a
         href="https://www.facebook.com/ComputoDistribuido/"
         target="_blank"
         title="Facebook"
+        aria-label="Facebook"
       >
-        <i class="bi bi-facebook" title="Facebook"></i>
+        <i class="bi bi-facebook"></i>
       </a>
     </div>
   </nav>

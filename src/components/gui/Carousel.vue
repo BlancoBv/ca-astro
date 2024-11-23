@@ -6,14 +6,13 @@ import 'vue3-carousel/dist/carousel.css'
 const { data, isPending, isError } = useGetData("banners?mostrar=true", "bannersData") 
 </script>
 <template>
-    <Carousel v-if="!isPending && !isError" :items-to-show="1.5" class="block" :autoplay="2000" wrap-around
-        pause-autoplay-on-hover>
+    <Carousel v-if="!isPending && !isError" :items-to-show="1.5" class="block" wrap-around pause-autoplay-on-hover>
 
         <template #slides>
             <Slide class="h-96 w-full" v-for="banner in data.response" :key="banner.idbanner">
                 <div class="h-full w-full relative flex items-end justify-end">
                     <img class="w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box" :src="banner.imagen"
-                        width="100px" height="100px">
+                        width="100px" height="100px" :alt="banner.createdAt">
 
                     <div class="p-4 w-full lg:w-3/4">
                         <div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full min-h-32"
