@@ -10,6 +10,7 @@ const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BlogsContainer;
   const { origin } = Astro2.url;
+  console.log({ origin });
   const blogs = await fetch(`${origin}/api/blogs?status=aceptado&limit=3`).then(
     (res) => res.json()
   );
