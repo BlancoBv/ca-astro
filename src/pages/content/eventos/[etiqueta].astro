@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 const { etiqueta } = Astro.params;
-const { origin } = Astro.url;
+
 import CardBlog from "@components/cards/CardBlog.astro";
 
 const response: {
@@ -18,7 +18,7 @@ const response: {
     }[];
   };
 } = await fetch(
-  `${origin}/api/etiquetas?idetiqueta=${etiqueta}&includeBlogs=true`
+  `http://localhost:4321/api/etiquetas?idetiqueta=${etiqueta}&includeBlogs=true`
 ).then((res) => res.json());
 
 console.log(response);

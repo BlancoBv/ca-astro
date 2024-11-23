@@ -2,7 +2,7 @@
 import { formatDate } from "@assets/format";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
-const { origin } = Astro.url;
+
 const { id } = Astro.params;
 
 interface icons {
@@ -30,14 +30,14 @@ const miembro: {
     contactos: { tipo: string; url: string }[];
   };
 } = await fetch(
-  `${origin}/api/miembros?idmiembro=${id}&includeProyectos=true`
+  `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true`
 ).then((res) => res.json());
 
 const getMiembro = async (id: number) => {
   if (id) {
-    const response = await fetch(`${origin}/api/miembros?idmiembro=${id}`).then(
-      (res) => res.json()
-    );
+    const response = await fetch(
+      `http://localhost:4321/api/miembros?idmiembro=${id}`
+    ).then((res) => res.json());
 
     return response.response.nombreCompleto;
   }

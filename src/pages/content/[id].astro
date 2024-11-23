@@ -4,11 +4,10 @@ import BadgeEtiquetas from "@components/badge/BadgeEtiquetas.astro";
 import { Image } from "astro:assets";
 import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
 
-const { origin } = Astro.url;
 const { id } = Astro.params;
 
-const blog = await fetch(`${origin}/api/blogs?idblog=${id}`).then((res) =>
-  res.json()
+const blog = await fetch(`http://localhost:4321/api/blogs?idblog=${id}`).then(
+  (res) => res.json()
 );
 
 if (!blog) {

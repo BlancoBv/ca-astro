@@ -1,13 +1,12 @@
 ---
 import CardBlog from "@components/cards/CardBlog.astro";
 
-const { origin } = Astro.url;
 const blogs: {
   response: {
     blogs: { titulo: string; fecha: string; imagen: string; idblog: number }[];
   };
-} = await fetch(`${origin}/api/blogs?status=aceptado&limit=3`).then((res) =>
-  res.json()
+} = await fetch(`http://localhost:4321/api/blogs?status=aceptado&limit=3`).then(
+  (res) => res.json()
 );
 ---
 

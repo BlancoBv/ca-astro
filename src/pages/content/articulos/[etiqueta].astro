@@ -2,7 +2,6 @@
 import Layout from "@layouts/Layout.astro";
 import { formatDate } from "@assets/format";
 const { etiqueta } = Astro.params;
-const { origin } = Astro.url;
 
 const response: {
   response: {
@@ -11,7 +10,7 @@ const response: {
     articulos: { ruta: string; titulo: string; createdAt: string }[];
   };
 } = await fetch(
-  `${origin}/api/etiquetas?idetiqueta=${etiqueta}&includeArticulos=true`
+  `http://localhost:4321/api/etiquetas?idetiqueta=${etiqueta}&includeArticulos=true`
 ).then((res) => res.json());
 
 if (!response) {

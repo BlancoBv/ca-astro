@@ -3,7 +3,6 @@ const { resource } = Astro.params;
 import BadgeEtiquetas from "@components/badge/BadgeEtiquetas.astro";
 import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
 import Layout from "@layouts/Layout.astro";
-const { origin } = Astro.url;
 
 const content: {
   response: {
@@ -14,7 +13,7 @@ const content: {
     imagen: string;
     etiquetas: { idetiqueta: number; nombre: string }[];
   };
-} = await fetch(`${origin}/api/articulos?ruta=${resource}`)
+} = await fetch(`http://localhost:4321/api/articulos?ruta=${resource}`)
   .then((res) => {
     if (res.status === 400) {
       throw "";

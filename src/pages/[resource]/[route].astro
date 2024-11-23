@@ -4,7 +4,6 @@ import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
 import Layout from "@layouts/Layout.astro";
 
 const { route, resource } = Astro.params;
-const { origin } = Astro.url;
 
 const content: {
   response: {
@@ -15,9 +14,9 @@ const content: {
     imagen: string;
     etiquetas: { idetiqueta: number; nombre: string }[];
   };
-} = await fetch(`${origin}/api/articulos?ruta=${resource}/${route}`).then(
-  (res) => res.json()
-);
+} = await fetch(
+  `http://localhost:4321/api/articulos?ruta=${resource}/${route}`
+).then((res) => res.json());
 
 if (!content) {
   return Astro.redirect("/404");
