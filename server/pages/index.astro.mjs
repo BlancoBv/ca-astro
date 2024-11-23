@@ -1,8 +1,8 @@
 /* empty css                                   */
 import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent } from '../chunks/astro/server_Csy-cjiN.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DsrU6E3P.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_BBkF_37v.mjs';
-import { C as Carousel } from '../chunks/Carousel_Ds3zhL0m.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CtlZ3nLo.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_DVl7i9_a.mjs';
+import { C as Carousel } from '../chunks/Carousel_Eo75CvsL.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org/");

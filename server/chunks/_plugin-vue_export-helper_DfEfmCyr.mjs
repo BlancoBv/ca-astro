@@ -13,7 +13,7 @@ const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>`;
 }, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.12_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/ViewTransitions.astro", void 0);
 
-console.log(true);
+console.log(true, "https://computodistribuido.org/");
 const Axios = axios.create({
   baseURL: `${"https://computodistribuido.org/" }/api/`,
   headers: {
