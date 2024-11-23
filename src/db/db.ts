@@ -12,6 +12,7 @@ export const sequelize = new Sequelize(DATABASE, USER_DB, PASSWORD_DB, {
     acquire: 30000,
     idle: 10000,
   },
+  logging: !import.meta.env.PROD,
 });
 
 /* sequelize
