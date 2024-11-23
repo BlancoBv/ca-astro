@@ -6,7 +6,7 @@ public/
 
 # generated types
 .astro/
-client/uploads/
+client/uploads/*
 
 # dependencies
 node_modules/
