@@ -12,8 +12,8 @@ const { data, isPending, isError } = useGetData("banners?mostrar=true", "banners
         <template #slides>
             <Slide class="h-96 w-full" v-for="banner in data.response" :key="banner.idbanner">
                 <div class="h-full w-full relative flex items-end justify-end">
-                    <img class="w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box"
-                        :src="banner.imagen">
+                    <img class="w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box" :src="banner.imagen"
+                        width="100px" height="100px">
 
                     <div class="p-4 w-full lg:w-3/4">
                         <div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full min-h-32"

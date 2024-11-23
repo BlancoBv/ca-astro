@@ -8,9 +8,6 @@ const changeTheme = (checked: boolean) => {
     document.documentElement.setAttribute("data-theme", theme)
 }
 const handle = (ev: Event) => {
-
-    console.log("actualizado");
-
     const { checked } = ev.target as HTMLInputElement
     active.value = checked
     localStorage.setItem("isDark", JSON.stringify(checked))
@@ -20,8 +17,6 @@ const handle = (ev: Event) => {
 onMounted(() => {
     const isDark: boolean = JSON.parse(localStorage.getItem("isDark") ?? "false")
     active.value = isDark
-    console.log("montado");
-
 })
 </script>
 <template>
