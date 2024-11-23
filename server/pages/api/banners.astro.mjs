@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { I as ImageController } from '../../chunks/ImageController_ByB5TNyo.mjs';
+import { I as ImageController } from '../../chunks/ImageController_BLXYM12A.mjs';
 import { B as Banners } from '../../chunks/index_1D2--xwQ.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
