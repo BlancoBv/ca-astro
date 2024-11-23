@@ -9,8 +9,8 @@ const $$Astro = createAstro();
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BlogsContainer;
-  const { origin } = Astro2.url;
-  const blogs = await fetch(`${origin}/api/blogs?status=aceptado&limit=3`).then(
+  Astro2.url;
+  const blogs = await fetch(`http://localhost:4321/api/blogs?status=aceptado&limit=3`).then(
     (res) => res.json()
   );
   return renderTemplate`${maybeRenderHead()}<div class="prose max-w-full p-4"> <h1>Eventos destacados</h1> <div class="not-prose gap-4 place-items-center place-content-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> ${blogs.response?.blogs?.length > 0 && blogs.response.blogs.map((el) => renderTemplate`${renderComponent($$result, "CardBlog", $$CardBlog, { "titulo": el.titulo, "imagen": el.imagen, "fecha": el.fecha, "id": el.idblog })}`)} <div class="md:col-span-2 lg:col-span-3 w-full flex justify-center"> <a class="btn btn-primary w-1/2" href="/content">Ver todos </a> </div> </div> </div>`;
