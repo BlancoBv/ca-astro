@@ -1,16 +1,16 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, b as createAstro } from '../chunks/astro/server_BFGjhIM4.mjs';
-import { $ as $$Layout } from '../chunks/Layout_B1i9773a.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_hyxELnAs.mjs';
-import { C as Carousel } from '../chunks/Carousel_KkPflWnw.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent } from '../chunks/astro/server_Csy-cjiN.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DsrU6E3P.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_BBkF_37v.mjs';
+import { C as Carousel } from '../chunks/Carousel_Ds3zhL0m.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://computodistribuido.org/");
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BlogsContainer;
-  Astro2.url;
-  const blogs = await fetch(`http://localhost:4321/api/blogs?status=aceptado&limit=3`).then(
+  const { origin } = Astro2.url;
+  const blogs = await fetch(`${origin}/api/blogs?status=aceptado&limit=3`).then(
     (res) => res.json()
   );
   return renderTemplate`${maybeRenderHead()}<div class="prose max-w-full p-4"> <h1>Eventos destacados</h1> <div class="not-prose gap-4 place-items-center place-content-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> ${blogs.response?.blogs?.length > 0 && blogs.response.blogs.map((el) => renderTemplate`${renderComponent($$result, "CardBlog", $$CardBlog, { "titulo": el.titulo, "imagen": el.imagen, "fecha": el.fecha, "id": el.idblog })}`)} <div class="md:col-span-2 lg:col-span-3 w-full flex justify-center"> <a class="btn btn-primary w-1/2" href="/content">Ver todos </a> </div> </div> </div>`;

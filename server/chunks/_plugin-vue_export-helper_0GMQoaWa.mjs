@@ -1,11 +1,11 @@
-import { c as createComponent, r as renderTemplate, d as addAttribute, b as createAstro } from './astro/server_BFGjhIM4.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute } from './astro/server_Csy-cjiN.mjs';
 /* empty css                           */
 import { useQuery, keepPreviousData, useMutation } from '@tanstack/vue-query';
 import axios from 'axios';
 import { toast } from 'vue3-toastify';
 import 'vue';
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://computodistribuido.org/");
 const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$ViewTransitions;
@@ -15,7 +15,7 @@ const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
 
 console.log(true);
 const Axios = axios.create({
-  baseURL: `${void 0 }/api/`,
+  baseURL: `${"https://computodistribuido.org/" }/api/`,
   headers: {
     "Content-Type": "application/json"
   }

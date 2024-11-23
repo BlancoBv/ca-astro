@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { g as getConfiguredImageService, i as imageConfig, l as lookup, a as assetsDir, o as outDir } from '../chunks/_astro_assets_BZO7N-6B.mjs';
+import { g as getConfiguredImageService, i as imageConfig, l as lookup, a as assetsDir, o as outDir } from '../chunks/_astro_assets_DHShhSyt.mjs';
 import { i as isRemotePath, f as isRemoteAllowed } from '../chunks/astro/assets-service_BWWVVXRT.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
 

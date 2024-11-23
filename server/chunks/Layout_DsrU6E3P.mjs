@@ -1,5 +1,5 @@
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, e as renderTransition, a as renderComponent, f as renderHead, g as renderSlot, h as createTransitionScope, b as createAstro } from './astro/server_BFGjhIM4.mjs';
-import { a as useGetData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_CFmwIO5E.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, e as renderTransition, a as renderComponent, b as createAstro, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_Csy-cjiN.mjs';
+import { a as useGetData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_0GMQoaWa.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, ref, onMounted } from 'vue';
@@ -284,7 +284,7 @@ const $$NavBar = createComponent(($$result, $$props, $$slots) => {
     </label> --> </div> </nav> `;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/NavBar.astro", "self");
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://computodistribuido.org/");
 const $$Layout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Layout;

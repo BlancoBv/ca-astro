@@ -1,9 +1,9 @@
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, a as renderComponent, e as renderTransition, b as createAstro } from './astro/server_BFGjhIM4.mjs';
-import { f as formatDate } from './Layout_B1i9773a.mjs';
-import { $ as $$Image } from './_astro_assets_BZO7N-6B.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, a as renderComponent, e as renderTransition } from './astro/server_Csy-cjiN.mjs';
+import { f as formatDate } from './Layout_DsrU6E3P.mjs';
+import { $ as $$Image } from './_astro_assets_DHShhSyt.mjs';
 /* empty css                         */
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://computodistribuido.org/");
 const $$CardBlog = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$CardBlog;

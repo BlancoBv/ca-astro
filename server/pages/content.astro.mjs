@@ -1,12 +1,12 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, a as renderComponent, b as createAstro, m as maybeRenderHead } from '../chunks/astro/server_BFGjhIM4.mjs';
-import { $ as $$Layout } from '../chunks/Layout_B1i9773a.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_Csy-cjiN.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DsrU6E3P.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { ssrRenderAttrs, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_CFmwIO5E.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_hyxELnAs.mjs';
+import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_0GMQoaWa.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_BBkF_37v.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -34,7 +34,7 @@ _sfc_main.setup = (props, ctx) => {
 };
 const Pagination = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://computodistribuido.org/");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;

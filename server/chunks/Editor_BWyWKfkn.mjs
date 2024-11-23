@@ -5,7 +5,7 @@ import { useEditor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import { ssrRenderClass, ssrIncludeBooleanAttr, ssrRenderComponent } from 'vue/server-renderer';
-import { _ as _export_sfc } from './_plugin-vue_export-helper_CFmwIO5E.mjs';
+import { _ as _export_sfc } from './_plugin-vue_export-helper_0GMQoaWa.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "Editor",
