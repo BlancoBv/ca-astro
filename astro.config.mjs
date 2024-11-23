@@ -16,7 +16,7 @@ export default defineConfig({
     mode: "standalone",
   }),
   server: { host: true },
-  site: "https://computodistribuido.org/",
+  site: "https://computodistribuido.org",
   security: {
     checkOrigin: true,
   },
