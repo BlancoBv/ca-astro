@@ -1,11 +1,11 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_Csy-cjiN.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_Ck7vvJRH.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BD_foIAr.mjs';
 import { toast } from 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
-import { E as Editor } from '../../../chunks/Editor_BWyWKfkn.mjs';
-import { a as useGetData, _ as _export_sfc, u as useSendData } from '../../../chunks/_plugin-vue_export-helper_0GMQoaWa.mjs';
+import { E as Editor } from '../../../chunks/Editor_CD0GPatb.mjs';
+import { a as useGetData, _ as _export_sfc, u as useSendData } from '../../../chunks/_plugin-vue_export-helper_COMoZbOo.mjs';
 import { ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderAttrs, ssrRenderComponent } from 'vue/server-renderer';
 export { r as renderers } from '../../../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
@@ -220,7 +220,7 @@ _sfc_main.setup = (props, ctx) => {
 };
 const AddArticulo = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
-const $$Astro = createAstro("https://computodistribuido.org/");
+const $$Astro = createAstro("https://computodistribuido.org");
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;

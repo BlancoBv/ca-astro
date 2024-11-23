@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'vue3-toastify';
 import 'vue';
 
-const $$Astro = createAstro("https://computodistribuido.org/");
+const $$Astro = createAstro("https://computodistribuido.org");
 const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$ViewTransitions;
@@ -15,7 +15,7 @@ const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
 
 console.log(true);
 const Axios = axios.create({
-  baseURL: `${"https://computodistribuido.org/" }/api/`,
+  baseURL: `${"https://computodistribuido.org" }/api/`,
   headers: {
     "Content-Type": "application/json"
   }

@@ -1,7 +1,7 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_Csy-cjiN.mjs';
-import { C as Carousel } from './Carousel_Ds3zhL0m.mjs';
+import { C as Carousel } from './Carousel_CNtzo0VR.mjs';
 /* empty css                           */
-import { u as useSendData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_0GMQoaWa.mjs';
+import { u as useSendData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_COMoZbOo.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
@@ -37,7 +37,7 @@ _sfc_main.setup = (props, ctx) => {
 };
 const LogoutButton = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
-const $$Astro = createAstro("https://computodistribuido.org/");
+const $$Astro = createAstro("https://computodistribuido.org");
 const $$LayoutPanel = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$LayoutPanel;

@@ -925,7 +925,7 @@ async function getImage$1(options, imageConfig) {
   };
 }
 
-const $$Astro$1 = createAstro("https://computodistribuido.org/");
+const $$Astro$1 = createAstro("https://computodistribuido.org");
 const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$Image;
@@ -1390,7 +1390,7 @@ function lookup(extn) {
 	return mimes[!~idx ? tmp : tmp.substring(++idx)];
 }
 
-const $$Astro = createAstro("https://computodistribuido.org/");
+const $$Astro = createAstro("https://computodistribuido.org");
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Picture;
