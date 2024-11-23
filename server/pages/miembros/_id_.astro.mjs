@@ -1,23 +1,22 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_Csy-cjiN.mjs';
-import { $ as $$Layout, f as formatDate } from '../../chunks/Layout_CtlZ3nLo.mjs';
-import { $ as $$Image } from '../../chunks/_astro_assets_DHShhSyt.mjs';
+import { $ as $$Layout, f as formatDate } from '../../chunks/Layout_C8K1Gfcg.mjs';
+import { $ as $$Image } from '../../chunks/_astro_assets_BiZX0rLU.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_CY4cSyXV.mjs';
 
-const $$Astro = createAstro("https://computodistribuido.org/");
+const $$Astro = createAstro("https://computodistribuido.org");
 const $$id = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$id;
-  const { origin } = Astro2.url;
   const { id } = Astro2.params;
   const miembro = await fetch(
-    `${origin}/api/miembros?idmiembro=${id}&includeProyectos=true`
+    `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true`
   ).then((res) => res.json());
   const getMiembro = async (id2) => {
     if (id2) {
-      const response = await fetch(`${origin}/api/miembros?idmiembro=${id2}`).then(
-        (res) => res.json()
-      );
+      const response = await fetch(
+        `http://localhost:4321/api/miembros?idmiembro=${id2}`
+      ).then((res) => res.json());
       return response.response.nombreCompleto;
     }
     return "";
