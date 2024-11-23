@@ -9,7 +9,7 @@ export default class ImageController {
     this.directory = directory;
   }
   private PROD = import.meta.env.PROD;
-  private baseDir = this.PROD ? "dist/client" : "public";
+  private baseDir = this.PROD ? "" : "public";
   private __dirname = path.resolve();
 
   private generadorNombre() {
