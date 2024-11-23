@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent } from '../chunks/astro/server_Csy-cjiN.mjs';
-import { $ as $$Layout } from '../chunks/Layout_C8K1Gfcg.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_Dqpk9G8_.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B0YNWotX.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_BvDGYpV3.mjs';
 import { C as Carousel } from '../chunks/Carousel_CNtzo0VR.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
 

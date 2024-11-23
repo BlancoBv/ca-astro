@@ -1,5 +1,5 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, a as renderComponent, e as renderTransition } from './astro/server_Csy-cjiN.mjs';
-import { f as formatDate } from './Layout_C8K1Gfcg.mjs';
+import { f as formatDate } from './Layout_B0YNWotX.mjs';
 import { $ as $$Image } from './_astro_assets_BiZX0rLU.mjs';
 /* empty css                         */
 

@@ -1,6 +1,6 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, e as renderTransition, u as unescapeHTML } from '../../chunks/astro/server_Csy-cjiN.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_C8K1Gfcg.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_B0YNWotX.mjs';
 import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../../chunks/EtiquetasHeading_CBn09hq8.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_BiZX0rLU.mjs';
 /* empty css                                   */
