@@ -6,27 +6,29 @@ import { ControllerBuilder } from "src/controllers/builder";
 
 export const GET: APIRoute = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);
-  const controller = new ControllerBuilder(Menus);
+  const controller = new ControllerBuilder();
 
-  controller.setIncludedModels([
-    {
-      model: Submenus,
-      required: false,
-      attributes: ["ruta", "idsubmenu", "nombre", "descripcion"],
-    },
-    ...(Boolean(search.showUser)
-      ? [
-          {
-            model: Users,
-            attributes: { exclude: ["password", "usuario", "idRol"] },
-          },
-        ]
-      : []),
-  ]);
-  controller.setOrderFilters([
-    ["idmenu", "ASC"],
-    [Submenus, "idsubmenu", "ASC"],
-  ]);
+  controller
+    .setModel(Menus)
+    .setIncludedModels([
+      {
+        model: Submenus,
+        required: false,
+        attributes: ["ruta", "idsubmenu", "nombre", "descripcion"],
+      },
+      ...(Boolean(search.showUser)
+        ? [
+            {
+              model: Users,
+              attributes: { exclude: ["password", "usuario", "idRol"] },
+            },
+          ]
+        : []),
+    ])
+    .setOrderFilters([
+      ["idmenu", "ASC"],
+      [Submenus, "idsubmenu", "ASC"],
+    ]);
   const response = await controller.getResult().getAll();
 
   return responseAsJson(response);

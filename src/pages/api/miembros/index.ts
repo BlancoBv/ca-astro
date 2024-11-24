@@ -1,13 +1,17 @@
 import responseAsJson from "@assets/responseAsJson";
 import searchParamsToObject from "@assets/searchParamsToObject";
+import { sequelize } from "@db";
 import { Contactos, Miembros, Proyectos } from "@model";
 import type { APIRoute } from "astro";
+import { ControllerBuilder } from "src/controllers/builder";
 
 export const GET: APIRoute = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);
+  const controller = new ControllerBuilder();
+
   try {
     if (search.idmiembro) {
-      const miembro = await Miembros.findOne({
+      /*  const miembro = await Miembros.findOne({
         where: {
           idmiembro: search.idmiembro,
         },
@@ -18,19 +22,102 @@ export const GET: APIRoute = async ({ url }) => {
             attributes: ["tipo", "url"],
           },
         ],
-      });
+      }); */
+      const miembro = await controller
+        .setModel(Miembros)
+        .setWhereFilters({
+          idmiembro: search.idmiembro,
+        })
+        .setIncludedModels([
+          {
+            model: Contactos,
+            required: false,
+            attributes: ["tipo", "url"],
+          },
+        ])
+        .getResult()
+        .getOne();
 
       if (search.includeProyectos === "true" && miembro) {
-        const proyectos = await Proyectos.findAll({
-          where: { director: search.idmiembro },
+        const proyectos = await controller
+          .setModel(Proyectos)
+          .setWhereFilters({
+            [controller.Op.or]: [
+              { director: search.idmiembro }, // Condición para la columna director
+              /* {
+              "$miembros.idmiembro$": search.idmiembro, // Condición para la tabla de unión
+            }, */
+              /*   {
+              idproyecto: {
+                [Op.in]: sequelize.literal(
+                  `(SELECT idproyecto FROM proyectos_has_miembros WHERE idmiembro = ${search.idmiembro})`
+                ),
+              }, // Filtrar proyectos relacionados al miembro en la tabla de unión
+            }, */
+              {
+                idproyecto: {
+                  [controller.Op.in]: sequelize.literal(
+                    `(SELECT idproyecto FROM proyectos_has_miembros WHERE idmiembro = :idmiembro)`
+                  ),
+                }, // Subconsulta segura usando reemplazos
+              },
+            ],
+          })
+          .setIncludedModels([
+            {
+              model: Miembros,
+              attributes: [
+                "nombreCompleto",
+                "nombre",
+                "apepat",
+                "apemat",
+                "idmiembro",
+              ],
+              through: { attributes: [] },
+            },
+          ])
+          .setReplacements({ idmiembro: search.idmiembro })
+          .getResult()
+          .getAll();
+
+        /*const proyectos = await Proyectos.findAll({
+          where: {
+            [Op.or]: [
+              { director: search.idmiembro }, // Condición para la columna director
+               {
+                "$miembros.idmiembro$": search.idmiembro, // Condición para la tabla de unión
+              },
+                 {
+                idproyecto: {
+                  [Op.in]: sequelize.literal(
+                    `(SELECT idproyecto FROM proyectos_has_miembros WHERE idmiembro = ${search.idmiembro})`
+                  ),
+                }, // Filtrar proyectos relacionados al miembro en la tabla de unión
+              }, 
+              {
+                idproyecto: {
+                  [Op.in]: sequelize.literal(
+                    `(SELECT idproyecto FROM proyectos_has_miembros WHERE idmiembro = :idmiembro)`
+                  ),
+                }, // Subconsulta segura usando reemplazos
+              },
+            ],
+          },
           include: [
             {
               model: Miembros,
-              attributes: ["nombreCompleto", "nombre", "apepat", "apemat"],
+              attributes: [
+                "nombreCompleto",
+                "nombre",
+                "apepat",
+                "apemat",
+                "idmiembro",
+              ],
               through: { attributes: [] },
             },
           ],
-        });
+          replacements: { idmiembro: search.idmiembro }, //evita sql injection
+        }); */
 
         return responseAsJson({
           ...miembro?.toJSON(),
@@ -39,6 +126,7 @@ export const GET: APIRoute = async ({ url }) => {
       }
       return responseAsJson(miembro);
     }
+
     const response = await Miembros.findAll({
       where: {
         ...(search.colaborador === "true" && { colaborador: true }),

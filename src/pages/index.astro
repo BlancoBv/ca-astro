@@ -9,7 +9,9 @@ import Carousel from "@components/gui/Carousel.vue";
     <Carousel client:visible />
 
     <BlogsContainer />
-    <div class="grid grid-cols-2 grid-rows-2 gap-4 p-4 lg:h-96">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4 p-4 lg:h-96 text-balance"
+    >
       <div class="card bg-accent text-accent-content shadow-xl">
         <div class="card-body">
           <h2 class="card-title">Misión</h2>
@@ -30,7 +32,7 @@ import Carousel from "@components/gui/Carousel.vue";
           </p>
         </div>
       </div>
-      <div class="card bg-neutral text-neutral-content shadow-xl col-span-2">
+      <div class="card bg-neutral text-neutral-content shadow-xl md:col-span-2">
         <div class="card-body">
           <h2 class="card-title">Objetivos</h2>
           <p>
