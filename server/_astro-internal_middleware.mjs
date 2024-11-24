@@ -155,6 +155,13 @@ const rateLimiter = defineMiddleware(
 );
 
 const corsFromWWW = defineMiddleware(async ({ request }, next) => {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "https://www.computodistribuido.org"
+      }
+    });
+  }
   request.headers.set(
     "Access-Control-Allow-Origin",
     "https://www.computodistribuido.org"
