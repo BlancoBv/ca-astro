@@ -23,6 +23,7 @@ export default class VerifyPath {
       path: "api/articulos",
       method: ["POST", "DELETE", "PUT"],
     },
+    { path: "api/user", method: ["POST", "PUT", "DELETE", "GET"] },
     {
       path: "api/roles",
       method: ["POST", "DELETE", "PUT", "GET"],

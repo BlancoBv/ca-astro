@@ -16,18 +16,31 @@ const blogs: {
     class="not-prose gap-4 place-items-center place-content-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
   >
     {
-      blogs.response?.blogs?.length > 0 &&
-        blogs.response.blogs.map((el) => (
-          <CardBlog
-            titulo={el.titulo}
-            imagen={el.imagen}
-            fecha={el.fecha}
-            id={el.idblog}
-          />
-        ))
+      blogs.response?.blogs?.length > 0 && (
+        <>
+          {blogs.response.blogs.map((el) => (
+            <CardBlog
+              titulo={el.titulo}
+              imagen={el.imagen}
+              fecha={el.fecha}
+              id={el.idblog}
+            />
+          ))}
+          <div class="md:col-span-2 lg:col-span-3 w-full flex justify-center">
+            <a class="btn btn-primary w-1/2" href="/content">
+              Ver todos
+            </a>
+          </div>
+        </>
+      )
     }
-    <div class="md:col-span-2 lg:col-span-3 w-full flex justify-center">
-      <a class="btn btn-primary w-1/2" href="/content">Ver todos </a>
-    </div>
+    {
+      blogs.response.blogs?.length < 1 && (
+        <div class="h-96 flex flex-col justify-center items-center gap-4 md:col-span-2 lg:col-span-3">
+          <i class="bi bi-clouds text-9xl" />
+          <h1 class="text-xl">Sin eventos recientes</h1>
+        </div>
+      )
+    }
   </div>
 </div>
