@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { I as ImageController } from '../../chunks/ImageController_D6-LYmBW.mjs';
-import { B as Banners } from '../../chunks/index_BkSKolFm.mjs';
+import { B as Banners } from '../../chunks/index_lYbwe5rL.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const imageController = new ImageController("banners");

@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, F as Fragment } from '../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DLdtremP.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_BZcl8e7J.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DXYTT7Ae.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_BCnJuwdz.mjs';
 import { C as Carousel } from '../chunks/Carousel_DQq-jMMG.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
@@ -15,7 +15,7 @@ Ver todos
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/BlogsContainer.astro", void 0);
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Cuerpo academico, computo distribuido." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Carousel", Carousel, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/gui/Carousel.vue", "client:component-export": "default" })} ${renderComponent($$result2, "BlogsContainer", $$BlogsContainer, {})} <div class="grid grid-cols-2 grid-rows-2 gap-4 p-4 lg:h-96"> <div class="card bg-accent text-accent-content shadow-xl"> <div class="card-body"> <h2 class="card-title">Misión</h2> <p>
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Cuerpo academico, computo distribuido." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Carousel", Carousel, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/gui/Carousel.vue", "client:component-export": "default" })} ${renderComponent($$result2, "BlogsContainer", $$BlogsContainer, {})} <div class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4 p-4 lg:h-96 text-balance"> <div class="card bg-accent text-accent-content shadow-xl"> <div class="card-body"> <h2 class="card-title">Misión</h2> <p>
 Contribuir con el mejoramiento de la formación académica de los
             estudiantes de la carrera de Ingeniería en Sistemas computacionales
             del Instituto tecnológico Superior de los Ríos.
@@ -23,7 +23,7 @@ Contribuir con el mejoramiento de la formación académica de los
 Lograr la consolidación del cuerpo académico a través del incremento
             de nuestra producción académica, investigación con reconocimiento
             nacional e internacional.
-</p> </div> </div> <div class="card bg-neutral text-neutral-content shadow-xl col-span-2"> <div class="card-body"> <h2 class="card-title">Objetivos</h2> <p>
+</p> </div> </div> <div class="card bg-neutral text-neutral-content shadow-xl md:col-span-2"> <div class="card-body"> <h2 class="card-title">Objetivos</h2> <p>
 Desarrollar un cuerpo académico para el desarrollo de proyectos de
             investigación, dirección de tesís, desarrollo de aplicación de
             sistema distribuido, así como el mejoramiento de los planes de

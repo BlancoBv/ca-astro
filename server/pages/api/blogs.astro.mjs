@@ -1,4 +1,4 @@
-import { b as Blog, E as Etiquetas } from '../../chunks/index_BkSKolFm.mjs';
+import { b as Blog, E as Etiquetas } from '../../chunks/index_lYbwe5rL.mjs';
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_Dy1BIr2k.mjs';

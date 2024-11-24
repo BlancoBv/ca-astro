@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-import { R as Roles, d as Permisos } from '../../chunks/index_BkSKolFm.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_oQYjIXct.mjs';
+import { R as Roles, d as Permisos } from '../../chunks/index_lYbwe5rL.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_DAop8mSr.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const POST = async ({ request }) => {
@@ -15,7 +15,8 @@ const POST = async ({ request }) => {
   }
 };
 const GET = async ({ url }) => {
-  const controller = new ControllerBuilder(Roles);
+  const controller = new ControllerBuilder();
+  controller.setModel(Roles);
   controller.setIncludedModels([{ model: Permisos }]);
   const res = await controller.getResult().getAll();
   return responseAsJson(res);

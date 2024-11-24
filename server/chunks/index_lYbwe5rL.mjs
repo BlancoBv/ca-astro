@@ -359,6 +359,10 @@ const Miembros = sequelize.define("miembros", {
   idUsuario: {
     type: DataTypes.INTEGER
   },
+  tipoMiembro: {
+    type: DataTypes.ENUM("lider", "miembro"),
+    allowNull: false
+  },
   nombreCompleto: {
     type: DataTypes.VIRTUAL,
     get() {
@@ -399,7 +403,7 @@ const Contactos = sequelize.define("contactos", {
     allowNull: false
   },
   url: {
-    type: DataTypes.STRING(60),
+    type: DataTypes.STRING(100),
     allowNull: false
   },
   idmiembro: {
@@ -413,9 +417,9 @@ const Banners = sequelize.define("banners", {
   descripcion: {
     type: DataTypes.STRING(100)
   },
-  imagen: { type: DataTypes.STRING(60), allowNull: false },
+  imagen: { type: DataTypes.STRING(100), allowNull: false },
   mostrar: { type: DataTypes.BOOLEAN, allowNull: false },
-  url: { type: DataTypes.STRING(60) },
+  url: { type: DataTypes.STRING(100) },
   idUsuario: {
     type: DataTypes.INTEGER
   }

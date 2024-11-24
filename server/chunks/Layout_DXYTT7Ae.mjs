@@ -5,9 +5,9 @@ import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, ref, onMounted } from 'vue';
 import { ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderAttrs, ssrRenderClass, ssrRenderComponent, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import moment from 'moment';
+/* empty css                           */
+/* empty css                           */
 /* empty css                         */
-/* empty css                           */
-/* empty css                           */
 
 const $$Header = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<div class="min-h-10 bg-primary text-base-100 w-full lg:grid lg:grid-cols-3"> <span class="my-auto">TecNM Campus de los Ríos</span> <div class="flex justify-end gap-4 not-prose col-span-2 items-center px-4"> <a class="link link-hover font-bold text-sm" href="/">Gobierno</a> <a class="link link-hover font-bold text-sm" href="/">Participa</a> <a class="link link-hover font-bold text-sm" href="/">Datos</a> </div> </div> <!--  <div class="min-h-20 bg-white">
@@ -67,7 +67,22 @@ function formatYear(date) {
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
   const actualDate = new Date(Date.now());
   const fDate = formatYear(actualDate);
-  return renderTemplate`${maybeRenderHead()}<footer class="footer bg-base-200 text-base-content p-10"> <nav> <h6 class="footer-title">Ubicación</h6> <iframe title="location map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.199083036566!2d-91.5346115538867!3d17.82929994302398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f3c2bd64971569%3A0x237ff6dacda499f4!2sInstituto%20Tecnol%C3%B3gico%20Superior%20de%20los%20R%C3%ADos!5e0!3m2!1ses-419!2smx!4v1729784470010!5m2!1ses-419!2smx" height="350" width="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-astro-transition-persist="mapa-location"${addAttribute(renderTransition($$result, "storebuh", "", "mapa-location"), "data-astro-transition-scope")}></iframe> <!--  <a class="link link-hover">Branding</a>
+  return renderTemplate`${maybeRenderHead()}<footer class="footer bg-base-200 text-base-content p-10"> <nav> <h6 class="footer-title"><i class="bi bi-geo-alt-fill"></i> Ubicación</h6> <p>
+Dirección: Km. 3 carretera Balancán-Villahermosa, Balancán, Tabasco C.P.
+      86930
+</p> <p>Teléfono: 934 - 115 - 1443</p> <a href="https://maps.app.goo.gl/DVs2mPFzfHBDdCXj9" class="link" target="_blank">
+Ver en Google Maps
+<i class="bi bi-box-arrow-up-right"></i> </a> <!-- <iframe
+      title="location map"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.199083036566!2d-91.5346115538867!3d17.82929994302398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f3c2bd64971569%3A0x237ff6dacda499f4!2sInstituto%20Tecnol%C3%B3gico%20Superior%20de%20los%20R%C3%ADos!5e0!3m2!1ses-419!2smx!4v1729784470010!5m2!1ses-419!2smx"
+      height="350"
+      width="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      transition:name="mapa-location"
+      transition:persist></iframe> --> <!--  <a class="link link-hover">Branding</a>
     <a class="link link-hover">Design</a>
     <a class="link link-hover">Marketing</a>
     <a class="link link-hover">Advertisement</a> --> </nav> <nav> <h6 class="footer-title">Transparencia</h6> <a class="link" href="#">About us</a> <a class="link" href="#">Contact</a> <a class="link" href="#">Jobs</a> <a class="link" href="#">Press kit</a> </nav> <nav> <h6 class="footer-title">Ultima actualización</h6> <span>30 de octubre de 2024</span> </nav> </footer> <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4"> <aside class="grid-flow-col items-center"> <!--     <svg
@@ -85,7 +100,7 @@ const $$Footer = createComponent(($$result, $$props, $$slots) => {
     </svg> --> <p> <i class="bi bi-c-circle"></i> <span>${fDate}</span>
 Cuerpo Académico - Computo Distribuido
 </p> </aside> <nav class="md:place-self-center md:justify-self-end"> <div class="grid grid-flow-col gap-4 text-2xl"> <a href="mailto:cdistribuido2018@gmail.com" title="Mail" aria-label="Correo"> <i class="bi bi-envelope-fill"></i> </a> <a href="https://www.facebook.com/ComputoDistribuido/" target="_blank" title="Facebook" aria-label="Facebook"> <i class="bi bi-facebook"></i> </a> </div> </nav> </footer>`;
-}, "/home/blanco/Documentos/ca-astro/src/components/gui/Footer.astro", "self");
+}, "/home/blanco/Documentos/ca-astro/src/components/gui/Footer.astro", void 0);
 
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "MiembrosNav",

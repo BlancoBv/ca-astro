@@ -1,6 +1,6 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DLdtremP.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DXYTT7Ae.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, ref, reactive, onMounted, mergeProps } from 'vue';
