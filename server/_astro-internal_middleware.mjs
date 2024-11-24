@@ -154,7 +154,15 @@ const rateLimiter = defineMiddleware(
   }
 );
 
-const onRequest$1 = sequence(rateLimiter, panelAuth, apiAuth);
+const corsFromWWW = defineMiddleware(async ({ request }, next) => {
+  request.headers.set(
+    "Access-Control-Allow-Origin",
+    "https://www.computodistribuido.org"
+  );
+  return next();
+});
+
+const onRequest$1 = sequence(corsFromWWW, rateLimiter, panelAuth, apiAuth);
 
 const onRequest = sequence(
 	

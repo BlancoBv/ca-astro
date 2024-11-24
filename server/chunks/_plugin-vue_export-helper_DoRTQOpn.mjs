@@ -17,7 +17,6 @@ console.log(true);
 const Axios = axios.create({
   baseURL: `${"https://computodistribuido.org" }/api/`,
   headers: {
-    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json"
   }
   /* validateStatus: (status: number) => {

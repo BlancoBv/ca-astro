@@ -1,7 +1,7 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_BLMGylKI.mjs';
-import { C as Carousel } from './Carousel_BVOfChvz.mjs';
+import { C as Carousel } from './Carousel_DQq-jMMG.mjs';
 /* empty css                           */
-import { u as useSendData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_DvmUE3rx.mjs';
+import { u as useSendData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_DoRTQOpn.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
