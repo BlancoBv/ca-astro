@@ -16,7 +16,7 @@ const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
 const Axios = axios.create({
   baseURL: `${"https://computodistribuido.org" }/api/`,
   headers: {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "https://www.computodistribuido.org",
     "Content-Type": "application/json"
   }
   /* validateStatus: (status: number) => {

@@ -1,5 +1,5 @@
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, e as renderTransition, a as renderComponent, b as createAstro, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_BLMGylKI.mjs';
-import { a as useGetData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_Dp5eun83.mjs';
+import { a as useGetData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_DHyHp5WX.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, ref, onMounted } from 'vue';
