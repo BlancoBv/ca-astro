@@ -1,8 +1,8 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, F as Fragment } from '../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DXYTT7Ae.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_BCnJuwdz.mjs';
-import { C as Carousel } from '../chunks/Carousel_DQq-jMMG.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B715vgUQ.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_BNGwPEBA.mjs';
+import { C as Carousel } from '../chunks/Carousel_BVOfChvz.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {

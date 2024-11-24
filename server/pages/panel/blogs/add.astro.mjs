@@ -1,7 +1,7 @@
 /* empty css                                         */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BLMGylKI.mjs';
-import { E as Editor } from '../../../chunks/Editor_CZhSjCWL.mjs';
-import { $ as $$Layout } from '../../../chunks/Layout_DXYTT7Ae.mjs';
+import { E as Editor } from '../../../chunks/Editor_Zuj113RO.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_B715vgUQ.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
