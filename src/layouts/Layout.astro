@@ -4,8 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import Header from "@components/gui/Header.astro";
 import { ViewTransitions } from "astro:transitions";
+import Header from "@components/gui/Header.astro";
 import SideBarItems from "@components/gui/SideBarItems.vue";
 import Footer from "@components/gui/Footer.astro";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -13,7 +13,7 @@ import "vue3-toastify/dist/index.css";
 import NavBar from "@components/gui/NavBar.astro";
 Astro.response.headers.set(
   "Cache-Control",
-  "public, s-maxage=60, stale-while-revalidate=30"
+  "public, s-maxage=120, stale-while-revalidate=60"
 );
 ---
 
