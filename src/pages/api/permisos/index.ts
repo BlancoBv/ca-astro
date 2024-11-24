@@ -19,9 +19,9 @@ export const POST: APIRoute = async ({ request }) => {
 };
 
 export const GET: APIRoute = async () => {
-  const controller = new ControllerBuilder(Permisos);
+  const controller = new ControllerBuilder();
 
-  const response = await controller.getResult().getAll();
+  const response = await controller.setModel(Permisos).getResult().getAll();
 
   return responseAsJson(response);
 };
