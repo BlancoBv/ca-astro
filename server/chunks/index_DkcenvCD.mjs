@@ -1,6 +1,6 @@
 import { A as AstroError, q as i18nNoLocaleFoundInPath, s as appendForwardSlash, t as joinPaths, R as ResponseSentError, u as MiddlewareNoDataOrNextCalled, v as MiddlewareNotAResponse, G as GetStaticPathsRequired, w as InvalidGetStaticPathsReturn, x as InvalidGetStaticPathsEntry, y as GetStaticPathsExpectedParams, z as GetStaticPathsInvalidRouteParam, B as trimSlashes, P as PageNumberParamNotFound, C as NoMatchingStaticPathFound, H as PrerenderDynamicEndpointPathCollide, J as ReservedSlotName, K as removeTrailingForwardSlash, L as RewriteWithBodyUsed, Q as LocalsNotAnObject, S as PrerenderClientAddressNotAvailable, T as ClientAddressNotAvailable, U as StaticClientAddressNotAvailable, V as AstroResponseHeadersReassigned } from './astro/assets-service_BWWVVXRT.mjs';
-import { g as getActionQueryString, d as deserializeActionResult, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_B-cVmwoE.mjs';
-import { R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, j as renderSlotToString, k as renderJSX, l as chunkToString, n as isRenderInstruction, o as originPathnameSymbol, p as ROUTE_TYPE_HEADER, q as clientLocalsSymbol, t as clientAddressSymbol, A as ASTRO_VERSION, v as responseSentSymbol$1, w as renderPage, x as REWRITE_DIRECTIVE_HEADER_KEY, y as REWRITE_DIRECTIVE_HEADER_VALUE, z as renderEndpoint } from './astro/server_Csy-cjiN.mjs';
+import { g as getActionQueryString, d as deserializeActionResult, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_DwsjirI3.mjs';
+import { R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, j as renderSlotToString, k as renderJSX, l as chunkToString, n as isRenderInstruction, o as originPathnameSymbol, p as ROUTE_TYPE_HEADER, q as clientLocalsSymbol, t as clientAddressSymbol, A as ASTRO_VERSION, v as responseSentSymbol$1, w as renderPage, x as REWRITE_DIRECTIVE_HEADER_KEY, y as REWRITE_DIRECTIVE_HEADER_VALUE, z as renderEndpoint } from './astro/server_BLMGylKI.mjs';
 
 const ACTION_API_CONTEXT_SYMBOL = Symbol.for("astro.actionAPIContext");
 
@@ -1289,6 +1289,16 @@ class Slots {
   }
 }
 
+function matchRoute(pathname, manifest) {
+  const decodedPathname = decodeURI(pathname);
+  return manifest.routes.find((route) => {
+    return route.pattern.test(decodedPathname) || route.fallbackRoutes.some((fallbackRoute) => fallbackRoute.pattern.test(decodedPathname));
+  });
+}
+function isRoute404or500(route) {
+  return route.pattern.test("/404") || route.pattern.test("/500");
+}
+
 function findRouteToRewrite({
   payload,
   routes,
@@ -1770,11 +1780,8 @@ class RenderContext {
       return this.#currentLocale;
     }
     let computedLocale;
-    if (routeData.pathname) {
-      computedLocale = computeCurrentLocale(routeData.pathname, locales, defaultLocale);
-    } else {
-      computedLocale = computeCurrentLocale(url.pathname, locales, defaultLocale);
-    }
+    const pathname = routeData.pathname && !isRoute404or500(routeData) ? routeData.pathname : url.pathname;
+    computedLocale = computeCurrentLocale(pathname, locales, defaultLocale);
     this.#currentLocale = computedLocale ?? fallbackTo;
     return this.#currentLocale;
   }
@@ -1850,4 +1857,4 @@ function defineMiddleware(fn) {
   return fn;
 }
 
-export { RouteCache as R, requestIs404Or500 as a, redirectToFallback as b, normalizeTheLocale as c, defineMiddleware as d, redirectToDefaultLocale as e, findRouteToRewrite as f, RenderContext as g, getSetCookiesFromResponse as h, notFound as n, requestHasLocale as r, sequence as s };
+export { RouteCache as R, requestIs404Or500 as a, redirectToFallback as b, normalizeTheLocale as c, defineMiddleware as d, redirectToDefaultLocale as e, findRouteToRewrite as f, RenderContext as g, getSetCookiesFromResponse as h, matchRoute as m, notFound as n, requestHasLocale as r, sequence as s };

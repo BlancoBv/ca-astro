@@ -1,0 +1,1 @@
+import"./hoisted.BScVxmeO.js";document.addEventListener("astro:page-load",e=>{JSON.parse(localStorage.getItem("isDark")??"false")?document.documentElement.setAttribute("data-theme","night"):document.documentElement.setAttribute("data-theme","winter")});

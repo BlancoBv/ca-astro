@@ -1,7 +1,7 @@
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment, renderList } from 'vue';
-import { a as useGetData, _ as _export_sfc } from './_plugin-vue_export-helper_COMoZbOo.mjs';
+import { a as useGetData, _ as _export_sfc } from './_plugin-vue_export-helper_DoRTQOpn.mjs';
 import { Carousel as Carousel$1, Navigation, Pagination, Slide } from 'vue3-carousel';
 /* empty css                         */
 import { ssrRenderComponent, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'vue/server-renderer';
@@ -29,7 +29,6 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     _push(ssrRenderComponent($setup["Carousel"], mergeProps({
       "items-to-show": 1.5,
       class: "block",
-      autoplay: 2e3,
       "wrap-around": "",
       "pause-autoplay-on-hover": ""
     }, _attrs), {
@@ -43,7 +42,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
-                  _push3(`<div class="h-full w-full relative flex items-end justify-end"${_scopeId2}><img class="w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box"${ssrRenderAttr("src", banner.imagen)}${_scopeId2}><div class="p-4 w-full lg:w-3/4"${_scopeId2}>`);
+                  _push3(`<div class="h-full w-full relative flex items-end justify-end"${_scopeId2}><img class="w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box"${ssrRenderAttr("src", banner.imagen)} width="100px" height="100px"${ssrRenderAttr("alt", banner.createdAt)}${_scopeId2}><div class="p-4 w-full lg:w-3/4"${_scopeId2}>`);
                   if (banner.url || banner.descripcion) {
                     _push3(`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full min-h-32"${_scopeId2}><div class="card-body"${_scopeId2}>`);
                     if (banner.descripcion) {
@@ -66,8 +65,11 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
                     createVNode("div", { class: "h-full w-full relative flex items-end justify-end" }, [
                       createVNode("img", {
                         class: "w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box",
-                        src: banner.imagen
-                      }, null, 8, ["src"]),
+                        src: banner.imagen,
+                        width: "100px",
+                        height: "100px",
+                        alt: banner.createdAt
+                      }, null, 8, ["src", "alt"]),
                       createVNode("div", { class: "p-4 w-full lg:w-3/4" }, [
                         banner.url || banner.descripcion ? (openBlock(), createBlock("div", {
                           key: 0,
@@ -107,8 +109,11 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
                   createVNode("div", { class: "h-full w-full relative flex items-end justify-end" }, [
                     createVNode("img", {
                       class: "w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box",
-                      src: banner.imagen
-                    }, null, 8, ["src"]),
+                      src: banner.imagen,
+                      width: "100px",
+                      height: "100px",
+                      alt: banner.createdAt
+                    }, null, 8, ["src", "alt"]),
                     createVNode("div", { class: "p-4 w-full lg:w-3/4" }, [
                       banner.url || banner.descripcion ? (openBlock(), createBlock("div", {
                         key: 0,

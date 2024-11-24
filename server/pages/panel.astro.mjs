@@ -1,7 +1,7 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_Csy-cjiN.mjs';
-import { L as LogoutButton, $ as $$LayoutPanel } from '../chunks/LayoutPanel_BD_foIAr.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_CY4cSyXV.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BLMGylKI.mjs';
+import { L as LogoutButton, $ as $$LayoutPanel } from '../chunks/LayoutPanel_XcInQ5el.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "title": "Inicio de sesi\xF3n" }, { "default": ($$result2) => renderTemplate`

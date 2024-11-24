@@ -2,7 +2,7 @@ import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { S as Submenus, U as Users, M as Menus } from '../../chunks/index_BkSKolFm.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_oQYjIXct.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_CY4cSyXV.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const GET = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);

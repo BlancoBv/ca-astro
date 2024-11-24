@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { A as Articulo, E as Etiquetas, s as sequelize, a as EtiquetasArticulos } from '../../chunks/index_BkSKolFm.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_CY4cSyXV.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const GET = async ({ url, locals }) => {
   console.log(locals);

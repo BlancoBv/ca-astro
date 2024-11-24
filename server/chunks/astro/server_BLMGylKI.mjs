@@ -1,6 +1,6 @@
 import { A as AstroError, E as EndpointDidNotReturnAResponse, I as InvalidComponentArgs, a as AstroGlobUsedOutside, b as AstroGlobNoMatch, M as MissingMediaQueryDirective, N as NoMatchingImport, O as OnlyResponseCanBeReturned, R as ResponseSentError, c as NoMatchingRenderer, d as NoClientOnlyHint, e as NoClientEntrypoint } from './assets-service_BWWVVXRT.mjs';
 
-const ASTRO_VERSION = "4.16.12";
+const ASTRO_VERSION = "4.16.14";
 const REROUTE_DIRECTIVE_HEADER = "X-Astro-Reroute";
 const REWRITE_DIRECTIVE_HEADER_KEY = "X-Astro-Rewrite";
 const REWRITE_DIRECTIVE_HEADER_VALUE = "yes";
@@ -1666,8 +1666,8 @@ let response = await fetch('${serverIslandUrl}', {
 	method: 'POST',
 	body: JSON.stringify(data),
 });
-
-if(response.status === 200 && response.headers.get('content-type') === 'text/html') {
+if (script) {
+	if(response.status === 200 && response.headers.get('content-type') === 'text/html') {
 	let html = await response.text();
 
 	// Swap!
@@ -1682,6 +1682,7 @@ if(response.status === 200 && response.headers.get('content-type') === 'text/htm
 	script.before(frag);
 }
 script.remove();
+}
 </script>`);
     }
   };
@@ -2677,4 +2678,4 @@ function spreadAttributes(values = {}, _name, { class: scopedClassName } = {}) {
   return markHTMLString(output);
 }
 
-export { ASTRO_VERSION as A, decodeKey as B, decryptString as C, DEFAULT_404_COMPONENT as D, createSlotValueFromString as E, bold as F, red as G, yellow as H, dim as I, blue as J, REROUTABLE_STATUS_CODES as K, getDefaultExportFromCjs as L, NOOP_MIDDLEWARE_HEADER as N, REROUTE_DIRECTIVE_HEADER as R, renderComponent as a, createAstro as b, createComponent as c, addAttribute as d, renderTransition as e, renderHead as f, renderSlot as g, createTransitionScope as h, escape as i, renderSlotToString as j, renderJSX as k, chunkToString as l, maybeRenderHead as m, isRenderInstruction as n, originPathnameSymbol as o, ROUTE_TYPE_HEADER as p, clientLocalsSymbol as q, renderTemplate as r, spreadAttributes as s, clientAddressSymbol as t, unescapeHTML as u, responseSentSymbol as v, renderPage as w, REWRITE_DIRECTIVE_HEADER_KEY as x, REWRITE_DIRECTIVE_HEADER_VALUE as y, renderEndpoint as z };
+export { ASTRO_VERSION as A, decodeKey as B, decryptString as C, DEFAULT_404_COMPONENT as D, createSlotValueFromString as E, Fragment as F, bold as G, red as H, yellow as I, dim as J, blue as K, REROUTABLE_STATUS_CODES as L, getDefaultExportFromCjs as M, NOOP_MIDDLEWARE_HEADER as N, REROUTE_DIRECTIVE_HEADER as R, renderComponent as a, createAstro as b, createComponent as c, addAttribute as d, renderTransition as e, renderHead as f, renderSlot as g, createTransitionScope as h, escape as i, renderSlotToString as j, renderJSX as k, chunkToString as l, maybeRenderHead as m, isRenderInstruction as n, originPathnameSymbol as o, ROUTE_TYPE_HEADER as p, clientLocalsSymbol as q, renderTemplate as r, spreadAttributes as s, clientAddressSymbol as t, unescapeHTML as u, responseSentSymbol as v, renderPage as w, REWRITE_DIRECTIVE_HEADER_KEY as x, REWRITE_DIRECTIVE_HEADER_VALUE as y, renderEndpoint as z };

@@ -1,5 +1,5 @@
-import './chunks/astro-designed-error-pages_B-cVmwoE.mjs';
-import { d as defineMiddleware, s as sequence } from './chunks/index_BbVo89tK.mjs';
+import './chunks/astro-designed-error-pages_DwsjirI3.mjs';
+import { d as defineMiddleware, s as sequence } from './chunks/index_DkcenvCD.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as CookiesManager } from './chunks/CookiesManager_Cm5dHe09.mjs';
 import { L as Logs } from './chunks/index_BkSKolFm.mjs';
@@ -25,6 +25,7 @@ class VerifyPath {
       path: "api/articulos",
       method: ["POST", "DELETE", "PUT"]
     },
+    { path: "api/user", method: ["POST", "PUT", "DELETE", "GET"] },
     {
       path: "api/roles",
       method: ["POST", "DELETE", "PUT", "GET"]

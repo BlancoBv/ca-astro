@@ -1,8 +1,8 @@
 /* empty css                                         */
-import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_Csy-cjiN.mjs';
-import { E as Editor } from '../../../chunks/Editor_CD0GPatb.mjs';
-import { $ as $$Layout } from '../../../chunks/Layout_B0YNWotX.mjs';
-export { r as renderers } from '../../../chunks/_@astro-renderers_CY4cSyXV.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BLMGylKI.mjs';
+import { E as Editor } from '../../../chunks/Editor_CZhSjCWL.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_DLdtremP.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "A\xF1adir contenido" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Editor", Editor, { "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/editor/Editor.vue", "client:component-export": "default" })} ` })}`;

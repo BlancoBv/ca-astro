@@ -1,7 +1,6 @@
-import { r as renderers } from './chunks/_@astro-renderers_CY4cSyXV.mjs';
-import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_DgOK99Ce.mjs';
-import { manifest } from './manifest_ChoJS8vs.mjs';
-import './_astro-internal_middleware.mjs';
+import { r as renderers } from './chunks/_@astro-renderers_Dy1BIr2k.mjs';
+import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_B2-qsjqE.mjs';
+import { manifest } from './manifest_68GZjHJc.mjs';
 
 const _page0 = () => import('./pages/_image.astro.mjs');
 const _page1 = () => import('./pages/404.astro.mjs');
@@ -34,7 +33,7 @@ const _page27 = () => import('./pages/_resource_.astro.mjs');
 const _page28 = () => import('./pages/index.astro.mjs');
 
 const pageMap = new Map([
-    ["node_modules/.pnpm/astro@4.16.12_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/dist/assets/endpoint/node.js", _page0],
+    ["node_modules/.pnpm/astro@4.16.14_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/dist/assets/endpoint/node.js", _page0],
     ["src/pages/404.astro", _page1],
     ["src/pages/api/articulos/index.ts", _page2],
     ["src/pages/api/banners/index.ts", _page3],

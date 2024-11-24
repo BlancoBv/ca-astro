@@ -1,5 +1,5 @@
 import { A as AstroError, g as NoImageMetadata, F as FailedToFetchRemoteImageDimensions, h as ExpectedImageOptions, j as ExpectedImage, k as ExpectedNotESMImage, r as resolveSrc, l as isRemoteImage, i as isRemotePath, m as isESMImportedImage, n as isLocalService, D as DEFAULT_HASH_PROPS, o as InvalidImageService, p as ImageMissingAlt } from './astro/assets-service_BWWVVXRT.mjs';
-import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, s as spreadAttributes } from './astro/server_Csy-cjiN.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, s as spreadAttributes } from './astro/server_BLMGylKI.mjs';
 
 function isImageMetadata(src) {
   return src.fsPath && !("fsPath" in src);
@@ -945,7 +945,7 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
     additionalAttributes.srcset = image.srcSet.attribute;
   }
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(additionalAttributes)}${spreadAttributes(image.attributes)}>`;
-}, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.12_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/Image.astro", void 0);
+}, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.14_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/Image.astro", void 0);
 
 const mimes = {
   "3g2": "video/3gpp2",
@@ -1448,7 +1448,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
     const srcsetAttribute = props.densities || !props.densities && !props.widths ? `${image.src}${image.srcSet.values.length > 0 ? ", " + image.srcSet.attribute : ""}` : image.srcSet.attribute;
     return renderTemplate`<source${addAttribute(srcsetAttribute, "srcset")}${addAttribute(lookup(image.options.format ?? image.src) ?? `image/${image.options.format}`, "type")}${spreadAttributes(sourceAdditionalAttributes)}>`;
   })} <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(imgAdditionalAttributes)}${spreadAttributes(fallbackImage.attributes)}> </picture>`;
-}, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.12_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/Picture.astro", void 0);
+}, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.14_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/Picture.astro", void 0);
 
 const imageConfig = {"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[],"endpoint":"astro/assets/endpoint/node"};
 					// This is used by the @astrojs/node integration to locate images.

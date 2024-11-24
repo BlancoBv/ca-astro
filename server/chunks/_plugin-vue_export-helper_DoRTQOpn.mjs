@@ -1,4 +1,4 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute } from './astro/server_Csy-cjiN.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute } from './astro/server_BLMGylKI.mjs';
 /* empty css                           */
 import { useQuery, keepPreviousData, useMutation } from '@tanstack/vue-query';
 import axios from 'axios';
@@ -11,7 +11,7 @@ const $$ViewTransitions = createComponent(($$result, $$props, $$slots) => {
   Astro2.self = $$ViewTransitions;
   const { fallback = "animate" } = Astro2.props;
   return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>`;
-}, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.12_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/ViewTransitions.astro", void 0);
+}, "/home/blanco/Documentos/ca-astro/node_modules/.pnpm/astro@4.16.14_@types+node@22.5.5_rollup@4.21.3_typescript@5.6.2/node_modules/astro/components/ViewTransitions.astro", void 0);
 
 console.log(true);
 const Axios = axios.create({

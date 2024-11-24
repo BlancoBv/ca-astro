@@ -2189,7 +2189,9 @@ const _app = (app) => {
     autoClose: 800,
     position: toast.POSITION.TOP_RIGHT
   });
-  app.use(PrimeVue, { theme: { preset: Aura } });
+  app.use(PrimeVue, {
+    theme: { preset: Aura, options: { darkModeSelector: "system" } }
+  });
 };
 
 const mod = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
