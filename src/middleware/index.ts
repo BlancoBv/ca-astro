@@ -65,5 +65,6 @@ import { sequence } from "astro:middleware";
 import { apiAuth } from "./apiAuth";
 import { panelAuth } from "./panelAuth";
 import { rateLimiter } from "./rateLimiter";
+import { corsFromWWW } from "./corsFromWWW";
 
-export const onRequest = sequence(rateLimiter, panelAuth, apiAuth);
+export const onRequest = sequence(corsFromWWW, rateLimiter, panelAuth, apiAuth);

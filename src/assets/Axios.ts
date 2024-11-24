@@ -1,12 +1,10 @@
 import axios from "axios";
-
-console.log(import.meta.env.PROD);
 const PROD = import.meta.env.PROD;
 
 export default axios.create({
   baseURL: `${PROD ? import.meta.env.SITE : "http://localhost:4321"}/api/`,
   headers: {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "https://www.computodistribuido.org",
     "Content-Type": "application/json",
   },
   /* validateStatus: (status: number) => {
