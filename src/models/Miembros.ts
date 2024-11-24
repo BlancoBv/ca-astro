@@ -14,6 +14,7 @@ type UserAttributes = {
   colaborador: boolean;
   idUsuario: number;
   nombreCompleto: string;
+  tipoMiembro: "lider" | "miembro";
 };
 
 // we're telling the Model that 'id' is optional
@@ -70,6 +71,10 @@ const Miembros = sequelize.define<
   },
   idUsuario: {
     type: DataTypes.INTEGER,
+  },
+  tipoMiembro: {
+    type: DataTypes.ENUM("lider", "miembro"),
+    allowNull: false,
   },
   nombreCompleto: {
     type: DataTypes.VIRTUAL,

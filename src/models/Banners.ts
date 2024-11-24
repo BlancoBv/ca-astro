@@ -6,9 +6,9 @@ const Banners = sequelize.define("banners", {
   descripcion: {
     type: DataTypes.STRING(100),
   },
-  imagen: { type: DataTypes.STRING(60), allowNull: false },
+  imagen: { type: DataTypes.STRING(100), allowNull: false },
   mostrar: { type: DataTypes.BOOLEAN, allowNull: false },
-  url: { type: DataTypes.STRING(60) },
+  url: { type: DataTypes.STRING(100) },
   idUsuario: {
     type: DataTypes.INTEGER,
   },
