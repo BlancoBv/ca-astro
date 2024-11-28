@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_YwBgiMAu.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BPCaxtkh.mjs';
 import { toast } from 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';

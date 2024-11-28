@@ -1,5 +1,5 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_BLMGylKI.mjs';
-import { C as Carousel } from './Carousel_fgOYUA07.mjs';
+import { C as Carousel } from './Carousel_skHLchpO.mjs';
 /* empty css                           */
 import { u as useSendData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_Dp5eun83.mjs';
 import 'vue3-toastify';

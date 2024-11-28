@@ -10,7 +10,7 @@ import moment from 'moment';
 /* empty css                         */
 
 const $$Header = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<div class="min-h-10 bg-base-100 w-full flex gap-4 flex-wrap justify-end items-center px-4"> <a href="https://rios.tecnm.mx/rios/" target="_blank" class="btn btn-xs btn-info">TecNM Campus de los Ríos</a> <!--   <a class="btn btn-xs btn-info" href="/">Gobierno</a>
+  return renderTemplate`${maybeRenderHead()}<div class="min-h-10 bg-neutral/80 w-full flex gap-4 flex-wrap justify-end items-center px-4"> <a href="https://rios.tecnm.mx/rios/" target="_blank" class="btn btn-xs btn-info">TecNM Campus de los Ríos <i class="bi bi-box-arrow-up-right"></i></a> <!--   <a class="btn btn-xs btn-info" href="/">Gobierno</a>
   <a class="btn btn-xs btn-info" href="/">Participa</a>
   <a class="btn btn-xs btn-info" href="/">Datos</a> --> </div>`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/Header.astro", void 0);
@@ -84,7 +84,13 @@ Ver en Google Maps <i class="bi bi-box-arrow-up-right"></i> </a> <!-- <iframe
       transition:persist></iframe> --> <!--  <a class="link link-hover">Branding</a>
     <a class="link link-hover">Design</a>
     <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a> --> </nav> <nav> <h6 class="footer-title">Transparencia</h6> <a class="link" href="#">About us</a> <a class="link" href="#">Contact</a> <a class="link" href="#">Jobs</a> <a class="link" href="#">Press kit</a> </nav> <nav> <h6 class="footer-title">Ultima actualización</h6> <span>30 de octubre de 2024</span> </nav> </div> <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4"> <aside class="grid-flow-col items-center"> <p> <i class="bi bi-c-circle"></i> <span>${fDate}</span>
+    <a class="link link-hover">Advertisement</a> --> </nav> <!--   <nav>
+    <h6 class="footer-title">Transparencia</h6>
+    <a class="link" href="#">About us</a>
+    <a class="link" href="#">Contact</a>
+    <a class="link" href="#">Jobs</a>
+    <a class="link" href="#">Press kit</a>
+  </nav> --> <nav> <h6 class="footer-title">Ultima actualización</h6> <span>30 de octubre de 2024</span> </nav> </div> <footer class="footer place-items-center md:place-items-start bg-base-300 text-base-content border-base-300 border-t px-10 py-4"> <aside class="grid-flow-col items-center"> <p> <i class="bi bi-c-circle"></i> <span>${fDate}</span>
 Cuerpo Académico - Computo Distribuido
 </p> </aside> <nav class="md:place-self-center md:justify-self-end"> <div class="grid grid-flow-col gap-4 text-2xl"> <a href="mailto:cdistribuido2018@gmail.com" title="Mail" aria-label="Correo"> <i class="bi bi-envelope-fill"></i> </a> <a href="https://www.facebook.com/ComputoDistribuido/" target="_blank" title="Facebook" aria-label="Facebook"> <i class="bi bi-facebook"></i> </a> </div> </nav> </footer>`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/Footer.astro", void 0);
@@ -110,11 +116,11 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "dropdown dropdown-hover group" }, _attrs))}><div tabindex="0" role="button" class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1"> Miembros <div class="swap swap-rotate group-hover:swap-active"><i class="bi bi-caret-down-fill swap-off"></i><i class="bi bi-caret-up-fill swap-on"></i></div></div><ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "dropdown dropdown-hover group" }, _attrs))}><div tabindex="0" role="button" class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1"> Miembros <div class="swap swap-rotate group-hover:swap-active"><i class="bi bi-caret-down-fill swap-off"></i><i class="bi bi-caret-up-fill swap-on"></i></div></div><ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow">`);
   if (!$setup.isPending) {
     _push(`<!--[-->`);
     ssrRenderList($setup.data.response, (miembro) => {
-      _push(`<li><a${ssrRenderAttr("href", "/" + $setup.props.baseUrl + "/" + miembro.idmiembro)} class="${ssrRenderClass({ "bg-base-content/10": $setup.props.actualRoute === `/${$setup.props.baseUrl}/${miembro.idmiembro}` })}">${ssrInterpolate(miembro.nombreCompleto)}</a></li>`);
+      _push(`<li><a${ssrRenderAttr("href", "/" + $setup.props.baseUrl + "/" + miembro.idmiembro)} class="${ssrRenderClass([{ "bg-base-content/10": $setup.props.actualRoute === `/${$setup.props.baseUrl}/${miembro.idmiembro}` }, "text-balance"])}">${ssrInterpolate(miembro.nombreCompleto)}</a></li>`);
     });
     _push(`<!--]-->`);
   } else {
@@ -151,11 +157,11 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "dropdown dropdown-hover group" }, _attrs))}><div tabindex="0" role="button" class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1"> Colaboradores <div class="swap swap-rotate group-hover:swap-active"><i class="bi bi-caret-down-fill swap-off"></i><i class="bi bi-caret-up-fill swap-on"></i></div></div><ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "dropdown dropdown-hover group" }, _attrs))}><div tabindex="0" role="button" class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1"> Colaboradores <div class="swap swap-rotate group-hover:swap-active"><i class="bi bi-caret-down-fill swap-off"></i><i class="bi bi-caret-up-fill swap-on"></i></div></div><ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow">`);
   if (!$setup.isPending) {
     _push(`<!--[-->`);
     ssrRenderList($setup.data.response, (miembro) => {
-      _push(`<li><a${ssrRenderAttr("href", "/" + $setup.props.baseUrl + "/" + miembro.idmiembro)} class="${ssrRenderClass({ "bg-base-content/10": $setup.props.actualRoute === `/${$setup.props.baseUrl}/${miembro.idmiembro}` })}">${ssrInterpolate(miembro.nombreCompleto)}</a></li>`);
+      _push(`<li><a${ssrRenderAttr("href", "/" + $setup.props.baseUrl + "/" + miembro.idmiembro)} class="${ssrRenderClass([{ "bg-base-content/10": $setup.props.actualRoute === `/${$setup.props.baseUrl}/${miembro.idmiembro}` }, "text-balance"])}">${ssrInterpolate(miembro.nombreCompleto)}</a></li>`);
     });
     _push(`<!--]-->`);
   } else {
@@ -204,7 +210,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           "actual-route": $setup.actualRoute
         }, null, _parent));
       } else if (menu.dropcollapse) {
-        _push(`<div class="dropdown dropdown-hover group"><div tabindex="0" role="button" class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1">${ssrInterpolate(menu.nombre)} <div class="swap swap-rotate group-hover:swap-active"><i class="bi bi-caret-down-fill swap-off"></i><i class="bi bi-caret-up-fill swap-on"></i></div></div><ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"><!--[-->`);
+        _push(`<div class="dropdown dropdown-hover group"><div tabindex="0" role="button" class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1">${ssrInterpolate(menu.nombre)} <div class="swap swap-rotate group-hover:swap-active"><i class="bi bi-caret-down-fill swap-off"></i><i class="bi bi-caret-up-fill swap-on"></i></div></div><ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow"><!--[-->`);
         ssrRenderList(menu.submenus, (submenu) => {
           _push(`<li><a${ssrRenderAttr("href", "/" + menu.ruta + "/" + submenu.ruta)} class="${ssrRenderClass({ "bg-base-content/10": $setup.actualRoute === `/${menu.ruta}/${submenu.ruta}` })}">${ssrInterpolate(submenu.nombre)}</a></li>`);
         });
@@ -268,7 +274,7 @@ _sfc_main.setup = (props, ctx) => {
 const ThemeSwitch = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 const $$NavBar = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<nav class="navbar bg-base-200/80 backdrop-blur-sm min-h-20 w-full z-40 sticky top-0"> <div class="flex-none lg:hidden"> <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost size-10"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg> </label> </div> <div class="navbar-start grow justify-center lg:justify-start lg:grow-0"> <a href="/" class="btn btn-ghost" title="Inicio"> <img src="/logo.png" alt="logo" class="h-full object-contain" width="100px" height="300px" loading="eager"> </a> </div> <div class="navbar-center hidden lg:flex" data-astro-transition-persist="navbar-items"${addAttribute(renderTransition($$result, "yq567od7", "", "navbar-items"), "data-astro-transition-scope")}> ${renderComponent($$result, "NavbarItems", NavbarItems, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "/home/blanco/Documentos/ca-astro/src/components/gui/NavbarItems.vue", "client:component-export": "default" })} </div> <div class="navbar-end w-min lg:w-1/2"> ${renderComponent($$result, "ThemeSwitch", ThemeSwitch, { "client:load": true, "data-astro-transition-persist": "theme-switch", "client:component-hydration": "load", "client:component-path": "/home/blanco/Documentos/ca-astro/src/components/gui/ThemeSwitch.vue", "client:component-export": "default", "data-astro-transition-scope": renderTransition($$result, "htwmiurr", "", "theme-switch") })} <!-- <label class="swap swap-rotate">
+  return renderTemplate`${maybeRenderHead()}<nav class="navbar bg-base-200/80 backdrop-blur-sm min-h-20 w-full z-40 sticky top-0"> <div class="flex-none lg:hidden"> <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost size-10"> <i class="bi bi-list text-3xl"></i> </label> </div> <div class="navbar-start grow justify-center lg:justify-start lg:grow-0"> <a href="/" class="btn btn-ghost" title="Inicio"> <img src="/logo.png" alt="logo" class="h-full object-contain" width="100px" height="300px" loading="eager"> </a> </div> <div class="navbar-center hidden lg:flex" data-astro-transition-persist="navbar-items"${addAttribute(renderTransition($$result, "qniw4n2r", "", "navbar-items"), "data-astro-transition-scope")}> ${renderComponent($$result, "NavbarItems", NavbarItems, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "/home/blanco/Documentos/ca-astro/src/components/gui/NavbarItems.vue", "client:component-export": "default" })} </div> <div class="navbar-end w-min lg:w-1/2"> ${renderComponent($$result, "ThemeSwitch", ThemeSwitch, { "client:load": true, "data-astro-transition-persist": "theme-switch", "client:component-hydration": "load", "client:component-path": "/home/blanco/Documentos/ca-astro/src/components/gui/ThemeSwitch.vue", "client:component-export": "default", "data-astro-transition-scope": renderTransition($$result, "kkfhqcb7", "", "theme-switch") })} <!-- <label class="swap swap-rotate">
       <input type="checkbox" class="theme-controller" value="night" />
 
       <div
@@ -295,7 +301,7 @@ const $$Layout = createComponent(($$result, $$props, $$slots) => {
   const { title } = Astro2.props;
   Astro2.response.headers.set(
     "Cache-Control",
-    "public, s-maxage=120, stale-while-revalidate=60"
+    "public, s-maxage=360, stale-while-revalidate=180"
   );
   return renderTemplate`<html lang="es" data-theme="winter"> <head><meta charset="UTF-8"><meta name="description" content="Cuerpo academico de computo distribuido del Instituto Tecnologico Superior de los Ríos"><meta name="viewport" content="width=device-width"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest">${renderTemplate(_a || (_a = __template(['<script type="text/javascript">\n      (function (c, l, a, r, i, t, y) {\n        c[a] =\n          c[a] ||\n          function () {\n            (c[a].q = c[a].q || []).push(arguments);\n          };\n        t = l.createElement(r);\n        t.async = 1;\n        t.src = "https://www.clarity.ms/tag/" + i;\n        y = l.getElementsByTagName(r)[0];\n        y.parentNode.insertBefore(t, y);\n      })(window, document, "clarity", "script", "p2w2k9i73t");\n    </script>'])))}<meta name="generator"${addAttribute(Astro2.generator, "content")}>${renderComponent($$result, "ViewTransitions", $$ViewTransitions, {})}<title>${title}</title>${renderHead()}</head> <body class="w-screen h-screen overflow-x-hidden"> <div class="drawer h-full w-full"> <input id="my-drawer-3" type="checkbox" class="drawer-toggle"> <div class="drawer-content h-full w-full overflow-x-hidden" id="scroll-container"> <!-- Navbar --> ${renderComponent($$result, "Header", $$Header, {})} ${renderComponent($$result, "NavBar", $$NavBar, {})} ${renderSlot($$result, $$slots["default"])} ${renderComponent($$result, "Footer", $$Footer, {})} </div> <div class="drawer-side z-50"> <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> <ul class="menu bg-base-200 min-h-full w-80 p-4"${addAttribute(createTransitionScope($$result, "6xbvbalr"), "data-astro-transition-persist")}> <!-- Sidebar content here --> ${renderComponent($$result, "SideBarItems", SideBarItems, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/gui/SideBarItems.vue", "client:component-export": "default" })} </ul> </div> </div>  </body></html>`;
 }, "/home/blanco/Documentos/ca-astro/src/layouts/Layout.astro", "self");

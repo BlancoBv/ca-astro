@@ -1,6 +1,6 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_YwBgiMAu.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BPCaxtkh.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, openBlock, createElementBlock, createElementVNode, renderSlot, createBlock, Teleport, createCommentVNode, resolveComponent, Fragment, renderList, createVNode, resolveDirective, createTextVNode, toDisplayString, normalizeClass, resolveDynamicComponent, withCtx, Transition, normalizeProps, createSlots, withDirectives, normalizeStyle, toHandlers, withModifiers, withKeys, reactive } from 'vue';

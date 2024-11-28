@@ -1,12 +1,12 @@
 /* empty css                                   */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../chunks/Layout_Ci0Il5qM.mjs';
+import { $ as $$Layout } from '../chunks/Layout_2eS4_VGC.mjs';
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { ssrRenderAttrs, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_Dp5eun83.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_C3HCPOqy.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_vUHf7guh.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -46,7 +46,6 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (eventos.response?.blogs?.length < 1) {
     return Astro2.redirect("/404");
   }
-  console.log(eventos);
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Todos los eventos" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full w-full p-4"> <h1>Todos los eventos</h1> <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 not-prose"> ${eventos.response?.blogs.map((el) => renderTemplate`${renderComponent($$result2, "CardBlog", $$CardBlog, { "titulo": el.titulo, "fecha": el.fecha, "id": el.idblog, "imagen": el.imagen })}`)} </div> <div class="not-prose w-full flex justify-center"> ${renderComponent($$result2, "Pagination", Pagination, { "totalPages": eventos.response.totalPages, "actualPage": eventos.response.currentPage })} </div> </main> ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/content/index.astro", void 0);
 
