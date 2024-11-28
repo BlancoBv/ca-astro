@@ -30,19 +30,19 @@ onMounted(() => {
                 </p>
             </div>
             <div class="card bg-base-100 shrink-0 shadow-2xl items-center">
-                <form class="card-body w-96 h-80" @submit.prevent="send" v-if="!isHydrating">
+                <form class="card-body md:w-96 h-80" @submit.prevent="send" v-if="!isHydrating">
                     <div class="form-control">
                         <label class="label">
                             <span class="label-text">Usuario</span>
                         </label>
-                        <input type="text" placeholder="email" class="input input-bordered" required
+                        <input type="text" placeholder="admin" class="input input-bordered" required
                             v-model="body.user" />
                     </div>
                     <div class="form-control">
                         <label class="label">
                             <span class="label-text">Contraseña</span>
                         </label>
-                        <input type="password" placeholder="password" class="input input-bordered" required
+                        <input type="password" placeholder="******" class="input input-bordered" required
                             v-model="body.password" />
                     </div>
                     <div class="form-control mt-6">
@@ -51,7 +51,7 @@ onMounted(() => {
                         </button>
                     </div>
                 </form>
-                <div class="w-96 h-80 p-8 flex flex-col items-center justify-center" v-else>
+                <div class="w-80 md:w-96 h-80 p-8 flex flex-col items-center justify-center" v-else>
                     <div class="w-full flex flex-col gap-4 mb-4">
                         <div class="skeleton w-28 h-4 "></div>
                         <div class="skeleton w-full h-12"></div>

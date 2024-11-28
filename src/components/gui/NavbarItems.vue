@@ -29,7 +29,7 @@ const setActualRoute = (ruta: string) => {
                     <i class="bi bi-caret-up-fill swap-on"></i>
                 </div>
             </div>
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow">
                 <li v-for="submenu in menu.submenus">
                     <a :href="'/' + menu.ruta + '/' + submenu.ruta"
                         @click="() => setActualRoute(`/${menu.ruta}/${submenu.ruta}`)"

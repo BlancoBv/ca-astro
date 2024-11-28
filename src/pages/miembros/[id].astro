@@ -89,7 +89,9 @@ const getCollabs = (element: {
 };
 ---
 
-<Layout title={miembro.response.nombreCompleto}>
+<Layout
+  title={`${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto}`}
+>
   <main class="prose max-w-full p-4">
     <div
       class="stats md:grid-cols-2 shadow stats-vertical md:stats-horizontal w-full not-prose min-h-40"
@@ -133,10 +135,10 @@ const getCollabs = (element: {
         </div>
       </div>
       <div class="stat place-items-center">
-        <div class="stat-figure text-primary">
+        <div class="stat-figure text-secondary">
           <i class="bi bi-share-fill text-2xl"></i>
         </div>
-        <div class="stat-title">Información de contacto</div>
+        <div class="stat-title">Enlaces de contacto</div>
         <div
           class="stat-value text-base-content flex flex-wrap gap-4 text-wrap"
         >
@@ -146,6 +148,7 @@ const getCollabs = (element: {
                 <a
                   class="hover:text-primary hover:scale-105 duration-100 ease-in"
                   href={`${el.tipo === "correo" ? "mailto:" : ""}${el.url}`}
+                  aria-label={el.tipo}
                   target="_blank"
                 >
                   <i class={redesSocialesIcon[el.tipo as keyof icons]} />
@@ -160,13 +163,13 @@ const getCollabs = (element: {
         </div>
       </div>
     </div>
-    <p class="text-justify">{miembro.response.resumen}</p>
+    <p>{miembro.response.resumen}</p>
     <h2 class="mt-0">Proyectos</h2>
     <div class="overflow-x-auto">
       <table class="table table-zebra text-balance not-prose">
         <!-- head -->
         <thead>
-          <tr>
+          <tr class="bg-neutral text-neutral-content">
             <th class="w-40">Clave</th>
             <th>Proyecto</th>
             <th>Duración</th>

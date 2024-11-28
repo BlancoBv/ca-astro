@@ -19,10 +19,10 @@ const handleSetRoute = (ruta: string) => {
                 <i class="bi bi-caret-up-fill swap-on"></i>
             </div>
         </div>
-        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow">
             <li v-if="!isPending" v-for="miembro in data.response">
                 <a :href="'/' + props.baseUrl + '/' + miembro.idmiembro"
-                    @click="handleSetRoute(`/${props.baseUrl}/${miembro.idmiembro}`)"
+                    @click="handleSetRoute(`/${props.baseUrl}/${miembro.idmiembro}`)" class="text-balance"
                     :class="{ 'bg-base-content/10': props.actualRoute === `/${props.baseUrl}/${miembro.idmiembro}` }">
                     {{ miembro.nombreCompleto }}
                 </a>
@@ -32,17 +32,5 @@ const handleSetRoute = (ruta: string) => {
             </li>
         </ul>
     </div>
-    <!--     <details class="w-40">
-        <summary>Miembros</summary>
-        <ul class="shadow">
-            <li v-if="!isPending" v-for="miembro in data.response">
-                <a :href="'/' + props.baseUrl + '/' + miembro.idmiembro">
-                    {{ miembro.nombreCompleto }}
-                </a>
-            </li>
-            <li v-else>
-                <span class="loading loading-spinner loading-xs"></span>
-            </li>
-        </ul>
-    </details> -->
+
 </template>

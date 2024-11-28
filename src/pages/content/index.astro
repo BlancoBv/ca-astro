@@ -13,7 +13,6 @@ const eventos = await fetch(
 if (eventos.response?.blogs?.length < 1) {
   return Astro.redirect("/404");
 }
-console.log(eventos);
 ---
 
 <Layout title="Todos los eventos">
