@@ -3,7 +3,7 @@ import { a as useGetData, _ as _export_sfc, $ as $$ViewTransitions } from './_pl
 import 'vue3-toastify';
 import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, ref, onMounted } from 'vue';
-import { ssrRenderList, ssrInterpolate, ssrRenderAttr, ssrRenderAttrs, ssrRenderClass, ssrRenderComponent, ssrIncludeBooleanAttr } from 'vue/server-renderer';
+import { ssrRenderAttrs, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderComponent, ssrRenderClass, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import moment from 'moment';
 /* empty css                           */
 /* empty css                           */
@@ -15,12 +15,78 @@ const $$Header = createComponent(($$result, $$props, $$slots) => {
   <a class="btn btn-xs btn-info" href="/">Datos</a> --> </div>`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/Header.astro", void 0);
 
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+  __name: "MiembrosSide",
+  emits: ["click"],
+  setup(__props, { expose: __expose, emit: __emit }) {
+    __expose();
+    const emit = __emit;
+    const { data, isPending } = useGetData("miembros?colaborador=false", "miembrosData");
+    const __returned__ = { emit, data, isPending };
+    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+    return __returned__;
+  }
+});
+function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<details${ssrRenderAttrs(mergeProps({ open: "" }, _attrs))}><summary>Miembros</summary><ul>`);
+  if (!$setup.isPending) {
+    _push(`<!--[-->`);
+    ssrRenderList($setup.data.response, (miembro) => {
+      _push(`<li><a${ssrRenderAttr("href", "/miembros/" + miembro.idmiembro)}>${ssrInterpolate(`${miembro.nombre} ${miembro.apepat} ${miembro.apemat}`)}</a></li>`);
+    });
+    _push(`<!--]-->`);
+  } else {
+    _push(`<li><span class="loading loading-spinner loading-xs"></span></li>`);
+  }
+  _push(`</ul></details>`);
+}
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/gui/MiembrosSide.vue");
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+};
+const MiembrosSide = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6]]);
+
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+  __name: "ColaboradoresSide",
+  emits: ["click"],
+  setup(__props, { expose: __expose, emit: __emit }) {
+    __expose();
+    const emit = __emit;
+    const { data, isPending } = useGetData("miembros?colaborador=true", "colaboradoresData");
+    const __returned__ = { emit, data, isPending };
+    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+    return __returned__;
+  }
+});
+function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<details${ssrRenderAttrs(mergeProps({ open: "" }, _attrs))}><summary>Miembros</summary><ul>`);
+  if (!$setup.isPending) {
+    _push(`<!--[-->`);
+    ssrRenderList($setup.data.response, (miembro) => {
+      _push(`<li><a${ssrRenderAttr("href", "/miembros/" + miembro.idmiembro)}>${ssrInterpolate(`${miembro.nombre} ${miembro.apepat} ${miembro.apemat}`)}</a></li>`);
+    });
+    _push(`<!--]-->`);
+  } else {
+    _push(`<li><span class="loading loading-spinner loading-xs"></span></li>`);
+  }
+  _push(`</ul></details>`);
+}
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/gui/ColaboradoresSide.vue");
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
+};
+const ColaboradoresSide = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5]]);
+
 const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "SideBarItems",
   setup(__props, { expose: __expose }) {
     __expose();
     const { data, isPending, isError } = useGetData("menus", "menus-nav");
-    const __returned__ = { data, isPending, isError };
+    const __returned__ = { data, isPending, isError, MiembrosSide, ColaboradoresSide };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
@@ -31,7 +97,11 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<!--[-->`);
     ssrRenderList($setup.data.response, (menu) => {
       _push(`<li>`);
-      if (menu.dropcollapse) {
+      if (menu.ruta === "miembros") {
+        _push(ssrRenderComponent($setup["MiembrosSide"], null, null, _parent));
+      } else if (menu.ruta === "colaboradores") {
+        _push(ssrRenderComponent($setup["ColaboradoresSide"], null, null, _parent));
+      } else if (menu.dropcollapse) {
         _push(`<details open><summary>${ssrInterpolate(menu.nombre)}</summary><ul><!--[-->`);
         ssrRenderList(menu.submenus, (submenu) => {
           _push(`<li><a${ssrRenderAttr("href", "/" + menu.ruta + "/" + submenu.ruta)}>${ssrInterpolate(submenu.nombre)}</a></li>`);

@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../../chunks/astro/server_BLMGylKI.mjs';
-import { f as formatDate, $ as $$Layout } from '../../../chunks/Layout_2eS4_VGC.mjs';
+import { f as formatDate, $ as $$Layout } from '../../../chunks/Layout_CpxUZ4fp.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");
