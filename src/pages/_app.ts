@@ -11,6 +11,11 @@ export default (app: App) => {
     position: toast.POSITION.TOP_RIGHT,
   } as ToastContainerOptions);
   app.use(PrimeVue, {
-    theme: { preset: Aura, options: { darkModeSelector: false } },
+    theme: {
+      preset: Aura,
+      options: {
+        darkModeSelector: false,
+      },
+    },
   });
 };
