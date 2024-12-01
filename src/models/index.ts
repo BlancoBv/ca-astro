@@ -52,13 +52,20 @@ Etiquetas.belongsToMany(Blog, {
   foreignKey: "idetiqueta",
 });
 
+Proyectos.belongsTo(Miembros, {
+  foreignKey: "director",
+  as: "director_proyecto",
+});
+
 Miembros.belongsToMany(Proyectos, {
   through: ProyectosMiembros,
   foreignKey: "idmiembro",
+  as: "proyectos_miembros",
 });
 Proyectos.belongsToMany(Miembros, {
   through: ProyectosMiembros,
   foreignKey: "idproyecto",
+  as: "miembros_proyecto",
 });
 
 Miembros.hasMany(Contactos, { foreignKey: "idmiembro" });

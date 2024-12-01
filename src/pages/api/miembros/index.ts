@@ -73,7 +73,19 @@ export const GET: APIRoute = async ({ url }) => {
                 "apemat",
                 "idmiembro",
               ],
+              as: "miembros_proyecto",
               through: { attributes: [] },
+            },
+            {
+              model: Miembros,
+              as: "director_proyecto",
+              attributes: [
+                "nombreCompleto",
+                "nombre",
+                "apepat",
+                "apemat",
+                "idmiembro",
+              ],
             },
           ])
           .setReplacements({ idmiembro: search.idmiembro })

@@ -1,5 +1,6 @@
 ---
 import { formatDate } from "@assets/format";
+import TableMiembros from "@components/TableMiembros.vue";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 
@@ -34,7 +35,7 @@ const miembro: {
   `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true`
 ).then((res) => res.json());
 
-const getMiembro = async (id: number) => {
+/* const getMiembro = async (id: number) => {
   if (id) {
     const response = await fetch(
       `http://localhost:4321/api/miembros?idmiembro=${id}`
@@ -43,7 +44,7 @@ const getMiembro = async (id: number) => {
     return response.response.nombreCompleto;
   }
   return "";
-};
+}; */
 
 const redesSocialesIcon: icons = {
   facebook: "bi bi-facebook",
@@ -59,7 +60,7 @@ if (!miembro || miembro.hasOwnProperty("msg")) {
 
 const getCollabs = (element: {
   otrosColaboradores: string | null;
-  miembros: {
+  miembros_proyecto: {
     nombreCompleto: string;
     nombre: string;
     apepat: string;
@@ -71,8 +72,9 @@ const getCollabs = (element: {
     style: "long",
   });
   const miembrosF: string[] = [];
+  console.log(element);
 
-  element.miembros.forEach((el) => {
+  element.miembros_proyecto.forEach((el) => {
     miembrosF.push(el.nombreCompleto);
   });
 
@@ -87,6 +89,8 @@ const getCollabs = (element: {
 
   return formatter.format(miembrosF);
 };
+
+console.log(miembro.response.proyectos);
 ---
 
 <Layout
@@ -188,7 +192,7 @@ const getCollabs = (element: {
                   <td>
                     {`${formatDate(el.fechaInicio, "LL")} a ${formatDate(el.fechaTermino, "LL")}`}{" "}
                   </td>
-                  <td>{getMiembro(el.director)}</td>
+                  <td>{el.director_proyecto.nombreCompleto}</td>
                   <td>{getCollabs(el) ?? "---"}</td>
                   <td>{el.tipo.toUpperCase()}</td>
                 </tr>
@@ -206,5 +210,18 @@ const getCollabs = (element: {
         </tbody>
       </table>
     </div>
+    <TableMiembros
+      data={miembro.response.proyectos}
+      cols={[
+        { header: "Clave", field: "clave" },
+        { header: "Proyecto", field: "titulo" },
+        {
+          header: "Director",
+          field: "director_proyecto.nombreCompleto",
+          sortable: true,
+        },
+      ]}
+      client:visible
+    />
   </main>
 </Layout>
