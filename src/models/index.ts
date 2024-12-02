@@ -60,7 +60,7 @@ Proyectos.belongsTo(Miembros, {
 Miembros.belongsToMany(Proyectos, {
   through: ProyectosMiembros,
   foreignKey: "idmiembro",
-  as: "proyectos_miembros",
+  as: "proyectos_miembro",
 });
 Proyectos.belongsToMany(Miembros, {
   through: ProyectosMiembros,

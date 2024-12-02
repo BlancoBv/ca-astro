@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
-import Button from 'primevue/button';
 import { onMounted, onUnmounted, ref } from 'vue';
 import get from "lodash/get"
 
-
 interface props {
-    cols: { field: string, header: string, sortable?: boolean, formatter?: "uppercase" | "colabs" }[], data: any[]
+    cols: { field: string, header: string, sortable?: boolean, formatter?: "uppercase" | "colabs" | "duracion" }[], data: any[]
 }
-
-
 
 const props = defineProps<props>()
 const isMounted = ref<boolean>(false)
-
 
 const getCollabs = (element: {
     otrosColaboradores: string | null;
@@ -48,7 +43,15 @@ const getCollabs = (element: {
     return formatter.format(miembrosF);
 };
 
-const formatter = { uppercase: (value: string) => value.toUpperCase(), colabs: (value: any) => getCollabs(value) }
+const getDuracion = (element: { fechaInicio: string, fechaTermino: string }) => {
+    return `${element.fechaInicio} a ${element.fechaTermino}`
+}
+
+const formatter = {
+    uppercase: (value: string) => value.toUpperCase(),
+    duracion: (value: any) => getDuracion(value),
+    colabs: (value: any) => getCollabs(value)
+}
 
 
 const handleClick = () => {
@@ -64,41 +67,38 @@ onMounted(() => {
 onUnmounted(() => {
     isMounted.value = false
 })
-
-console.log(props.cols);
-
 </script>
 <template>
-    <DataTable :value="props.data" :paginator="true" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
+    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
         selectionMode="single" @row-click="handleClick">
 
         <Column v-for="col of props.cols" :key="col.field" :field="col.field" :header="col.header"
             :sortable="col.sortable">
+
             <template #body="row">
                 {{ col.formatter ? formatter[col.formatter]?.(get(row.data, col.field, row.data)) : get(row.data,
-                    col.field)
+                    col.field, row.data)
                 }}
             </template>
         </Column>
         <template #empty>
             Sin datos.
         </template>
-
-
-        <template
-            #paginatorcontainer="{ first, last, page, pageCount, prevPageCallback, nextPageCallback, totalRecords }">
-            <div
-                class="flex items-center gap-4 border border-primary bg-transparent rounded-full w-full py-1 px-2 justify-between">
-                <Button icon="pi pi-chevron-left" rounded text @click="prevPageCallback" :disabled="page === 0" />
-                <div class="text-color font-medium">
-                    <span class="hidden sm:block">Showing {{ first }} to {{ last }} of {{ totalRecords }}</span>
-                    <span class="block sm:hidden">Page {{ page + 1 }} of {{ pageCount }}</span>
-                </div>
-                <Button icon="pi pi-chevron-right" rounded text @click="nextPageCallback"
-                    :disabled="page === pageCount - 1" />
-            </div>
-        </template>
     </DataTable>
-    <!-- <div class="skeleton h-96 w-full" v-else>
-    </div> -->
 </template>
+<style>
+th[data-pc-section="headercell"] div {
+    display: flex;
+    gap: 1rem;
+}
+
+th[data-p-sortable-column="true"]:hover {
+
+    @apply bg-base-content/10 text-base-content/60 duration-200 ease-in cursor-pointer
+}
+
+th[data-p-sorted="true"] {
+
+    @apply bg-secondary text-secondary-content duration-200 ease-in cursor-pointer
+}
+</style>
