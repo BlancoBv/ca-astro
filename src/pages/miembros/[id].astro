@@ -169,9 +169,8 @@ console.log(miembro.response.proyectos);
     </div>
     <p>{miembro.response.resumen}</p>
     <h2 class="mt-0">Proyectos</h2>
-    <div class="overflow-x-auto">
+    <!--     <div class="overflow-x-auto">
       <table class="table table-zebra text-balance not-prose">
-        <!-- head -->
         <thead>
           <tr class="bg-neutral text-neutral-content">
             <th class="w-40">Clave</th>
@@ -209,7 +208,7 @@ console.log(miembro.response.proyectos);
           }
         </tbody>
       </table>
-    </div>
+    </div> -->
     <TableMiembros
       data={miembro.response.proyectos}
       cols={[
@@ -220,6 +219,7 @@ console.log(miembro.response.proyectos);
           field: "director_proyecto.nombreCompleto",
           sortable: true,
         },
+        { header: "Otros colaboradores", field: "", formatter: "colabs" },
         { header: "Tipo", field: "tipo", formatter: "uppercase" },
       ]}
       client:visible
