@@ -2,7 +2,7 @@ import './chunks/astro-designed-error-pages_DwsjirI3.mjs';
 import { d as defineMiddleware, s as sequence } from './chunks/index_DkcenvCD.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as CookiesManager } from './chunks/CookiesManager_Cm5dHe09.mjs';
-import { L as Logs } from './chunks/index_lYbwe5rL.mjs';
+import { L as Logs } from './chunks/index_BH-rhqeW.mjs';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 class VerifyPath {

@@ -1,11 +1,11 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, e as renderTransition, u as unescapeHTML } from '../../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_BYFGd-tl.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DryVfzA-.mjs';
 import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../../chunks/EtiquetasHeading_Bx7hFz7E.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_C3jSEVob.mjs';
 /* empty css                                   */
 /* empty css                                    */
-export { r as renderers } from '../../chunks/_@astro-renderers_Dy1BIr2k.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");
 const $$id = createComponent(async ($$result, $$props, $$slots) => {

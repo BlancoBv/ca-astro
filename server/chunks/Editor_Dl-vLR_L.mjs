@@ -1,5 +1,4 @@
 import 'vue3-toastify';
-import '@primevue/themes/aura';
 import { useSSRContext, defineComponent } from 'vue';
 import { useEditor, EditorContent } from '@tiptap/vue-3';
 import StarterKit from '@tiptap/starter-kit';

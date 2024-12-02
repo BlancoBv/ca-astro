@@ -3,7 +3,7 @@ import { isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { g as getConfiguredImageService, i as imageConfig, l as lookup, a as assetsDir, o as outDir } from '../chunks/_astro_assets_C3jSEVob.mjs';
 import { i as isRemotePath, f as isRemoteAllowed } from '../chunks/astro/assets-service_BWWVVXRT.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_Dy1BIr2k.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
 const fnv1a52 = (str) => {
   const len = str.length;

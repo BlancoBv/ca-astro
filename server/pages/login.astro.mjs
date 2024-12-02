@@ -1,12 +1,11 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../chunks/Layout_BYFGd-tl.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DryVfzA-.mjs';
 import 'vue3-toastify';
-import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, ref, reactive, onMounted, mergeProps } from 'vue';
 import { u as useSendData, _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_Dp5eun83.mjs';
 import { ssrRenderAttrs, ssrRenderAttr, ssrIncludeBooleanAttr } from 'vue/server-renderer';
-export { r as renderers } from '../chunks/_@astro-renderers_Dy1BIr2k.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "Form",

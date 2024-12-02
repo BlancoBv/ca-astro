@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import bcrypt from 'bcrypt';
+import './format_BnSwxyOw.mjs';
 
 const { PASSWORD_DB, DATABASE, USER_DB, PORT_DB, HOST_DB } = process.env;
 const sequelize = new Sequelize(DATABASE, USER_DB, PASSWORD_DB, {
@@ -266,50 +267,64 @@ const Users = sequelize.define(
   }
 );
 
-const Proyectos = sequelize.define("proyectos", {
-  idproyecto: {
-    type: DataTypes.INTEGER,
-    primaryKey: true
-  },
-  clave: {
-    type: DataTypes.STRING(60),
-    allowNull: false
-  },
-  titulo: {
-    type: DataTypes.STRING(100),
-    allowNull: false
-  },
-  fechaInicio: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
-  },
-  fechaTermino: {
-    type: DataTypes.DATEONLY
-  },
-  estatus: {
-    type: DataTypes.ENUM("finalizado", "no finalizado", "en proceso"),
-    allowNull: false
-  },
-  tipo: {
-    type: DataTypes.STRING(60),
-    allowNull: false
-  },
-  descripcion: {
-    type: DataTypes.TEXT("medium"),
-    allowNull: false
-  },
-  url: {
-    type: DataTypes.STRING(60),
-    allowNull: false
-  },
-  otrosColaboradores: {
-    type: DataTypes.STRING(100)
-  },
-  director: {
-    type: DataTypes.INTEGER,
-    allowNull: false
+const Proyectos = sequelize.define(
+  "proyectos",
+  {
+    idproyecto: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    clave: {
+      type: DataTypes.STRING(60),
+      allowNull: false
+    },
+    titulo: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
+    fechaInicio: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    fechaTermino: {
+      type: DataTypes.DATEONLY
+    },
+    estatus: {
+      type: DataTypes.ENUM("finalizado", "no finalizado", "en proceso"),
+      allowNull: false
+    },
+    tipo: {
+      type: DataTypes.STRING(60),
+      allowNull: false
+    },
+    descripcion: {
+      type: DataTypes.TEXT("medium"),
+      allowNull: false
+    },
+    url: {
+      type: DataTypes.STRING(60),
+      allowNull: false
+    },
+    otrosColaboradores: {
+      type: DataTypes.STRING(100)
+    },
+    director: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }
-});
+  /*   {
+      hooks: {
+        afterFind(instancesOrInstance, options) {
+          console.log(instancesOrInstance);
+  
+          instancesOrInstance.forEach((el) => {
+            el.dataValues.fechaInicio = formatDate(el.dataValues.fechaInicio, "LL");
+          });
+        },
+      },
+    } */
+);
 
 const Miembros = sequelize.define("miembros", {
   idmiembro: {
@@ -478,13 +493,19 @@ Etiquetas.belongsToMany(Blog, {
   through: EtiquetasBlogs,
   foreignKey: "idetiqueta"
 });
+Proyectos.belongsTo(Miembros, {
+  foreignKey: "director",
+  as: "director_proyecto"
+});
 Miembros.belongsToMany(Proyectos, {
   through: ProyectosMiembros,
-  foreignKey: "idmiembro"
+  foreignKey: "idmiembro",
+  as: "proyectos_miembro"
 });
 Proyectos.belongsToMany(Miembros, {
   through: ProyectosMiembros,
-  foreignKey: "idproyecto"
+  foreignKey: "idproyecto",
+  as: "miembros_proyecto"
 });
 Miembros.hasMany(Contactos, { foreignKey: "idmiembro" });
 Contactos.belongsTo(Miembros, { foreignKey: "idmiembro" });

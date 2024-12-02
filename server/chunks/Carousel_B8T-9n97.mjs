@@ -1,5 +1,4 @@
 import 'vue3-toastify';
-import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment, renderList } from 'vue';
 import { a as useGetData, _ as _export_sfc } from './_plugin-vue_export-helper_Dp5eun83.mjs';
 import { Carousel as Carousel$1, Navigation, Slide } from 'vue3-carousel';

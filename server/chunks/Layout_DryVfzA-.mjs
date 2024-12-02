@@ -1,10 +1,9 @@
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, e as renderTransition, a as renderComponent, b as createAstro, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_BLMGylKI.mjs';
 import { a as useGetData, _ as _export_sfc, $ as $$ViewTransitions } from './_plugin-vue_export-helper_Dp5eun83.mjs';
 import 'vue3-toastify';
-import '@primevue/themes/aura';
 import { useSSRContext, defineComponent, mergeProps, ref, onMounted } from 'vue';
 import { ssrRenderAttrs, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderComponent, ssrRenderClass, ssrIncludeBooleanAttr } from 'vue/server-renderer';
-import moment from 'moment';
+import { a as formatYear } from './format_BnSwxyOw.mjs';
 /* empty css                           */
 /* empty css                           */
 /* empty css                         */
@@ -125,14 +124,6 @@ _sfc_main$4.setup = (props, ctx) => {
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
 const SideBarItems = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4]]);
-
-moment.locale("es-mx");
-function formatDate(date, format) {
-  return moment(date).format(format ?? "L");
-}
-function formatYear(date) {
-  return moment(date).year();
-}
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
   const actualDate = new Date(Date.now());
@@ -376,4 +367,4 @@ const $$Layout = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`<html lang="es" data-theme="winter"> <head><meta charset="UTF-8"><meta name="description" content="Cuerpo academico de computo distribuido del Instituto Tecnologico Superior de los Ríos"><meta name="viewport" content="width=device-width"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest">${renderTemplate(_a || (_a = __template(['<script type="text/javascript">\n      (function (c, l, a, r, i, t, y) {\n        c[a] =\n          c[a] ||\n          function () {\n            (c[a].q = c[a].q || []).push(arguments);\n          };\n        t = l.createElement(r);\n        t.async = 1;\n        t.src = "https://www.clarity.ms/tag/" + i;\n        y = l.getElementsByTagName(r)[0];\n        y.parentNode.insertBefore(t, y);\n      })(window, document, "clarity", "script", "p2w2k9i73t");\n    </script>'])))}<meta name="generator"${addAttribute(Astro2.generator, "content")}>${renderComponent($$result, "ViewTransitions", $$ViewTransitions, {})}<title>${title}</title>${renderHead()}</head> <body class="w-screen h-screen overflow-x-hidden"> <div class="drawer h-full w-full"> <input id="my-drawer-3" type="checkbox" class="drawer-toggle"> <div class="drawer-content h-full w-full overflow-x-hidden" id="scroll-container"> <!-- Navbar --> ${renderComponent($$result, "Header", $$Header, {})} ${renderComponent($$result, "NavBar", $$NavBar, {})} ${renderSlot($$result, $$slots["default"])} ${renderComponent($$result, "Footer", $$Footer, {})} </div> <div class="drawer-side z-50"> <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> <ul class="menu bg-base-200 min-h-full w-80 p-4"${addAttribute(createTransitionScope($$result, "6xbvbalr"), "data-astro-transition-persist")}> <!-- Sidebar content here --> ${renderComponent($$result, "SideBarItems", SideBarItems, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/gui/SideBarItems.vue", "client:component-export": "default" })} </ul> </div> </div>  </body></html>`;
 }, "/home/blanco/Documentos/ca-astro/src/layouts/Layout.astro", "self");
 
-export { $$Layout as $, formatDate as f };
+export { $$Layout as $ };
