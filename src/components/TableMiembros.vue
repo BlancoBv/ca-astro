@@ -56,17 +56,8 @@ const formatter = {
 
 const handleClick = () => {
 
-    console.log("Row")
-
 }
 
-onMounted(() => {
-    isMounted.value = true
-})
-
-onUnmounted(() => {
-    isMounted.value = false
-})
 </script>
 <template>
     <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
