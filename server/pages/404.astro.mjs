@@ -1,6 +1,6 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_BLMGylKI.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DryVfzA-.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_DqkNLIlm.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DFdVYYMG.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
 const $$404 = createComponent(($$result, $$props, $$slots) => {

@@ -1,8 +1,5 @@
-import { readFile } from 'node:fs/promises';
-import { isAbsolute } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { g as getConfiguredImageService, i as imageConfig, l as lookup, a as assetsDir, o as outDir } from '../chunks/_astro_assets_C3jSEVob.mjs';
-import { i as isRemotePath, f as isRemoteAllowed } from '../chunks/astro/assets-service_BWWVVXRT.mjs';
+import { g as getConfiguredImageService, i as imageConfig, a as isRemoteAllowed, l as lookup } from '../chunks/_astro_assets_RfIkAwJg.mjs';
+import { i as isRemotePath } from '../chunks/path_CVKLlyuj.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
 const fnv1a52 = (str) => {
@@ -30,45 +27,16 @@ const etag = (payload, weak = false) => {
   return prefix + fnv1a52(payload).toString(36) + payload.length.toString(36) + '"';
 };
 
-async function loadLocalImage(src, url) {
-  const assetsDirPath = fileURLToPath(assetsDir);
-  let fileUrl;
-  {
-    try {
-      const idx = url.pathname.indexOf("/_image");
-      if (idx > 0) {
-        src = src.slice(idx);
-      }
-      fileUrl = new URL("." + src, outDir);
-      const filePath = fileURLToPath(fileUrl);
-      if (!isAbsolute(filePath) || !filePath.startsWith(assetsDirPath)) {
-        return void 0;
-      }
-    } catch {
-      return void 0;
-    }
-  }
-  let buffer = void 0;
+async function loadRemoteImage(src, headers) {
   try {
-    buffer = await readFile(fileUrl);
-  } catch {
-    try {
-      const sourceUrl = new URL(src, url.origin);
-      buffer = await loadRemoteImage(sourceUrl);
-    } catch (err) {
-      console.error("Could not process image request:", err);
-      return void 0;
-    }
-  }
-  return buffer;
-}
-async function loadRemoteImage(src) {
-  try {
-    const res = await fetch(src);
+    const res = await fetch(src, {
+      // Forward all headers from the original request
+      headers
+    });
     if (!res.ok) {
       return void 0;
     }
-    return Buffer.from(await res.arrayBuffer());
+    return await res.arrayBuffer();
   } catch {
     return void 0;
   }
@@ -82,25 +50,23 @@ const GET = async ({ request }) => {
     const url = new URL(request.url);
     const transform = await imageService.parseURL(url, imageConfig);
     if (!transform?.src) {
-      const err = new Error(
-        "Incorrect transform returned by `parseURL`. Expected a transform with a `src` property."
-      );
-      console.error("Could not parse image transform from URL:", err);
-      return new Response("Internal Server Error", { status: 500 });
+      throw new Error("Incorrect transform returned by `parseURL`");
     }
     let inputBuffer = void 0;
-    if (isRemotePath(transform.src)) {
-      if (isRemoteAllowed(transform.src, imageConfig) === false) {
-        return new Response("Forbidden", { status: 403 });
-      }
-      inputBuffer = await loadRemoteImage(new URL(transform.src));
-    } else {
-      inputBuffer = await loadLocalImage(transform.src, url);
+    const isRemoteImage = isRemotePath(transform.src);
+    const sourceUrl = isRemoteImage ? new URL(transform.src) : new URL(transform.src, url.origin);
+    if (isRemoteImage && isRemoteAllowed(transform.src, imageConfig) === false) {
+      return new Response("Forbidden", { status: 403 });
     }
+    inputBuffer = await loadRemoteImage(sourceUrl, isRemoteImage ? new Headers() : request.headers);
     if (!inputBuffer) {
-      return new Response("Internal Server Error", { status: 500 });
+      return new Response("Not Found", { status: 404 });
     }
-    const { data, format } = await imageService.transform(inputBuffer, transform, imageConfig);
+    const { data, format } = await imageService.transform(
+      new Uint8Array(inputBuffer),
+      transform,
+      imageConfig
+    );
     return new Response(data, {
       status: 200,
       headers: {
@@ -112,12 +78,7 @@ const GET = async ({ request }) => {
     });
   } catch (err) {
     console.error("Could not process image request:", err);
-    return new Response(
-      `Internal Server Error`,
-      {
-        status: 500
-      }
-    );
+    return new Response(`Server Error: ${err}`, { status: 500 });
   }
 };
 

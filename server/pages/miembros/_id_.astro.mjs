@@ -1,15 +1,15 @@
 /* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_BLMGylKI.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_DqkNLIlm.mjs';
 import { f as formatDate } from '../../chunks/format_BnSwxyOw.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList } from 'vue';
+import { useSSRContext, defineComponent, ref, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList } from 'vue';
 import { s as script, a as script$1 } from '../../chunks/index_Bs5YyKFW.mjs';
 import get from 'lodash/get.js';
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_Dp5eun83.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_DryVfzA-.mjs';
-import { $ as $$Image } from '../../chunks/_astro_assets_C3jSEVob.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_CeNPFBqF.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DFdVYYMG.mjs';
+import { $ as $$Image } from '../../chunks/_astro_assets_RfIkAwJg.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -50,14 +50,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       colabs: (value) => getCollabs(value)
     };
     const handleClick = () => {
-      console.log("Row");
     };
-    onMounted(() => {
-      isMounted.value = true;
-    });
-    onUnmounted(() => {
-      isMounted.value = false;
-    });
     const __returned__ = { props, isMounted, getCollabs, getDuracion, formatter, handleClick, get Column() {
       return script;
     }, get DataTable() {
@@ -173,7 +166,6 @@ const $$id = createComponent(async ($$result, $$props, $$slots) => {
     el.fechaInicio = formatDate(el.fechaInicio, "LL");
     el.fechaTermino = formatDate(el.fechaTermino, "LL");
   });
-  console.log(miembro.response);
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": `${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto}` }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> <div class="stats md:grid-cols-2 shadow stats-vertical md:stats-horizontal w-full not-prose min-h-40"> <div class="stat flex flex-col md:inline-grid place-items-center place"> <div class="stat-figure text-secondary size-40"> ${miembro.response?.imgPerfil && renderTemplate`<div class="avatar size-full"> <div class="rounded-full"> ${renderComponent($$result2, "Image", $$Image, { "src": miembro.response.imgPerfil, "alt": miembro.response.nombreCompleto, "class": "aspect-square", "width": 100, "height": 100, "loading": "eager" })} </div> </div>`} ${!miembro.response?.imgPerfil && renderTemplate`<div class="avatar placeholder size-full"> <div class="bg-neutral text-neutral-content rounded-full"> <span class="text-3xl"> ${miembro.response.nombreCompleto.charAt(0)} </span> </div> </div>`} </div> <div class="stat-value text-wrap text-center"> ${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto} </div> <div class="stat-title">${miembro.response.puesto.toUpperCase()}</div> <div class="stat-desc text-wrap"> ${miembro.response.tipoMiembro.toUpperCase()} </div> </div> <div class="stat place-items-center"> <div class="stat-figure text-secondary"> <i class="bi bi-share-fill text-2xl"></i> </div> <div class="stat-title">Enlaces de contacto</div> <div class="stat-value text-base-content flex flex-wrap gap-4 text-wrap"> ${miembro.response.contactos.length > 0 && miembro.response.contactos.map((el) => renderTemplate`<a class="hover:text-primary hover:scale-105 duration-100 ease-in"${addAttribute(`${el.tipo === "correo" ? "mailto:" : ""}${el.url}`, "href")}${addAttribute(el.tipo, "aria-label")} target="_blank"> <i${addAttribute(redesSocialesIcon[el.tipo], "class")}></i> </a>`)} ${miembro.response.contactos.length < 1 && renderTemplate`<span>Sin información de contacto.</span>`} </div> </div> </div> <p>${miembro.response.resumen}</p> <h2 class="mt-0">Proyectos</h2> <!--     <div class="overflow-x-auto">
       <table class="table table-zebra text-balance not-prose">
         <thead>
