@@ -4,7 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Header from "@components/gui/Header.astro";
 import SideBarItems from "@components/gui/SideBarItems.vue";
 import Footer from "@components/gui/Footer.astro";
@@ -45,7 +45,7 @@ Astro.response.headers.set(
       })(window, document, "clarity", "script", "p2w2k9i73t");
     </script>}
     <meta name="generator" content={Astro.generator} />
-    <ViewTransitions />
+    <ClientRouter />
     <title>{title}</title>
   </head>
   <body class="w-screen h-screen overflow-x-hidden">
