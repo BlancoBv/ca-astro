@@ -97,6 +97,12 @@ const { data, isPending, isError } = useGetData("banners?mostrar=true", "banners
 .carousel__prev,
 .carousel__next {
     box-sizing: content-box;
+    @apply w-12 md:w-20;
+}
 
+
+
+.carousel__icon {
+    font-size: 72pt;
 }
 </style>
