@@ -11,6 +11,7 @@ import Footer from "@components/gui/Footer.astro";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "vue3-toastify/dist/index.css";
 import NavBar from "@components/gui/NavBar.astro";
+import NavBarServer from "@components/gui/NavBarServer.astro";
 Astro.response.headers.set(
   "Cache-Control",
   "public, s-maxage=360, stale-while-revalidate=180"
@@ -55,9 +56,9 @@ Astro.response.headers.set(
         class="drawer-content h-full w-full overflow-x-hidden"
         id="scroll-container"
       >
-        <!-- Navbar -->
         <Header />
-        <NavBar />
+        <NavBarServer/>
+        <!-- <NavBar /> -->
 
         <slot class="px-4 overflow-x-hidden" />
 
