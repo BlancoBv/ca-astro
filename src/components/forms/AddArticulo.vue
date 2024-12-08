@@ -5,11 +5,18 @@ import { useSendData } from '@assets/http';
 import SelectRuta from './SelectRuta.vue';
 import SelectEtiqueta from './SelectEtiqueta.vue';
 import { toast } from 'vue3-toastify';
+import ImageSelector from '@components/editor/ImageSelector.vue';
+import { editorInstance } from '@components/editor/EditorInstance';
 
 const props = defineProps<{ idUsuario: string | undefined }>()
 
-const body = reactive<{ titulo: string, contenido?: string, ruta: string, idUsuario: string | undefined, fecha: string, etiquetas: number[] }>({ titulo: "", ruta: "", idUsuario: props.idUsuario, fecha: "", etiquetas: [] })
 
+
+const body = reactive<{ titulo: string, contenido?: string, ruta: string, idUsuario: string | undefined, fecha: string, etiquetas: number[] }>({ titulo: "", ruta: "", idUsuario: props.idUsuario, fecha: "", etiquetas: [] })
+const editor = editorInstance(body)
+
+const send = useSendData("articulos", "post")
+const image = reactive<{ src: string | null }>({ src: null })
 const handleEditor = (content: string) => {
     body.contenido = content
 }
@@ -21,7 +28,6 @@ const handleEtiquetas = (value: number[]) => {
 }
 
 
-const send = useSendData("articulos", "post")
 
 const handleSubmit = () => {
     handleSubmit: {
@@ -38,8 +44,13 @@ const handleSubmit = () => {
     }
 }
 
+const handleImg = (src: string) => {
+    image.src = src
+}
+
 </script>
 <template>
+    <ImageSelector @click="handleImg" :editor-instance="editor" />
     <form @submit.prevent="handleSubmit">
         <label class="form-control w-full max-w-xs">
             <div class="label">
@@ -57,7 +68,8 @@ const handleSubmit = () => {
         <SelectRuta :value="body.ruta" @set-option="handleRuta" />
         <SelectEtiqueta :value="body.etiquetas" @set-option="handleEtiquetas" />
 
-        <Editor @update-content="handleEditor" />
+        <Editor @update-content="handleEditor" @add-image="" :editor="editor" />
         <button class="btn btn-primary" type="submit">Enviar</button>
     </form>
+
 </template>
