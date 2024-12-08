@@ -1,0 +1,56 @@
+---
+import MiembrosSide from "./MiembrosSide.astro";
+
+interface menus {
+  response?: {
+    dropcollapse: boolean;
+    nombre: string;
+    ruta: string;
+    submenus: { nombre: string; ruta: string }[];
+  }[];
+}
+const res: menus = await fetch("http://localhost:4321/api/menus").then((res) =>
+  res.json()
+);
+---
+
+<>
+  {
+    res.response?.map((menu) => {
+      if (menu.ruta === "miembros") {
+        return <MiembrosSide />;
+      }
+      if (menu.ruta === "colaboradores") {
+        return <MiembrosSide colaboradores />;
+      }
+      if (menu.dropcollapse)
+        return (
+          <li>
+            <details open>
+              <summary>{menu.nombre}</summary>
+              <ul>
+                {menu.submenus?.map((submenu) => (
+                  <li>
+                    <a href={`/${menu.ruta}/${submenu.ruta}`}>
+                      {submenu.nombre}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </li>
+        );
+
+      return (
+        <li>
+          <a
+            class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1"
+            href={`/${menu.ruta}`}
+          >
+            {menu.nombre}
+          </a>
+        </li>
+      );
+    })
+  }
+</>

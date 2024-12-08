@@ -30,7 +30,7 @@ const res: miembros = await fetch(
     {
       res.response?.map((miembro) => {
         return (
-          <li v-if="!isPending" v-for="miembro in data.response">
+          <li>
             <a href={`/miembros/${miembro.idmiembro}`} class="text-balance">
               {miembro.nombreCompleto}
             </a>

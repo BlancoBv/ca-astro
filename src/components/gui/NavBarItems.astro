@@ -24,10 +24,7 @@ const res: menus = await fetch("http://localhost:4321/api/menus").then((res) =>
       }
       if (menu.dropcollapse)
         return (
-          <div
-            v-else-if="menu.dropcollapse"
-            class="dropdown dropdown-hover group"
-          >
+          <div class="dropdown dropdown-hover group">
             <div
               tabindex="0"
               role="button"
@@ -55,7 +52,6 @@ const res: menus = await fetch("http://localhost:4321/api/menus").then((res) =>
 
       return (
         <a
-          v-else
           class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1"
           href={`/${menu.ruta}`}
         >

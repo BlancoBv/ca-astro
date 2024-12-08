@@ -1,0 +1,33 @@
+---
+interface Props {
+  colaboradores?: boolean;
+}
+interface miembros {
+  response?: { nombreCompleto: string; idmiembro: number }[];
+}
+const { colaboradores } = Astro.props;
+const res: miembros = await fetch(
+  `http://localhost:4321/api/miembros?colaborador=${colaboradores ? "true" : "false"}`
+).then((res) => res.json());
+---
+
+<li>
+  <details open>
+    <summary>
+      {colaboradores ? "Colaboradores" : "Miembros"}
+    </summary>
+    <ul>
+      {
+        res.response?.map((miembro) => {
+          return (
+            <li>
+              <a href={`/miembros/${miembro.idmiembro}`} class="text-balance">
+                {miembro.nombreCompleto}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </details>
+</li>
