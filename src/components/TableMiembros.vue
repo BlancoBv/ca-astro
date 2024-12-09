@@ -5,11 +5,10 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import get from "lodash/get"
 
 interface props {
-    cols: { field: string, header: string, sortable?: boolean, formatter?: "uppercase" | "colabs" | "duracion" }[], data: any[]
+    cols: { field: string, header: string, sortable?: boolean, formatter?: "uppercase" | "colabs" | "duracion" | "monto" | "entregaFinal" }[], data: any[]
 }
 
 const props = defineProps<props>()
-const isMounted = ref<boolean>(false)
 
 const getCollabs = (element: {
     otrosColaboradores: string | null;
@@ -46,22 +45,26 @@ const getCollabs = (element: {
 const getDuracion = (element: { fechaInicio: string, fechaTermino: string }) => {
     return `${element.fechaInicio} a ${element.fechaTermino}`
 }
+const getEntregaFinal = (element: { fechaInicioEntrega: string, fechaTerminoEntrega: string }) => {
+
+    if (!element.fechaInicioEntrega || !element.fechaTerminoEntrega) {
+        return "---"
+    }
+    return `${element.fechaInicioEntrega} a ${element.fechaTerminoEntrega}`
+}
 
 const formatter = {
     uppercase: (value: string) => value.toUpperCase(),
     duracion: (value: any) => getDuracion(value),
-    colabs: (value: any) => getCollabs(value)
-}
-
-
-const handleClick = () => {
-
+    colabs: (value: any) => getCollabs(value),
+    monto: (value: string) => value ?? "---",
+    entregaFinal: (value: any) => getEntregaFinal(value)
 }
 
 </script>
 <template>
     <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
-        selectionMode="single" @row-click="handleClick">
+        selectionMode="single">
 
         <Column v-for="col of props.cols" :key="col.field" :field="col.field" :header="col.header"
             :sortable="col.sortable">

@@ -3,6 +3,7 @@ import { formatDate } from "@assets/format";
 import TableMiembros from "@components/TableMiembros.vue";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { log } from "console";
 
 const { id } = Astro.params;
 
@@ -28,6 +29,8 @@ const miembro: {
       titulo: string;
       fechaInicio: string;
       fechaTermino: string;
+      fechaInicioEntrega: string;
+      fechaTerminoEntrega: string;
     }[];
     contactos: { tipo: string; url: string }[];
   };
@@ -58,41 +61,17 @@ if (!miembro || miembro.hasOwnProperty("msg")) {
   return Astro.redirect("/404");
 }
 
-const getCollabs = (element: {
-  otrosColaboradores: string | null;
-  miembros_proyecto: {
-    nombreCompleto: string;
-    nombre: string;
-    apepat: string;
-    apemat: string;
-  }[];
-}): string => {
-  const formatter = new Intl.ListFormat("es", {
-    type: "conjunction",
-    style: "long",
-  });
-  const miembrosF: string[] = [];
-  console.log(element);
-
-  element.miembros_proyecto.forEach((el) => {
-    miembrosF.push(el.nombreCompleto);
-  });
-
-  if (element.otrosColaboradores) {
-    const otherCollabsArr: string[] = element.otrosColaboradores.split(",");
-    miembrosF.push(...otherCollabsArr);
-  }
-
-  if (miembrosF.length < 1) {
-    return "----";
-  }
-
-  return formatter.format(miembrosF);
-};
+console.log(miembro.response?.proyectos);
 
 miembro.response.proyectos.forEach((el) => {
   el.fechaInicio = formatDate(el.fechaInicio, "LL");
   el.fechaTermino = formatDate(el.fechaTermino, "LL");
+  el.fechaInicioEntrega = el.fechaInicioEntrega
+    ? formatDate(el.fechaInicioEntrega, "LL")
+    : el.fechaInicioEntrega;
+  el.fechaTerminoEntrega = el.fechaTerminoEntrega
+    ? formatDate(el.fechaTerminoEntrega, "LL")
+    : el.fechaTerminoEntrega;
 }); //formateo de fecha para evitar error de momentjs e hidratation en vue
 ---
 
@@ -172,59 +151,19 @@ miembro.response.proyectos.forEach((el) => {
     </div>
     <p>{miembro.response.resumen}</p>
     <h2 class="mt-0">Proyectos</h2>
-    <!--     <div class="overflow-x-auto">
-      <table class="table table-zebra text-balance not-prose">
-        <thead>
-          <tr class="bg-neutral text-neutral-content">
-            <th class="w-40">Clave</th>
-            <th>Proyecto</th>
-            <th>Duración</th>
-            <th>Director</th>
-            <th>Colaboradores</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            miembro.response.proyectos.length > 0 &&
-              miembro.response.proyectos.map((el: any) => (
-                <tr>
-                  <th>{el.clave}</th>
-                  <td>{el.titulo}</td>
-                  <td>
-                    {`${formatDate(el.fechaInicio, "LL")} a ${formatDate(el.fechaTermino, "LL")}`}{" "}
-                  </td>
-                  <td>{el.director_proyecto.nombreCompleto}</td>
-                  <td>{getCollabs(el) ?? "---"}</td>
-                  <td>{el.tipo.toUpperCase()}</td>
-                </tr>
-              ))
-          }
-          {
-            miembro.response.proyectos.length < 1 && (
-              <tr>
-                <th colspan="6" class="text-center text-xl">
-                  Sin datos.
-                </th>
-              </tr>
-            )
-          }
-        </tbody>
-      </table>
-    </div> -->
     <TableMiembros
       data={miembro.response.proyectos}
       cols={[
         { header: "Clave", field: "clave" },
         { header: "Proyecto", field: "titulo" },
         {
-          header: "Director",
+          header: "Director(a) responsable",
           field: "director_proyecto.nombreCompleto",
           sortable: true,
         },
 
         {
-          header: "Duración",
+          header: "Vigencia",
           field: "",
           formatter: "duracion",
         },
@@ -234,6 +173,17 @@ miembro.response.proyectos.forEach((el) => {
           field: "tipo",
           formatter: "uppercase",
           sortable: true,
+        },
+        {
+          header: "Monto aprobado",
+          field: "monto",
+          sortable: true,
+          formatter: "monto",
+        },
+        {
+          header: "Fecha entrega final",
+          field: "",
+          formatter: "entregaFinal",
         },
       ]}
       client:visible
