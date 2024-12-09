@@ -2,10 +2,10 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_DqkNLIlm.mjs';
 import { f as formatDate } from '../../chunks/format_BnSwxyOw.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, Fragment, renderList } from 'vue';
+import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode, Fragment, renderList } from 'vue';
 import { s as script, a as script$1 } from '../../chunks/index_Bs5YyKFW.mjs';
 import get from 'lodash/get.js';
-import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
+import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_DDGM0DcE.mjs';
 import { $ as $$Layout } from '../../chunks/Layout_BY1IwER5.mjs';
@@ -49,6 +49,19 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }
       return `${element.fechaInicioEntrega} a ${element.fechaTerminoEntrega}`;
     };
+    const getField = (row, col) => {
+      if (col.field === "estatus") {
+        return null;
+      }
+      if (col.formatter) {
+        return formatter[col.formatter]?.(get(
+          row.data,
+          col.field,
+          row.data
+        ));
+      }
+      return get(row.data, col.field, row.data);
+    };
     const formatter = {
       uppercase: (value) => value.toUpperCase(),
       duracion: (value) => getDuracion(value),
@@ -56,7 +69,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       monto: (value) => value ?? "---",
       entregaFinal: (value) => getEntregaFinal(value)
     };
-    const __returned__ = { props, getCollabs, getDuracion, getEntregaFinal, formatter, get Column() {
+    const __returned__ = { props, getCollabs, getDuracion, getEntregaFinal, getField, formatter, get Column() {
       return script;
     }, get DataTable() {
       return script$1;
@@ -96,18 +109,41 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
           }, {
             body: withCtx((row, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`${ssrInterpolate(col.formatter ? $setup.formatter[col.formatter]?.($setup.get(row.data, col.field, row.data)) : $setup.get(
-                  row.data,
-                  col.field,
-                  row.data
-                ))}`);
+                _push3(`${ssrInterpolate($setup.getField(row, col))} `);
+                if (col.field === "estatus") {
+                  _push3(`<div class="${ssrRenderClass([{
+                    "badge-success": $setup.get(
+                      row.data,
+                      col.field,
+                      row.data
+                    ) === "finalizado",
+                    "badge-info": $setup.get(
+                      row.data,
+                      col.field,
+                      row.data
+                    ) === "en proceso"
+                  }, "badge h-max"])}"${_scopeId2}>${ssrInterpolate($setup.get(row.data, col.field, row.data).toUpperCase())}</div>`);
+                } else {
+                  _push3(`<!---->`);
+                }
               } else {
                 return [
-                  createTextVNode(toDisplayString(col.formatter ? $setup.formatter[col.formatter]?.($setup.get(row.data, col.field, row.data)) : $setup.get(
-                    row.data,
-                    col.field,
-                    row.data
-                  )), 1)
+                  createTextVNode(toDisplayString($setup.getField(row, col)) + " ", 1),
+                  col.field === "estatus" ? (openBlock(), createBlock("div", {
+                    key: 0,
+                    class: ["badge h-max", {
+                      "badge-success": $setup.get(
+                        row.data,
+                        col.field,
+                        row.data
+                      ) === "finalizado",
+                      "badge-info": $setup.get(
+                        row.data,
+                        col.field,
+                        row.data
+                      ) === "en proceso"
+                    }]
+                  }, toDisplayString($setup.get(row.data, col.field, row.data).toUpperCase()), 3)) : createCommentVNode("", true)
                 ];
               }
             }),
@@ -125,11 +161,22 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
               sortable: col.sortable
             }, {
               body: withCtx((row) => [
-                createTextVNode(toDisplayString(col.formatter ? $setup.formatter[col.formatter]?.($setup.get(row.data, col.field, row.data)) : $setup.get(
-                  row.data,
-                  col.field,
-                  row.data
-                )), 1)
+                createTextVNode(toDisplayString($setup.getField(row, col)) + " ", 1),
+                col.field === "estatus" ? (openBlock(), createBlock("div", {
+                  key: 0,
+                  class: ["badge h-max", {
+                    "badge-success": $setup.get(
+                      row.data,
+                      col.field,
+                      row.data
+                    ) === "finalizado",
+                    "badge-info": $setup.get(
+                      row.data,
+                      col.field,
+                      row.data
+                    ) === "en proceso"
+                  }]
+                }, toDisplayString($setup.get(row.data, col.field, row.data).toUpperCase()), 3)) : createCommentVNode("", true)
               ]),
               _: 2
             }, 1032, ["field", "header", "sortable"]);
@@ -203,7 +250,8 @@ const $$id = createComponent(async ($$result, $$props, $$slots) => {
       header: "Fecha entrega final",
       field: "",
       formatter: "entregaFinal"
-    }
+    },
+    { header: "Estatus", field: "estatus", sortable: true }
   ], "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/TableMiembros.vue", "client:component-export": "default" })} </main> ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/miembros/[id].astro", void 0);
 
