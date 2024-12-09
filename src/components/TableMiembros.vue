@@ -4,8 +4,9 @@ import DataTable from 'primevue/datatable';
 import { onMounted, onUnmounted, ref } from 'vue';
 import get from "lodash/get"
 
+type formatter = "uppercase" | "colabs" | "duracion" | "monto" | "entregaFinal"
 interface props {
-    cols: { field: string, header: string, sortable?: boolean, formatter?: "uppercase" | "colabs" | "duracion" | "monto" | "entregaFinal" }[], data: any[]
+    cols: { field: string, header: string, sortable?: boolean, formatter?: formatter }[], data: any[]
 }
 
 const props = defineProps<props>()
@@ -53,6 +54,17 @@ const getEntregaFinal = (element: { fechaInicioEntrega: string, fechaTerminoEntr
     return `${element.fechaInicioEntrega} a ${element.fechaTerminoEntrega}`
 }
 
+const getField = (row: any, col: { field: string, header: string, sortable?: boolean, formatter?: formatter }) => {
+    if (col.field === "estatus") { return null }
+
+    if (col.formatter) {
+        return formatter[col.formatter]?.(get(row.data, col.field,
+            row.data))
+    }
+    return get(row.data, col.field, row.data)
+}
+
+
 const formatter = {
     uppercase: (value: string) => value.toUpperCase(),
     duracion: (value: any) => getDuracion(value),
@@ -60,6 +72,7 @@ const formatter = {
     monto: (value: string) => value ?? "---",
     entregaFinal: (value: any) => getEntregaFinal(value)
 }
+
 
 </script>
 <template>
@@ -70,9 +83,15 @@ const formatter = {
             :sortable="col.sortable">
 
             <template #body="row">
-                {{ col.formatter ? formatter[col.formatter]?.(get(row.data, col.field, row.data)) : get(row.data,
-                    col.field, row.data)
+                {{ getField(row, col)
                 }}
+                <div v-if="col.field === 'estatus'" class="badge h-max" :class="{
+                    'badge-success': get(row.data, col.field,
+                        row.data) === 'finalizado',
+                    'badge-info': get(row.data, col.field,
+                        row.data) === 'en proceso'
+                }"> {{ (get(row.data, col.field, row.data) as string).toUpperCase() }}</div>
+
             </template>
         </Column>
         <template #empty>
