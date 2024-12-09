@@ -311,6 +311,15 @@ const Proyectos = sequelize.define(
     director: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    monto: {
+      type: DataTypes.DECIMAL(12, 2)
+    },
+    fechaInicioEntrega: {
+      type: DataTypes.DATE
+    },
+    fechaTerminoEntrega: {
+      type: DataTypes.DATE
     }
   }
   /*   {

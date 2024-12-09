@@ -1,9 +1,10 @@
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment, renderList } from 'vue';
-import { a as useGetData, _ as _export_sfc } from './_plugin-vue_export-helper_CeNPFBqF.mjs';
+import { a as useGetData } from './http_DpUI1aoW.mjs';
 import { Carousel as Carousel$1, Navigation, Slide } from 'vue3-carousel';
 /* empty css                         */
 import { ssrRenderComponent, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'vue/server-renderer';
+import { _ as _export_sfc } from './_plugin-vue_export-helper_DDGM0DcE.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "Carousel",

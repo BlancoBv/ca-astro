@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../../chunks/astro/server_DqkNLIlm.mjs';
-import { $ as $$Layout } from '../../../chunks/Layout_DFdVYYMG.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_BY1IwER5.mjs';
 import { $ as $$CardBlog } from '../../../chunks/CardBlog_BbQzy9s1.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_BuVY0NLu.mjs';
 

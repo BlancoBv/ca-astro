@@ -1,7 +1,7 @@
 import '../../chunks/format_BnSwxyOw.mjs';
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { c as Miembros, C as Contactos, P as Proyectos, s as sequelize } from '../../chunks/index_BH-rhqeW.mjs';
+import { c as Miembros, C as Contactos, P as Proyectos, s as sequelize } from '../../chunks/index_9TGN4DxM.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_DAop8mSr.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
