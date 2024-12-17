@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { M as Menus, S as Submenus, U as Users } from '../../chunks/index_9TGN4DxM.mjs';
+import { M as Menus, S as Submenus, U as Users } from '../../chunks/index_DBE-PR5w.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_DAop8mSr.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
 

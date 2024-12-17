@@ -519,4 +519,4 @@ Proyectos.belongsToMany(Miembros, {
 Miembros.hasMany(Contactos, { foreignKey: "idmiembro" });
 Contactos.belongsTo(Miembros, { foreignKey: "idmiembro" });
 
-export { Articulo as A, Banners as B, Contactos as C, Etiquetas as E, Logs as L, Menus as M, Proyectos as P, Roles as R, Submenus as S, Users as U, EtiquetasArticulos as a, Blog as b, Miembros as c, Permisos as d, sequelize as s };
+export { Articulo as A, Banners as B, Contactos as C, Etiquetas as E, Logs as L, Menus as M, Proyectos as P, Roles as R, Submenus as S, Users as U, EtiquetasArticulos as a, Blog as b, EtiquetasBlogs as c, Miembros as d, Permisos as e, sequelize as s };

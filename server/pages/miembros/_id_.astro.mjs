@@ -7,8 +7,8 @@ import { s as script, a as script$1 } from '../../chunks/index_Bs5YyKFW.mjs';
 import get from 'lodash/get.js';
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_DDGM0DcE.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_BY1IwER5.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_Sh8Uem1i.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_Lf5X3300.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_RfIkAwJg.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
 
@@ -213,7 +213,6 @@ const $$id = createComponent(async ($$result, $$props, $$slots) => {
   if (!miembro || miembro.hasOwnProperty("msg")) {
     return Astro2.redirect("/404");
   }
-  console.log(miembro.response?.proyectos);
   miembro.response.proyectos.forEach((el) => {
     el.fechaInicio = formatDate(el.fechaInicio, "LL");
     el.fechaTermino = formatDate(el.fechaTermino, "LL");

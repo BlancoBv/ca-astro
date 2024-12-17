@@ -48,7 +48,11 @@ function useSendData(url, method, config) {
   let id;
   const { isError, isPending, isSuccess, mutate, mutateAsync } = useMutation({
     mutationFn: async (data) => {
-      const respose = await Axios[method](url, data);
+      const respose = await Axios[method](
+        url,
+        data,
+        config?.sendAsFormData ? { headers: { "Content-Type": "multipart/form-data" } } : void 0
+      );
       if (respose.status === 400) {
         return Promise.reject(respose.data);
       }

@@ -1,44 +1,14 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DqkNLIlm.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DGu6GpPH.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CWUdKdEM.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, mergeProps, withCtx, openBlock, createBlock, Fragment, createTextVNode, toDisplayString, renderList, reactive } from 'vue';
-import { ssrRenderAttrs, ssrInterpolate, ssrRenderAttr, ssrRenderComponent, ssrRenderList } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_DDGM0DcE.mjs';
-import { a as useGetData, u as useSendData } from '../../chunks/http_DpUI1aoW.mjs';
+import { useSSRContext, defineComponent, withCtx, openBlock, createBlock, Fragment, createTextVNode, toDisplayString, renderList, reactive } from 'vue';
+import { I as Input } from '../../chunks/Input_xEMkKwwB.mjs';
+import { a as useGetData, u as useSendData } from '../../chunks/http_CGmg0JkM.mjs';
 import { b as script, a as script$1, s as script$2 } from '../../chunks/index_Bs5YyKFW.mjs';
+import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_Sh8Uem1i.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
-
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
-  __name: "Input",
-  props: {
-    value: {},
-    label: {}
-  },
-  emits: ["setValue"],
-  setup(__props, { expose: __expose, emit: __emit }) {
-    __expose();
-    const emit = __emit;
-    const props = __props;
-    const handleChange = (event) => {
-      const { value } = event.target;
-      emit("setValue", value);
-    };
-    const __returned__ = { emit, props, handleChange };
-    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
-    return __returned__;
-  }
-});
-function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<label${ssrRenderAttrs(mergeProps({ class: "form-control w-full max-w-xs" }, _attrs))}><div class="label"><span class="label-text">${ssrInterpolate($setup.props.label)}</span></div><input type="text" class="input input-bordered w-full max-w-xs" required${ssrRenderAttr("value", $setup.props.value)}></label>`);
-}
-const _sfc_setup$2 = _sfc_main$2.setup;
-_sfc_main$2.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/forms/Input.vue");
-  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
-};
-const Input = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2]]);
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "Table",
