@@ -53,13 +53,20 @@ export function useSendData(
     onSuccess?: (data?: any) => void;
     onToastClose?: () => void;
     toastMsg?: string;
+    sendAsFormData?: boolean;
   }
 ) {
   let id: Id;
 
   const { isError, isPending, isSuccess, mutate, mutateAsync } = useMutation({
     mutationFn: async (data: any) => {
-      const respose = await Axios[method](url, data);
+      const respose = await Axios[method](
+        url,
+        data,
+        config?.sendAsFormData
+          ? { headers: { "Content-Type": "multipart/form-data" } }
+          : undefined
+      );
       if (respose.status === 400) {
         return Promise.reject(respose.data);
       }

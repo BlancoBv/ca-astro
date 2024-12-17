@@ -2,19 +2,36 @@
 import { useGetData } from '@assets/http';
 import type { Editor } from '@tiptap/vue-3';
 
-const props = defineProps<{ editorInstance: Editor | undefined }>()
-const { data, isPending, isError } = useGetData("imagenes", "imagesGalleryData")
+const props = defineProps<{ editorInstance?: Editor, imageContainer?: { [key: string]: any }, id?: string }>()
+
+const emits = defineEmits(["addImageToObject"])
+
+const { data, isPending } = useGetData("imagenes", "imagesGalleryData")
 
 
 const handleClick = (src: string, fileName: string) => {
-    props.editorInstance?.chain().focus().setImage({ src, alt: fileName }).run()
+
+    handleClick: {
+        if (props.editorInstance === undefined) {
+            //props.imageContainer = src
+            emits("addImageToObject", src)
+
+            break handleClick
+        }
+        props.editorInstance?.chain().focus().setImage({ src, alt: fileName }).run()
+    }
 }
+
+const openAddImageModal = () => {
+    const modal = document.getElementById("modal-add-image") as HTMLDialogElement
+    modal.showModal()
+}
+
 
 
 </script>
 <template>
-
-    <dialog id="modal-images" class="modal">
+    <dialog :id="props.id ?? 'modal-images'" class="modal">
         <div class="modal-box w-11/12 max-w-5xl h-5/6">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -37,6 +54,9 @@ const handleClick = (src: string, fileName: string) => {
                 <div v-for="image in data?.files" class="w-full h-40 group overflow-clip rounded-btn"
                     @click="handleClick(image.url, image.fileName)">
                     <img :src="image.url" class="size-full object-cover group-hover:scale-105 ease-in duration-150">
+                </div>
+                <div class="w-full h-40 group overflow-clip rounded-btn btn btn-secondary" @click="openAddImageModal">
+                    AÑadir imagen
                 </div>
             </div>
         </div>

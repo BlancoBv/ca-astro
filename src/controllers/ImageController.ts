@@ -32,6 +32,8 @@ export default class ImageController {
 
     const fileName = this.generadorNombre();
 
+    console.log(uploadsDir);
+
     await sharp(fileBuffer)
       .webp({ quality: 50 })
       .toFile(uploadsDir + fileName);
@@ -46,8 +48,6 @@ export default class ImageController {
       "uploads",
       this.directory
     );
-
-    console.log(uploadsDir);
 
     const files = (await fs.readdir(uploadsDir)).map((el) => ({
       url: origin + "/uploads/" + this.directory + "/" + el,

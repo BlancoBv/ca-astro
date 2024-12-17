@@ -34,6 +34,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   const file = body.get("imagen") as File;
 
+  console.log(file, body);
+
   if (typeof file !== "object") {
     return new Response("No file provided", { status: 400 });
   }

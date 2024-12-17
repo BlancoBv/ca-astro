@@ -1,8 +1,9 @@
 ---
-import Editor from "@components/editor/Editor.vue";
-import Layout from "@layouts/Layout.astro";
+import AddBlog from "@components/forms/AddBlog.vue";
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+const { user } = Astro.locals;
 ---
 
-<Layout title="Añadir contenido">
-  <!--   <Editor client:load /> -->
-</Layout>
+<LayoutPanel title="Añadir contenido">
+  <AddBlog idUsuario={user?.id} client:idle />
+</LayoutPanel>

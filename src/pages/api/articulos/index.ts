@@ -4,9 +4,7 @@ import searchParamsToObject from "@assets/searchParamsToObject";
 import { sequelize } from "@db";
 import { EtiquetasArticulos, Etiquetas, Articulo } from "@model";
 
-export const GET: APIRoute = async ({ url, locals }) => {
-  console.log(locals);
-
+export const GET: APIRoute = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);
 
   try {
