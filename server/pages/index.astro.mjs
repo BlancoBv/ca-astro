@@ -189,7 +189,7 @@ _sfc_main.setup = (props, ctx) => {
 const Carousel = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "CA - c\xF3mputo distribuido." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Carousel", Carousel, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/gui/Carousel.vue", "client:component-export": "default" })} ${renderComponent($$result2, "BlogsContainer", $$BlogsContainer, {})} <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4"> <div class="card bg-accent text-accent-content shadow-xl"> <div class="card-body"> <h2 class="card-title">Misión</h2> <p class="text-balance">
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "CA - c\xF3mputo distribuido." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Carousel", Carousel, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/gui/Carousel.vue", "client:component-export": "default" })} ${renderComponent($$result2, "BlogsContainer", $$BlogsContainer, {})} <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4"> <div class="card bg-accent text-accent-content shadow-xl"> <div class="card-body"> <h2 class="card-title">Misión</h2> <p class="text-balance">
 Contribuir con el mejoramiento de la formación académica de los
             estudiantes de la carrera de Ingeniería en Sistemas computacionales
             del Instituto tecnológico Superior de los Ríos.
