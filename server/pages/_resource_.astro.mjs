@@ -1,8 +1,8 @@
 /* empty css                                   */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, u as unescapeHTML } from '../chunks/astro/server_DqkNLIlm.mjs';
-import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../chunks/EtiquetasHeading_CWWQmdjU.mjs';
-import { $ as $$Layout } from '../chunks/Layout_Lf5X3300.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_BuVY0NLu.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, u as unescapeHTML } from '../chunks/astro/server_CYDDhvI_.mjs';
+import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../chunks/EtiquetasHeading_CAc0nCRR.mjs';
+import { $ as $$Layout } from '../chunks/Layout_C-QMZrmZ.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {

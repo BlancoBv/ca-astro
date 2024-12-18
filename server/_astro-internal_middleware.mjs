@@ -1,5 +1,5 @@
-import './chunks/astro-designed-error-pages_DrMkMTPk.mjs';
-import { d as defineMiddleware, s as sequence } from './chunks/index_sCQGSZ8X.mjs';
+import './chunks/astro-designed-error-pages_fW3YAJGt.mjs';
+import { d as defineMiddleware, s as sequence } from './chunks/index_DO1LStEK.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as CookiesManager } from './chunks/CookiesManager_Cm5dHe09.mjs';
 import { L as Logs } from './chunks/index_DBE-PR5w.mjs';

@@ -1,12 +1,12 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_DqkNLIlm.mjs';
-import { L as LogoutButton, $ as $$LayoutPanel } from '../chunks/LayoutPanel_CWUdKdEM.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_BuVY0NLu.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_CYDDhvI_.mjs';
+import { $ as $$LayoutPanel } from '../chunks/LayoutPanel_Bhyhw2Fu.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "title": "Inicio de sesi\xF3n" }, { "default": ($$result2) => renderTemplate`
-Panel epico
-${renderComponent($$result2, "LogoutButton", LogoutButton, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/panel/LogoutButton.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Inicio" }, { "default": ($$result2) => renderTemplate`
+Inicio panel de administración de la pagina
+` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/index.astro";

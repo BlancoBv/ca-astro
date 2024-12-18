@@ -1,14 +1,14 @@
 /* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DqkNLIlm.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CWUdKdEM.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_CYDDhvI_.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_Bhyhw2Fu.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, withCtx, openBlock, createBlock, Fragment, createTextVNode, toDisplayString, renderList, reactive } from 'vue';
-import { I as Input } from '../../chunks/Input_xEMkKwwB.mjs';
+import { I as Input } from '../../chunks/Input_BUZR3wwK.mjs';
 import { a as useGetData, u as useSendData } from '../../chunks/http_CGmg0JkM.mjs';
-import { b as script, a as script$1, s as script$2 } from '../../chunks/index_Bs5YyKFW.mjs';
+import { e as script, a as script$1, s as script$2 } from '../../chunks/index_BzFM4fBN.mjs';
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_Sh8Uem1i.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_VlCHcN7j.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "Table",
@@ -195,7 +195,7 @@ const $$Index = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, {}, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddEtiqueta", AddEtiqueta, { "user": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddEtiqueta.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de etiquetas de la p\xE1gina" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddEtiqueta", AddEtiqueta, { "user": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddEtiqueta.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/etiquetas/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/etiquetas/index.astro";

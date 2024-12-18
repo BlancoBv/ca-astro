@@ -1,15 +1,15 @@
 /* empty css                                         */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DqkNLIlm.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_CYDDhvI_.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_6oHFUBKA.mjs';
-import { I as Input } from '../../../chunks/Input_xEMkKwwB.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_DoPbbzn0.mjs';
+import { I as Input } from '../../../chunks/Input_BUZR3wwK.mjs';
 import moment from 'moment';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_CGmg0JkM.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_Sh8Uem1i.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_CWUdKdEM.mjs';
-export { r as renderers } from '../../../chunks/_@astro-renderers_BuVY0NLu.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_VlCHcN7j.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_Bhyhw2Fu.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "AddImage",
@@ -61,7 +61,15 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const props = __props;
     const dateLocal = new Date(Date.now());
     const m = moment(dateLocal);
-    const send = useSendData("blogs", "post");
+    const send = useSendData("blogs", "post", {
+      onSuccess() {
+        body.titulo = "";
+        body.contenido = "";
+        body.fecha = m.format("YYYY-MM-DD");
+        body.imagen = "";
+        body.etiquetas = [];
+      }
+    });
     const body = reactive({ titulo: "", contenido: "", fecha: m.format("YYYY-MM-DD"), estatus: "aceptado", imagen: "", usuarios_id: props.idUsuario, etiquetas: [] });
     const openImageSelector = () => {
       const modal = document.getElementById("modal-image-main");
@@ -69,6 +77,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
     const handleClick = (src) => {
       body.imagen = src;
+      const modal = document.getElementById("modal-image-main");
+      modal.close();
     };
     const handleChangeTitulo = (value) => {
       body.titulo = value;
@@ -93,7 +103,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     id: "modal-image-main",
     onAddImageToObject: $setup.handleClick
   }, null, _parent));
-  _push(`<form>${ssrInterpolate($setup.body)} <div class="flex gap-4 flex-wrap items-center pb-4">`);
+  _push(`<form><div class="flex gap-4 flex-wrap items-center pb-4">`);
   _push(ssrRenderComponent($setup["Input"], {
     value: $setup.body.titulo,
     label: "Titulo del blog",
@@ -106,12 +116,18 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     type: "date",
     onSetValue: $setup.handleChangeFecha
   }, null, _parent));
-  _push(`<button class="btn btn-secondary" type="button">Seleccionar imagen principal</button>`);
+  _push(`<div class="flex gap-4 items-center">`);
+  if ($setup.body.imagen.length < 1) {
+    _push(`<p class="w-24 h-24 text-xs">Selecciona una imagen para ver la vista previa</p>`);
+  } else {
+    _push(`<img${ssrRenderAttr("src", $setup.body.imagen)} class="object-contain" width="96px" height="96px">`);
+  }
+  _push(`<button class="btn btn-secondary" type="button">${ssrInterpolate($setup.body.imagen.length < 1 ? "Seleccionar" : "Cambiar")} imagen principal</button></div>`);
   _push(ssrRenderComponent($setup["SelectEtiqueta"], {
     value: $setup.body.etiquetas,
     onSetOption: $setup.handleEtiquetas
   }, null, _parent));
-  _push(`</div><img${ssrRenderAttr("src", $setup.body.imagen)} class="object-contain" width="100px" height="100px">`);
+  _push(`</div>`);
   _push(ssrRenderComponent($setup["Editor"], { editor: $setup.editor }, null, _parent));
   _push(`<button class="btn btn-primary" type="submit">Guardar</button></form><!--]-->`);
 }
@@ -128,7 +144,7 @@ const $$Index = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "title": "A\xF1adir contenido" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBlog", AddBlog, { "idUsuario": user?.id, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBlog.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "A\xF1adir blog" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBlog", AddBlog, { "idUsuario": user?.id, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBlog.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/add/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/add/index.astro";

@@ -1,13 +1,13 @@
 /* empty css                                         */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DqkNLIlm.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_CWUdKdEM.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_CYDDhvI_.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_Bhyhw2Fu.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
-import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_6oHFUBKA.mjs';
+import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_DoPbbzn0.mjs';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_CGmg0JkM.mjs';
 import { ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderComponent } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_Sh8Uem1i.mjs';
-export { r as renderers } from '../../../chunks/_@astro-renderers_BuVY0NLu.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_VlCHcN7j.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "SelectRuta",
@@ -163,7 +163,7 @@ const $$Index = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "title": "A\xF1adir contenido" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddArticulo", AddArticulo, { "idUsuario": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddArticulo.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "A\xF1adir contenido de secci\xF3n" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddArticulo", AddArticulo, { "idUsuario": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddArticulo.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/articulos/crear/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/articulos/crear/index.astro";

@@ -1,16 +1,16 @@
 /* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_DqkNLIlm.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_CYDDhvI_.mjs';
 import { f as formatDate } from '../../chunks/format_BnSwxyOw.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode, Fragment, renderList } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_Bs5YyKFW.mjs';
+import { s as script, a as script$1 } from '../../chunks/index_BzFM4fBN.mjs';
 import get from 'lodash/get.js';
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_Sh8Uem1i.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_Lf5X3300.mjs';
-import { $ as $$Image } from '../../chunks/_astro_assets_RfIkAwJg.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_VlCHcN7j.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_C-QMZrmZ.mjs';
+import { $ as $$Image } from '../../chunks/_astro_assets_DxgJyx1s.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "TableMiembros",

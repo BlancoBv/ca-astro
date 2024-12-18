@@ -2,7 +2,7 @@ import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { I as ImageController } from '../../chunks/ImageController_D96zdncs.mjs';
 import { B as Banners } from '../../chunks/index_DBE-PR5w.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BuVY0NLu.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const imageController = new ImageController("banners");
 const GET = async () => {
