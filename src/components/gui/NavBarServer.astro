@@ -32,6 +32,28 @@ const { user } = Astro.locals;
   </div>
   <div class="navbar-center hidden lg:flex">
     <NavBarItems />
+    <div class="dropdown dropdown-hover group">
+      <div
+        tabindex="0"
+        role="button"
+        class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1"
+      >
+        Documentos
+
+        <div class="swap swap-rotate group-hover:swap-active">
+          <i class="bi bi-caret-down-fill swap-off"></i>
+          <i class="bi bi-caret-up-fill swap-on"></i>
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
+      >
+        <li>
+          <a href="/documentos/minutas">Minutas</a>
+        </li>
+      </ul>
+    </div>
     <a
       href="/login"
       class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1"

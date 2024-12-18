@@ -5,5 +5,15 @@ const { user } = Astro.locals;
 
 <ul class="menu bg-base-200 min-h-full w-80 p-4" transition:persist>
   <SidebarItems />
+  <li>
+    <details open>
+      <summary>Documentos</summary>
+      <ul>
+        <li>
+          <a href="/documentos/minutas"> Minutas </a>
+        </li>
+      </ul>
+    </details>
+  </li>
   <li><a href="/login"> {user?.id ? "Ir al panel" : "Iniciar sesión"} </a></li>
 </ul>
