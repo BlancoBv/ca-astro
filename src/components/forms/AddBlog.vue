@@ -23,7 +23,15 @@ const props = defineProps<{ idUsuario: string | undefined }>()
 
 const dateLocal = new Date(Date.now())
 const m = moment(dateLocal)
-const send = useSendData("blogs", "post")
+const send = useSendData("blogs", "post", {
+    onSuccess() {
+        body.titulo = ""
+        body.contenido = ""
+        body.fecha = m.format("YYYY-MM-DD")
+        body.imagen = ""
+        body.etiquetas = []
+    }
+})
 
 const body = reactive<
     body>({ titulo: "", contenido: "", fecha: m.format("YYYY-MM-DD"), estatus: "aceptado", imagen: "", usuarios_id: props.idUsuario, etiquetas: [] })
@@ -35,6 +43,8 @@ const openImageSelector = () => {
 
 const handleClick = (src: string) => {
     body.imagen = src
+    const modal = document.getElementById("modal-image-main") as HTMLDialogElement
+    modal.close()
 }
 const handleChangeTitulo = (value: string) => {
     body.titulo = value
@@ -52,16 +62,20 @@ const editor = editorInstance(body)
     <ImageSelector :editor-instance="editor" />
     <ImageSelector id="modal-image-main" @add-image-to-object="handleClick" />
     <form @submit.prevent="() => { send.mutate(body) }">
-        {{ body }}
         <div class="flex gap-4 flex-wrap items-center pb-4">
             <Input :value="body.titulo" label="Titulo del blog" type="text" @set-value="handleChangeTitulo" />
             <Input :value="body.fecha" label="Fecha" type="date" @set-value="handleChangeFecha" />
-            <button @click="openImageSelector" class="btn btn-secondary" type="button">Seleccionar imagen
-                principal</button>
+            <div class="flex gap-4 items-center">
+                <p v-if="body.imagen.length < 1" class="w-24 h-24 text-xs">Selecciona una imagen para ver la vista
+                    previa</p>
+                <img v-else :src="body.imagen" class="object-contain" width="96px" height="96px">
+                <button @click="openImageSelector" class="btn btn-secondary" type="button">{{ body.imagen.length
+                    < 1 ? 'Seleccionar' : 'Cambiar' }} imagen principal</button>
+            </div>
             <SelectEtiqueta :value="body.etiquetas" @set-option="handleEtiquetas" />
         </div>
 
-        <img :src="body.imagen" class="object-contain" width="100px" height="100px">
+
         <Editor :editor="editor" />
         <button class="btn btn-primary" type="submit">Guardar</button>
     </form>

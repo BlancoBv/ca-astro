@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useGetData } from '@assets/http';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
 interface etiqueta { id: number, label: string }
 interface etiquetaDefault { idetiqueta: number, nombre: string }
 
-const props = defineProps<{ value: number[], required?: boolean }>()
 const emit = defineEmits(["setOption"])
 const values = ref<etiqueta[]>([])
 
@@ -41,13 +40,9 @@ const deleteEtiqueta = (index: number) => {
     emit("setOption", values.value)
 }
 
-
-
-
-
 </script>
 <template>
-    <div>
+    <div class="w-full">
         <label>Etiquetas</label>
         <div class="flex gap-4 items-center">
             <div
@@ -59,7 +54,7 @@ const deleteEtiqueta = (index: number) => {
                 </div>
             </div>
             <details class="dropdown">
-                <summary class="btn m-1">Añadir etiquetas</summary>
+                <summary class="btn btn-secondary m-1">Añadir etiquetas</summary>
                 <ul class="menu dropdown-content bg-base-100 rounded-box z-50 w-52 p-2 shadow">
                     <li v-if="!isPending && !isError && values.length < 1" v-for="etiqueta in data.response">
                         <button type="button" @click="handleClick(etiqueta)">{{ etiqueta.nombre }}</button>

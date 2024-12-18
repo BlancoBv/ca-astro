@@ -5,6 +5,6 @@ import AddEtiqueta from "@components/forms/AddEtiqueta.vue";
 const { user } = Astro.locals;
 ---
 
-<LayoutPanel>
+<LayoutPanel sectionTitle="Lista de etiquetas de la página">
   <AddEtiqueta user={user?.id} client:load />
 </LayoutPanel>

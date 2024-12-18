@@ -1,6 +1,7 @@
 ---
 import NavBarItems from "./NavBarItems.astro";
 import ThemeSwitch from "./ThemeSwitch.vue";
+const { user } = Astro.locals;
 ---
 
 <nav
@@ -35,7 +36,7 @@ import ThemeSwitch from "./ThemeSwitch.vue";
       href="/login"
       class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1"
     >
-      Iniciar sesión
+      {user?.id ? "Ir al panel" : "Iniciar sesión"}
     </a>
   </div>
   <div class="navbar-end w-min lg:w-1/2">

@@ -10,5 +10,7 @@ const logout = useSendData("logout", "post", {
 
 </script>
 <template>
-    <button class="btn btn-error" @click="logout.mutate({})" :disabled="logout.isPending.value">Cerrar sesión</button>
+    <button class="btn btn-error col-span-2 btn-block" @click="logout.mutate({})"
+        :disabled="logout.isPending.value">Cerrar
+        sesión</button>
 </template>

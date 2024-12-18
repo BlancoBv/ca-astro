@@ -1,8 +1,9 @@
 ---
 import SidebarItems from "./SidebarItems.astro";
+const { user } = Astro.locals;
 ---
 
 <ul class="menu bg-base-200 min-h-full w-80 p-4" transition:persist>
   <SidebarItems />
-  <li><a href="/login">Iniciar sesión</a></li>
+  <li><a href="/login"> {user?.id ? "Ir al panel" : "Iniciar sesión"} </a></li>
 </ul>

@@ -4,6 +4,6 @@ import AddArticulo from "@components/forms/AddArticulo.vue";
 const { user } = Astro.locals;
 ---
 
-<LayoutPanel title="Añadir contenido">
+<LayoutPanel sectionTitle="Añadir contenido de sección">
   <AddArticulo idUsuario={user?.id} client:load />
 </LayoutPanel>

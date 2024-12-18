@@ -4,6 +4,6 @@ import LayoutPanel from "@layouts/LayoutPanel.astro";
 const { user } = Astro.locals;
 ---
 
-<LayoutPanel title="Añadir contenido">
+<LayoutPanel sectionTitle="Añadir blog">
   <AddBlog idUsuario={user?.id} client:idle />
 </LayoutPanel>
