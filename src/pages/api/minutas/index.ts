@@ -8,7 +8,9 @@ const imageController = new ImageController("minutas");
 export const GET: APIRoute = async ({ url }) => {
   try {
     // Leer los archivos del directorio
-    const files = await imageController.readFiles(url.origin);
+    const files = await imageController.readFiles(
+      import.meta.env.PROD ? import.meta.env.SITE : url.origin
+    );
     // Retornar los nombres de los archivos en formato JSON
     return new Response(JSON.stringify({ files }), {
       status: 200,
