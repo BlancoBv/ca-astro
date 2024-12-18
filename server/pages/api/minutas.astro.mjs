@@ -6,7 +6,9 @@ export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 const imageController = new ImageController("minutas");
 const GET = async ({ url }) => {
   try {
-    const files = await imageController.readFiles(url.origin);
+    const files = await imageController.readFiles(
+      true ? "computodistribuido.org" : url.origin
+    );
     return new Response(JSON.stringify({ files }), {
       status: 200,
       headers: {
