@@ -1,0 +1,23 @@
+---
+interface Props {
+  fileName: string;
+  url: string;
+}
+const { fileName, url } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  class="card bg-base-100 image-full w-full h-96 shadow-xl group"
+>
+  <figure class="w-full">
+    <i
+      class="bi bi-file-earmark-pdf-fill text-9xl group-hover:scale-110 duration-200 ease-in"
+    ></i>
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title text-2xl">{fileName}</h2>
+    <!--   <p>{formatDate(fecha, "LL")}</p> -->
+  </div>
+</a>
