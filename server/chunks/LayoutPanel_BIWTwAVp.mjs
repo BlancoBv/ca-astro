@@ -1,5 +1,5 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_CYDDhvI_.mjs';
-import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_VlCHcN7j.mjs';
+import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_DIEfqyNs.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { u as useSendData } from './http_CGmg0JkM.mjs';

@@ -1,6 +1,6 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_CYDDhvI_.mjs';
-import { $ as $$LayoutPanel } from '../chunks/LayoutPanel_Bhyhw2Fu.mjs';
+import { $ as $$LayoutPanel } from '../chunks/LayoutPanel_BIWTwAVp.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {

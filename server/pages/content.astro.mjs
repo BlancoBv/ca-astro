@@ -1,11 +1,11 @@
 /* empty css                                   */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CYDDhvI_.mjs';
-import { $ as $$Layout } from '../chunks/Layout_C-QMZrmZ.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DWSaCFj4.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { ssrRenderAttrs, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_VlCHcN7j.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_CRioxkoY.mjs';
+import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_DIEfqyNs.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_C-NSvo1F.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -37,7 +37,7 @@ const $$Astro = createAstro("https://computodistribuido.org");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
-  const { origin, searchParams } = Astro2.url;
+  const { searchParams } = Astro2.url;
   const page = searchParams.get("page");
   const eventos = await fetch(
     `http://localhost:4321/api/blogs?status=aceptado&limit=10&page=${page ?? 0}`

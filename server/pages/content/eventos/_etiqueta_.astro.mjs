@@ -1,7 +1,7 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../../chunks/astro/server_CYDDhvI_.mjs';
-import { $ as $$Layout } from '../../../chunks/Layout_C-QMZrmZ.mjs';
-import { $ as $$CardBlog } from '../../../chunks/CardBlog_CRioxkoY.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_DWSaCFj4.mjs';
+import { $ as $$CardBlog } from '../../../chunks/CardBlog_C-NSvo1F.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");
