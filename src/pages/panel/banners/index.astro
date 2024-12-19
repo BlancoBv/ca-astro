@@ -1,0 +1,12 @@
+---
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+import ListaBanners from "@components/listas/ListaBanners.vue";
+import AddBanner from "@components/forms/AddBanner.vue";
+const { user } = Astro.locals;
+---
+
+<LayoutPanel sectionTitle="Lista de banners">
+  <AddBanner idUsuario={user?.id} client:idle />
+  <!--   <ListaBanners client:idle />
+ --></LayoutPanel
+>

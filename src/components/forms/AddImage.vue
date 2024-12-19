@@ -18,9 +18,6 @@ const handleImage = (event: Event) => {
     const { files } = event.target as HTMLInputElement
     formData.append("imagen", files![0])
     send.mutate(formData)
-
-
-
 }
 
 </script>
@@ -37,7 +34,6 @@ const handleImage = (event: Event) => {
                     <div class="label">
                         <span class="label-text">Selecciona una imagen</span>
                     </div>
-                    sdadasda
                     <input type="file" class="file-input file-input-bordered w-full max-w-xs" accept="image/*"
                         @input="handleImage" id="input-add-image" />
 

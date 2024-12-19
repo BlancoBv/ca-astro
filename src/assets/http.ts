@@ -90,9 +90,9 @@ export function useSendData(
         config.onSuccess?.(data);
       }
     },
-    onError: async (data: ErrorInterface) => {
+    onError: async (data: { response?: { data?: { msg: string } } }) => {
       toast.update(id, {
-        render: data.response?.data ?? "Error al enviar ",
+        render: data.response?.data?.msg ?? "Error al enviar ",
         type: "error",
         isLoading: false,
         autoClose: 800,
