@@ -14,7 +14,7 @@ const POST = async ({ request }) => {
     });
   }
 };
-const GET = async ({ url }) => {
+const GET = async () => {
   const controller = new ControllerBuilder();
   controller.setModel(Roles);
   controller.setIncludedModels([{ model: Permisos }]);

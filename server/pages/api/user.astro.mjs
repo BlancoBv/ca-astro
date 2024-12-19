@@ -1,9 +1,13 @@
 import { U as Users } from '../../chunks/index_DBE-PR5w.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
-const POST = async ({ request }) => {
+const POST = async ({ request, locals }) => {
+  const { user } = locals;
   const body = await request.json();
   try {
+    if (user?.idRol !== 1) {
+      throw new Error("No autorizado");
+    }
     const res = await Users.create({ ...body });
     return new Response(JSON.stringify(res));
   } catch (error) {

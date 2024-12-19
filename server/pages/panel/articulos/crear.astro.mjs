@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BRde8LT6.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_UVwO8Pxk.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
 import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_DYK012Ai.mjs';
@@ -159,10 +159,14 @@ _sfc_main.setup = (props, ctx) => {
 const AddArticulo = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 const $$Astro = createAstro("https://computodistribuido.org");
-const $$Index = createComponent(($$result, $$props, $$slots) => {
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
+  const isInvalid = await validatePerm(user?.idRol, permType.r, "articulos");
+  if (isInvalid) {
+    return Astro2.redirect("/404");
+  }
   return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "A\xF1adir contenido de secci\xF3n" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddArticulo", AddArticulo, { "idUsuario": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddArticulo.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/articulos/crear/index.astro", void 0);
 

@@ -1,6 +1,6 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BRde8LT6.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_UVwO8Pxk.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, withCtx, openBlock, createBlock, Fragment, createTextVNode, toDisplayString, renderList, reactive } from 'vue';
 import { I as Input } from '../../chunks/Input_C3075-hm.mjs';

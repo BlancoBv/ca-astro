@@ -1,6 +1,6 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BRde8LT6.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_UVwO8Pxk.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode, reactive } from 'vue';
 import { a as useGetData, u as useSendData } from '../../chunks/http_Cz-Emh2m.mjs';

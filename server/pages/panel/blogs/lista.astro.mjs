@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BRde8LT6.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_UVwO8Pxk.mjs';
 import 'vue3-toastify';
 import { mergeProps, resolveComponent, resolveDirective, openBlock, createBlock, Transition, withCtx, createElementBlock, Fragment, renderList, createElementVNode, withDirectives, resolveDynamicComponent, normalizeClass, createCommentVNode, toDisplayString, createVNode, useSSRContext, defineComponent, useTemplateRef, ref, createTextVNode } from 'vue';
 import { a as useGetData } from '../../../chunks/http_Cz-Emh2m.mjs';

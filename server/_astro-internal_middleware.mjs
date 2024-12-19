@@ -1,7 +1,7 @@
 import './chunks/astro-designed-error-pages_B1KtOiqS.mjs';
 import { d as defineMiddleware, s as sequence } from './chunks/index_DPCZXjyH.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
-import { C as CookiesManager } from './chunks/CookiesManager_Cm5dHe09.mjs';
+import { C as CookiesManager } from './chunks/CookiesManager_BfWIquu0.mjs';
 import { L as Logs } from './chunks/index_DBE-PR5w.mjs';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 

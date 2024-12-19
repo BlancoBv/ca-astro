@@ -6,6 +6,8 @@ import { u as useSendData } from './http_Cz-Emh2m.mjs';
 import { ssrRenderAttrs } from 'vue/server-renderer';
 /* empty css                         */
 /* empty css                           */
+import { R as Roles, e as Permisos } from './index_DBE-PR5w.mjs';
+import { C as ControllerBuilder } from './builder_DAop8mSr.mjs';
 /* empty css                         */
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -37,8 +39,33 @@ _sfc_main.setup = (props, ctx) => {
 };
 const LogoutButton = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
+var permType = /* @__PURE__ */ ((permType2) => {
+  permType2["r"] = "r";
+  permType2["w"] = "w";
+  permType2["d"] = "d";
+  permType2["u"] = "u";
+  return permType2;
+})(permType || {});
+async function validatePerm(idRol, permType2, permName) {
+  if (idRol === 1) {
+    return false;
+  }
+  const controller = new ControllerBuilder();
+  const rol = await controller.setModel(Roles).setIncludedModels([
+    {
+      model: Permisos,
+      through: { attributes: [] },
+      attributes: ["nombre", "tipo"]
+    }
+  ]).setWhereFilters({ id: idRol }).getResult().getOne();
+  const permisos = rol?.toJSON().permisos;
+  return !permisos?.some(
+    (el) => el.nombre === permName && el.tipo === permType2
+  );
+}
+
 const $$Astro = createAstro("https://computodistribuido.org");
-const $$LayoutPanel = createComponent(($$result, $$props, $$slots) => {
+const $$LayoutPanel = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$LayoutPanel;
   const { user } = Astro2.locals;
@@ -131,7 +158,7 @@ const $$LayoutPanel = createComponent(($$result, $$props, $$slots) => {
               </a>
             </div>
           </nav>
-        </footer> --> </div> <div class="drawer-side z-50"${addAttribute(createTransitionScope($$result, "jplsrtv5"), "data-astro-transition-persist")}> <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> <ul class="menu bg-base-200 rounded-box w-60 h-full"> <li><a href="/panel">Inicio</a></li> <li><a href="/panel/banners">Banners</a></li> <li> <details open> <summary>Articulos</summary> <ul> <li><a href="/panel/articulos/crear">Crear</a></li> </ul> </details> </li> <li><a href="/panel/etiquetas">Etiquetas</a></li> <li> <details open> <summary>Blogs</summary> <ul> <li><a href="/panel/blogs/lista">Lista de blogs</a></li> <li><a href="/panel/blogs/add">Añadir nuevo blog</a></li> </ul> </details> </li> <div class="divider"></div> <div class="grid grid-cols-2 grid-rows-2 place-items-center"> <div class="avatar placeholder"> <div class="bg-neutral text-neutral-content w-24 rounded-full"> <span class="text-3xl">${user?.nombre_completo.charAt(0)}</span> </div> </div> <p>${user?.nombre_completo}</p> ${renderComponent($$result, "LogoutButton", LogoutButton, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/panel/LogoutButton.vue", "client:component-export": "default" })} </div> </ul> </div> </div> </body></html>`;
+        </footer> --> </div> <div class="drawer-side z-50"${addAttribute(createTransitionScope($$result, "jplsrtv5"), "data-astro-transition-persist")}> <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> <ul class="menu bg-base-200 rounded-box w-60 h-full"> <li><a href="/panel">Inicio</a></li> ${!await validatePerm(user?.idRol, permType.r, "banners") && renderTemplate`<li> <a href="/panel/banners">Banners</a> </li>`} ${!await validatePerm(user?.idRol, permType.r, "articulos") && renderTemplate`<li> <details open> <summary>Articulos</summary> <ul> <li> <a href="/panel/articulos/crear">Crear</a> </li> </ul> </details> </li>`} ${!await validatePerm(user?.idRol, permType.r, "etiquetas") && renderTemplate`<li> <a href="/panel/etiquetas">Etiquetas</a> </li>`} ${!await validatePerm(user?.idRol, permType.r, "blogs") && renderTemplate`<li> <details open> <summary>Blogs</summary> <ul> <li> <a href="/panel/blogs/lista">Lista de blogs</a> </li> <li> <a href="/panel/blogs/add">Añadir nuevo blog</a> </li> </ul> </details> </li>`} <div class="divider"></div> <div class="grid grid-cols-2 grid-rows-2 place-items-center"> <div class="avatar placeholder"> <div class="bg-neutral text-neutral-content w-24 rounded-full"> <span class="text-3xl">${user?.nombre_completo.charAt(0)}</span> </div> </div> <p>${user?.nombre_completo}</p> ${renderComponent($$result, "LogoutButton", LogoutButton, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/panel/LogoutButton.vue", "client:component-export": "default" })} </div> </ul> </div> </div> </body></html>`;
 }, "/home/blanco/Documentos/ca-astro/src/layouts/LayoutPanel.astro", "self");
 
-export { $$LayoutPanel as $ };
+export { $$LayoutPanel as $, permType as p, validatePerm as v };
