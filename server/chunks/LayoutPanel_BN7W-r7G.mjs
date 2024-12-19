@@ -1,8 +1,8 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, f as renderHead, g as renderSlot, h as createTransitionScope } from './astro/server_CYDDhvI_.mjs';
-import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_DIEfqyNs.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, ac as renderHead, ad as renderSlot, ab as createTransitionScope } from './astro/server_BYikK1dL.mjs';
+import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_DbD4Xl7L.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
-import { u as useSendData } from './http_CGmg0JkM.mjs';
+import { u as useSendData } from './http_Cz-Emh2m.mjs';
 import { ssrRenderAttrs } from 'vue/server-renderer';
 /* empty css                         */
 /* empty css                           */
@@ -131,7 +131,7 @@ const $$LayoutPanel = createComponent(($$result, $$props, $$slots) => {
               </a>
             </div>
           </nav>
-        </footer> --> </div> <div class="drawer-side z-50"${addAttribute(createTransitionScope($$result, "jplsrtv5"), "data-astro-transition-persist")}> <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> <ul class="menu bg-base-200 rounded-box w-60 h-full"> <li><a href="/panel">Inicio</a></li> <li> <details open> <summary>Articulos</summary> <ul> <li><a href="/panel/articulos/crear">Crear</a></li> </ul> </details> </li> <li><a href="/panel/etiquetas">Lista de etiquetas</a></li> <li> <details open> <summary>Blogs</summary> <ul> <li><a href="/panel/blogs/lista">Lista de blogs</a></li> <li><a href="/panel/blogs/add">Añadir nuevo blog</a></li> </ul> </details> </li> <div class="divider"></div> <div class="grid grid-cols-2 grid-rows-2 place-items-center"> <div class="avatar placeholder"> <div class="bg-neutral text-neutral-content w-24 rounded-full"> <span class="text-3xl">${user?.nombre_completo.charAt(0)}</span> </div> </div> <p>${user?.nombre_completo}</p> ${renderComponent($$result, "LogoutButton", LogoutButton, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/panel/LogoutButton.vue", "client:component-export": "default" })} </div> </ul> </div> </div> </body></html>`;
+        </footer> --> </div> <div class="drawer-side z-50"${addAttribute(createTransitionScope($$result, "jplsrtv5"), "data-astro-transition-persist")}> <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> <ul class="menu bg-base-200 rounded-box w-60 h-full"> <li><a href="/panel">Inicio</a></li> <li><a href="/panel/banners">Banners</a></li> <li> <details open> <summary>Articulos</summary> <ul> <li><a href="/panel/articulos/crear">Crear</a></li> </ul> </details> </li> <li><a href="/panel/etiquetas">Etiquetas</a></li> <li> <details open> <summary>Blogs</summary> <ul> <li><a href="/panel/blogs/lista">Lista de blogs</a></li> <li><a href="/panel/blogs/add">Añadir nuevo blog</a></li> </ul> </details> </li> <div class="divider"></div> <div class="grid grid-cols-2 grid-rows-2 place-items-center"> <div class="avatar placeholder"> <div class="bg-neutral text-neutral-content w-24 rounded-full"> <span class="text-3xl">${user?.nombre_completo.charAt(0)}</span> </div> </div> <p>${user?.nombre_completo}</p> ${renderComponent($$result, "LogoutButton", LogoutButton, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/panel/LogoutButton.vue", "client:component-export": "default" })} </div> </ul> </div> </div> </body></html>`;
 }, "/home/blanco/Documentos/ca-astro/src/layouts/LayoutPanel.astro", "self");
 
 export { $$LayoutPanel as $ };

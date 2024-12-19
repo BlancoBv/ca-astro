@@ -1,8 +1,8 @@
 /* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, e as renderTransition, u as unescapeHTML } from '../../chunks/astro/server_CYDDhvI_.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_DWSaCFj4.mjs';
-import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../../chunks/EtiquetasHeading_CAc0nCRR.mjs';
-import { $ as $$Image } from '../../chunks/_astro_assets_DxgJyx1s.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, e as renderTransition, u as unescapeHTML } from '../../chunks/astro/server_BYikK1dL.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_hdLbWaBy.mjs';
+import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../../chunks/EtiquetasHeading_Dls-Ys2f.mjs';
+import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
 /* empty css                                   */
 /* empty css                                    */
 export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';

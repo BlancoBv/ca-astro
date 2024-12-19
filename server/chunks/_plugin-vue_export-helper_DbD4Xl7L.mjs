@@ -1,4 +1,4 @@
-import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, ae as renderScript } from './astro/server_CYDDhvI_.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, ae as renderScript } from './astro/server_BYikK1dL.mjs';
 /* empty css                           */
 
 const $$Astro = createAstro("https://computodistribuido.org");

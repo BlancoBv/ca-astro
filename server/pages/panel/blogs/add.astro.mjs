@@ -1,14 +1,14 @@
 /* empty css                                         */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_CYDDhvI_.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_BSJ6N7Zj.mjs';
-import { I as Input } from '../../../chunks/Input_t-bdTCHa.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_DUPzYguC.mjs';
+import { I as Input } from '../../../chunks/Input_D53dHzMI.mjs';
 import moment from 'moment';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_CGmg0JkM.mjs';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_Cz-Emh2m.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_DIEfqyNs.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BIWTwAVp.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_DbD4Xl7L.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BN7W-r7G.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -41,7 +41,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<dialog${ssrRenderAttrs(mergeProps({
     id: "modal-add-image",
     class: "modal"
-  }, _attrs))}><div class="modal-box w-6/12 max-w-5xl h-5/6"><form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">\u2715</button></form><h3 class="text-lg font-bold">A\xF1adir nueva imagen</h3><form><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Selecciona una imagen</span></div> sdadasda <input type="file" class="file-input file-input-bordered w-full max-w-xs" accept="image/*" id="input-add-image"></label></form></div><form method="dialog" class="modal-backdrop"><button>close</button></form></dialog>`);
+  }, _attrs))}><div class="modal-box w-6/12 max-w-5xl h-5/6"><form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">\u2715</button></form><h3 class="text-lg font-bold">A\xF1adir nueva imagen</h3><form><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Selecciona una imagen</span></div><input type="file" class="file-input file-input-bordered w-full max-w-xs" accept="image/*" id="input-add-image"></label></form></div><form method="dialog" class="modal-backdrop"><button>close</button></form></dialog>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {

@@ -1,5 +1,5 @@
 import { i as isRemotePath, j as joinPaths } from './path_CVKLlyuj.mjs';
-import { A as AstroError, $ as ExpectedImage, a0 as LocalImageUsedWrongly, a1 as MissingImageDimension, a2 as UnsupportedImageFormat, a3 as IncompatibleDescriptorOptions, a4 as UnsupportedImageConversion, a5 as NoImageMetadata, a6 as FailedToFetchRemoteImageDimensions, a7 as ExpectedImageOptions, a8 as ExpectedNotESMImage, a9 as InvalidImageService, aa as toStyleString, b as createAstro, c as createComponent, ab as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, d as addAttribute, ac as spreadAttributes } from './astro/server_CYDDhvI_.mjs';
+import { A as AstroError, Y as ExpectedImage, Z as LocalImageUsedWrongly, _ as MissingImageDimension, $ as UnsupportedImageFormat, a0 as IncompatibleDescriptorOptions, a1 as UnsupportedImageConversion, a2 as NoImageMetadata, a3 as FailedToFetchRemoteImageDimensions, a4 as ExpectedImageOptions, a5 as ExpectedNotESMImage, a6 as InvalidImageService, a7 as toStyleString, b as createAstro, c as createComponent, a8 as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, d as addAttribute, a9 as spreadAttributes } from './astro/server_BYikK1dL.mjs';
 /* empty css                           */
 
 const VALID_SUPPORTED_FORMATS = [
@@ -1239,7 +1239,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_CIjPWQFO.mjs'
+      './sharp_CK3QCDcq.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;

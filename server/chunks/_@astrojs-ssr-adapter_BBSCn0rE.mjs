@@ -1,10 +1,10 @@
-import { F as ROUTE_TYPE_HEADER, R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, af as bold, ag as red, ah as yellow, ai as dim, aj as blue, O as clientAddressSymbol, A as AstroError, ak as LocalsNotAnObject, al as clientLocalsSymbol, am as REROUTABLE_STATUS_CODES, U as responseSentSymbol, an as getDefaultExportFromCjs } from './astro/server_CYDDhvI_.mjs';
-import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_fW3YAJGt.mjs';
+import { B as ROUTE_TYPE_HEADER, R as REROUTE_DIRECTIVE_HEADER, D as DEFAULT_404_COMPONENT, af as bold, ag as red, ah as yellow, ai as dim, aj as blue, H as clientAddressSymbol, A as AstroError, ak as LocalsNotAnObject, al as clientLocalsSymbol, am as REROUTABLE_STATUS_CODES, O as responseSentSymbol, an as getDefaultExportFromCjs } from './astro/server_BYikK1dL.mjs';
+import { e as ensure404Route, a as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_B1KtOiqS.mjs';
 import buffer from 'node:buffer';
 import crypto from 'node:crypto';
 import { Http2ServerResponse } from 'node:http2';
-import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, f as ensureServerIslandRoute, g as createEndpoint, S as SERVER_ISLAND_COMPONENT, h as SERVER_ISLAND_ROUTE, R as RouteCache, s as sequence, i as findRouteToRewrite, m as matchRoute, j as RenderContext, k as getSetCookiesFromResponse } from './index_DO1LStEK.mjs';
-import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_utV6HSTq.mjs';
+import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, f as ensureServerIslandRoute, g as createEndpoint, S as SERVER_ISLAND_COMPONENT, h as SERVER_ISLAND_ROUTE, R as RouteCache, s as sequence, i as findRouteToRewrite, m as matchRoute, j as RenderContext, k as getSetCookiesFromResponse } from './index_DPCZXjyH.mjs';
+import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_B2fAfPF9.mjs';
 import { f as fileExtension, j as joinPaths, s as slash, p as prependForwardSlash$1, r as removeTrailingForwardSlash, a as appendForwardSlash$1 } from './path_CVKLlyuj.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import fs from 'node:fs';

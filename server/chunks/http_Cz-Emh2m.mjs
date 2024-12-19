@@ -78,7 +78,7 @@ function useSendData(url, method, config) {
     },
     onError: async (data) => {
       toast.update(id, {
-        render: data.response?.data ?? "Error al enviar ",
+        render: data.response?.data?.msg ?? "Error al enviar ",
         type: "error",
         isLoading: false,
         autoClose: 800,
