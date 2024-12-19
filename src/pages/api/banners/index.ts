@@ -9,7 +9,10 @@ const imageController = new ImageController("banners");
 export const GET: APIRoute = async () => {
   try {
     // Leer los archivos del directorio
-    const response = await Banners.findAll({ where: { mostrar: true } });
+    const response = await Banners.findAll({
+      where: { mostrar: true },
+      order: [["createdAt", "DESC"]],
+    });
     // Retornar los nombres de los archivos en formato JSON
     return responseAsJson(response);
   } catch (error) {
