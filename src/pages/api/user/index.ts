@@ -9,9 +9,14 @@ interface user {
   rol: string;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  const { user } = locals;
+
   const body: user = await request.json();
   try {
+    if (user?.idRol !== 1) {
+      throw new Error("No autorizado");
+    }
     const res = await Users.create({ ...body });
     return new Response(JSON.stringify(res));
   } catch (error) {

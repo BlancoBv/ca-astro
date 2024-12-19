@@ -8,6 +8,7 @@ import { ClientRouter } from "astro:transitions";
 import LogoutButton from "@components/panel/LogoutButton.vue";
 import "vue3-toastify/dist/index.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { validatePerm, permType } from "@assets/auth/validatePerm";
 ---
 
 <!doctype html>
@@ -131,26 +132,52 @@ import "bootstrap-icons/font/bootstrap-icons.css";
           class="drawer-overlay"></label>
         <ul class="menu bg-base-200 rounded-box w-60 h-full">
           <li><a href="/panel">Inicio</a></li>
-          <li><a href="/panel/banners">Banners</a></li>
-          <li>
-            <details open>
-              <summary>Articulos</summary>
-              <ul>
-                <li><a href="/panel/articulos/crear">Crear</a></li>
-              </ul>
-            </details>
-          </li>
+          {
+            !(await validatePerm(user?.idRol, permType.r, "banners")) && (
+              <li>
+                <a href="/panel/banners">Banners</a>
+              </li>
+            )
+          }
+          {
+            !(await validatePerm(user?.idRol, permType.r, "articulos")) && (
+              <li>
+                <details open>
+                  <summary>Articulos</summary>
+                  <ul>
+                    <li>
+                      <a href="/panel/articulos/crear">Crear</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            )
+          }
 
-          <li><a href="/panel/etiquetas">Etiquetas</a></li>
-          <li>
-            <details open>
-              <summary>Blogs</summary>
-              <ul>
-                <li><a href="/panel/blogs/lista">Lista de blogs</a></li>
-                <li><a href="/panel/blogs/add">Añadir nuevo blog</a></li>
-              </ul>
-            </details>
-          </li>
+          {
+            !(await validatePerm(user?.idRol, permType.r, "etiquetas")) && (
+              <li>
+                <a href="/panel/etiquetas">Etiquetas</a>
+              </li>
+            )
+          }
+          {
+            !(await validatePerm(user?.idRol, permType.r, "blogs")) && (
+              <li>
+                <details open>
+                  <summary>Blogs</summary>
+                  <ul>
+                    <li>
+                      <a href="/panel/blogs/lista">Lista de blogs</a>
+                    </li>
+                    <li>
+                      <a href="/panel/blogs/add">Añadir nuevo blog</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            )
+          }
           <div class="divider"></div>
           <div class="grid grid-cols-2 grid-rows-2 place-items-center">
             <div class="avatar placeholder">

@@ -25,8 +25,9 @@ export const lucia = new Lucia(adapter, {
     attributes: { secure: import.meta.env.PROD ?? false, sameSite: "strict" },
   },
   sessionExpiresIn: new TimeSpan(12, "h"),
-  getUserAttributes(attributes) {
+  getUserAttributes: (attributes) => {
     const { nombres, apemat, apepat, idRol } = attributes;
+
     return {
       nombre_completo: `${nombres} ${apepat} ${apemat}`,
       idRol,

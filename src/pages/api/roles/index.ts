@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 };
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async () => {
   const controller = new ControllerBuilder();
   controller.setModel(Roles);
   controller.setIncludedModels([{ model: Permisos }]);

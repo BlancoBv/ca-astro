@@ -1,7 +1,14 @@
 ---
 import LayoutPanel from "@layouts/LayoutPanel.astro";
 import AddArticulo from "@components/forms/AddArticulo.vue";
+import { validatePerm, permType } from "@assets/auth/validatePerm";
 const { user } = Astro.locals;
+
+const isInvalid = await validatePerm(user?.idRol, permType.r, "articulos");
+
+if (isInvalid) {
+  return Astro.redirect("/404");
+}
 ---
 
 <LayoutPanel sectionTitle="Añadir contenido de sección">
