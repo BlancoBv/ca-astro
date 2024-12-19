@@ -32,8 +32,6 @@ export default class ImageController {
 
     const fileName = this.generadorNombre();
 
-    console.log(uploadsDir);
-
     await sharp(fileBuffer)
       .webp({ quality: 50 })
       .toFile(uploadsDir + fileName);
