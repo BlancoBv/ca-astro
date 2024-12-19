@@ -1,12 +1,12 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BN7W-r7G.mjs';
+import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BRde8LT6.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
-import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_DUPzYguC.mjs';
+import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_DYK012Ai.mjs';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_Cz-Emh2m.mjs';
 import { ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderComponent } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_DbD4Xl7L.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_DbBtY4mg.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({

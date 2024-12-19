@@ -1,13 +1,13 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BN7W-r7G.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BRde8LT6.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode, reactive } from 'vue';
+import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode, reactive } from 'vue';
 import { a as useGetData, u as useSendData } from '../../chunks/http_Cz-Emh2m.mjs';
 import { a as script, s as script$1 } from '../../chunks/index_BzFM4fBN.mjs';
 import moment from 'moment';
-import { ssrRenderComponent, ssrInterpolate, ssrRenderAttr } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_DbD4Xl7L.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr } from 'vue/server-renderer';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_DbBtY4mg.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -18,7 +18,14 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
-    const __returned__ = { props, get DataTable() {
+    const isMounted = ref(false);
+    onMounted(() => {
+      isMounted.value = true;
+    });
+    onUnmounted(() => {
+      isMounted.value = false;
+    });
+    const __returned__ = { props, isMounted, get DataTable() {
       return script;
     }, get Column() {
       return script$1;
@@ -30,104 +37,108 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(ssrRenderComponent($setup["DataTable"], mergeProps({
-    value: $setup.props.data,
-    paginator: true,
-    rows: 5
-  }, _attrs), {
-    default: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(ssrRenderComponent($setup["Column"], {
-          field: "descripcion",
-          header: "Descripci\xF3n"
-        }, {
-          body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`${ssrInterpolate(data[field] ?? "---")}`);
-            } else {
-              return [
-                createTextVNode(toDisplayString(data[field] ?? "---"), 1)
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent($setup["Column"], {
-          field: "imagen",
-          header: "Imagen"
-        }, {
-          body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<img class="object-contain"${ssrRenderAttr("src", data[field])}${ssrRenderAttr("alt", data[field])} width="100px" height="100px"${_scopeId2}>`);
-            } else {
-              return [
-                createVNode("img", {
-                  class: "object-contain",
-                  src: data[field],
-                  alt: data[field],
-                  width: "100px",
-                  height: "100px"
-                }, null, 8, ["src", "alt"])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent($setup["Column"], {
-          field: "createdAt",
-          header: "Fecha de creaci\xF3n"
-        }, {
-          body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`${ssrInterpolate($setup.moment(data[field]).locale("es-MX").format("L"))}`);
-            } else {
-              return [
-                createTextVNode(toDisplayString($setup.moment(data[field]).locale("es-MX").format("L")), 1)
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-      } else {
-        return [
-          createVNode($setup["Column"], {
+  if (!$setup.isMounted) {
+    _push(`<div${ssrRenderAttrs(mergeProps({ class: "skeleton h-96 w-full" }, _attrs))}></div>`);
+  } else {
+    _push(ssrRenderComponent($setup["DataTable"], mergeProps({
+      value: $setup.props.data,
+      paginator: true,
+      rows: 5
+    }, _attrs), {
+      default: withCtx((_, _push2, _parent2, _scopeId) => {
+        if (_push2) {
+          _push2(ssrRenderComponent($setup["Column"], {
             field: "descripcion",
             header: "Descripci\xF3n"
           }, {
-            body: withCtx(({ data, field }) => [
-              createTextVNode(toDisplayString(data[field] ?? "---"), 1)
-            ]),
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`${ssrInterpolate(data[field] ?? "---")}`);
+              } else {
+                return [
+                  createTextVNode(toDisplayString(data[field] ?? "---"), 1)
+                ];
+              }
+            }),
             _: 1
-          }),
-          createVNode($setup["Column"], {
+          }, _parent2, _scopeId));
+          _push2(ssrRenderComponent($setup["Column"], {
             field: "imagen",
             header: "Imagen"
           }, {
-            body: withCtx(({ data, field }) => [
-              createVNode("img", {
-                class: "object-contain",
-                src: data[field],
-                alt: data[field],
-                width: "100px",
-                height: "100px"
-              }, null, 8, ["src", "alt"])
-            ]),
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`<img class="object-cover size-12"${ssrRenderAttr("src", data[field])}${ssrRenderAttr("alt", data[field])} width="50px" height="50px"${_scopeId2}>`);
+              } else {
+                return [
+                  createVNode("img", {
+                    class: "object-cover size-12",
+                    src: data[field],
+                    alt: data[field],
+                    width: "50px",
+                    height: "50px"
+                  }, null, 8, ["src", "alt"])
+                ];
+              }
+            }),
             _: 1
-          }),
-          createVNode($setup["Column"], {
+          }, _parent2, _scopeId));
+          _push2(ssrRenderComponent($setup["Column"], {
             field: "createdAt",
             header: "Fecha de creaci\xF3n"
           }, {
-            body: withCtx(({ data, field }) => [
-              createTextVNode(toDisplayString($setup.moment(data[field]).locale("es-MX").format("L")), 1)
-            ]),
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`${ssrInterpolate($setup.moment(data[field]).locale("es-MX").format("L"))}`);
+              } else {
+                return [
+                  createTextVNode(toDisplayString($setup.moment(data[field]).locale("es-MX").format("L")), 1)
+                ];
+              }
+            }),
             _: 1
-          })
-        ];
-      }
-    }),
-    _: 1
-  }, _parent));
+          }, _parent2, _scopeId));
+        } else {
+          return [
+            createVNode($setup["Column"], {
+              field: "descripcion",
+              header: "Descripci\xF3n"
+            }, {
+              body: withCtx(({ data, field }) => [
+                createTextVNode(toDisplayString(data[field] ?? "---"), 1)
+              ]),
+              _: 1
+            }),
+            createVNode($setup["Column"], {
+              field: "imagen",
+              header: "Imagen"
+            }, {
+              body: withCtx(({ data, field }) => [
+                createVNode("img", {
+                  class: "object-cover size-12",
+                  src: data[field],
+                  alt: data[field],
+                  width: "50px",
+                  height: "50px"
+                }, null, 8, ["src", "alt"])
+              ]),
+              _: 1
+            }),
+            createVNode($setup["Column"], {
+              field: "createdAt",
+              header: "Fecha de creaci\xF3n"
+            }, {
+              body: withCtx(({ data, field }) => [
+                createTextVNode(toDisplayString($setup.moment(data[field]).locale("es-MX").format("L")), 1)
+              ]),
+              _: 1
+            })
+          ];
+        }
+      }),
+      _: 1
+    }, _parent));
+  }
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {

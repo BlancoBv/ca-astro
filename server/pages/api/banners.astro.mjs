@@ -7,7 +7,10 @@ export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 const imageController = new ImageController("banners");
 const GET = async () => {
   try {
-    const response = await Banners.findAll({ where: { mostrar: true } });
+    const response = await Banners.findAll({
+      where: { mostrar: true },
+      order: [["createdAt", "DESC"]]
+    });
     return responseAsJson(response);
   } catch (error) {
     return responseAsJson(null, { sendAsMessage: true }, 400);

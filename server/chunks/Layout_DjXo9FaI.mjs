@@ -1,5 +1,5 @@
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, b as createAstro, d as addAttribute, a as renderComponent, aa as Fragment, e as renderTransition, ab as createTransitionScope, ac as renderHead, ad as renderSlot, ae as renderScript } from './astro/server_BYikK1dL.mjs';
-import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_DbD4Xl7L.mjs';
+import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_DbBtY4mg.mjs';
 import { a as formatYear } from './format_BnSwxyOw.mjs';
 /* empty css                           */
 import 'vue3-toastify';

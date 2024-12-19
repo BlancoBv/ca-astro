@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$Layout } from '../../../chunks/Layout_hdLbWaBy.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_DjXo9FaI.mjs';
 import { f as formatDate } from '../../../chunks/format_BnSwxyOw.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
