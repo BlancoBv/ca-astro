@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { I as ImageController } from '../../chunks/ImageController_D96zdncs.mjs';
+import { I as ImageController } from '../../chunks/ImageController_Vn72BPHB.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const imageController = new ImageController("images");

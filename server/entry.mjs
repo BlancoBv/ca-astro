@@ -1,6 +1,6 @@
 import { r as renderers } from './chunks/_@astro-renderers_DB6v8AOh.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_BBSCn0rE.mjs';
-import { manifest } from './manifest_B2jPn58u.mjs';
+import { manifest } from './manifest_CFcmybin.mjs';
 
 const serverIslandMap = new Map([
 ]);;
@@ -33,11 +33,12 @@ const _page24 = () => import('./pages/panel/articulos/crear.astro.mjs');
 const _page25 = () => import('./pages/panel/banners.astro.mjs');
 const _page26 = () => import('./pages/panel/blogs/add.astro.mjs');
 const _page27 = () => import('./pages/panel/blogs/lista.astro.mjs');
-const _page28 = () => import('./pages/panel/etiquetas.astro.mjs');
-const _page29 = () => import('./pages/panel.astro.mjs');
-const _page30 = () => import('./pages/_resource_/_route_.astro.mjs');
-const _page31 = () => import('./pages/_resource_.astro.mjs');
-const _page32 = () => import('./pages/index.astro.mjs');
+const _page28 = () => import('./pages/panel/documentos/minutas.astro.mjs');
+const _page29 = () => import('./pages/panel/etiquetas.astro.mjs');
+const _page30 = () => import('./pages/panel.astro.mjs');
+const _page31 = () => import('./pages/_resource_/_route_.astro.mjs');
+const _page32 = () => import('./pages/_resource_.astro.mjs');
+const _page33 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
     ["node_modules/.pnpm/astro@5.0.3_@types+node@22.5.5_jiti@1.21.6_rollup@4.28.1_typescript@5.6.2_yaml@2.5.1/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/404.astro", _page1],
@@ -67,11 +68,12 @@ const pageMap = new Map([
     ["src/pages/panel/banners/index.astro", _page25],
     ["src/pages/panel/blogs/add/index.astro", _page26],
     ["src/pages/panel/blogs/lista/index.astro", _page27],
-    ["src/pages/panel/etiquetas/index.astro", _page28],
-    ["src/pages/panel/index.astro", _page29],
-    ["src/pages/[resource]/[route].astro", _page30],
-    ["src/pages/[resource]/index.astro", _page31],
-    ["src/pages/index.astro", _page32]
+    ["src/pages/panel/documentos/minutas/index.astro", _page28],
+    ["src/pages/panel/etiquetas/index.astro", _page29],
+    ["src/pages/panel/index.astro", _page30],
+    ["src/pages/[resource]/[route].astro", _page31],
+    ["src/pages/[resource]/index.astro", _page32],
+    ["src/pages/index.astro", _page33]
 ]);
 
 const _manifest = Object.assign(manifest, {
