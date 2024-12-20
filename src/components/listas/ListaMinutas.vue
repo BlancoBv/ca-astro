@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import moment from 'moment';
 import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{ data: any[], isPending: boolean }>()

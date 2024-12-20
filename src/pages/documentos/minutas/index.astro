@@ -1,5 +1,5 @@
 ---
-import CardPdf from "@components/cards/CardPdf.astro";
+import DocumentList from "@components/DocumentList.vue";
 import Layout from "@layouts/Layout.astro";
 import moment from "moment";
 
@@ -7,24 +7,22 @@ const { searchParams } = Astro.url;
 
 const year = searchParams.get("year");
 
-const minutas: { files?: { url: string; fileName: string }[] } = await fetch(
-  "http://localhost:4321/api/minutas"
-).then((res) => res.json());
+const minutas: {
+  files: { url: string; fileName: string; fechaCreacion: string }[];
+} = await fetch("http://localhost:4321/api/minutas").then((res) => res.json());
 
 const years = new Set<number>();
 
-if (minutas.files?.length) {
+if (minutas.files.length > 0) {
   minutas.files.forEach((el) => {
-    const date = el.fileName.split(";")[1].split(".")[0];
-    const year = moment(date).year();
+    const year = moment(el.fechaCreacion).year();
     years.add(year);
   });
 }
 
 if (year) {
-  minutas.files?.filter((el) => {
-    const date = el.fileName.split(";")[1].split(".")[0];
-    const yearFile = moment(date).year();
+  const fMinutas = minutas.files?.filter((el) => {
+    const yearFile = moment(el.fechaCreacion).year();
     return yearFile === Number(year);
   });
 }
@@ -33,24 +31,24 @@ if (year) {
 <Layout title="Minutas del CA">
   <main class="prose max-w-full p-4">
     <h1>Minutas</h1>
-    <!--     <form class="flex gap-4 items-center mb-4 not-prose">
-      <label class="form-control w-full max-w-xs">
-        <div class="label">
-          <span class="label-text">Año de consulta</span>
-        </div>
-        <select class="select select-bordered">
-          <option disabled selected>Todas</option>
-          {Array.from(years).map((el) => <option value={el}>{el}</option>)}
-        </select>
-      </label>
-      <button class="btn btn-primary" type="submit">Filtrar</button>
-    </form> -->
-    <div class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {
-        minutas?.files?.map((el) => (
-          <CardPdf fileName={el.fileName} url={el.url} />
-        ))
-      }
-    </div>
+
+    <DocumentList
+      years={Array.from(years)}
+      minutas={minutas.files}
+      client:idle
+    />
   </main>
+  <!--   <script>
+    const select = document.getElementById("selectFecha") as HTMLSelectElement;
+    (
+      document.getElementById("filtroFechaForm") as HTMLFormElement
+    ).addEventListener("submit", (event) => {
+      event.preventDefault();
+      window.location.href = `${window.location.pathname}?year=${select.value}`;
+    });
+    document.addEventListener("astro:page-load", () => {
+      const year = new URL(window.location.href).searchParams.get("year");
+      select.value = year ?? "";
+    });
+  </script> -->
 </Layout>
