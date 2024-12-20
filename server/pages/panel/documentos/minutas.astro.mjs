@@ -5,10 +5,10 @@ import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createVNode } from 'vue';
 import { a as useGetData } from '../../../chunks/http_Cz-Emh2m.mjs';
 import { a as script, s as script$1 } from '../../../chunks/index_BzFM4fBN.mjs';
-import 'moment';
 import { ssrRenderAttrs, ssrRenderComponent } from 'vue/server-renderer';
 /* empty css                                       */
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_BiaGrSvn.mjs';
+import 'moment';
 export { r as renderers } from '../../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
