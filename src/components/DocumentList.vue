@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import moment from 'moment';
+import { formatDate } from '@assets/format';
 import { computed, ref } from 'vue';
 
-const props = defineProps<{ years: number[], minutas: { fileName: string, fechaCreacion: string, url: string }[] }>()
+const props = defineProps<{ years: string[], minutas: { fileName: string, fechaCreacion: string, url: string, fechaCreacionFormated: string }[] }>()
 const value = ref<string>("")
 
 const minutasFiltered = computed(() => {
-
     if (value.value === "") {
         return props.minutas
     }
-
-    return props.minutas.filter(el => moment(el.fechaCreacion).year() === Number(value.value))
+    return props.minutas.filter(el => formatDate(el.fechaCreacion, "YYYY") === value.value)
 })
-
 </script>
 <template>
     <form class="flex gap-4 items-end mb-4 not-prose">
@@ -34,7 +31,8 @@ const minutasFiltered = computed(() => {
                 <i class="bi bi-file-earmark-pdf-fill text-9xl group-hover:scale-110 duration-200 ease-in"></i>
             </figure>
             <div class="card-body">
-                <h2 class="card-title text-2xl">{{ minuta.fileName }}</h2>
+                <h2 class="card-title text-2xl">{{ `${minuta.fileName.split(";")[0]}
+                    ${minuta.fechaCreacionFormated}` }}</h2>
                 <!--   <p>{formatDate(fecha, "LL")}</p> -->
             </div>
         </a>

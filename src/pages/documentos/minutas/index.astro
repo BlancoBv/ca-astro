@@ -1,54 +1,38 @@
 ---
+import { formatDate } from "@assets/format";
 import DocumentList from "@components/DocumentList.vue";
 import Layout from "@layouts/Layout.astro";
-import moment from "moment";
-
-const { searchParams } = Astro.url;
-
-const year = searchParams.get("year");
 
 const minutas: {
-  files: { url: string; fileName: string; fechaCreacion: string }[];
+  files: {
+    url: string;
+    fileName: string;
+    fechaCreacion: string;
+    fechaCreacionFormated: string;
+  }[];
 } = await fetch("http://localhost:4321/api/minutas").then((res) => res.json());
 
-const years = new Set<number>();
+const years = new Set<string>();
 
 if (minutas.files.length > 0) {
   minutas.files.forEach((el) => {
-    const year = moment(el.fechaCreacion).year();
+    const year = formatDate(el.fechaCreacion, "YYYY");
     years.add(year);
   });
 }
 
-if (year) {
-  const fMinutas = minutas.files?.filter((el) => {
-    const yearFile = moment(el.fechaCreacion).year();
-    return yearFile === Number(year);
-  });
-}
+minutas.files.forEach(
+  (el) => (el.fechaCreacionFormated = formatDate(el.fechaCreacion, "MMMM YYYY"))
+); //añade la fecha formateada desde el servidor para evitar problemas de hidratación
 ---
 
 <Layout title="Minutas del CA">
   <main class="prose max-w-full p-4">
     <h1>Minutas</h1>
-
     <DocumentList
       years={Array.from(years)}
       minutas={minutas.files}
       client:idle
     />
   </main>
-  <!--   <script>
-    const select = document.getElementById("selectFecha") as HTMLSelectElement;
-    (
-      document.getElementById("filtroFechaForm") as HTMLFormElement
-    ).addEventListener("submit", (event) => {
-      event.preventDefault();
-      window.location.href = `${window.location.pathname}?year=${select.value}`;
-    });
-    document.addEventListener("astro:page-load", () => {
-      const year = new URL(window.location.href).searchParams.get("year");
-      select.value = year ?? "";
-    });
-  </script> -->
 </Layout>
