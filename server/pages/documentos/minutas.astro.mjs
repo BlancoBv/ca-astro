@@ -31,7 +31,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<!--[--><form class="flex gap-4 items-end mb-4 not-prose"><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">A\xF1o de consulta</span></div><select class="select select-bordered" id="selectFecha"><option selected value="">Todas</option><!--[-->`);
-  ssrRenderList($setup.props.years, (year) => {
+  ssrRenderList($setup.props.years.toReversed(), (year) => {
     _push(`<option${ssrRenderAttr("value", year)}>${ssrInterpolate(year)}</option>`);
   });
   _push(`<!--]--></select></label></form><div class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"><!--[-->`);

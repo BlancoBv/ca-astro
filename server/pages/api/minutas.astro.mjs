@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { I as ImageController } from '../../chunks/ImageController_Vn72BPHB.mjs';
-import { f as formatDate } from '../../chunks/format_BnSwxyOw.mjs';
+import '../../chunks/format_BnSwxyOw.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
 
 const imageController = new ImageController("minutas");
@@ -12,7 +12,7 @@ const GET = async ({ url }) => {
     );
     files.forEach((el) => {
       const fecha = el.fileName.split(";")[1].split(".")[0];
-      el["fechaCreacion"] = formatDate(fecha);
+      el["fechaCreacion"] = fecha;
     });
     return new Response(JSON.stringify({ files }), {
       status: 200,
