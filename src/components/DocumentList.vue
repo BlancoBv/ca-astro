@@ -20,7 +20,7 @@ const minutasFiltered = computed(() => {
             </div>
             <select class="select select-bordered" id="selectFecha" v-model="value">
                 <option selected value="">Todas</option>
-                <option v-for="year in props.years" :value="year">{{ year }}</option>
+                <option v-for="year in props.years.toReversed()" :value="year">{{ year }}</option>
             </select>
         </label>
     </form>

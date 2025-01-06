@@ -3,20 +3,27 @@ import responseAsJson from "@assets/responseAsJson";
 import searchParamsToObject from "@assets/searchParamsToObject";
 import ImageController from "src/controllers/ImageController";
 import { formatDate } from "@assets/format";
+import { DocumentBuilder } from "src/controllers/documentBuilder";
 
 const imageController = new ImageController("minutas");
+const document = new DocumentBuilder();
 
 export const GET: APIRoute = async ({ url }) => {
   try {
     // Leer los archivos del directorio
     const files: { fileName: string; url: string; [key: string]: string }[] =
-      await imageController.readFiles(
+      await document
+        .setDirectory("minutas")
+        .setOrigin(url.origin)
+        .getResult()
+        .getFiles();
+    /* await imageController.readFiles(
         import.meta.env.PROD ? import.meta.env.SITE : url.origin
       );
-
+ */
     files.forEach((el) => {
       const fecha = el.fileName.split(";")[1].split(".")[0];
-      el["fechaCreacion"] = formatDate(fecha);
+      el["fechaCreacion"] = fecha;
     }); //añade propiedad de fecha de creación
     // Retornar los nombres de los archivos en formato JSON
     return new Response(JSON.stringify({ files }), {
@@ -41,24 +48,24 @@ export const GET: APIRoute = async ({ url }) => {
 export const POST: APIRoute = async ({ request }) => {
   const body = await request.formData();
 
-  const file = body.get("file") as File;
-  const fecha = body.get("fecha") as string;
+  console.log(body.get("file"));
 
-  if (typeof file !== "object") {
-    return new Response("No file provided", { status: 400 });
+  const file = body.get("file") as File;
+  const fileName = body.get("fileName") as string;
+
+  if (typeof file !== "object" || file.type !== "application/pdf") {
+    return new Response("No file provided o no pdf", { status: 400 });
   }
 
   try {
-    const preBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(preBuffer);
-
-    await imageController.save(buffer);
-    return responseAsJson({ msg: "Imagen subida correctamente" });
+    await document
+      .setDirectory("minutas")
+      .setFileName(fileName)
+      .getResult()
+      .writeFile(file);
+    return responseAsJson({ msg: "Correcto" }, { sendAsMessage: true });
   } catch (error) {
-    return new Response(
-      JSON.stringify({ msg: "Error al subir imagen", error }),
-      { status: 400 }
-    );
+    return responseAsJson({ error }, {}, 404);
   }
 };
 
