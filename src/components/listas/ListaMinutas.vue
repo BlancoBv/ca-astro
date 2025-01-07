@@ -3,7 +3,6 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
 import ContextMenu from 'primevue/contextmenu';
-import { useSendData } from '@assets/http';
 
 interface listaDocs { url: string, fileName: string, fechaCreacion: string }
 

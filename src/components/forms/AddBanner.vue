@@ -17,7 +17,11 @@ const sendBanner = useSendData("banners", "post", {
     }
 })
 
-const updateBanner = useSendData("banner", "delete")
+const updateBanner = useSendData("banners", "put", {
+    onSuccess() {
+        refetch()
+    }
+})
 
 const handle = (event: Event) => {
     const { name, files } = event.target as HTMLInputElement

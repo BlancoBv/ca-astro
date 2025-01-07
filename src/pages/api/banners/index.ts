@@ -8,11 +8,12 @@ import { ControllerBuilder } from "src/controllers/builder";
 const imageController = new ImageController("banners");
 const controller = new ControllerBuilder();
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ url }) => {
+  const search = searchParamsToObject(url.searchParams);
   try {
     // Leer los archivos del directorio
     const response = await Banners.findAll({
-      where: { mostrar: true },
+      ...(search.mostrar === "true" && { where: { mostrar: true } }),
       order: [["createdAt", "DESC"]],
     });
     // Retornar los nombres de los archivos en formato JSON
@@ -70,12 +71,18 @@ export const DELETE: APIRoute = async ({ url }) => {
 };
 
 export const PUT: APIRoute = async ({ request }) => {
-  const { idBanner, ...body } = await request.json();
+  const { idbanner, ...body } = await request.json();
 
-  controller
-    .setModel(Banners)
-    .setWhereFilters({ idbanner: idBanner })
-    .getResult();
+  try {
+    await controller
+      .setModel(Banners)
+      .setWhereFilters({ idbanner })
+      .setBody(body)
+      .getResult()
+      .update();
 
-  return responseAsJson({});
+    return responseAsJson({});
+  } catch (error) {
+    return responseAsJson({ msg: "Error al actualizar ", error }, {}, 401);
+  }
 };

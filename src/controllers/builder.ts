@@ -15,6 +15,7 @@ interface Builder {
   setOrderFilters(filters: Order | undefined): this;
   setModel(model: ModelStatic<any>): this;
   setReplacements(replacements: BindOrReplacements): this;
+  setBody(body: { [key in keyof Attributes<any>]: any }): this;
 }
 
 export class ControllerBuilder<T extends ModelI<T>> implements Builder {
@@ -56,6 +57,11 @@ export class ControllerBuilder<T extends ModelI<T>> implements Builder {
     return this;
   }
 
+  setBody(body: { [key in keyof Attributes<T>]: any }): this {
+    this.model.body = body;
+    return this;
+  }
+
   getResult(): Model<T> {
     const result = this.model;
     this.reset();
@@ -69,6 +75,7 @@ class Model<T extends ModelI> {
   public whereFilters: WhereOptions<Attributes<T>> | undefined = undefined;
   public includedModels: Includeable[] | undefined | Includeable = undefined;
   public orderFilters: Order | undefined = undefined;
+  private _body: { [key in keyof Attributes<T>]: any } | undefined = undefined;
 
   /*   constructor(model: ModelStatic<T>) {
     this.model = model;
@@ -81,6 +88,9 @@ class Model<T extends ModelI> {
   public set replacements(replacements: BindOrReplacements) {
     this._replacements = replacements;
   }
+  public set body(body: { [key in keyof Attributes<T>]: any }) {
+    this._body = body;
+  }
 
   public async getOne(): Promise<T | null> {
     return await this._model.findOne({
@@ -91,13 +101,17 @@ class Model<T extends ModelI> {
   }
 
   public async getAll(): Promise<T[]> {
-    console.log(this.whereFilters);
-
     return await this._model.findAll({
       include: this.includedModels,
       order: this.orderFilters,
       where: this.whereFilters,
       replacements: this._replacements,
+    });
+  }
+
+  public async update() {
+    return await this._model.update(this._body ?? {}, {
+      where: this.whereFilters ?? {},
     });
   }
 }
