@@ -180,8 +180,15 @@ export default (app: App) => {
       },
       select: {
         root: "input input-bordered flex gap-2 items-center justify-center w-fit",
-        list: "menu bg-base-100 rounded-btn",
+        overlay: "menu bg-base-100 rounded-btn",
         label: "outline-none",
+      },
+      multiselect: {
+        root: "input input-bordered flex gap-2 items-center justify-center w-fit",
+        overlay: "menu bg-base-100 rounded-btn shadow overflow-y-auto",
+        option: "flex",
+        label: "outline-none",
+        header: "flex",
       },
       contextmenu: {
         root: "menu bg-base-100 shadow rounded-btn",
@@ -189,6 +196,14 @@ export default (app: App) => {
       },
       textarea: {
         root: "textarea textarea-bordered",
+      },
+      checkbox: {
+        root: "w-fit",
+        input: "checkbox checkbox-primary checkbox-xs",
+        box: "hidden",
+      },
+      inputtext: {
+        root: "input input-bordered w-full max-w-xs",
       },
     },
     theme: {
