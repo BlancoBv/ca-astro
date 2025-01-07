@@ -3,16 +3,27 @@ import { useGetData } from '@assets/http';
 import ListaProyectos from '@components/listas/ListaProyectos.vue';
 import MultiSelect from 'primevue/multiselect';
 import { reactive, ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const { data, isPending } = useGetData("proyectos", "proyectosData")
+const noMiembrosColab = ref<boolean>(false)
 const { data: miembros, isPending: miembrosIsPending } = useGetData("miembros", "miembrosData")
-const miembrosSelect = ref()
 const body = reactive<{ miembrosColaboradores: any[] }>({ miembrosColaboradores: [] })
+
+const handleSubmit = () => {
+    if (body.miembrosColaboradores.length > 0) {
+        noMiembrosColab.value = false
+    }
+
+    if (body.miembrosColaboradores.length < 1) {
+        noMiembrosColab.value = true
+        toast.error("No seleccionaste ningun miembro colaborador.")
+    }
+}
 
 </script>
 <template>
-    <!--  <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4">
-        {{ body.miembrosColaboradores }}
+    <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4" @submit.prevent="handleSubmit">
         <label class="form-control w-full max-w-xs h-full row-span-2">
             <div class="label">
                 <span class="label-text">Titulo del proyecto</span>
@@ -76,41 +87,49 @@ const body = reactive<{ miembrosColaboradores: any[] }>({ miembrosColaboradores:
                     </option>
                 </template>
 
-<template v-else>
+                <template v-else>
                     <option disabled selected>Selecciona un miembro</option>
                     <option value="en proceso" v-for="miembro in miembros.response">{{
                         miembro.nombreCompleto }}</option>
                 </template>
-</select>
-</label>
-<label class="form-control w-full max-w-xs">
-    <div class="label">
-        <span class="label-text">Otros colaboradores</span>
-        <span class="label-text-alt">Separar con ";"</span>
-    </div>
-    <input type="text" class="input input-bordered w-full max-w-xs" />
-</label>
-<label class="form-control w-full max-w-xs">
-    <div class="label">
-        <span class="label-text">Fecha de inicio de entrega</span>
-    </div>
-    <input type="date" class="input input-bordered w-full max-w-xs" />
-</label>
-<label class="form-control w-full max-w-xs">
-    <div class="label">
-        <span class="label-text">Fecha de termino de entrega</span>
-    </div>
-    <input type="date" class="input input-bordered w-full max-w-xs" />
-</label>
-<label class="form-control w-full max-w-xs">
-    <div class="label">
-        <span class="label-text">Convocatoria</span>
-    </div>
-    <input type="text" placeholder="TECNM" class="input input-bordered w-full max-w-xs" />
-</label>
-<MultiSelect v-model="body.miembrosColaboradores" display="chip" :options="miembros?.response"
-    optionLabel="nombreCompleto" option-value="idmiembro" filter placeholder="Selecciona uno o más miembros" />
-<button type="submit" class="btn btn-primary">Añadir proyecto</button>
-</form> -->
+            </select>
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Otros colaboradores</span>
+                <span class="label-text-alt">Separar con ";"</span>
+            </div>
+            <input type="text" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Fecha de inicio de entrega</span>
+            </div>
+            <input type="date" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Fecha de termino de entrega</span>
+            </div>
+            <input type="date" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Convocatoria</span>
+            </div>
+            <input type="text" placeholder="TECNM" class="input input-bordered w-full max-w-xs" />
+        </label>
+        <div class="w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Miembros colaboradores</span>
+                <span class="label-text-alt text-error" v-if="noMiembrosColab">**</span>
+            </div>
+            <MultiSelect v-model="body.miembrosColaboradores" display="chip" :options="miembros?.response"
+                optionLabel="nombreCompleto" option-value="idmiembro" filter placeholder="Selecciona uno o más miembros"
+                :max-selected-labels="3" id="input-colabs" :class="{ 'input-error': noMiembrosColab }" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Añadir proyecto</button>
+    </form>
     <ListaProyectos :data="data?.response ?? []" :mutation-delete="() => { }" :is-pending="isPending" />
 </template>

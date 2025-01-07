@@ -184,11 +184,16 @@ export default (app: App) => {
         label: "outline-none",
       },
       multiselect: {
-        root: "input input-bordered flex gap-2 items-center justify-center w-fit",
-        overlay: "menu bg-base-100 rounded-btn shadow overflow-y-auto",
-        option: "flex",
-        label: "outline-none",
-        header: "flex",
+        root: "input input-bordered flex gap-2 items-center justify-center",
+        overlay: "menu bg-base-100 rounded-btn shadow overflow-y-auto w-60 p-4",
+        option: "flex items-center flex-row flex-nowrap",
+        list: "pt-4",
+        optionLabel: "",
+        labelcontainer: "overflow-x-auto",
+        label: "outline-none text-sm flex gap-4 items-center text-nowrap",
+        header: "flex items-center gap-4",
+        chipitem: "text-xs",
+        hiddeninput: "hidden",
       },
       contextmenu: {
         root: "menu bg-base-100 shadow rounded-btn",
@@ -204,6 +209,12 @@ export default (app: App) => {
       },
       inputtext: {
         root: "input input-bordered w-full max-w-xs",
+      },
+      iconfield: {
+        root: "flex items-center gap-4",
+      },
+      chip: {
+        root: "flex bg-base-200 gap-4 items-center p-1 rounded-btn",
       },
     },
     theme: {
