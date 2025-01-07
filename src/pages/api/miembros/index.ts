@@ -45,16 +45,6 @@ export const GET: APIRoute = async ({ url }) => {
           .setWhereFilters({
             [controller.Op.or]: [
               { director: search.idmiembro }, // Condición para la columna director
-              /* {
-              "$miembros.idmiembro$": search.idmiembro, // Condición para la tabla de unión
-            }, */
-              /*   {
-              idproyecto: {
-                [Op.in]: sequelize.literal(
-                  `(SELECT idproyecto FROM proyectos_has_miembros WHERE idmiembro = ${search.idmiembro})`
-                ),
-              }, // Filtrar proyectos relacionados al miembro en la tabla de unión
-            }, */
               {
                 idproyecto: {
                   [controller.Op.in]: sequelize.literal(
