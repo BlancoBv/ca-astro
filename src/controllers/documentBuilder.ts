@@ -70,7 +70,7 @@ class Document {
   public set origin(origin: string) {
     this._origin = origin;
   }
-  public async writeFile(file: File) {
+  public async writeFile(file: File): Promise<string | null> {
     const dir = path.join(
       this.__dirname,
       this.baseDir,
@@ -82,9 +82,10 @@ class Document {
     try {
       const buffer = file.stream();
       await fs.writeFile(dir, buffer);
-    } catch (error) {}
-
-    return;
+      return this._fileName;
+    } catch (error) {
+      throw error;
+    }
   }
   public async getFiles(): Promise<
     { fileName: string; url: string; [key: string]: string }[]
@@ -107,5 +108,19 @@ class Document {
     }
   }
   public updateFile() {}
-  public deleteFile() {}
+
+  public async deleteFile() {
+    const dir = path.join(
+      this.__dirname,
+      this.baseDir,
+      "uploads",
+      this._directory ?? "",
+      this._fileName ?? ""
+    );
+    try {
+      await fs.unlink(dir);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

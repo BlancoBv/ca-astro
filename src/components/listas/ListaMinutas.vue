@@ -1,11 +1,35 @@
 <script setup lang="ts">
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+import ContextMenu from 'primevue/contextmenu';
+import { useSendData } from '@assets/http';
+
+interface listaDocs { url: string, fileName: string, fechaCreacion: string }
 
 const props = defineProps<{ data: any[], isPending: boolean }>()
+
+const cm = useTemplateRef("cm");
+const selectedItem = ref<Partial<listaDocs> | null>(null);
 const isMounted = ref<boolean>(false)
 
+const deleteMinuta = useSendData("minutas", "delete", {
+    onSuccess() {
+
+    },
+})
+
+const items = ref([
+    {
+        label: 'Eliminar', icon: 'bi bi-trash-fill', command: () => {
+            deleteMinuta.mutate({ fileName: selectedItem.value?.fileName })
+        }
+    },
+]);
+
+const onRowContextMenu = (event: { originalEvent: Event }) => {
+    cm.value?.show(event.originalEvent);
+};
 
 onMounted(() => {
     isMounted.value = true
@@ -13,13 +37,13 @@ onMounted(() => {
 onUnmounted(() => {
     isMounted.value = false
 })
-
-
 </script>
 <template>
+    {{ selectedItem }}
+    <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <div v-if="!isMounted" class="skeleton h-96 w-full"> </div>
     <DataTable :class="{ 'skeleton select-none': props.isPending }" v-else :value="props.data" :paginator="true"
-        :rows="5">
+        :rows="5" @row-contextmenu="onRowContextMenu" context-menu v-model:contextMenuSelection="selectedItem">
         <Column field="fileName" header="Nombre del archivo" sortable />
         <Column field="fechaCreacion" header="Fecha de creación" sortable />
     </DataTable>

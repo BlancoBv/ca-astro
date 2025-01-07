@@ -1,26 +1,19 @@
 import type { APIRoute } from "astro";
 import responseAsJson from "@assets/responseAsJson";
 import searchParamsToObject from "@assets/searchParamsToObject";
-import ImageController from "src/controllers/ImageController";
-import { formatDate } from "@assets/format";
 import { DocumentBuilder } from "src/controllers/documentBuilder";
 
-const imageController = new ImageController("minutas");
 const document = new DocumentBuilder();
 
 export const GET: APIRoute = async ({ url }) => {
   try {
     // Leer los archivos del directorio
-    const files: { fileName: string; url: string; [key: string]: string }[] =
-      await document
-        .setDirectory("minutas")
-        .setOrigin(url.origin)
-        .getResult()
-        .getFiles();
-    /* await imageController.readFiles(
-        import.meta.env.PROD ? import.meta.env.SITE : url.origin
-      );
- */
+    const files = await document
+      .setDirectory("minutas")
+      .setOrigin(url.origin)
+      .getResult()
+      .getFiles();
+
     files.forEach((el) => {
       const fecha = el.fileName.split(";")[1].split(".")[0];
       el["fechaCreacion"] = fecha;
@@ -48,8 +41,6 @@ export const GET: APIRoute = async ({ url }) => {
 export const POST: APIRoute = async ({ request }) => {
   const body = await request.formData();
 
-  console.log(body.get("file"));
-
   const file = body.get("file") as File;
   const fileName = body.get("fileName") as string;
 
@@ -69,13 +60,17 @@ export const POST: APIRoute = async ({ request }) => {
   }
 };
 
-export const DELETE: APIRoute = async ({ url }) => {
-  const search = searchParamsToObject(url.searchParams);
+export const DELETE: APIRoute = async ({ request }) => {
+  const { fileName } = await request.json();
 
   try {
-    await imageController.deleteFile(search.fileName);
+    await document
+      .setDirectory("minutas")
+      .setFileName(fileName)
+      .getResult()
+      .deleteFile();
     return responseAsJson({ msg: "Eliminado correctamente" });
   } catch (error) {
-    return responseAsJson({ msg: "Error eliminando imagen" }, {}, 400);
+    return responseAsJson({ msg: "Error eliminando minuta" }, {}, 400);
   }
 };

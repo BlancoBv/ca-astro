@@ -62,7 +62,7 @@ export function useSendData(
     mutationFn: async (data: any) => {
       const respose = await Axios[method](
         url,
-        data,
+        method === "delete" ? { data } : data,
         config?.sendAsFormData
           ? { headers: { "Content-Type": "multipart/form-data" } }
           : undefined
