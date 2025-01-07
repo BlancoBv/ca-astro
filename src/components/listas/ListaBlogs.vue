@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useGetData } from '@assets/http';
-import DataTable from 'primevue/datatable';
+import { useGetData, useSendData } from '@assets/http';
+import DataTable, { type DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import Column from 'primevue/column';
 import ContextMenu from 'primevue/contextmenu';
+import Textarea from 'primevue/textarea';
 import moment from 'moment';
 import { ref, useTemplateRef } from 'vue';
 
@@ -13,30 +14,39 @@ interface blog {
 }
 
 
-const { data, isError, isPending } = useGetData("blogs", "listaBlogsData")
+const { data, isError, isPending, refetch } = useGetData("blogs", "listaBlogsData")
 const cm = useTemplateRef("cm");
-const selectedProduct = ref();
+const selectedItem = ref();
 const items = ref([
     { label: 'Copy', icon: 'pi pi-copy' },
     { label: 'Rename', icon: 'pi pi-file-edit' }
 ]);
-const onRowContextMenu = (event: { originalEvent: Event }) => {
+const updateBlog = useSendData("blogs", "put", {
+    onSuccess(data) {
+        refetch()
+    },
+})
+
+/* const onRowContextMenu = (event: { originalEvent: Event }) => {
     cm.value?.show(event.originalEvent);
-};
+}; */
 
-const handleEditCell = () => {
-
+const handleEdit = (event: DataTableCellEditCompleteEvent) => {
+    const { data, newValue, field } = event
+    if (data[field] !== newValue) { updateBlog.mutate({ idblog: data.idblog, [field]: newValue }) }
 }
-const editCells = []
 
 </script>
 <template>
-    <ContextMenu ref="cm" :model="items" @hide="selectedProduct = null" />
+    <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <DataTable v-if="!isPending && !isError" :value="data?.response?.blogs" :paginator="true" :rows="5" edit-mode="cell"
-        @cell-edit-complete="handleEditCell" @row-contextmenu="onRowContextMenu" context-menu
-        v-model:contextMenuSelection="selectedProduct">
+        @cell-edit-complete="handleEdit">
 
-        <Column field="titulo" header="Titulo del blog" />
+        <Column field="titulo" header="Titulo del blog">
+            <template #editor="{ data, field }">
+                <Textarea v-model="data[field]" />
+            </template>
+        </Column>
         <Column field="estatus" header="Estatus">
             <template #body="{ data, field }">{{
                 (data[field] as string).toUpperCase()

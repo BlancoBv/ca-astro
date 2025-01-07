@@ -3,6 +3,9 @@ import responseAsJson from "@assets/responseAsJson";
 import searchParamsToObject from "@assets/searchParamsToObject";
 import { EtiquetasBlogs, Etiquetas, Blog } from "@model";
 import { sequelize } from "@db";
+import { ControllerBuilder } from "src/controllers/builder";
+
+const controller = new ControllerBuilder();
 
 export const GET: APIRoute = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);
@@ -86,5 +89,22 @@ export const POST: APIRoute = async ({ request }) => {
     return responseAsJson(response);
   } catch (error) {
     return responseAsJson({ error }, {}, 400);
+  }
+};
+
+export const PUT: APIRoute = async ({ request }) => {
+  const { idblog, ...body } = await request.json();
+
+  try {
+    await controller
+      .setModel(Blog)
+      .setWhereFilters({ idblog })
+      .setBody(body)
+      .getResult()
+      .update();
+
+    return responseAsJson({ msg: "Actualizado correctamente" });
+  } catch (error) {
+    return responseAsJson({ msg: "Error al actualizar" }, {}, 401);
   }
 };

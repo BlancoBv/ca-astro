@@ -12,8 +12,6 @@ const cm = useTemplateRef("cm");
 const selectedItem = ref<Partial<listaDocs> | null>(null);
 const isMounted = ref<boolean>(false)
 
-
-
 const items = ref([
     {
         label: 'Eliminar', icon: 'bi bi-trash-fill', command: () => {

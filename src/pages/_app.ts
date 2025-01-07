@@ -179,13 +179,16 @@ export default (app: App) => {
         page: "btn btn-sm data-[p-active=true]:btn-secondary",
       },
       select: {
-        root: "input input-bordered flex gap-2 items-center justify-center",
+        root: "input input-bordered flex gap-2 items-center justify-center w-fit",
         list: "menu bg-base-100 rounded-btn",
         label: "outline-none",
       },
       contextmenu: {
         root: "menu bg-base-100 shadow rounded-btn",
         itemlink: "flex gap-2",
+      },
+      textarea: {
+        root: "textarea textarea-bordered",
       },
     },
     theme: {
