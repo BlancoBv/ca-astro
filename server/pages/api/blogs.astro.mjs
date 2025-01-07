@@ -1,8 +1,10 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { b as Blog, E as Etiquetas, s as sequelize, c as EtiquetasBlogs } from '../../chunks/index_DBE-PR5w.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
+import { b as Blog, E as Etiquetas, s as sequelize, c as EtiquetasBlogs } from '../../chunks/index_DQ7uLXIm.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_C_HVqbzM.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
 
+const controller = new ControllerBuilder();
 const GET = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
@@ -70,11 +72,21 @@ const POST = async ({ request }) => {
     return responseAsJson({ error }, {}, 400);
   }
 };
+const PUT = async ({ request }) => {
+  const { idblog, ...body } = await request.json();
+  try {
+    await controller.setModel(Blog).setWhereFilters({ idblog }).setBody(body).getResult().update();
+    return responseAsJson({ msg: "Actualizado correctamente" });
+  } catch (error) {
+    return responseAsJson({ msg: "Error al actualizar" }, {}, 401);
+  }
+};
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   GET,
-  POST
+  POST,
+  PUT
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

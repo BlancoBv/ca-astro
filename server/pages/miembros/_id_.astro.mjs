@@ -1,16 +1,16 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { f as formatDate } from '../../chunks/format_BnSwxyOw.mjs';
+import { f as formatDate } from '../../chunks/format_DDvzIGDn.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode, Fragment, renderList } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_BzFM4fBN.mjs';
+import { s as script, a as script$1 } from '../../chunks/index_u5b3qQlZ.mjs';
 import get from 'lodash/get.js';
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BiaGrSvn.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_CC5I6w4Y.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_B_58N1hL.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_CmE-yisw.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "TableMiembros",

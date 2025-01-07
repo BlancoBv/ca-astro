@@ -1,14 +1,17 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { I as ImageController } from '../../chunks/ImageController_Vn72BPHB.mjs';
-import { B as Banners } from '../../chunks/index_DBE-PR5w.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
+import { B as Banners } from '../../chunks/index_DQ7uLXIm.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_C_HVqbzM.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
 
 const imageController = new ImageController("banners");
-const GET = async () => {
+const controller = new ControllerBuilder();
+const GET = async ({ url }) => {
+  const search = searchParamsToObject(url.searchParams);
   try {
     const response = await Banners.findAll({
-      where: { mostrar: true },
+      ...search.mostrar === "true" && { where: { mostrar: true } },
       order: [["createdAt", "DESC"]]
     });
     return responseAsJson(response);
@@ -54,12 +57,22 @@ const DELETE = async ({ url }) => {
     return responseAsJson({ msg: "Error eliminando imagen" }, {}, 400);
   }
 };
+const PUT = async ({ request }) => {
+  const { idbanner, ...body } = await request.json();
+  try {
+    await controller.setModel(Banners).setWhereFilters({ idbanner }).setBody(body).getResult().update();
+    return responseAsJson({});
+  } catch (error) {
+    return responseAsJson({ msg: "Error al actualizar ", error }, {}, 401);
+  }
+};
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   DELETE,
   GET,
-  POST
+  POST,
+  PUT
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

@@ -1,9 +1,9 @@
-import '../../chunks/format_BnSwxyOw.mjs';
+import '../../chunks/format_DDvzIGDn.mjs';
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize } from '../../chunks/index_DBE-PR5w.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_DAop8mSr.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
+import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize } from '../../chunks/index_DQ7uLXIm.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_C_HVqbzM.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
 
 const GET = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);
@@ -24,16 +24,6 @@ const GET = async ({ url }) => {
           [controller.Op.or]: [
             { director: search.idmiembro },
             // Condición para la columna director
-            /* {
-              "$miembros.idmiembro$": search.idmiembro, // Condición para la tabla de unión
-            }, */
-            /*   {
-              idproyecto: {
-                [Op.in]: sequelize.literal(
-                  `(SELECT idproyecto FROM proyectos_has_miembros WHERE idmiembro = ${search.idmiembro})`
-                ),
-              }, // Filtrar proyectos relacionados al miembro en la tabla de unión
-            }, */
             {
               idproyecto: {
                 [controller.Op.in]: sequelize.literal(

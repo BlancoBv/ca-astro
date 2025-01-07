@@ -1,12 +1,13 @@
 /* empty css                                      */
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { f as formatDate } from '../../chunks/format_BnSwxyOw.mjs';
+import { f as formatDate } from '../../chunks/format_DDvzIGDn.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, computed } from 'vue';
 import { ssrRenderList, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BiaGrSvn.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_CC5I6w4Y.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DB6v8AOh.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_B_58N1hL.mjs';
+import { A as AddMinuta } from '../../chunks/AddMinuta_0sfca8n0.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_CmE-yisw.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "DocumentList",
@@ -61,7 +62,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   minutas.files.forEach(
     (el) => el.fechaCreacionFormated = formatDate(el.fechaCreacion, "MMMM YYYY")
   );
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Minutas del CA" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> <h1>Minutas</h1> ${renderComponent($$result2, "DocumentList", DocumentList, { "years": Array.from(years), "minutas": minutas.files, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/DocumentList.vue", "client:component-export": "default" })} </main> ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Minutas del CA" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> <h1>Minutas</h1> ${renderComponent($$result2, "AddMinuta", AddMinuta, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddMinuta.vue", "client:component-export": "default" })} ${renderComponent($$result2, "DocumentList", DocumentList, { "years": Array.from(years), "minutas": minutas.files, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/DocumentList.vue", "client:component-export": "default" })} </main> ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/documentos/minutas/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/documentos/minutas/index.astro";

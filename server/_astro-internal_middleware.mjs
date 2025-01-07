@@ -2,7 +2,7 @@ import './chunks/astro-designed-error-pages_B1KtOiqS.mjs';
 import { d as defineMiddleware, s as sequence } from './chunks/index_DPCZXjyH.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as CookiesManager } from './chunks/CookiesManager_BfWIquu0.mjs';
-import { L as Logs } from './chunks/index_DBE-PR5w.mjs';
+import { L as Logs } from './chunks/index_DQ7uLXIm.mjs';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 class VerifyPath {
@@ -51,6 +51,10 @@ class VerifyPath {
       path: "api/banners",
       method: ["POST", "DELETE", "PUT", "GET"],
       bypass: [/[?&]mostrar=true(?:&|$)/]
+    },
+    {
+      path: "api/minutas",
+      method: ["POST", "DELETE", "PUT"]
     }
   ];
   constructor(url, method, search) {
