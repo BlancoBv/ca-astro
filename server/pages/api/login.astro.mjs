@@ -2,7 +2,7 @@ import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import bcrypt from 'bcrypt';
 import { U as Users } from '../../chunks/index_DQ7uLXIm.mjs';
 import { C as CookiesManager } from '../../chunks/CookiesManager_BfWIquu0.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
 
 async function validatePassword(passwordDB, password) {
   return await bcrypt.compare(password, passwordDB);

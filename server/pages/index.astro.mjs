@@ -1,6 +1,6 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, aa as Fragment } from '../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$Layout } from '../chunks/Layout_CmE-yisw.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BkoCVzvU.mjs';
 import { $ as $$CardBlog } from '../chunks/CardBlog_4k1MMGnp.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment as Fragment$1, renderList } from 'vue';
@@ -8,8 +8,8 @@ import { a as useGetData } from '../chunks/http_yrNfcJQc.mjs';
 import { Carousel as Carousel$1, Navigation, Slide } from 'vue3-carousel';
 /* empty css                                 */
 import { ssrRenderComponent, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_B_58N1hL.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_BbUQvcMQ.mjs';
+import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_DJ3BG1z4.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
   const blogs = await fetch(`http://localhost:4321/api/blogs?status=aceptado&limit=3`).then(

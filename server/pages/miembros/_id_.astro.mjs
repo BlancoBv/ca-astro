@@ -3,14 +3,14 @@ import { b as createAstro, c as createComponent, r as renderTemplate, a as rende
 import { f as formatDate } from '../../chunks/format_DDvzIGDn.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString, openBlock, createBlock, createCommentVNode, Fragment, renderList } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_u5b3qQlZ.mjs';
+import { s as script, a as script$1 } from '../../chunks/index_CfC-Oi8h.mjs';
 import get from 'lodash/get.js';
 import { ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_B_58N1hL.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_CmE-yisw.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_BkoCVzvU.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "TableMiembros",

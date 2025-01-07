@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_C_HVqbzM.mjs';
 import { P as Proyectos, d as Miembros } from '../../chunks/index_DQ7uLXIm.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
 
 const controller = new ControllerBuilder();
 const GET = async () => {

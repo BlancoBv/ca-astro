@@ -3,7 +3,7 @@ import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize } from '../../chunks/index_DQ7uLXIm.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_C_HVqbzM.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
 
 const GET = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);

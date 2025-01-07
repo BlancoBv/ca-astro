@@ -1,16 +1,16 @@
 /* empty css                                      */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, useTemplateRef, ref, onMounted, onUnmounted, withCtx, createVNode, toDisplayString, createTextVNode, mergeProps } from 'vue';
+import { useSSRContext, defineComponent, useTemplateRef, ref, onMounted, onUnmounted, withCtx, createVNode, toDisplayString, createTextVNode, reactive, mergeProps } from 'vue';
 import { a as useGetData } from '../../chunks/http_yrNfcJQc.mjs';
-import { a as script, s as script$1 } from '../../chunks/index_u5b3qQlZ.mjs';
-import { s as script$2 } from '../../chunks/index_B_rMEt31.mjs';
+import { a as script, s as script$1 } from '../../chunks/index_CfC-Oi8h.mjs';
+import { s as script$2 } from '../../chunks/index_BDWk0A62.mjs';
 import { f as formatDate, b as formatMoneda } from '../../chunks/format_DDvzIGDn.mjs';
 import { ssrInterpolate, ssrRenderComponent, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_B_58N1hL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BncRqzJi.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BbUQvcMQ.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CQujMbSO.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaProyectos",
@@ -288,7 +288,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const { data, isPending } = useGetData("proyectos", "proyectosData");
-    const __returned__ = { data, isPending, ListaProyectos };
+    const { data: miembros, isPending: miembrosIsPending } = useGetData("miembros", "miembrosData");
+    const miembrosSelect = ref();
+    const body = reactive({ miembrosColaboradores: [] });
+    const __returned__ = { data, isPending, miembros, miembrosIsPending, miembrosSelect, body, ListaProyectos };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
