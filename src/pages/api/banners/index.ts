@@ -3,8 +3,10 @@ import responseAsJson from "@assets/responseAsJson";
 import searchParamsToObject from "@assets/searchParamsToObject";
 import ImageController from "src/controllers/ImageController";
 import { Banners } from "@model";
+import { ControllerBuilder } from "src/controllers/builder";
 
 const imageController = new ImageController("banners");
+const controller = new ControllerBuilder();
 
 export const GET: APIRoute = async () => {
   try {
@@ -65,4 +67,15 @@ export const DELETE: APIRoute = async ({ url }) => {
   } catch (error) {
     return responseAsJson({ msg: "Error eliminando imagen" }, {}, 400);
   }
+};
+
+export const PUT: APIRoute = async ({ request }) => {
+  const { idBanner, ...body } = await request.json();
+
+  controller
+    .setModel(Banners)
+    .setWhereFilters({ idbanner: idBanner })
+    .getResult();
+
+  return responseAsJson({});
 };

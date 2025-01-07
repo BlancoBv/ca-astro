@@ -17,6 +17,8 @@ const sendBanner = useSendData("banners", "post", {
     }
 })
 
+const updateBanner = useSendData("banner", "delete")
+
 const handle = (event: Event) => {
     const { name, files } = event.target as HTMLInputElement
     formData.append(name, files![0])
@@ -57,5 +59,5 @@ const send = () => {
         <button class="btn btn-primary" type="submit">Añadir banner</button>
 
     </form>
-    <ListaBanners :data="data?.response" />
+    <ListaBanners :data="data?.response" :mutation-delete="updateBanner" />
 </template>

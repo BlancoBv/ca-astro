@@ -7,22 +7,18 @@ import { useSendData } from '@assets/http';
 
 interface listaDocs { url: string, fileName: string, fechaCreacion: string }
 
-const props = defineProps<{ data: any[], isPending: boolean }>()
+const props = defineProps<{ data: any[], isPending: boolean, mutationDelete: any }>()
 
 const cm = useTemplateRef("cm");
 const selectedItem = ref<Partial<listaDocs> | null>(null);
 const isMounted = ref<boolean>(false)
 
-const deleteMinuta = useSendData("minutas", "delete", {
-    onSuccess() {
 
-    },
-})
 
 const items = ref([
     {
         label: 'Eliminar', icon: 'bi bi-trash-fill', command: () => {
-            deleteMinuta.mutate({ fileName: selectedItem.value?.fileName })
+            props.mutationDelete.mutate({ fileName: selectedItem.value?.fileName })
         }
     },
 ]);

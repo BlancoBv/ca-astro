@@ -50,6 +50,10 @@ export default class VerifyPath {
       method: ["POST", "DELETE", "PUT", "GET"],
       bypass: [/[?&]mostrar=true(?:&|$)/],
     },
+    {
+      path: "api/minutas",
+      method: ["POST", "DELETE", "PUT"],
+    },
   ];
 
   constructor(url: string, method: string, search: string) {

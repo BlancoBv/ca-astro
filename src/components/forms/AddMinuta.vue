@@ -17,6 +17,11 @@ const send = useSendData("minutas", "post", {
         refetch()
     }
 })
+const deleteMinuta = useSendData("minutas", "delete", {
+    onSuccess() {
+        refetch()
+    },
+})
 const handle = (ev: Event) => {
     const { files } = ev.target as HTMLInputElement
     body.file = files![0]
@@ -58,6 +63,6 @@ const upload = () => {
         </label>
         <button class="btn btn-primary" type="submit">Añadir minuta</button>
     </form>
-    <ListaMinutas :data="data?.files ?? []" :is-pending="isPending" />
+    <ListaMinutas :data="data?.files ?? []" :is-pending="isPending" :mutationDelete="deleteMinuta" />
 
 </template>
