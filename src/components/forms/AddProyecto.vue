@@ -11,7 +11,7 @@ const body = reactive<{ miembrosColaboradores: any[] }>({ miembrosColaboradores:
 
 </script>
 <template>
-    <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4">
+    <!--  <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4">
         {{ body.miembrosColaboradores }}
         <label class="form-control w-full max-w-xs h-full row-span-2">
             <div class="label">
@@ -76,41 +76,41 @@ const body = reactive<{ miembrosColaboradores: any[] }>({ miembrosColaboradores:
                     </option>
                 </template>
 
-                <template v-else>
+<template v-else>
                     <option disabled selected>Selecciona un miembro</option>
                     <option value="en proceso" v-for="miembro in miembros.response">{{
                         miembro.nombreCompleto }}</option>
                 </template>
-            </select>
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <span class="label-text">Otros colaboradores</span>
-                <span class="label-text-alt">Separar con ";"</span>
-            </div>
-            <input type="text" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <span class="label-text">Fecha de inicio de entrega</span>
-            </div>
-            <input type="date" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <span class="label-text">Fecha de termino de entrega</span>
-            </div>
-            <input type="date" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <label class="form-control w-full max-w-xs">
-            <div class="label">
-                <span class="label-text">Convocatoria</span>
-            </div>
-            <input type="text" placeholder="TECNM" class="input input-bordered w-full max-w-xs" />
-        </label>
-        <MultiSelect v-model="body.miembrosColaboradores" display="chip" :options="miembros?.response"
-            optionLabel="nombreCompleto" option-value="idmiembro" filter placeholder="Selecciona uno o más miembros" />
-        <button type="submit" class="btn btn-primary">Añadir proyecto</button>
-    </form>
+</select>
+</label>
+<label class="form-control w-full max-w-xs">
+    <div class="label">
+        <span class="label-text">Otros colaboradores</span>
+        <span class="label-text-alt">Separar con ";"</span>
+    </div>
+    <input type="text" class="input input-bordered w-full max-w-xs" />
+</label>
+<label class="form-control w-full max-w-xs">
+    <div class="label">
+        <span class="label-text">Fecha de inicio de entrega</span>
+    </div>
+    <input type="date" class="input input-bordered w-full max-w-xs" />
+</label>
+<label class="form-control w-full max-w-xs">
+    <div class="label">
+        <span class="label-text">Fecha de termino de entrega</span>
+    </div>
+    <input type="date" class="input input-bordered w-full max-w-xs" />
+</label>
+<label class="form-control w-full max-w-xs">
+    <div class="label">
+        <span class="label-text">Convocatoria</span>
+    </div>
+    <input type="text" placeholder="TECNM" class="input input-bordered w-full max-w-xs" />
+</label>
+<MultiSelect v-model="body.miembrosColaboradores" display="chip" :options="miembros?.response"
+    optionLabel="nombreCompleto" option-value="idmiembro" filter placeholder="Selecciona uno o más miembros" />
+<button type="submit" class="btn btn-primary">Añadir proyecto</button>
+</form> -->
     <ListaProyectos :data="data?.response ?? []" :mutation-delete="() => { }" :is-pending="isPending" />
 </template>
