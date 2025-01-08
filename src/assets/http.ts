@@ -58,65 +58,74 @@ export function useSendData(
 ) {
   let id: Id;
 
-  const { isError, isPending, isSuccess, mutate, mutateAsync } = useMutation({
-    mutationFn: async (data: any) => {
-      const respose = await Axios[method](
-        url,
-        method === "delete" ? { data } : data,
-        config?.sendAsFormData
-          ? { headers: { "Content-Type": "multipart/form-data" } }
-          : undefined
-      );
-      if (respose.status === 400) {
-        return Promise.reject(respose.data);
-      }
-      return respose.data;
-    },
-    onMutate: () => {
-      id = toast.loading("Enviando...");
-    },
-    onSuccess: async (data) => {
-      toast.update(id, {
-        render: config?.toastMsg ?? "Enviado correctamente",
-        type: "success",
-        isLoading: false,
-        autoClose: 800,
-        closeOnClick: true,
-        onClose: () => {
-          config?.onToastClose?.();
-        },
-      });
-      if (config) {
-        config.onSuccess?.(data);
-      }
-    },
-    onError: async (data: {
-      response?: {
-        data?: { msg: string; error?: { issues: { message: string }[] } };
-      };
-    }) => {
-      console.log({ data });
-
-      let errorMsg = "Error al enviar.";
-      if (data.response?.data?.error) {
-        const formatter = new Intl.ListFormat("es", {
-          style: "long",
-          type: "conjunction",
-        });
-        errorMsg = formatter.format(
-          data.response.data.error.issues.map?.((el) => el.message)
+  const { isError, isPending, isSuccess, mutate, mutateAsync, error } =
+    useMutation({
+      mutationFn: async (data: any) => {
+        const response = await Axios[method](
+          url,
+          method === "delete" ? { data } : data,
+          config?.sendAsFormData
+            ? { headers: { "Content-Type": "multipart/form-data" } }
+            : undefined
         );
-      }
-      toast.update(id, {
-        render: errorMsg,
-        type: "error",
-        isLoading: false,
-        autoClose: 1000,
-      });
-    },
-    onSettled: () => {
-      toast.done(id);
-    },
-  });
-  return { isError, mutate, mutateAsync, isPending, isSuccess } as const;
+        if (response.status === 400) {
+          return Promise.reject(response.data.response);
+        }
+        return response.data.response ?? response;
+      },
+      onMutate: () => {
+        id = toast.loading("Enviando...");
+      },
+      onSuccess: async (data) => {
+        toast.update(id, {
+          render: config?.toastMsg ?? "Enviado correctamente",
+          type: "success",
+          isLoading: false,
+          autoClose: 800,
+          closeOnClick: true,
+          onClose: () => {
+            config?.onToastClose?.();
+          },
+        });
+        if (config) {
+          config.onSuccess?.(data);
+        }
+      },
+      onError: async (data: {
+        code: string;
+        response?: {
+          data?: {
+            msg: string;
+            error?: { issues: { message: string; path: string[] }[] };
+          };
+        };
+      }) => {
+        console.log({ data });
+
+        let errorMsg = "Error al enviar.";
+        if (data.code === "ERR_NETWORK") {
+          errorMsg = "Sin conexión, intentalo de nuevo.";
+        }
+        if (data.response?.data?.error) {
+          const formatter = new Intl.ListFormat("es", {
+            style: "long",
+            type: "conjunction",
+          });
+          errorMsg = formatter.format(
+            data.response.data.error.issues.map?.((el) => el.message)
+          );
+        }
+        toast.update(id, {
+          render: errorMsg,
+          type: "error",
+          isLoading: false,
+          autoClose: 1000,
+          closeOnClick: true,
+        });
+      },
+      onSettled: () => {
+        toast.done(id);
+      },
+    });
+  return { isError, mutate, mutateAsync, isPending, isSuccess, error } as const;
 }

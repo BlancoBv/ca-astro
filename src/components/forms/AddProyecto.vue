@@ -2,8 +2,24 @@
 import { useGetData, useSendData } from '@assets/http';
 import ListaProyectos from '@components/listas/ListaProyectos.vue';
 import MultiSelect from 'primevue/multiselect';
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { toast } from 'vue3-toastify';
+
+interface proyectoBody {
+    miembrosColaboradores: number[],
+    titulo: string,
+    clave: string,
+    fechaInicio: string,
+    fechaTermino: string,
+    estatus: string,
+    tipo: string,
+    otrosColaboradores?: string,
+    director: string,
+    monto: string,
+    fechaInicioEntrega: string,
+    fechaTerminoEntrega: string,
+    convocatoria: string
+}
 
 const { data, isPending, refetch } = useGetData("proyectos", "proyectosData")
 const noMiembrosColab = ref<boolean>(false)
@@ -26,21 +42,7 @@ const addProyecto = useSendData("proyectos", "post", {
         body.convocatoria = ""
     },
 })
-const body = reactive<{
-    miembrosColaboradores: number[],
-    titulo: string,
-    clave: string,
-    fechaInicio: string,
-    fechaTermino: string,
-    estatus: string,
-    tipo: string,
-    otrosColaboradores?: string,
-    director: string,
-    monto: string,
-    fechaInicioEntrega: string,
-    fechaTerminoEntrega: string,
-    convocatoria: string
-}>({
+const body = reactive<proyectoBody>({
     miembrosColaboradores: [],
     titulo: "", clave: "",
     fechaInicio: "",
@@ -77,13 +79,17 @@ const handleSubmit = () => {
             <div class="label">
                 <span class="label-text">Titulo del proyecto</span>
             </div>
-            <textarea v-model="body.titulo" class="textarea textarea-bordered h-full" required />
+            <textarea v-model="body.titulo" class="textarea textarea-bordered h-full"
+                :class="{ 'textarea-error': addProyecto.error.value?.response?.data?.error?.issues.find(el => el.path[0] === 'titulo') }"
+                required />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <span class="label-text">Clave</span>
             </div>
-            <input type="text" v-model="body.clave" class="input input-bordered w-full max-w-xs" required />
+            <input type="text" v-model="body.clave" class="input input-bordered w-full max-w-xs" required
+                :class="{ 'input-error': addProyecto.error.value?.response?.data?.error?.issues.find(el => el.path[0] === 'clave') }" />
+
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
@@ -168,7 +174,8 @@ const handleSubmit = () => {
                 <span class="label-text">Convocatoria</span>
             </div>
             <input type="text" v-model="body.convocatoria" placeholder="TECNM"
-                class="input input-bordered w-full max-w-xs" />
+                class="input input-bordered w-full max-w-xs"
+                :class="{ 'input-error': addProyecto.error.value?.response?.data?.error?.issues.find(el => el.path[0] === 'convocatoria') }" />
         </label>
         <div class="w-full max-w-xs">
             <div class="label">
