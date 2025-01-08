@@ -9,6 +9,7 @@ import {
   type BindOrReplacements,
   Transaction,
 } from "sequelize";
+import type { MakeNullishOptional } from "sequelize/lib/utils";
 
 interface Builder {
   setWhereFilters(filters: WhereOptions<Attributes<any>> | undefined): this;
@@ -124,6 +125,7 @@ class Model<T extends ModelI> {
   public async update() {
     return await this._model.update(this._body ?? {}, {
       where: this.whereFilters ?? {},
+      transaction: this._transaction ?? undefined,
     });
   }
   public async create() {
@@ -132,7 +134,7 @@ class Model<T extends ModelI> {
     });
   }
 
-  public async bulkCreate(callback: any) {
+  public async bulkCreate(callback: MakeNullishOptional<T[any]>[]) {
     return this._model.bulkCreate(callback, {
       transaction: this._transaction ?? undefined,
     });

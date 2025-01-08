@@ -90,13 +90,28 @@ export function useSendData(
         config.onSuccess?.(data);
       }
     },
-    onError: async (data: { response?: { data?: { msg: string } } }) => {
+    onError: async (data: {
+      response?: {
+        data?: { msg: string; error?: { issues: { message: string }[] } };
+      };
+    }) => {
+      console.log({ data });
+
+      let errorMsg = "Error al enviar.";
+      if (data.response?.data?.error) {
+        const formatter = new Intl.ListFormat("es", {
+          style: "long",
+          type: "conjunction",
+        });
+        errorMsg = formatter.format(
+          data.response.data.error.issues.map?.((el) => el.message)
+        );
+      }
       toast.update(id, {
-        render: data.response?.data?.msg ?? "Error al enviar ",
+        render: errorMsg,
         type: "error",
         isLoading: false,
-        autoClose: 800,
-        closeOnClick: true,
+        autoClose: 1000,
       });
     },
     onSettled: () => {
