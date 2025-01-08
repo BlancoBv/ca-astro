@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useGetData, useSendData } from '@assets/http';
+import { validateBuilder } from '@assets/zodValidations';
 import ListaProyectos from '@components/listas/ListaProyectos.vue';
 import MultiSelect from 'primevue/multiselect';
-import { reactive, ref, watch } from 'vue';
+import { reactive, ref } from 'vue';
 import { toast } from 'vue3-toastify';
 
 interface proyectoBody {
@@ -56,6 +57,7 @@ const body = reactive<proyectoBody>({
     convocatoria: ""
 })
 
+const validator = new validateBuilder()
 const handleSubmit = () => {
     handleSubmit: {
         if (body.miembrosColaboradores.length > 0) {
@@ -72,15 +74,17 @@ const handleSubmit = () => {
     }
 }
 
+
+
 </script>
 <template>
-    <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4" @submit.prevent="handleSubmit">
+    <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4 items-end" @submit.prevent="handleSubmit">
         <label class="form-control w-full max-w-xs h-full row-span-2">
             <div class="label">
                 <span class="label-text">Titulo del proyecto</span>
             </div>
             <textarea v-model="body.titulo" class="textarea textarea-bordered h-full"
-                :class="{ 'textarea-error': addProyecto.error.value?.response?.data?.error?.issues.find(el => el.path[0] === 'titulo') }"
+                :class="{ 'textarea-error': validator.setErrorObject(addProyecto.error.value).setField('titulo').getValidator().isError() }"
                 required />
         </label>
         <label class="form-control w-full max-w-xs">
@@ -88,7 +92,7 @@ const handleSubmit = () => {
                 <span class="label-text">Clave</span>
             </div>
             <input type="text" v-model="body.clave" class="input input-bordered w-full max-w-xs" required
-                :class="{ 'input-error': addProyecto.error.value?.response?.data?.error?.issues.find(el => el.path[0] === 'clave') }" />
+                :class="{ 'input-error': validator.setErrorObject(addProyecto.error.value).setField('clave').getValidator().isError() }" />
 
         </label>
         <label class="form-control w-full max-w-xs">
@@ -101,13 +105,14 @@ const handleSubmit = () => {
             <div class="label">
                 <span class="label-text">Fecha de termino</span>
             </div>
-            <input type="date" v-model="body.fechaTermino" class="input input-bordered w-full max-w-xs" />
+            <input type="date" :min="body.fechaInicio" v-model="body.fechaTermino"
+                class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <span class="label-text">Monto del proyecto</span>
             </div>
-            <input type="number" placeholder="50.00" step="0.01" v-model="body.monto"
+            <input type="number" placeholder="50.00" step="0.01" min="0.00" v-model="body.monto"
                 class="input input-bordered w-full max-w-xs" required />
         </label>
         <label class="form-control w-full max-w-xs">
@@ -155,7 +160,8 @@ const handleSubmit = () => {
                 <span class="label-text">Otros colaboradores</span>
                 <span class="label-text-alt">Separar con ";"</span>
             </div>
-            <input type="text" v-model="body.otrosColaboradores" class="input input-bordered w-full max-w-xs" />
+            <input type="text" v-model="body.otrosColaboradores" class="input input-bordered w-full max-w-xs"
+                :class="{ 'input-error': validator.setErrorObject(addProyecto.error.value).setField('otrosColaboradores').getValidator().isError() }" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
@@ -167,7 +173,8 @@ const handleSubmit = () => {
             <div class="label">
                 <span class="label-text">Fecha de termino de entrega</span>
             </div>
-            <input type="date" v-model="body.fechaTerminoEntrega" class="input input-bordered w-full max-w-xs" />
+            <input type="date" :min="body.fechaInicioEntrega" v-model="body.fechaTerminoEntrega"
+                class="input input-bordered w-full max-w-xs" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
@@ -175,7 +182,7 @@ const handleSubmit = () => {
             </div>
             <input type="text" v-model="body.convocatoria" placeholder="TECNM"
                 class="input input-bordered w-full max-w-xs"
-                :class="{ 'input-error': addProyecto.error.value?.response?.data?.error?.issues.find(el => el.path[0] === 'convocatoria') }" />
+                :class="{ 'input-error': validator.setErrorObject(addProyecto.error.value).setField('convocatoria').getValidator().isError() }" />
         </label>
         <div class="w-full max-w-xs">
             <div class="label">
@@ -184,9 +191,10 @@ const handleSubmit = () => {
             </div>
             <MultiSelect v-model="body.miembrosColaboradores" display="chip" :options="miembros?.response"
                 optionLabel="nombreCompleto" option-value="idmiembro" filter placeholder="Selecciona uno o más miembros"
-                :max-selected-labels="2" :class="{ 'input-error': noMiembrosColab }" />
+                :max-selected-labels="2"
+                :class="{ 'input-error': noMiembrosColab || validator.setErrorObject(addProyecto.error.value).setField('miembrosColaboradores').getValidator().isError() }" />
         </div>
-        <button type="submit" class="btn btn-primary">Añadir proyecto</button>
+        <button type="submit" class="btn btn-primary" :disabled="addProyecto.isPending.value">Añadir proyecto</button>
     </form>
     <ListaProyectos :data="data?.response ?? []" :mutation-delete="() => { }" :is-pending="isPending" />
 </template>

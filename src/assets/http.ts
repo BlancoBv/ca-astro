@@ -96,12 +96,12 @@ export function useSendData(
         response?: {
           data?: {
             msg: string;
-            error?: { issues: { message: string; path: string[] }[] };
+            error?: {
+              issues: { message: string; path: string[]; code: string }[];
+            };
           };
         };
       }) => {
-        console.log({ data });
-
         let errorMsg = "Error al enviar.";
         if (data.code === "ERR_NETWORK") {
           errorMsg = "Sin conexión, intentalo de nuevo.";

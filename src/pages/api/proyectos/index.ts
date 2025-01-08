@@ -38,7 +38,12 @@ const proyectoSchema = z.object({
   tipo: z.enum(["interno", "externo"], {
     required_error: "Tipo de proyecto requerido.",
   }),
-  clave: z.string({ required_error: "Clave de proyecto requerida" }),
+  clave: z
+    .string({ required_error: "Clave de proyecto requerida" })
+    .refine(
+      noEmptyOrBlankSpaces.callback,
+      noEmptyOrBlankSpaces.message("Clave")
+    ),
   fechaInicio: z
     .string({ required_error: "Fecha de inicio de proyecto requerida." })
     .date(),
@@ -174,8 +179,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     return responseAsJson({ msg: "Proyecto añadido correctamente" });
   } catch (error) {
-    console.log(error);
-
     return responseAsJson({ error }, { sendAsMessage: true }, 401);
   }
 };
