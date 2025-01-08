@@ -7,6 +7,7 @@ import {
   type WhereOptions,
   Op,
   type BindOrReplacements,
+  Transaction,
 } from "sequelize";
 
 interface Builder {
@@ -16,6 +17,7 @@ interface Builder {
   setModel(model: ModelStatic<any>): this;
   setReplacements(replacements: BindOrReplacements): this;
   setBody(body: { [key in keyof Attributes<any>]: any }): this;
+  setTransaction(t: Transaction): this;
 }
 
 export class ControllerBuilder<T extends ModelI<T>> implements Builder {
@@ -62,6 +64,11 @@ export class ControllerBuilder<T extends ModelI<T>> implements Builder {
     return this;
   }
 
+  setTransaction(t: Transaction): this {
+    this.model.transaction = t;
+    return this;
+  }
+
   getResult(): Model<T> {
     const result = this.model;
     this.reset();
@@ -70,12 +77,14 @@ export class ControllerBuilder<T extends ModelI<T>> implements Builder {
 }
 
 class Model<T extends ModelI> {
+  private _transaction: Transaction | null = null;
   private _model!: ModelStatic<T>;
   private _replacements: BindOrReplacements | undefined;
   public whereFilters: WhereOptions<Attributes<T>> | undefined = undefined;
   public includedModels: Includeable[] | undefined | Includeable = undefined;
   public orderFilters: Order | undefined = undefined;
-  private _body: { [key in keyof Attributes<T>]: any } | undefined = undefined;
+  private _body: { [key in keyof Attributes<T>]: any } | any | undefined =
+    undefined;
 
   /*   constructor(model: ModelStatic<T>) {
     this.model = model;
@@ -90,6 +99,9 @@ class Model<T extends ModelI> {
   }
   public set body(body: { [key in keyof Attributes<T>]: any }) {
     this._body = body;
+  }
+  public set transaction(transaction: Transaction) {
+    this._transaction = transaction;
   }
 
   public async getOne(): Promise<T | null> {
@@ -112,6 +124,17 @@ class Model<T extends ModelI> {
   public async update() {
     return await this._model.update(this._body ?? {}, {
       where: this.whereFilters ?? {},
+    });
+  }
+  public async create() {
+    return this._model.create(this._body ?? {}, {
+      transaction: this._transaction ?? undefined,
+    });
+  }
+
+  public async bulkCreate(callback: any) {
+    return this._model.bulkCreate(callback, {
+      transaction: this._transaction ?? undefined,
     });
   }
 }

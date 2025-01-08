@@ -8,6 +8,7 @@ const Proyectos = sequelize.define(
     idproyecto: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     clave: {
       type: DataTypes.STRING(60),
@@ -29,16 +30,14 @@ const Proyectos = sequelize.define(
       allowNull: false,
     },
     tipo: {
-      type: DataTypes.STRING(60),
+      type: DataTypes.ENUM("interno", "externo"),
       allowNull: false,
     },
     descripcion: {
       type: DataTypes.TEXT("medium"),
-      allowNull: false,
     },
     url: {
       type: DataTypes.STRING(60),
-      allowNull: false,
     },
     otrosColaboradores: {
       type: DataTypes.STRING(100),
@@ -55,6 +54,9 @@ const Proyectos = sequelize.define(
     },
     fechaTerminoEntrega: {
       type: DataTypes.DATE,
+    },
+    convocatoria: {
+      type: DataTypes.STRING(100),
     },
   }
   /*   {
