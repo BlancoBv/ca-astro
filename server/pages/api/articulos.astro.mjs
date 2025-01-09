@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { A as Articulo, E as Etiquetas, s as sequelize, a as EtiquetasArticulos } from '../../chunks/index_DQ7uLXIm.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
+import { A as Articulo, E as Etiquetas, s as sequelize, a as EtiquetasArticulos } from '../../chunks/index_DSuUdubB.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_Ciejw6DY.mjs';
 
 const GET = async ({ url }) => {
   const search = searchParamsToObject(url.searchParams);

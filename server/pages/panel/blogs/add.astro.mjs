@@ -2,14 +2,14 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_3XHIkLVB.mjs';
-import { I as Input } from '../../../chunks/Input_CYw2-Mlq.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_EC3dQ65Q.mjs';
+import { I as Input } from '../../../chunks/Input_CGcJ0xQ0.mjs';
 import moment from 'moment';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_yrNfcJQc.mjs';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_BqZswbFI.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_CQujMbSO.mjs';
-export { r as renderers } from '../../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_CbFQKVlu.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_utPYNRGT.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_Ciejw6DY.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "AddImage",
@@ -140,10 +140,14 @@ _sfc_main.setup = (props, ctx) => {
 const AddBlog = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 const $$Astro = createAstro("https://computodistribuido.org");
-const $$Index = createComponent(($$result, $$props, $$slots) => {
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
+  const isInvalid = await validatePerm(user?.idRol, permType.w, "blogs");
+  if (isInvalid) {
+    return Astro2.redirect("/404");
+  }
   return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "A\xF1adir blog" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBlog", AddBlog, { "idUsuario": user?.id, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBlog.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/add/index.astro", void 0);
 

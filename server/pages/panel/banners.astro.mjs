@@ -1,21 +1,22 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CQujMbSO.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_utPYNRGT.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode, reactive } from 'vue';
-import { a as useGetData, u as useSendData } from '../../chunks/http_yrNfcJQc.mjs';
-import { a as script, s as script$1, b as script$2 } from '../../chunks/index_CfC-Oi8h.mjs';
-import { s as script$3 } from '../../chunks/index_D5DdMjAJ.mjs';
+import { a as useGetData, u as useSendData } from '../../chunks/http_BqZswbFI.mjs';
+import { a as script, s as script$1, b as script$2 } from '../../chunks/index_BdxrLm6J.mjs';
+import { s as script$3 } from '../../chunks/index_BP865NKb.mjs';
 import moment from 'moment';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderClass } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_CbFQKVlu.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_Ciejw6DY.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaBanners",
   props: {
     data: {},
-    mutationDelete: {}
+    mutationDelete: {},
+    noEdit: { type: Boolean }
   },
   setup(__props, { expose: __expose }) {
     __expose();
@@ -60,7 +61,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       value: $setup.props.data,
       paginator: true,
       rows: 5,
-      "edit-mode": "cell",
+      "edit-mode": $setup.props.noEdit ? null : "cell",
       onCellEditComplete: $setup.handleEdit
     }, _attrs), {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -257,7 +258,8 @@ const ListaBanners = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sf
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "AddBanner",
   props: {
-    idUsuario: {}
+    idUsuario: {},
+    noEdit: { type: Boolean }
   },
   setup(__props, { expose: __expose }) {
     __expose();
@@ -298,6 +300,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   _push(`<!--[--><form class="flex gap-4 items-center"><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Selecciona una imagen</span></div><input name="imagen" type="file" class="file-input file-input-bordered w-full max-w-xs" accept="image/*" id="input-add-image" required></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Descripci\xF3n</span></div><input type="text" class="input input-bordered w-full max-w-xs"${ssrRenderAttr("value", $setup.body.descripcion)}></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Enlace Adjunto</span></div><input type="text"${ssrRenderAttr("value", $setup.body.url)} class="input input-bordered w-full max-w-xs"></label><button class="btn btn-primary" type="submit">A\xF1adir banner</button></form>`);
   _push(ssrRenderComponent($setup["ListaBanners"], {
     data: $setup.data?.response,
+    "no-edit": $setup.props.noEdit,
     "mutation-delete": $setup.updateBanner
   }, null, _parent));
   _push(`<!--]-->`);
@@ -311,11 +314,16 @@ _sfc_main.setup = (props, ctx) => {
 const AddBanner = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 const $$Astro = createAstro("https://computodistribuido.org");
-const $$Index = createComponent(($$result, $$props, $$slots) => {
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de banners" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBanner", AddBanner, { "idUsuario": user?.id, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBanner.vue", "client:component-export": "default" })} ` })}`;
+  const isInvalid = await validatePerm(user?.idRol, permType.r, "banners");
+  const updateIsInvalid = await validatePerm(user?.idRol, permType.u, "banners");
+  if (isInvalid) {
+    return Astro2.redirect("/404");
+  }
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de banners" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBanner", AddBanner, { "idUsuario": user?.id, "client:idle": true, "noEdit": updateIsInvalid, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBanner.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/banners/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/banners/index.astro";

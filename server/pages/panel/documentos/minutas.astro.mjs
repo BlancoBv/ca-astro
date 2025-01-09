@@ -1,16 +1,16 @@
 /* empty css                                         */
-import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_CQujMbSO.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_utPYNRGT.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, useTemplateRef, ref, onMounted, onUnmounted, withCtx, createVNode, reactive, computed } from 'vue';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_yrNfcJQc.mjs';
-import { a as script, s as script$1 } from '../../../chunks/index_CfC-Oi8h.mjs';
-import { s as script$2 } from '../../../chunks/index_BDWk0A62.mjs';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_BqZswbFI.mjs';
+import { a as script, s as script$1 } from '../../../chunks/index_BdxrLm6J.mjs';
+import { s as script$2 } from '../../../chunks/index_CDSKIpyG.mjs';
 import { ssrInterpolate, ssrRenderComponent, ssrRenderAttr } from 'vue/server-renderer';
 /* empty css                                       */
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_CbFQKVlu.mjs';
 import moment from 'moment';
-export { r as renderers } from '../../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_Ciejw6DY.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaMinutas",
@@ -170,7 +170,15 @@ _sfc_main.setup = (props, ctx) => {
 };
 const AddMinuta = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
-const $$Index = createComponent(($$result, $$props, $$slots) => {
+const $$Astro = createAstro("https://computodistribuido.org");
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Index;
+  const { user } = Astro2.locals;
+  const isInvalid = await validatePerm(user?.idRol, permType.r, "minutas");
+  if (isInvalid) {
+    return Astro2.redirect("/404");
+  }
   return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de minutas" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddMinuta", AddMinuta, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddMinuta.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/documentos/minutas/index.astro", void 0);
 

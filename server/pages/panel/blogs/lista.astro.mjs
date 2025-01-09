@@ -1,30 +1,33 @@
 /* empty css                                         */
-import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_CQujMbSO.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_utPYNRGT.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, useTemplateRef, ref, withCtx, createVNode, createTextVNode, toDisplayString } from 'vue';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_yrNfcJQc.mjs';
-import { a as script, s as script$1 } from '../../../chunks/index_CfC-Oi8h.mjs';
-import { s as script$2 } from '../../../chunks/index_BDWk0A62.mjs';
-import { s as script$3 } from '../../../chunks/index_D5DdMjAJ.mjs';
+import { useSSRContext, defineComponent, ref, withCtx, createVNode, createTextVNode, toDisplayString } from 'vue';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_BqZswbFI.mjs';
+import { a as script, s as script$1 } from '../../../chunks/index_BdxrLm6J.mjs';
+import { s as script$2 } from '../../../chunks/index_CDSKIpyG.mjs';
+import { s as script$3 } from '../../../chunks/index_BP865NKb.mjs';
 import moment from 'moment';
 import { ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_5v_ptjmN.mjs';
-export { r as renderers } from '../../../chunks/_@astro-renderers_DJ3BG1z4.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_CbFQKVlu.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_Ciejw6DY.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "ListaBlogs",
+  props: {
+    noEdit: { type: Boolean }
+  },
   setup(__props, { expose: __expose }) {
     __expose();
+    const props = __props;
     const { data, isError, isPending, refetch } = useGetData("blogs", "listaBlogsData");
-    const cm = useTemplateRef("cm");
     const selectedItem = ref();
     const items = ref([
       { label: "Copy", icon: "pi pi-copy" },
       { label: "Rename", icon: "pi pi-file-edit" }
     ]);
     const updateBlog = useSendData("blogs", "put", {
-      onSuccess(data2) {
+      onSuccess() {
         refetch();
       }
     });
@@ -34,7 +37,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         updateBlog.mutate({ idblog: data2.idblog, [field]: newValue });
       }
     };
-    const __returned__ = { data, isError, isPending, refetch, cm, selectedItem, items, updateBlog, handleEdit, get DataTable() {
+    const __returned__ = { props, data, isError, isPending, refetch, selectedItem, items, updateBlog, handleEdit, get DataTable() {
       return script;
     }, get Column() {
       return script$1;
@@ -61,7 +64,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
       value: $setup.data?.response?.blogs,
       paginator: true,
       rows: 5,
-      "edit-mode": "cell",
+      "edit-mode": $setup.props.noEdit ? null : "cell",
       onCellEditComplete: $setup.handleEdit
     }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -172,8 +175,17 @@ _sfc_main.setup = (props, ctx) => {
 };
 const ListaBlogs = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
-const $$Index = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de blogs" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaBlogs", ListaBlogs, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaBlogs.vue", "client:component-export": "default" })} ` })}`;
+const $$Astro = createAstro("https://computodistribuido.org");
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Index;
+  const { user } = Astro2.locals;
+  const isInvalid = await validatePerm(user?.idRol, permType.r, "blogs");
+  const updateIsInvalid = await validatePerm(user?.idRol, permType.u, "blogs");
+  if (isInvalid) {
+    return Astro2.redirect("/404");
+  }
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de blogs" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaBlogs", ListaBlogs, { "client:idle": true, "noEdit": updateIsInvalid, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaBlogs.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/lista/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/lista/index.astro";
