@@ -1,6 +1,14 @@
 ---
 import AddProyecto from "@components/forms/AddProyecto.vue";
 import LayoutPanel from "@layouts/LayoutPanel.astro";
+import { validatePerm, permType } from "@assets/auth/validatePerm";
+const { user } = Astro.locals;
+
+const isInvalid = await validatePerm(user?.idRol, permType.r, "proyectos");
+
+if (isInvalid) {
+  return Astro.redirect("/404");
+}
 ---
 
 <LayoutPanel sectionTitle="Lista de proyectos">

@@ -1,6 +1,14 @@
 ---
 import LayoutPanel from "@layouts/LayoutPanel.astro";
 import AddMinuta from "@components/forms/AddMinuta.vue";
+import { validatePerm, permType } from "@assets/auth/validatePerm";
+const { user } = Astro.locals;
+
+const isInvalid = await validatePerm(user?.idRol, permType.r, "minutas");
+
+if (isInvalid) {
+  return Astro.redirect("/404");
+}
 ---
 
 <LayoutPanel sectionTitle="Lista de minutas">

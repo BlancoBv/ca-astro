@@ -1,7 +1,14 @@
 ---
 import LayoutPanel from "@layouts/LayoutPanel.astro";
 import AddBanner from "@components/forms/AddBanner.vue";
+import { validatePerm, permType } from "@assets/auth/validatePerm";
 const { user } = Astro.locals;
+
+const isInvalid = await validatePerm(user?.idRol, permType.r, "banners");
+
+if (isInvalid) {
+  return Astro.redirect("/404");
+}
 ---
 
 <LayoutPanel sectionTitle="Lista de banners">

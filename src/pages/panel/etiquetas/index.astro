@@ -1,8 +1,14 @@
 ---
 import LayoutPanel from "@layouts/LayoutPanel.astro";
 import AddEtiqueta from "@components/forms/AddEtiqueta.vue";
-
+import { validatePerm, permType } from "@assets/auth/validatePerm";
 const { user } = Astro.locals;
+
+const isInvalid = await validatePerm(user?.idRol, permType.r, "etiquetas");
+
+if (isInvalid) {
+  return Astro.redirect("/404");
+}
 ---
 
 <LayoutPanel sectionTitle="Lista de etiquetas de la página">
