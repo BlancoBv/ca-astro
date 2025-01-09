@@ -5,24 +5,26 @@ import Column from 'primevue/column';
 import ContextMenu from 'primevue/contextmenu';
 import Textarea from 'primevue/textarea';
 import moment from 'moment';
-import { ref, useTemplateRef } from 'vue';
+import { ref } from 'vue';
 
-interface blog {
+const props = defineProps<{ noEdit: boolean }>()
+
+/* interface blog {
     idblog: number;
     titulo: string;
     fecha: string;
-}
+} */
 
 
 const { data, isError, isPending, refetch } = useGetData("blogs", "listaBlogsData")
-const cm = useTemplateRef("cm");
+//const cm = useTemplateRef("cm");
 const selectedItem = ref();
 const items = ref([
     { label: 'Copy', icon: 'pi pi-copy' },
     { label: 'Rename', icon: 'pi pi-file-edit' }
 ]);
 const updateBlog = useSendData("blogs", "put", {
-    onSuccess(data) {
+    onSuccess() {
         refetch()
     },
 })
@@ -39,8 +41,8 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
 </script>
 <template>
     <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
-    <DataTable v-if="!isPending && !isError" :value="data?.response?.blogs" :paginator="true" :rows="5" edit-mode="cell"
-        @cell-edit-complete="handleEdit">
+    <DataTable v-if="!isPending && !isError" :value="data?.response?.blogs" :paginator="true" :rows="5"
+        :edit-mode="props.noEdit ? null : 'cell'" @cell-edit-complete="handleEdit">
 
         <Column field="titulo" header="Titulo del blog">
             <template #editor="{ data, field }">
@@ -50,12 +52,12 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
         <Column field="estatus" header="Estatus">
             <template #body="{ data, field }">{{
                 (data[field] as string).toUpperCase()
-            }}</template>
+                }}</template>
         </Column>
         <Column field="createdAt" header="Fecha de creación">
             <template #body="{ data, field }">{{
                 moment(data[field]).locale("es-MX").format("L")
-            }}</template>
+                }}</template>
         </Column>
 
     </DataTable>

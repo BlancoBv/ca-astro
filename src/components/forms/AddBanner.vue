@@ -3,7 +3,7 @@ import { useGetData, useSendData } from '@assets/http';
 import ListaBanners from '@components/listas/ListaBanners.vue';
 import { reactive } from 'vue';
 
-const props = defineProps<{ idUsuario: string | undefined }>()
+const props = defineProps<{ idUsuario: string | undefined, noEdit: boolean }>()
 
 const formData = new FormData()
 const body = reactive<{ descripcion: string, url: string }>({ descripcion: "", url: "" })
@@ -63,5 +63,5 @@ const send = () => {
         <button class="btn btn-primary" type="submit">Añadir banner</button>
 
     </form>
-    <ListaBanners :data="data?.response" :mutation-delete="updateBanner" />
+    <ListaBanners :data="data?.response" :no-edit="props.noEdit" :mutation-delete="updateBanner" />
 </template>

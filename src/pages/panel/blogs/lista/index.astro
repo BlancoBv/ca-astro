@@ -6,11 +6,13 @@ const { user } = Astro.locals;
 
 const isInvalid = await validatePerm(user?.idRol, permType.r, "blogs");
 
+const updateIsInvalid = await validatePerm(user?.idRol, permType.u, "blogs");
+
 if (isInvalid) {
   return Astro.redirect("/404");
 }
 ---
 
 <LayoutPanel sectionTitle="Lista de blogs">
-  <ListaBlogs client:idle />
+  <ListaBlogs client:idle noEdit={updateIsInvalid} />
 </LayoutPanel>

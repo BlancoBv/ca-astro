@@ -5,6 +5,7 @@ import { validatePerm, permType } from "@assets/auth/validatePerm";
 const { user } = Astro.locals;
 
 const isInvalid = await validatePerm(user?.idRol, permType.r, "banners");
+const updateIsInvalid = await validatePerm(user?.idRol, permType.u, "banners");
 
 if (isInvalid) {
   return Astro.redirect("/404");
@@ -12,5 +13,5 @@ if (isInvalid) {
 ---
 
 <LayoutPanel sectionTitle="Lista de banners">
-  <AddBanner idUsuario={user?.id} client:idle />
+  <AddBanner idUsuario={user?.id} client:idle noEdit={updateIsInvalid} />
 </LayoutPanel>
