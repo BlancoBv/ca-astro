@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import DataTable from 'primevue/datatable';
+import DataTable, { type DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import Column from 'primevue/column';
-import { onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
 import ContextMenu from 'primevue/contextmenu';
 import { formatDate, formatMoneda } from '@assets/format';
+import InputText from 'primevue/inputtext';
+import Textarea from 'primevue/textarea';
+import Select from 'primevue/select';
 
 interface listaProyectos { otrosColaboradores: string | null }
 
-const props = defineProps<{ data: listaProyectos[], isPending: boolean, mutationDelete: any }>()
+const props = defineProps<{ data: listaProyectos[], isPending: boolean, mutationUpdate: any, miembros: { nombreCompleto: string, idmiembro: number }[] }>()
+
 
 const cm = useTemplateRef("cm");
 const selectedItem = ref<Partial<listaProyectos> | null>(null);
@@ -21,9 +25,20 @@ const items = ref([
     },
 ]);
 
+const miembros = computed(() => {
+    return props.miembros.map(el => ({ label: el.nombreCompleto, value: el.idmiembro }))
+})
+
 const onRowContextMenu = (event: { originalEvent: Event }) => {
     cm.value?.show(event.originalEvent);
 };
+
+
+const handleEdit = (event: DataTableCellEditCompleteEvent) => {
+    const { data, newValue, field } = event
+    if (data[field] !== newValue) { props.mutationUpdate.mutate({ idproyecto: data.idproyecto, [field]: newValue }) }
+}
+
 
 onMounted(() => {
     isMounted.value = true
@@ -37,9 +52,17 @@ onUnmounted(() => {
     <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <div v-if="!isMounted" class="skeleton h-96 w-full"> </div>
     <DataTable :class="{ 'skeleton select-none': props.isPending }" v-else :value="props.data" :paginator="true"
-        :rows="5" @row-contextmenu="onRowContextMenu" context-menu v-model:contextMenuSelection="selectedItem">
-        <Column field="clave" header="Clave del proyecto" sortable />
-        <Column field="titulo" header="Titulo del proyecto" />
+        :rows="5" @row-contextmenu="onRowContextMenu" :edit-mode="'cell'" @cell-edit-complete="handleEdit">
+        <Column field="clave" header="Clave del proyecto" sortable>
+            <template #editor="{ data, field }">
+                <InputText v-model="data[field]" />
+            </template>
+        </Column>
+        <Column field="titulo" header="Titulo del proyecto">
+            <template #editor="{ data, field }">
+                <Textarea v-model="data[field]" />
+            </template>
+        </Column>
         <Column field="tipo" header="Tipo de proyecto" sortable>
             <template #body="{ data, field }">
                 <div class="badge h-max"
@@ -48,8 +71,23 @@ onUnmounted(() => {
                 </div>
 
             </template>
+            <template #editor="{ data, field }">
+                <Select v-model="data[field]"
+                    :options="[{ label: 'Interno', value: 'interno' }, { label: 'Externo', value: 'externo' }]"
+                    optionLabel="label" optionValue="value" />
+            </template>
         </Column>
-        <Column field="director_proyecto.nombreCompleto" header="Director de proyecto" />
+        <Column field="director" header="Director de proyecto">
+            <template #body="{ data }">
+                {{ data.director_proyecto.nombreCompleto }}
+            </template>
+            <template #editor="{ data, field }">
+                <select v-model="data[field]">
+                    <option v-for="miembro in props.miembros" :value="miembro.idmiembro">{{ miembro.nombreCompleto }}
+                    </option>
+                </select>
+            </template>
+        </Column>
         <Column field="miembros_proyecto" header="Miembros del proyecto">
             <template #body="{ data, field }">
                 {{ data[field].map((el: any) => el.nombreCompleto).join(",") }}

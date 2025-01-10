@@ -22,7 +22,7 @@ interface ErrorInterface extends Error {
   response?: { data?: string };
 }
 
-export function useGetData(url: string, queryKey: string): getData {
+export function useGetData(url: string, queryKey: string) {
   const { isPending, isFetching, isError, data, refetch } = useQuery({
     queryKey: [queryKey],
     queryFn: async () => {
@@ -41,7 +41,7 @@ export function useGetData(url: string, queryKey: string): getData {
   return {
     data,
     isError,
-    isPending: isPending || isFetching,
+    isPending: isFetching || isPending,
     refetch,
   } as const;
 }

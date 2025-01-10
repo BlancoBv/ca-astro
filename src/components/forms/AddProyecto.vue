@@ -3,7 +3,7 @@ import { useGetData, useSendData } from '@assets/http';
 import { validateBuilder } from '@assets/zodValidations';
 import ListaProyectos from '@components/listas/ListaProyectos.vue';
 import MultiSelect from 'primevue/multiselect';
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { toast } from 'vue3-toastify';
 
 interface proyectoBody {
@@ -43,6 +43,11 @@ const addProyecto = useSendData("proyectos", "post", {
         body.convocatoria = ""
     },
 })
+const updateProyecto = useSendData("proyectos", "put", {
+    onSuccess() {
+        refetch()
+    },
+})
 const body = reactive<proyectoBody>({
     miembrosColaboradores: [],
     titulo: "", clave: "",
@@ -55,6 +60,10 @@ const body = reactive<proyectoBody>({
     fechaInicioEntrega: "",
     fechaTerminoEntrega: "",
     convocatoria: ""
+})
+
+const proyectos = computed(() => {
+    return data.value?.response.map((el: any) => ({ ...el, director: el.director_proyecto.idmiembro })) ?? []
 })
 
 const validator = new validateBuilder()
@@ -78,6 +87,7 @@ const handleSubmit = () => {
 
 </script>
 <template>
+    {{ proyectos }}
     <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4 items-end" @submit.prevent="handleSubmit">
         <label class="form-control w-full max-w-xs h-full row-span-2">
             <div class="label">
@@ -196,5 +206,6 @@ const handleSubmit = () => {
         </div>
         <button type="submit" class="btn btn-primary" :disabled="addProyecto.isPending.value">Añadir proyecto</button>
     </form>
-    <ListaProyectos :data="data?.response ?? []" :mutation-delete="() => { }" :is-pending="isPending" />
+    <ListaProyectos :data="proyectos" :mutationUpdate="updateProyecto" :is-pending="isPending"
+        :miembros="miembros?.response ?? []" />
 </template>
