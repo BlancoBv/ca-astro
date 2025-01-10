@@ -61,17 +61,18 @@ export function useSendData(
   const { isError, isPending, isSuccess, mutate, mutateAsync, error } =
     useMutation({
       mutationFn: async (data: any) => {
-        const response = await Axios[method](
-          url,
-          method === "delete" ? { data } : data,
-          config?.sendAsFormData
-            ? { headers: { "Content-Type": "multipart/form-data" } }
-            : undefined
-        );
-        if (response.status === 400) {
-          return Promise.reject(response.data.response);
+        try {
+          const response = await Axios[method](
+            url,
+            method === "delete" ? { data } : data,
+            config?.sendAsFormData
+              ? { headers: { "Content-Type": "multipart/form-data" } }
+              : undefined
+          );
+          return response.data.response ?? response;
+        } catch (error: any) {
+          return Promise.reject(error.response);
         }
-        return response.data.response ?? response;
       },
       onMutate: () => {
         id = toast.loading("Enviando...");
@@ -93,26 +94,37 @@ export function useSendData(
       },
       onError: async (data: {
         code: string;
-        response?: {
-          data?: {
-            msg: string;
-            error?: {
-              issues: { message: string; path: string[]; code: string }[];
-            };
+        data?: {
+          msg: string;
+          error?: {
+            issues: { message: string; path: string[]; code: string }[];
+            errors: { message: string }[];
           };
         };
       }) => {
         let errorMsg = "Error al enviar.";
+
+        console.log({ data });
+
         if (data.code === "ERR_NETWORK") {
           errorMsg = "Sin conexión, intentalo de nuevo.";
         }
-        if (data.response?.data?.error) {
+        if (data?.data?.error?.issues) {
           const formatter = new Intl.ListFormat("es", {
             style: "long",
             type: "conjunction",
           });
           errorMsg = formatter.format(
-            data.response.data.error.issues.map?.((el) => el.message)
+            data.data.error.issues.map?.((el) => el.message)
+          );
+        }
+        if (data?.data?.error?.errors) {
+          const formatter = new Intl.ListFormat("es", {
+            style: "long",
+            type: "conjunction",
+          });
+          errorMsg = formatter.format(
+            data.data.error.errors.map?.((el) => el.message)
           );
         }
         toast.update(id, {

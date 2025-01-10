@@ -129,13 +129,13 @@ class Model<T extends ModelI> {
     });
   }
   public async create() {
-    return this._model.create(this._body ?? {}, {
+    return await this._model.create(this._body ?? {}, {
       transaction: this._transaction ?? undefined,
     });
   }
 
   public async bulkCreate(callback: MakeNullishOptional<T[any]>[]) {
-    return this._model.bulkCreate(callback, {
+    return await this._model.bulkCreate(callback, {
       transaction: this._transaction ?? undefined,
     });
   }

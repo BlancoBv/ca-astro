@@ -27,8 +27,6 @@ export class validateBuilder implements validator {
   }
 
   setErrorObject(errorObject: any): this {
-    console.log({ errorObject });
-
     this.validation.errorObject = errorObject;
     return this;
   }

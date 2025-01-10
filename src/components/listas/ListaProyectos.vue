@@ -48,19 +48,20 @@ onUnmounted(() => {
 })
 </script>
 <template>
-    {{ selectedItem }}
     <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <div v-if="!isMounted" class="skeleton h-96 w-full"> </div>
-    <DataTable :class="{ 'skeleton select-none': props.isPending }" v-else :value="props.data" :paginator="true"
-        :rows="5" @row-contextmenu="onRowContextMenu" :edit-mode="'cell'" @cell-edit-complete="handleEdit">
+    <DataTable
+        :class="{ 'skeleton select-none': props.isPending, 'cursor-wait select-none': props.mutationUpdate.isPending.value }"
+        v-else :value="props.data" :paginator="true" :rows="5" @row-contextmenu="onRowContextMenu" :edit-mode="'cell'"
+        @cell-edit-complete="handleEdit">
         <Column field="clave" header="Clave del proyecto" sortable>
             <template #editor="{ data, field }">
-                <InputText v-model="data[field]" />
+                <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
             </template>
         </Column>
         <Column field="titulo" header="Titulo del proyecto">
             <template #editor="{ data, field }">
-                <Textarea v-model="data[field]" />
+                <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
             </template>
         </Column>
         <Column field="tipo" header="Tipo de proyecto" sortable>
@@ -72,17 +73,20 @@ onUnmounted(() => {
 
             </template>
             <template #editor="{ data, field }">
-                <Select v-model="data[field]"
-                    :options="[{ label: 'Interno', value: 'interno' }, { label: 'Externo', value: 'externo' }]"
-                    optionLabel="label" optionValue="value" />
+                <select v-model="data[field]" class="select select-bordered w-full max-w-xs">
+                    <option disabled selected>Selecciona un tipo</option>
+                    <option value="interno">Interno</option>
+                    <option value="externo">Externo</option>
+                </select>
             </template>
         </Column>
-        <Column field="director" header="Director de proyecto">
+        <Column field="director" header="Director(a) responsable del proyecto">
             <template #body="{ data }">
                 {{ data.director_proyecto.nombreCompleto }}
             </template>
             <template #editor="{ data, field }">
-                <select v-model="data[field]">
+                <select v-model="data[field]" class="select select-bordered w-full max-w-xs">
+                    <option disabled selected value="">Selecciona un miembro</option>
                     <option v-for="miembro in props.miembros" :value="miembro.idmiembro">{{ miembro.nombreCompleto }}
                     </option>
                 </select>
@@ -93,10 +97,14 @@ onUnmounted(() => {
                 {{ data[field].map((el: any) => el.nombreCompleto).join(",") }}
             </template>
         </Column>
-        <Column :field="(data: listaProyectos) => {
-            return data.otrosColaboradores ?? '---'
+        <Column field="otrosColaboradores" header="Otros colaboradores">
+            <template #body="{ data, field }">{{
+                data[field] ?? "---" }}</template>
 
-        }" header="Otros colaboradores" />
+            <template #editor="{ data, field }">
+                <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
+            </template>
+        </Column>
         <Column field="estatus" header="Estatus del proyecto" sortable>
             <template #body="{ data, field }">
                 <div class="badge h-max" :class="{
@@ -107,13 +115,35 @@ onUnmounted(() => {
                     {{ data[field].toUpperCase() }}
                 </div>
             </template>
+            <template #editor="{ data, field }">
+                <select v-model="data[field]" class="select select-bordered w-full max-w-xs">
+                    <option disabled selected value="">Selecciona un estatus</option>
+                    <option value="en proceso">En proceso</option>
+                    <option value="finalizado">Finalizado</option>
+                    <option value="no finalizado">No finalizado</option>
+                </select>
+            </template>
         </Column>
         <Column field="monto" header="Monto del proyecto" sortable>
             <template #body="{ data, field }">
                 {{ formatMoneda(data[field]) }}
             </template>
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="number" step="0.01" min="0"
+                    class="input input-bordered w-full max-w-xs" />
+            </template>
+        </Column>
+        <Column field="convocatoria" header="Convocatoria">
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
+            </template>
         </Column>
         <Column field="createdAt" header="Fecha de creación" sortable>
+            <template #body="{ data, field }">
+                {{ formatDate(data[field], "DD-MM-YYYY") }}
+            </template>
+        </Column>
+        <Column field="updatedAt" header="Ultima actualización" sortable>
             <template #body="{ data, field }">
                 {{ formatDate(data[field], "DD-MM-YYYY") }}
             </template>

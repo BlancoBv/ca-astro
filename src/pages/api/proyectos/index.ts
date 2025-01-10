@@ -179,6 +179,24 @@ export const POST: APIRoute = async ({ request }) => {
 
     return responseAsJson({ msg: "Proyecto añadido correctamente" });
   } catch (error) {
-    return responseAsJson({ error }, { sendAsMessage: true }, 401);
+    return responseAsJson({ error }, { sendAsMessage: true }, 400);
+  }
+};
+
+export const PUT: APIRoute = async ({ request }) => {
+  const { idproyecto, ...body } = await request.json();
+
+  try {
+    proyectoSchema.partial().parse(body);
+    await controller
+      .setModel(Proyectos)
+      .setWhereFilters({ idproyecto })
+      .setBody(body)
+      .getResult()
+      .update();
+
+    return responseAsJson({ msg: "Proyecto actualizado correctamente" });
+  } catch (error) {
+    return responseAsJson({ error }, { sendAsMessage: true }, 400);
   }
 };
