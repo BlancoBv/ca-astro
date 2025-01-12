@@ -2,7 +2,7 @@
 import DataTable, { type DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import Column from 'primevue/column';
 import MultiSelect from 'primevue/multiselect';
-import { computed, onMounted, onUnmounted, ref, toRaw, useTemplateRef, } from 'vue';
+import { computed, onMounted, onUnmounted, ref, toRaw, } from 'vue';
 import ContextMenu from 'primevue/contextmenu';
 import { formatDate, formatMoneda } from '@assets/format';
 
@@ -20,7 +20,6 @@ const items = ref([
         }
     },
 ]);
-const btn = useTemplateRef("guardar-btn")
 const miembros = computed(() => {
     return props?.miembros.map(el => ({ label: el.nombreCompleto, value: el.idmiembro })) ?? []
 })
@@ -34,11 +33,6 @@ const colaboradores = ref<number[]>([])
 const handleEdit = (event: DataTableCellEditCompleteEvent) => {
     handleEdit: {
         const { data, newValue, field } = event
-
-        console.log(data, field, newValue);
-
-
-
         if (field === "miembrosCol") {
             if (data[field] !== toRaw(colaboradores.value)) {
                 const prevValues = new Set(data[field])
@@ -46,12 +40,9 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
 
                 const idsToDelete = prevValues.difference(newValues)
                 const idsToAdd = newValues.difference(prevValues)
-                props.mutationUpdate.mutate({ idproyecto: data.idproyecto, miembrosColabAdd: Array.from(idsToAdd) })
-
-
+                props.mutationUpdate.mutate({ idproyecto: data.idproyecto, miembrosColabAdd: Array.from(idsToAdd), miembrosColabDelete: Array.from(idsToDelete) })
             }
             break handleEdit
-
         }
 
         if (newValue !== data[field]) { props.mutationUpdate.mutate({ idproyecto: data.idproyecto, [field]: newValue }) }
@@ -67,20 +58,6 @@ onUnmounted(() => {
 })
 </script>
 <template>
-    {{ colaboradores }}
-    <dialog id="miembros-colab" class="modal">
-        <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
-            <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
     <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <div v-if="!isMounted" class="skeleton h-96 w-full"> </div>
     <DataTable
@@ -132,17 +109,17 @@ onUnmounted(() => {
                 {{ data.miembros_proyecto.map((el: any) => el.nombreCompleto).join(",") }}
             </template>
             <template #editor="{ data, field, editorSaveCallback, editorCancelCallback }">
-                <div>
+                <div class="flex gap-4 items-center mb-4">
                     <form @submit.prevent="editorCancelCallback">
-                        <button type="submit">canclear</button>
+                        <button type="submit" class="btn btn-error btn-xs">Cancelar</button>
                     </form>
-                    <form @submit.prevent="editorSaveCallback()">
-                        <button ref="guardar-btn" type="submit" class="btn btn-primary btn-xs mb-4">Guardar</button>
-
+                    <form @submit.prevent="editorSaveCallback">
+                        <button type="submit" class="btn btn-primary btn-xs">Guardar</button>
                     </form>
-                    <MultiSelect v-model="colaboradores" @vue:mounted="colaboradores = data[field]" :options="miembros"
-                        option-label="label" option-value="value" display="chip" filter @keydown.enter.stop />
                 </div>
+                <MultiSelect v-model="colaboradores" @vue:mounted="colaboradores = data[field]" :options="miembros"
+                    option-label="label" option-value="value" display="chip" filter @keydown.enter.stop
+                    @keydown.escape.stop />
             </template>
         </Column>
         <Column field="otrosColaboradores" header="Otros colaboradores">

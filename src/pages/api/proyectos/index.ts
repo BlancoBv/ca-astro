@@ -208,10 +208,8 @@ export const PUT: APIRoute = async ({ request }) => {
   try {
     proyectoSchema.partial().parse(body);
 
-    console.log(body);
-
-    if (body.miembrosColabAdd.length > 0 || body.miembrosColabEdit.length > 0) {
-      await sequelize.transaction(async (t) => {
+    await sequelize.transaction(async (t) => {
+      if (body.miembrosColabAdd || body.miembrosColabDelete) {
         if ((body.miembrosColabAdd as number[]).length > 0) {
           await controller
             .setModel(ProyectosMiembros)
@@ -224,9 +222,32 @@ export const PUT: APIRoute = async ({ request }) => {
               }))
             );
         }
+        if ((body.miembrosColabDelete as number[]).length > 0) {
+          await controller
+            .setModel(ProyectosMiembros)
+            .setWhereFilters({
+              [controller.Op.and]: {
+                idproyecto,
+                idmiembro: body.miembrosColabDelete,
+              },
+            })
+            .setTransaction(t)
+            .getResult()
+            .delete();
+        }
 
-        return responseAsJson({ msg: "Miembros editados correctament" });
-        /*         if ((body.miembrosColabDelete as number[]).length > 0) {
+        return responseAsJson({ msg: "Miembros editados correctamente" });
+      }
+
+      await controller
+        .setModel(Proyectos)
+        .setTransaction(t)
+        .setWhereFilters({ idproyecto })
+        .setBody(body)
+        .getResult()
+        .update();
+
+      /*         if ((body.miembrosColabDelete as number[]).length > 0) {
           await controller
             .setModel(ProyectosMiembros)
             .setTransaction(t)
@@ -238,15 +259,7 @@ export const PUT: APIRoute = async ({ request }) => {
               }))
             );
         } */
-      });
-    }
-
-    await controller
-      .setModel(Proyectos)
-      .setWhereFilters({ idproyecto })
-      .setBody(body)
-      .getResult()
-      .update();
+    });
 
     return responseAsJson({ msg: "Proyecto actualizado correctamente" });
   } catch (error) {

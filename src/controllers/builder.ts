@@ -139,4 +139,11 @@ class Model<T extends ModelI> {
       transaction: this._transaction ?? undefined,
     });
   }
+
+  public async delete() {
+    return await this._model.destroy({
+      where: this.whereFilters ?? {},
+      transaction: this._transaction ?? undefined,
+    });
+  }
 }
