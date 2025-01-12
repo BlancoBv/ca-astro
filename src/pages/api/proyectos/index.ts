@@ -20,6 +20,7 @@ interface bodyRequest {
   fechaInicioEntrega: string;
   fechaTerminoEntrega: string;
   convocatoria: string;
+  visible: boolean;
 }
 const proyectoSchema = z.object({
   miembrosColaboradores: z
@@ -75,6 +76,21 @@ const proyectoSchema = z.object({
   estatus: z.enum(["finalizado", "no finalizado", "en proceso"], {
     required_error: "El estatus es requerido.",
   }),
+  visible: z.boolean({ required_error: "Visibilidad del proyecto requerida" }),
+  miembrosColabDelete: z
+    .number({
+      required_error: "No ingresaste miembros colaboradores",
+      message: "Colaboradores no es un array.",
+    })
+    .array()
+    .optional(),
+  miembrosColabAdd: z
+    .number({
+      required_error: "No ingresaste miembros colaboradores",
+      message: "Colaboradores no es un array.",
+    })
+    .array()
+    .optional(),
 });
 const controller = new ControllerBuilder();
 export const GET: APIRoute = async () => {
@@ -126,6 +142,7 @@ export const POST: APIRoute = async ({ request }) => {
     monto,
     convocatoria,
     estatus,
+    visible,
   }: bodyRequest = await request.json();
 
   try {
@@ -143,6 +160,7 @@ export const POST: APIRoute = async ({ request }) => {
       monto,
       convocatoria,
       estatus,
+      visible,
     });
     await sequelize.transaction(async (t) => {
       const proyecto = await controller
@@ -160,6 +178,7 @@ export const POST: APIRoute = async ({ request }) => {
           convocatoria,
           otrosColaboradores,
           estatus,
+          visible,
         })
         .setTransaction(t)
         .getResult()
@@ -188,6 +207,40 @@ export const PUT: APIRoute = async ({ request }) => {
 
   try {
     proyectoSchema.partial().parse(body);
+
+    console.log(body);
+
+    if (body.miembrosColabAdd.length > 0 || body.miembrosColabEdit.length > 0) {
+      await sequelize.transaction(async (t) => {
+        if ((body.miembrosColabAdd as number[]).length > 0) {
+          await controller
+            .setModel(ProyectosMiembros)
+            .setTransaction(t)
+            .getResult()
+            .bulkCreate(
+              body.miembrosColabAdd.map((el: number) => ({
+                idproyecto,
+                idmiembro: el,
+              }))
+            );
+        }
+
+        return responseAsJson({ msg: "Miembros editados correctament" });
+        /*         if ((body.miembrosColabDelete as number[]).length > 0) {
+          await controller
+            .setModel(ProyectosMiembros)
+            .setTransaction(t)
+            .getResult()
+            .bulkCreate(
+              body.miembrosColabAdd.map((el: number) => ({
+                idproyecto: idproyecto,
+                idmiembro: el,
+              }))
+            );
+        } */
+      });
+    }
+
     await controller
       .setModel(Proyectos)
       .setWhereFilters({ idproyecto })

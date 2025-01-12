@@ -19,7 +19,8 @@ interface proyectoBody {
     monto: string,
     fechaInicioEntrega: string,
     fechaTerminoEntrega: string,
-    convocatoria: string
+    convocatoria: string,
+    visible: boolean
 }
 
 const { data, isPending, refetch } = useGetData("proyectos", "proyectosData")
@@ -59,11 +60,12 @@ const body = reactive<proyectoBody>({
     monto: "",
     fechaInicioEntrega: "",
     fechaTerminoEntrega: "",
-    convocatoria: ""
+    convocatoria: "",
+    visible: true
 })
 
 const proyectos = computed(() => {
-    return data.value?.response.map((el: any) => ({ ...el, director: el.director_proyecto.idmiembro })) ?? []
+    return data.value?.response.map((el: any) => ({ ...el, director: el.director_proyecto.idmiembro, miembrosCol: el.miembros_proyecto.map((miembro: any) => miembro.idmiembro) })) ?? []
 })
 
 const validator = new validateBuilder()
@@ -206,5 +208,5 @@ const handleSubmit = () => {
         <button type="submit" class="btn btn-primary" :disabled="addProyecto.isPending.value">Añadir proyecto</button>
     </form>
     <ListaProyectos :data="proyectos" :mutationUpdate="updateProyecto" :is-pending="isPending"
-        :miembros="miembros?.response ?? []" />
+        :miembros="miembros?.response ?? []" :refetch="refetch" />
 </template>

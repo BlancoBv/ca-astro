@@ -45,7 +45,7 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
                 <img class="object-cover size-12 " :src="data[field]" :alt="data[field]" width="50px" height="50px">
             </template>
         </Column>
-        <Column field="mostrar" header="Estatus">
+        <Column field="mostrar" header="Visibilidad">
             <template #body="{ data, field }">
                 <div class="badge h-max" :class="{
                     'badge-success': data[field],

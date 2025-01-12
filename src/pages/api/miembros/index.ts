@@ -43,6 +43,7 @@ export const GET: APIRoute = async ({ url }) => {
         const proyectos = await controller
           .setModel(Proyectos)
           .setWhereFilters({
+            visible: true,
             [controller.Op.or]: [
               { director: search.idmiembro }, // Condición para la columna director
               {

@@ -56,6 +56,11 @@ const Proyectos = sequelize.define(
     },
     convocatoria: {
       type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    visible: {
+      type: DataTypes.BOOLEAN(),
+      allowNull: false,
     },
   }
   /*   {

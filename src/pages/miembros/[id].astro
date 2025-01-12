@@ -1,6 +1,6 @@
 ---
 import { formatDate } from "@assets/format";
-import TableMiembros from "@components/TableMiembros.vue";
+import ListaProyectosMiembros from "@components/listas/ListaProyectosMiembros.vue";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 
@@ -36,17 +36,6 @@ const miembro: {
 } = await fetch(
   `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true`
 ).then((res) => res.json());
-
-/* const getMiembro = async (id: number) => {
-  if (id) {
-    const response = await fetch(
-      `http://localhost:4321/api/miembros?idmiembro=${id}`
-    ).then((res) => res.json());
-
-    return response.response.nombreCompleto;
-  }
-  return "";
-}; */
 
 const redesSocialesIcon: icons = {
   facebook: "bi bi-facebook",
@@ -148,43 +137,6 @@ miembro.response.proyectos.forEach((el) => {
     </div>
     <p>{miembro.response.resumen}</p>
     <h2 class="mt-0">Proyectos</h2>
-    <TableMiembros
-      data={miembro.response.proyectos}
-      cols={[
-        { header: "Clave", field: "clave" },
-        { header: "Proyecto", field: "titulo" },
-        {
-          header: "Director(a) responsable",
-          field: "director_proyecto.nombreCompleto",
-          sortable: true,
-        },
-
-        {
-          header: "Vigencia",
-          field: "",
-          formatter: "duracion",
-        },
-        { header: "Otros colaboradores", field: "", formatter: "colabs" },
-        {
-          header: "Tipo",
-          field: "tipo",
-          formatter: "uppercase",
-          sortable: true,
-        },
-        {
-          header: "Monto aprobado",
-          field: "monto",
-          sortable: true,
-          formatter: "monto",
-        },
-        {
-          header: "Fecha entrega final",
-          field: "",
-          formatter: "entregaFinal",
-        },
-        { header: "Estatus", field: "estatus", sortable: true },
-      ]}
-      client:visible
-    />
+    <ListaProyectosMiembros data={miembro.response.proyectos} client:idle />
   </main>
 </Layout>

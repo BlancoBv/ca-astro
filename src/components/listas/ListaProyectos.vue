@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import DataTable, { type DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import Column from 'primevue/column';
-import { computed, onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
+import MultiSelect from 'primevue/multiselect';
+import { computed, onMounted, onUnmounted, ref, toRaw, useTemplateRef, } from 'vue';
 import ContextMenu from 'primevue/contextmenu';
 import { formatDate, formatMoneda } from '@assets/format';
-import InputText from 'primevue/inputtext';
-import Textarea from 'primevue/textarea';
-import Select from 'primevue/select';
 
 interface listaProyectos { otrosColaboradores: string | null }
 
-const props = defineProps<{ data: listaProyectos[], isPending: boolean, mutationUpdate: any, miembros: { nombreCompleto: string, idmiembro: number }[] }>()
+const props = defineProps<{ data: listaProyectos[], isPending: boolean, mutationUpdate: any, miembros: { nombreCompleto: string, idmiembro: number }[], refetch: any }>()
 
-
-const cm = useTemplateRef("cm");
 const selectedItem = ref<Partial<listaProyectos> | null>(null);
 const isMounted = ref<boolean>(false)
 
@@ -24,21 +20,44 @@ const items = ref([
         }
     },
 ]);
-
+const btn = useTemplateRef("guardar-btn")
 const miembros = computed(() => {
-    return props.miembros.map(el => ({ label: el.nombreCompleto, value: el.idmiembro }))
+    return props?.miembros.map(el => ({ label: el.nombreCompleto, value: el.idmiembro })) ?? []
 })
 
-const onRowContextMenu = (event: { originalEvent: Event }) => {
+const colaboradores = ref<number[]>([])
+/* const onRowContextMenu = (event: { originalEvent: Event }) => {
     cm.value?.show(event.originalEvent);
-};
+}; */
 
 
 const handleEdit = (event: DataTableCellEditCompleteEvent) => {
-    const { data, newValue, field } = event
-    if (data[field] !== newValue) { props.mutationUpdate.mutate({ idproyecto: data.idproyecto, [field]: newValue }) }
-}
+    handleEdit: {
+        const { data, newValue, field } = event
 
+        console.log(data, field, newValue);
+
+
+
+        if (field === "miembrosCol") {
+            if (data[field] !== toRaw(colaboradores.value)) {
+                const prevValues = new Set(data[field])
+                const newValues = new Set(toRaw(colaboradores.value))
+
+                const idsToDelete = prevValues.difference(newValues)
+                const idsToAdd = newValues.difference(prevValues)
+                props.mutationUpdate.mutate({ idproyecto: data.idproyecto, miembrosColabAdd: Array.from(idsToAdd) })
+
+
+            }
+            break handleEdit
+
+        }
+
+        if (newValue !== data[field]) { props.mutationUpdate.mutate({ idproyecto: data.idproyecto, [field]: newValue }) }
+        break handleEdit
+    }
+}
 
 onMounted(() => {
     isMounted.value = true
@@ -48,18 +67,34 @@ onUnmounted(() => {
 })
 </script>
 <template>
+    {{ colaboradores }}
+    <dialog id="miembros-colab" class="modal">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
     <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <div v-if="!isMounted" class="skeleton h-96 w-full"> </div>
     <DataTable
         :class="{ 'skeleton select-none': props.isPending, 'cursor-wait select-none': props.mutationUpdate.isPending.value }"
-        v-else :value="props.data" :paginator="true" :rows="5" @row-contextmenu="onRowContextMenu" :edit-mode="'cell'"
-        @cell-edit-complete="handleEdit">
+        v-else :value="props.data" :paginator="true" :rows="5" :edit-mode="'cell'" @cell-edit-complete="handleEdit">
         <Column field="clave" header="Clave del proyecto" sortable>
             <template #editor="{ data, field }">
                 <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
             </template>
         </Column>
         <Column field="titulo" header="Titulo del proyecto">
+            <template #body="{ data, field }">
+                <div class="w-60"> {{ data[field] }}</div>
+            </template>
             <template #editor="{ data, field }">
                 <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
             </template>
@@ -92,9 +127,22 @@ onUnmounted(() => {
                 </select>
             </template>
         </Column>
-        <Column field="miembros_proyecto" header="Miembros del proyecto">
-            <template #body="{ data, field }">
-                {{ data[field].map((el: any) => el.nombreCompleto).join(",") }}
+        <Column field="miembrosCol" header="Miembros colaboradores">
+            <template #body="{ data }">
+                {{ data.miembros_proyecto.map((el: any) => el.nombreCompleto).join(",") }}
+            </template>
+            <template #editor="{ data, field, editorSaveCallback, editorCancelCallback }">
+                <div>
+                    <form @submit.prevent="editorCancelCallback">
+                        <button type="submit">canclear</button>
+                    </form>
+                    <form @submit.prevent="editorSaveCallback()">
+                        <button ref="guardar-btn" type="submit" class="btn btn-primary btn-xs mb-4">Guardar</button>
+
+                    </form>
+                    <MultiSelect v-model="colaboradores" @vue:mounted="colaboradores = data[field]" :options="miembros"
+                        option-label="label" option-value="value" display="chip" filter @keydown.enter.stop />
+                </div>
             </template>
         </Column>
         <Column field="otrosColaboradores" header="Otros colaboradores">
@@ -136,6 +184,54 @@ onUnmounted(() => {
         <Column field="convocatoria" header="Convocatoria">
             <template #editor="{ data, field }">
                 <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
+            </template>
+        </Column>
+        <Column field="fechaInicio" header="Fecha de inicio del proyecto" sortable>
+            <template #body="{ data, field }">
+                {{ formatDate(data[field], "DD-MM-YYYY") }}
+            </template>
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="date" class="input input-bordered w-full max-w-xs" />
+            </template>
+        </Column>
+        <Column field="fechaTermino" header="Fecha de termino del proyecto" sortable>
+            <template #body="{ data, field }">
+                {{ formatDate(data[field], "DD-MM-YYYY") }}
+            </template>
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="date" :min="data.fechaInicio"
+                    class="input input-bordered w-full max-w-xs" />
+            </template>
+        </Column>
+        <Column field="visible" header="Visibilidad del proyecto">
+            <template #body="{ data, field }">
+                <div class="badge h-max" :class="{
+                    'badge-success': data[field],
+                    'badge-error': !data[field]
+                }"> {{ data[field] ? "Visible" : "No visible" }}</div>
+            </template>
+            <template #editor="{ data, field }">
+                <select v-model="data[field]" class="select select-bordered w-full max-w-xs">
+                    <option disabled selected value="">Selecciona una visibilidad</option>
+                    <option :value="true">Visible</option>
+                    <option :value="false">No visible</option>
+                </select>
+            </template>
+        </Column>
+        <Column field="fechaInicioEntrega" header="Fecha de inicio de entrega final" sortable>
+            <template #body="{ data, field }">
+                {{ data[field] ? formatDate(data[field], "DD-MM-YYYY") : "---" }}
+            </template>
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="date" class="input input-bordered w-full max-w-xs" />
+            </template>
+        </Column>
+        <Column field="fechaTerminoEntrega" header="Fecha de termino de entrega final" sortable>
+            <template #body="{ data, field }">
+                {{ data[field] ? formatDate(data[field], "DD-MM-YYYY") : "---" }} </template>
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="date" :min="data.fechaInicioEntrega"
+                    class="input input-bordered w-full max-w-xs" />
             </template>
         </Column>
         <Column field="createdAt" header="Fecha de creación" sortable>

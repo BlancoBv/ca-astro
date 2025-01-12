@@ -104,8 +104,6 @@ export function useSendData(
       }) => {
         let errorMsg = "Error al enviar.";
 
-        console.log({ data });
-
         if (data.code === "ERR_NETWORK") {
           errorMsg = "Sin conexión, intentalo de nuevo.";
         }

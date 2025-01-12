@@ -184,7 +184,7 @@ export default (app: App) => {
         label: "outline-none",
       },
       multiselect: {
-        root: "input input-bordered flex gap-2 items-center justify-center",
+        root: "input input-bordered w-full max-w-xs flex gap-2 items-center justify-center",
         overlay: "menu bg-base-100 rounded-btn shadow overflow-y-auto w-60 p-4",
         option: "flex items-center flex-row flex-nowrap",
         list: "pt-4",
@@ -193,7 +193,6 @@ export default (app: App) => {
         label: "outline-none text-sm flex gap-4 items-center text-nowrap",
         header: "flex items-center gap-4",
         chipitem: "text-xs",
-        hiddeninput: "hidden",
       },
       contextmenu: {
         root: "menu bg-base-100 shadow rounded-btn",
