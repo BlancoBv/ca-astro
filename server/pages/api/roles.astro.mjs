@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-import { R as Roles, e as Permisos } from '../../chunks/index_DSuUdubB.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_D647cUX5.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_Ciejw6DY.mjs';
+import { R as Roles, e as Permisos } from '../../chunks/index_CirPXude.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
 
 const POST = async ({ request }) => {
   const body = await request.json();

@@ -2,14 +2,14 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_EC3dQ65Q.mjs';
-import { I as Input } from '../../../chunks/Input_CGcJ0xQ0.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_CHnLUtyF.mjs';
+import { I as Input } from '../../../chunks/Input_BK15q0l7.mjs';
 import moment from 'moment';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_BqZswbFI.mjs';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_CbFQKVlu.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_utPYNRGT.mjs';
-export { r as renderers } from '../../../chunks/_@astro-renderers_Ciejw6DY.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_ChOUXVIM.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_DHMs7f3d.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_CWS4mHxj.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "AddImage",

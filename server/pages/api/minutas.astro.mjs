@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { promises } from 'fs';
 import path from 'path';
-export { r as renderers } from '../../chunks/_@astro-renderers_Ciejw6DY.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
 
 function generadorNombre(fileExtension) {
   let d = (/* @__PURE__ */ new Date()).getTime();

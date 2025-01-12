@@ -1,9 +1,9 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_D647cUX5.mjs';
-import { P as Proyectos, d as Miembros, s as sequelize, f as ProyectosMiembros } from '../../chunks/index_DSuUdubB.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
+import { P as Proyectos, d as Miembros, s as sequelize, f as ProyectosMiembros } from '../../chunks/index_CirPXude.mjs';
 import * as z from 'zod';
-import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_Cp4OsDPW.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_Ciejw6DY.mjs';
+import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_2nZAise9.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
 
 const proyectoSchema = z.object({
   miembrosColaboradores: z.number({
@@ -40,7 +40,16 @@ const proyectoSchema = z.object({
   ),
   estatus: z.enum(["finalizado", "no finalizado", "en proceso"], {
     required_error: "El estatus es requerido."
-  })
+  }),
+  visible: z.boolean({ required_error: "Visibilidad del proyecto requerida" }),
+  miembrosColabDelete: z.number({
+    required_error: "No ingresaste miembros colaboradores",
+    message: "Colaboradores no es un array."
+  }).array().optional(),
+  miembrosColabAdd: z.number({
+    required_error: "No ingresaste miembros colaboradores",
+    message: "Colaboradores no es un array."
+  }).array().optional()
 });
 const controller = new ControllerBuilder();
 const GET = async () => {
@@ -85,7 +94,8 @@ const POST = async ({ request }) => {
     director,
     monto,
     convocatoria,
-    estatus
+    estatus,
+    visible
   } = await request.json();
   try {
     proyectoSchema.parse({
@@ -101,7 +111,8 @@ const POST = async ({ request }) => {
       director,
       monto,
       convocatoria,
-      estatus
+      estatus,
+      visible
     });
     await sequelize.transaction(async (t) => {
       const proyecto = await controller.setModel(Proyectos).setBody({
@@ -116,7 +127,8 @@ const POST = async ({ request }) => {
         monto,
         convocatoria,
         otrosColaboradores,
-        estatus
+        estatus,
+        visible
       }).setTransaction(t).getResult().create();
       await controller.setModel(ProyectosMiembros).setTransaction(t).getResult().bulkCreate(
         miembrosColaboradores.map((el) => ({
@@ -127,14 +139,46 @@ const POST = async ({ request }) => {
     });
     return responseAsJson({ msg: "Proyecto añadido correctamente" });
   } catch (error) {
-    return responseAsJson({ error }, { sendAsMessage: true }, 401);
+    return responseAsJson({ error }, { sendAsMessage: true }, 400);
+  }
+};
+const PUT = async ({ request }) => {
+  const { idproyecto, ...body } = await request.json();
+  try {
+    proyectoSchema.partial().parse(body);
+    await sequelize.transaction(async (t) => {
+      if (body.miembrosColabAdd || body.miembrosColabDelete) {
+        if (body.miembrosColabAdd.length > 0) {
+          await controller.setModel(ProyectosMiembros).setTransaction(t).getResult().bulkCreate(
+            body.miembrosColabAdd.map((el) => ({
+              idproyecto,
+              idmiembro: el
+            }))
+          );
+        }
+        if (body.miembrosColabDelete.length > 0) {
+          await controller.setModel(ProyectosMiembros).setWhereFilters({
+            [controller.Op.and]: {
+              idproyecto,
+              idmiembro: body.miembrosColabDelete
+            }
+          }).setTransaction(t).getResult().delete();
+        }
+        return responseAsJson({ msg: "Miembros editados correctamente" });
+      }
+      await controller.setModel(Proyectos).setTransaction(t).setWhereFilters({ idproyecto }).setBody(body).getResult().update();
+    });
+    return responseAsJson({ msg: "Proyecto actualizado correctamente" });
+  } catch (error) {
+    return responseAsJson({ error }, { sendAsMessage: true }, 400);
   }
 };
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   GET,
-  POST
+  POST,
+  PUT
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
