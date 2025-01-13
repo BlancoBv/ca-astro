@@ -32,7 +32,6 @@ onUnmounted(() => {
 })
 </script>
 <template>
-    {{ selectedItem }}
     <ContextMenu ref="cm" :model="items" @hide="selectedItem = null" />
     <div v-if="!isMounted" class="skeleton h-96 w-full"> </div>
     <DataTable :class="{ 'skeleton select-none': props.isPending }" v-else :value="props.data" :paginator="true"

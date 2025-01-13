@@ -1,16 +1,17 @@
 import type { APIRoute } from "astro";
 import responseAsJson from "@assets/responseAsJson";
-import searchParamsToObject from "@assets/searchParamsToObject";
 import { DocumentBuilder } from "src/controllers/documentBuilder";
 
 const document = new DocumentBuilder();
+const PROD = import.meta.env.PROD;
+const SITE = import.meta.env.SITE;
 
 export const GET: APIRoute = async ({ url }) => {
   try {
     // Leer los archivos del directorio
     const files = await document
       .setDirectory("minutas")
-      .setOrigin(url.origin)
+      .setOrigin(PROD ? SITE : url.origin)
       .getResult()
       .getFiles();
 
