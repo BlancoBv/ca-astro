@@ -108,6 +108,13 @@ import LogoutButton from "@components/panel/LogoutButton.vue";
               </li>
             )
           }
+          {
+            user?.idRol === 1 && (
+              <li>
+                <a href="/panel/logs">Logs</a>
+              </li>
+            )
+          }
 
           <div class="sticky bottom-0 bg-base-100/80 backdrop-blur-sm">
             <div class="divider mt-0"></div>

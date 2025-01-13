@@ -1,0 +1,18 @@
+---
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+import ListaLogs from "@components/listas/ListaLogs.vue";
+const { user } = Astro.locals;
+const { request } = Astro;
+
+if (user?.idRol !== 1) {
+  return Astro.redirect("404");
+}
+
+const data = await fetch(`http://localhost:4321/api/logs`, {
+  headers: { Cookie: request.headers.get("cookie") ?? "" },
+}).then((res) => res.json());
+---
+
+<LayoutPanel sectionTitle="Logs">
+  <ListaLogs data={data?.response ?? []} client:idle />
+</LayoutPanel>

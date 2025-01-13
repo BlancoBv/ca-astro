@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
-import { formatMoneda } from '@assets/format';
 
 interface props {
     data: any[]
@@ -11,7 +10,7 @@ const props = defineProps<props>()
 
 const getCollabs = (element: {
     otrosColaboradores: string | null;
-    miembros_proyecto: {
+    miembros_publicacion: {
         nombreCompleto: string;
         nombre: string;
         apepat: string;
@@ -24,7 +23,7 @@ const getCollabs = (element: {
     });
     const miembrosF: string[] = [];
 
-    element.miembros_proyecto.forEach((el) => {
+    element.miembros_publicacion.forEach((el) => {
         miembrosF.push(el.nombreCompleto);
     });
 
@@ -44,23 +43,17 @@ const getCollabs = (element: {
 <template>
     <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
         selectionMode="single">
-        <Column field="clave" header="Clave">
+        <Column field="ISSN" header="ISSN">
             <template #body="{ data, field }">
                 <div class="w-20 ">{{ data[field] }}</div>
             </template>
         </Column>
-        <Column field="convocatoria" header="Convocatoria"></Column>
         <Column field="titulo" header="Titulo">
             <template #body="{ data, field }">
                 <div class="min-w-32">{{ data[field] }}</div>
             </template>
         </Column>
-        <Column field="director_proyecto.nombreCompleto" header="Director(a) responsable" sortable />
-        <Column field="fechaInicio" header="Vigencia">
-            <template #body="{ data }">
-                <div class="w-24">{{ data.fechaInicio }} a {{ data.fechaTermino }}</div>
-            </template>
-        </Column>
+        <Column field="year" header="Año" sortable />
         <Column field="miembros_proyecto" header="Colaboradores">
             <template #body="{ data }">
                 <div class="w-32 ">
@@ -71,30 +64,6 @@ const getCollabs = (element: {
         <Column field="tipo" header="Tipo" sortable>
             <template #body="{ data, field }">
                 {{ data[field].toUpperCase() }}
-            </template>
-        </Column>
-        <Column field="monto" header="Monto aprobado" sortable>
-            <template #body="{ data, field }">
-                {{ formatMoneda(data[field]) }}
-            </template>
-        </Column>
-        <Column field="fechaInicioEntrega" header="Entrega final">
-            <template #body="{ data }">
-                <template v-if="!data.fechaInicioEntrega || !data.fechaTerminoEntrega">
-                    ---
-                </template>
-                <template v-else>
-                    <div class="w-24 ">{{ data.fechaInicioEntrega }} a {{ data.fechaTerminoEntrega }}</div>
-                </template>
-            </template>
-        </Column>
-
-        <Column field="estatus" header="Estatus" sortable>
-            <template #body="{ data, field }">
-                <div class="badge h-max" :class="{
-                    'badge-success': data[field] === 'finalizado',
-                    'badge-info': data[field] === 'en proceso'
-                }"> {{ (data[field] as string).toUpperCase() }}</div>
             </template>
         </Column>
 

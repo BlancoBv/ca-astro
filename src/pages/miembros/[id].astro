@@ -1,6 +1,7 @@
 ---
 import { formatDate } from "@assets/format";
 import ListaProyectosMiembros from "@components/listas/ListaProyectosMiembros.vue";
+import ListaPublicacionesMiembros from "@components/listas/ListaPublicacionesMiembros.vue";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 
@@ -31,10 +32,16 @@ const miembro: {
       fechaInicioEntrega: string;
       fechaTerminoEntrega: string;
     }[];
+    publicaciones: {
+      clave: string;
+      titulo: string;
+      year: string;
+      ISSN: string;
+    }[];
     contactos: { tipo: string; url: string }[];
   };
 } = await fetch(
-  `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true`
+  `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true&includePublicaciones=true`
 ).then((res) => res.json());
 
 const redesSocialesIcon: icons = {
@@ -138,5 +145,10 @@ miembro.response.proyectos.forEach((el) => {
     <p>{miembro.response.resumen}</p>
     <h2 class="mt-0">Proyectos</h2>
     <ListaProyectosMiembros data={miembro.response.proyectos} client:idle />
+    <!--     <h2 class="mt-0">Publicaciones</h2>
+    <ListaPublicacionesMiembros
+      data={miembro.response.publicaciones}
+      client:idle
+    /> -->
   </main>
 </Layout>

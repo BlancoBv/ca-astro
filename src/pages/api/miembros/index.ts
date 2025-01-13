@@ -1,8 +1,7 @@
-import { formatDate } from "@assets/format";
 import responseAsJson from "@assets/responseAsJson";
 import searchParamsToObject from "@assets/searchParamsToObject";
 import { sequelize } from "@db";
-import { Contactos, Miembros, Proyectos } from "@model";
+import { Contactos, Miembros, Proyectos, Publicaciones } from "@model";
 import type { APIRoute } from "astro";
 import { ControllerBuilder } from "src/controllers/builder";
 
@@ -12,18 +11,8 @@ export const GET: APIRoute = async ({ url }) => {
 
   try {
     if (search.idmiembro) {
-      /*  const miembro = await Miembros.findOne({
-        where: {
-          idmiembro: search.idmiembro,
-        },
-        include: [
-          {
-            model: Contactos,
-            required: false,
-            attributes: ["tipo", "url"],
-          },
-        ],
-      }); */
+      let proyectos: any[] | null = null;
+      let publicaciones: any[] | null = null;
       const miembro = await controller
         .setModel(Miembros)
         .setWhereFilters({
@@ -40,7 +29,7 @@ export const GET: APIRoute = async ({ url }) => {
         .getOne();
 
       if (search.includeProyectos === "true" && miembro) {
-        const proyectos = await controller
+        proyectos = await controller
           .setModel(Proyectos)
           .setWhereFilters({
             visible: true,
@@ -83,20 +72,55 @@ export const GET: APIRoute = async ({ url }) => {
           .setReplacements({ idmiembro: search.idmiembro })
           .getResult()
           .getAll();
-
-        /*           if (search.includePubs ==="true" && miembro){
-            const pubs= await controller.setModel()
-          } */
-
-        return responseAsJson({
-          ...miembro?.toJSON(),
-          proyectos,
-        });
       }
-      return responseAsJson(miembro);
+      if (search.includePublicaciones === "true" && miembro) {
+        publicaciones = await controller
+          .setModel(Publicaciones)
+          .setWhereFilters({
+            visible: true,
+            idpublicacion: {
+              [controller.Op.in]: sequelize.literal(
+                `(SELECT idpublicacion FROM publicaciones_has_miembros WHERE idmiembro = :idmiembro)`
+              ),
+            },
+          })
+          .setIncludedModels([
+            {
+              model: Miembros,
+              attributes: [
+                "nombreCompleto",
+                "nombre",
+                "apepat",
+                "apemat",
+                "idmiembro",
+              ],
+              as: "miembros_publicacion",
+              through: { attributes: [] },
+            },
+          ])
+          .setReplacements({ idmiembro: search.idmiembro })
+          .getResult()
+          .getAll();
+      }
+
+      return responseAsJson({
+        ...miembro?.toJSON(),
+        ...(proyectos && { proyectos }),
+        ...(publicaciones && { publicaciones }),
+      });
     }
 
-    const response = await Miembros.findAll({
+    const response = await controller
+      .setModel(Miembros)
+      .setWhereFilters({
+        ...(search.colaborador === "true" && { colaborador: true }),
+        ...(search.colaborador === "false" && { colaborador: false }),
+      })
+      .setIncludedModels([
+        ...(search.includeProyectos === "true" ? [{ model: Proyectos }] : []),
+      ])
+      .getResult()
+      .getAll(); /* Miembros.findAll({
       where: {
         ...(search.colaborador === "true" && { colaborador: true }),
         ...(search.colaborador === "false" && { colaborador: false }),
@@ -104,11 +128,9 @@ export const GET: APIRoute = async ({ url }) => {
       include: [
         ...(search.includeProyectos === "true" ? [{ model: Proyectos }] : []),
       ],
-    });
+    }); */
     return responseAsJson(response);
   } catch (error) {
-    console.log(error);
-
     return responseAsJson(null, { sendAsMessage: true }, 404);
   }
 };
