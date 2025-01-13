@@ -84,9 +84,6 @@ const handleSubmit = () => {
         break handleSubmit
     }
 }
-
-
-
 </script>
 <template>
     <form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4 items-end" @submit.prevent="handleSubmit">

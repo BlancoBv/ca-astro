@@ -3,12 +3,14 @@ import LayoutPanel from "@layouts/LayoutPanel.astro";
 import ListaLogs from "@components/listas/ListaLogs.vue";
 const { user } = Astro.locals;
 const { request } = Astro;
+const PROD = import.meta.env.PROD;
+const SITE = import.meta.env.SITE;
 
 if (user?.idRol !== 1) {
   return Astro.redirect("404");
 }
 
-const data = await fetch(`http://localhost:4321/api/logs`, {
+const data = await fetch(`${PROD ? SITE : "http://localhost:4321"}/api/logs`, {
   headers: { Cookie: request.headers.get("cookie") ?? "" },
 }).then((res) => res.json());
 ---
