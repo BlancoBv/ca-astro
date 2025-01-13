@@ -56,11 +56,11 @@ export default class VerifyPath {
     },
     {
       path: "api/proyectos",
-      method: ["POST", "DELETE", "PUT"],
+      method: ["POST", "DELETE", "PUT", "GET"],
     },
     {
       path: "api/publicaciones",
-      method: ["POST", "DELETE", "PUT"],
+      method: ["POST", "DELETE", "PUT", "GET"],
     },
   ];
 
