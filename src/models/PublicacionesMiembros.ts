@@ -1,15 +1,15 @@
 import { sequelize } from "@db";
 import { DataTypes } from "sequelize";
-import { Proyectos, Miembros } from "@model";
+import { Miembros, Publicaciones } from "@model";
 
-const ProyectosMiembros = sequelize.define(
-  "proyectos_has_miembros",
+const PublicacionesMiembros = sequelize.define(
+  "publicaciones_has_miembros",
   {
-    idproyecto: {
+    idpublicacion: {
       type: DataTypes.INTEGER,
       references: {
-        model: Proyectos,
-        key: "idproyecto",
+        model: Publicaciones,
+        key: "idpublicacion",
       },
     },
     idmiembro: {
@@ -23,4 +23,4 @@ const ProyectosMiembros = sequelize.define(
   { timestamps: false }
 );
 
-export default ProyectosMiembros;
+export default PublicacionesMiembros;

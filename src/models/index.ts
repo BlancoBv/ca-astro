@@ -15,6 +15,8 @@ import Miembros from "./Miembros";
 import Contactos from "./Contactos";
 import Banners from "./Banners";
 import Logs from "./Logs";
+import Publicaciones from "./Publicaciones";
+import PublicacionesMiembros from "./PublicacionesMiembros";
 
 Roles.belongsToMany(Permisos, {
   through: RolesPermisos,
@@ -57,6 +59,17 @@ Proyectos.belongsTo(Miembros, {
   as: "director_proyecto",
 });
 
+Publicaciones.belongsToMany(Miembros, {
+  through: PublicacionesMiembros,
+  foreignKey: "idpublicacion",
+  as: "miembros_publicacion",
+});
+Miembros.belongsToMany(Publicaciones, {
+  through: PublicacionesMiembros,
+  foreignKey: "idmiembro",
+  as: "publicaciones_miembro",
+});
+
 Miembros.belongsToMany(Proyectos, {
   through: ProyectosMiembros,
   foreignKey: "idmiembro",
@@ -89,4 +102,6 @@ export {
   Contactos,
   Banners,
   Logs,
+  Publicaciones,
+  PublicacionesMiembros,
 };
