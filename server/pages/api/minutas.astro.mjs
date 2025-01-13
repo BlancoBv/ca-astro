@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { promises } from 'fs';
 import path from 'path';
-export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 function generadorNombre(fileExtension) {
   let d = (/* @__PURE__ */ new Date()).getTime();
@@ -111,9 +111,11 @@ class Document {
 }
 
 const document = new DocumentBuilder();
+const PROD = true;
+const SITE = "https://computodistribuido.org";
 const GET = async ({ url }) => {
   try {
-    const files = await document.setDirectory("minutas").setOrigin(url.origin).getResult().getFiles();
+    const files = await document.setDirectory("minutas").setOrigin(PROD ? SITE : url.origin).getResult().getFiles();
     files.forEach((el) => {
       const fecha = el.fileName.split(";")[1].split(".")[0];
       el["fechaCreacion"] = fecha;

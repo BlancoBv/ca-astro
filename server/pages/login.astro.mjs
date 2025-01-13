@@ -7,7 +7,7 @@ import { u as useSendData } from '../chunks/http_yWF3wTfY.mjs';
 import { ssrRenderAttrs, ssrRenderAttr, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_ChOUXVIM.mjs';
 /* empty css                                 */
-export { r as renderers } from '../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "Form",

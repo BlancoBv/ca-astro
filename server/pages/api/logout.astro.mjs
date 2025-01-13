@@ -1,6 +1,6 @@
 import { C as CookiesManager } from '../../chunks/CookiesManager_BfWIquu0.mjs';
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const POST = async ({ cookies, request }) => {
   const cookiesManager = new CookiesManager(cookies, request);

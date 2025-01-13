@@ -3,13 +3,13 @@ import { b as createAstro, c as createComponent, r as renderTemplate, a as rende
 import { a as formatMoneda, f as formatDate } from '../../chunks/format_DR5bMIry.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, createVNode, toDisplayString, openBlock, createBlock, Fragment } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_1noiwcsu.mjs';
+import { s as script, a as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
 import { ssrRenderComponent, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_ChOUXVIM.mjs';
 import { $ as $$Layout } from '../../chunks/Layout_DtO5PETH.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "ListaProyectosMiembros",

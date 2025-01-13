@@ -2,7 +2,7 @@ import { b as createAstro, c as createComponent, r as renderTemplate, d as addAt
 import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_ChOUXVIM.mjs';
 /* empty css                         */
 /* empty css                           */
-import { R as Roles, e as Permisos } from './index_CirPXude.mjs';
+import { R as Roles, e as Permisos } from './index_CDY0us9h.mjs';
 import { C as ControllerBuilder } from './builder_BlgJlZuX.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';

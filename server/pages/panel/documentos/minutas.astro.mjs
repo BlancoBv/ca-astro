@@ -1,16 +1,16 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_DHMs7f3d.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_6IDu9g3F.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, useTemplateRef, ref, onMounted, onUnmounted, withCtx, createVNode, reactive, computed } from 'vue';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
-import { a as script, s as script$1 } from '../../../chunks/index_1noiwcsu.mjs';
-import { s as script$2 } from '../../../chunks/index_CZzw6AIK.mjs';
-import { ssrInterpolate, ssrRenderComponent, ssrRenderAttr } from 'vue/server-renderer';
+import { a as script, s as script$1 } from '../../../chunks/index_DoPSSCG4.mjs';
+import { s as script$2 } from '../../../chunks/index_8Q2yTLye.mjs';
+import { ssrRenderComponent, ssrRenderAttr } from 'vue/server-renderer';
 /* empty css                                       */
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_ChOUXVIM.mjs';
 import moment from 'moment';
-export { r as renderers } from '../../../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaMinutas",
@@ -55,7 +55,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<!--[-->${ssrInterpolate($setup.selectedItem)} `);
+  _push(`<!--[-->`);
   _push(ssrRenderComponent($setup["ContextMenu"], {
     ref: "cm",
     model: $setup.items,

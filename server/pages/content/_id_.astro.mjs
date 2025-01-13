@@ -5,7 +5,7 @@ import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../../chunks/Eti
 import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
 /* empty css                                   */
 /* empty css                                    */
-export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");
 const $$id = createComponent(async ($$result, $$props, $$slots) => {

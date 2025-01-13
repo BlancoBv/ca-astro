@@ -1,9 +1,9 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
-import { P as Proyectos, d as Miembros, s as sequelize, f as ProyectosMiembros } from '../../chunks/index_CirPXude.mjs';
+import { P as Proyectos, d as Miembros, s as sequelize, f as ProyectosMiembros } from '../../chunks/index_CDY0us9h.mjs';
 import * as z from 'zod';
 import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_2nZAise9.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const proyectoSchema = z.object({
   miembrosColaboradores: z.number({

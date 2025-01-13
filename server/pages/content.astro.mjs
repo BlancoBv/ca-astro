@@ -6,7 +6,7 @@ import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { ssrRenderAttrs, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_ChOUXVIM.mjs';
 import { $ as $$CardBlog } from '../chunks/CardBlog_DKACgea5.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "Pagination",

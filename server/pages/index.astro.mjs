@@ -9,7 +9,7 @@ import { Carousel as Carousel$1, Navigation, Slide } from 'vue3-carousel';
 /* empty css                                 */
 import { ssrRenderComponent, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_ChOUXVIM.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_CWS4mHxj.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
   const blogs = await fetch(`http://localhost:4321/api/blogs?status=aceptado&limit=3`).then(
