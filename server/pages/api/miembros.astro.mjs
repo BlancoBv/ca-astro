@@ -1,7 +1,6 @@
-import '../../chunks/format_DR5bMIry.mjs';
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize } from '../../chunks/index_CDY0us9h.mjs';
+import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize, e as Publicaciones } from '../../chunks/index_C3EibimT.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
@@ -10,6 +9,8 @@ const GET = async ({ url }) => {
   const controller = new ControllerBuilder();
   try {
     if (search.idmiembro) {
+      let proyectos = null;
+      let publicaciones = null;
       const miembro = await controller.setModel(Miembros).setWhereFilters({
         idmiembro: search.idmiembro
       }).setIncludedModels([
@@ -20,7 +21,7 @@ const GET = async ({ url }) => {
         }
       ]).getResult().getOne();
       if (search.includeProyectos === "true" && miembro) {
-        const proyectos = await controller.setModel(Proyectos).setWhereFilters({
+        proyectos = await controller.setModel(Proyectos).setWhereFilters({
           visible: true,
           [controller.Op.or]: [
             { director: search.idmiembro },
@@ -59,25 +60,44 @@ const GET = async ({ url }) => {
             ]
           }
         ]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
-        return responseAsJson({
-          ...miembro?.toJSON(),
-          proyectos
-        });
       }
-      return responseAsJson(miembro);
+      if (search.includePublicaciones === "true" && miembro) {
+        publicaciones = await controller.setModel(Publicaciones).setWhereFilters({
+          visible: true,
+          idpublicacion: {
+            [controller.Op.in]: sequelize.literal(
+              `(SELECT idpublicacion FROM publicaciones_has_miembros WHERE idmiembro = :idmiembro)`
+            )
+          }
+        }).setIncludedModels([
+          {
+            model: Miembros,
+            attributes: [
+              "nombreCompleto",
+              "nombre",
+              "apepat",
+              "apemat",
+              "idmiembro"
+            ],
+            as: "miembros_publicacion",
+            through: { attributes: [] }
+          }
+        ]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
+      }
+      return responseAsJson({
+        ...miembro?.toJSON(),
+        ...proyectos && { proyectos },
+        ...publicaciones && { publicaciones }
+      });
     }
-    const response = await Miembros.findAll({
-      where: {
-        ...search.colaborador === "true" && { colaborador: true },
-        ...search.colaborador === "false" && { colaborador: false }
-      },
-      include: [
-        ...search.includeProyectos === "true" ? [{ model: Proyectos }] : []
-      ]
-    });
+    const response = await controller.setModel(Miembros).setWhereFilters({
+      ...search.colaborador === "true" && { colaborador: true },
+      ...search.colaborador === "false" && { colaborador: false }
+    }).setIncludedModels([
+      ...search.includeProyectos === "true" ? [{ model: Proyectos }] : []
+    ]).getResult().getAll();
     return responseAsJson(response);
   } catch (error) {
-    console.log(error);
     return responseAsJson(null, { sendAsMessage: true }, 404);
   }
 };

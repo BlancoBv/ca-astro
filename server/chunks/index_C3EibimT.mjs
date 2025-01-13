@@ -478,55 +478,41 @@ const Logs = sequelize.define("logs", {
   }
 });
 
-const Publicaciones = sequelize.define(
-  "publicaciones",
-  {
-    idpublicacion: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    ISSN: {
-      type: DataTypes.STRING(60),
-      allowNull: false
-    },
-    titulo: {
-      type: DataTypes.STRING(250),
-      allowNull: false
-    },
-    tipo: {
-      type: DataTypes.ENUM("arbitrado", "memoria en extenso "),
-      allowNull: false
-    },
-    descripcion: {
-      type: DataTypes.TEXT("medium")
-    },
-    url: {
-      type: DataTypes.STRING(100)
-    },
-    otrosAutores: {
-      type: DataTypes.STRING(100)
-    },
-    year: {
-      type: DataTypes.STRING(4)
-    },
-    visible: {
-      type: DataTypes.BOOLEAN(),
-      allowNull: false
-    }
+const Publicaciones = sequelize.define("publicaciones", {
+  idpublicacion: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  ISSN: {
+    type: DataTypes.STRING(60),
+    allowNull: false
+  },
+  titulo: {
+    type: DataTypes.STRING(250),
+    allowNull: false
+  },
+  tipo: {
+    type: DataTypes.ENUM("arbitrado", "memoria en extenso "),
+    allowNull: false
+  },
+  descripcion: {
+    type: DataTypes.TEXT("medium")
+  },
+  url: {
+    type: DataTypes.STRING(100)
+  },
+  otrosAutores: {
+    type: DataTypes.STRING(100)
+  },
+  year: {
+    type: DataTypes.STRING(4)
+  },
+  visible: {
+    type: DataTypes.BOOLEAN(),
+    allowNull: false
   }
-  /*   {
-      hooks: {
-        afterFind(instancesOrInstance, options) {
-          console.log(instancesOrInstance);
-  
-          instancesOrInstance.forEach((el) => {
-            el.dataValues.fechaInicio = formatDate(el.dataValues.fechaInicio, "LL");
-          });
-        },
-      },
-    } */
-);
+});
 
 const PublicacionesMiembros = sequelize.define(
   "publicaciones_has_miembros",
@@ -606,4 +592,4 @@ Proyectos.belongsToMany(Miembros, {
 Miembros.hasMany(Contactos, { foreignKey: "idmiembro" });
 Contactos.belongsTo(Miembros, { foreignKey: "idmiembro" });
 
-export { Articulo as A, Banners as B, Contactos as C, Etiquetas as E, Logs as L, Menus as M, Proyectos as P, Roles as R, Submenus as S, Users as U, EtiquetasArticulos as a, Blog as b, EtiquetasBlogs as c, Miembros as d, Permisos as e, ProyectosMiembros as f, Publicaciones as g, sequelize as s };
+export { Articulo as A, Banners as B, Contactos as C, Etiquetas as E, Logs as L, Menus as M, Proyectos as P, Roles as R, Submenus as S, Users as U, EtiquetasArticulos as a, Blog as b, EtiquetasBlogs as c, Miembros as d, Publicaciones as e, Permisos as f, ProyectosMiembros as g, sequelize as s };

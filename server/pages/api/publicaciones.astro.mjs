@@ -1,5 +1,5 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-import { g as Publicaciones, d as Miembros } from '../../chunks/index_CDY0us9h.mjs';
+import { e as Publicaciones, d as Miembros } from '../../chunks/index_C3EibimT.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
 import * as z from 'zod';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
