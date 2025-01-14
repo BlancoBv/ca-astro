@@ -1,13 +1,13 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CaHZTzr2.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DVOYpNEe.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode } from 'vue';
 import { a as script, s as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
 import { f as formatDate } from '../../chunks/format_DR5bMIry.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
 /* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_ChU72wyx.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_NQzEJyeK.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -124,15 +124,15 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   Astro2.self = $$Index;
   const { user } = Astro2.locals;
   const { request } = Astro2;
+  const SITE = "https://computodistribuido.org";
   if (user?.idRol !== 1) {
     return Astro2.redirect("404");
   }
-  const data = await fetch(`http://localhost:4321/api/logs`, {
+  const data = await fetch(`${SITE }/api/logs`, {
     headers: { Cookie: request.headers.get("cookie") ?? "" }
   }).then((res) => res.json());
   return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Logs" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaLogs", ListaLogs, { "data": data?.response ?? [], "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaLogs.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/logs/index.astro", void 0);
-
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/logs/index.astro";
 const $$url = "/panel/logs";
 
