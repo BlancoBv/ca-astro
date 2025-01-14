@@ -1,10 +1,11 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DVOYpNEe.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BpdfV8CA.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode } from 'vue';
 import { a as script, s as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
-import { f as formatDate } from '../../chunks/format_DR5bMIry.mjs';
+import { f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
+import 'moment';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
 /* empty css                                    */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_NQzEJyeK.mjs';
@@ -68,10 +69,10 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
           }, {
             body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`${ssrInterpolate($setup.formatDate(data[field], "DD-MM-YYYY"))}`);
+                _push3(`${ssrInterpolate($setup.formatDate(data[field], "DD-MM-YYYY hh:mm:ss"))}`);
               } else {
                 return [
-                  createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY")), 1)
+                  createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY hh:mm:ss")), 1)
                 ];
               }
             }),
@@ -99,7 +100,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
               sortable: ""
             }, {
               body: withCtx(({ data, field }) => [
-                createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY")), 1)
+                createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY hh:mm:ss")), 1)
               ]),
               _: 1
             })

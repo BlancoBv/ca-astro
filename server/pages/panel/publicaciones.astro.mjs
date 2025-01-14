@@ -1,16 +1,16 @@
 /* empty css                                      */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
 import { toast } from 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, mergeProps, withCtx, withDirectives, createVNode, vModelText, toDisplayString, vModelSelect, createTextVNode, withModifiers, withKeys, reactive } from 'vue';
+import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, mergeProps, withCtx, createTextVNode, toDisplayString, withDirectives, createVNode, vModelText, vModelSelect, withModifiers, withKeys, reactive } from 'vue';
 import { a as useGetData, u as useSendData } from '../../chunks/http_yWF3wTfY.mjs';
 import { a as script, s as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
 import { s as script$2 } from '../../chunks/index_C0XWHpsJ.mjs';
-import { f as formatDate } from '../../chunks/format_DR5bMIry.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderClass } from 'vue/server-renderer';
+import { f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                    */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_NQzEJyeK.mjs';
 import { v as validateBuilder } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DVOYpNEe.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BpdfV8CA.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -85,6 +85,15 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             field: "ISSN",
             header: "ISSN"
           }, {
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`${ssrInterpolate(data[field] ?? "---")}`);
+              } else {
+                return [
+                  createTextVNode(toDisplayString(data[field] ?? "---"), 1)
+                ];
+              }
+            }),
             editor: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
                 _push3(`<input${ssrRenderAttr("value", data[field])} type="text" class="input input-bordered w-full max-w-xs"${_scopeId2}>`);
@@ -132,6 +141,27 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             _: 1
           }, _parent2, _scopeId));
           _push2(ssrRenderComponent($setup["Column"], {
+            field: "year",
+            header: "A\xF1o"
+          }, {
+            editor: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`<input${ssrRenderAttr("value", data[field])} type="text" class="input input-bordered w-full max-w-xs"${_scopeId2}>`);
+              } else {
+                return [
+                  withDirectives(createVNode("input", {
+                    "onUpdate:modelValue": ($event) => data[field] = $event,
+                    type: "text",
+                    class: "input input-bordered w-full max-w-xs"
+                  }, null, 8, ["onUpdate:modelValue"]), [
+                    [vModelText, data[field]]
+                  ])
+                ];
+              }
+            }),
+            _: 1
+          }, _parent2, _scopeId));
+          _push2(ssrRenderComponent($setup["Column"], {
             field: "tipo",
             header: "Tipo",
             sortable: ""
@@ -147,7 +177,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             }),
             editor: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`<select class="select select-bordered w-full max-w-xs"${_scopeId2}><option disabled selected${_scopeId2}>Selecciona un tipo</option><option value="arbitrado"${ssrIncludeBooleanAttr(Array.isArray(data[field]) ? ssrLooseContain(data[field], "arbitrado") : ssrLooseEqual(data[field], "arbitrado")) ? " selected" : ""}${_scopeId2}>Arbitrado</option><option value="memoria en extenso"${ssrIncludeBooleanAttr(Array.isArray(data[field]) ? ssrLooseContain(data[field], "memoria en extenso") : ssrLooseEqual(data[field], "memoria en extenso")) ? " selected" : ""}${_scopeId2}>Memoria en extenso</option></select>`);
+                _push3(`<select class="select select-bordered w-full max-w-xs"${_scopeId2}><option disabled selected${_scopeId2}>Selecciona un tipo</option><option value="arbitrado"${ssrIncludeBooleanAttr(Array.isArray(data[field]) ? ssrLooseContain(data[field], "arbitrado") : ssrLooseEqual(data[field], "arbitrado")) ? " selected" : ""}${_scopeId2}>Arbitrado</option><option value="memoria en extenso"${ssrIncludeBooleanAttr(Array.isArray(data[field]) ? ssrLooseContain(data[field], "memoria en extenso") : ssrLooseEqual(data[field], "memoria en extenso")) ? " selected" : ""}${_scopeId2}>Memoria en extenso</option><option value="journa"${ssrIncludeBooleanAttr(Array.isArray(data[field]) ? ssrLooseContain(data[field], "journa") : ssrLooseEqual(data[field], "journa")) ? " selected" : ""}${_scopeId2}>Journal</option><option value="indexado"${ssrIncludeBooleanAttr(Array.isArray(data[field]) ? ssrLooseContain(data[field], "indexado") : ssrLooseEqual(data[field], "indexado")) ? " selected" : ""}${_scopeId2}>Indexado</option></select>`);
               } else {
                 return [
                   withDirectives(createVNode("select", {
@@ -159,7 +189,9 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                       selected: ""
                     }, "Selecciona un tipo"),
                     createVNode("option", { value: "arbitrado" }, "Arbitrado"),
-                    createVNode("option", { value: "memoria en extenso" }, "Memoria en extenso")
+                    createVNode("option", { value: "memoria en extenso" }, "Memoria en extenso"),
+                    createVNode("option", { value: "journa" }, "Journal"),
+                    createVNode("option", { value: "indexado" }, "Indexado")
                   ], 8, ["onUpdate:modelValue"]), [
                     [vModelSelect, data[field]]
                   ])
@@ -273,10 +305,10 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }, {
             body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`${ssrInterpolate(data[field] ?? "--.")}`);
+                _push3(`${ssrInterpolate(data[field] ?? "---")}`);
               } else {
                 return [
-                  createTextVNode(toDisplayString(data[field] ?? "--."), 1)
+                  createTextVNode(toDisplayString(data[field] ?? "---"), 1)
                 ];
               }
             }),
@@ -302,10 +334,10 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }, {
             body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`${ssrInterpolate(data[field] ?? "--.")}`);
+                _push3(`${ssrInterpolate(data[field] ?? "---")}`);
               } else {
                 return [
-                  createTextVNode(toDisplayString(data[field] ?? "--."), 1)
+                  createTextVNode(toDisplayString(data[field] ?? "---"), 1)
                 ];
               }
             }),
@@ -409,6 +441,9 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
               field: "ISSN",
               header: "ISSN"
             }, {
+              body: withCtx(({ data, field }) => [
+                createTextVNode(toDisplayString(data[field] ?? "---"), 1)
+              ]),
               editor: withCtx(({ data, field }) => [
                 withDirectives(createVNode("input", {
                   "onUpdate:modelValue": ($event) => data[field] = $event,
@@ -438,6 +473,21 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
               _: 1
             }),
             createVNode($setup["Column"], {
+              field: "year",
+              header: "A\xF1o"
+            }, {
+              editor: withCtx(({ data, field }) => [
+                withDirectives(createVNode("input", {
+                  "onUpdate:modelValue": ($event) => data[field] = $event,
+                  type: "text",
+                  class: "input input-bordered w-full max-w-xs"
+                }, null, 8, ["onUpdate:modelValue"]), [
+                  [vModelText, data[field]]
+                ])
+              ]),
+              _: 1
+            }),
+            createVNode($setup["Column"], {
               field: "tipo",
               header: "Tipo",
               sortable: ""
@@ -455,7 +505,9 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                     selected: ""
                   }, "Selecciona un tipo"),
                   createVNode("option", { value: "arbitrado" }, "Arbitrado"),
-                  createVNode("option", { value: "memoria en extenso" }, "Memoria en extenso")
+                  createVNode("option", { value: "memoria en extenso" }, "Memoria en extenso"),
+                  createVNode("option", { value: "journa" }, "Journal"),
+                  createVNode("option", { value: "indexado" }, "Indexado")
                 ], 8, ["onUpdate:modelValue"]), [
                   [vModelSelect, data[field]]
                 ])
@@ -529,7 +581,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
               header: "Descripci\xF3n"
             }, {
               body: withCtx(({ data, field }) => [
-                createTextVNode(toDisplayString(data[field] ?? "--."), 1)
+                createTextVNode(toDisplayString(data[field] ?? "---"), 1)
               ]),
               editor: withCtx(({ data, field }) => [
                 withDirectives(createVNode("textarea", {
@@ -546,7 +598,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
               header: "URL (DOI u otro)"
             }, {
               body: withCtx(({ data, field }) => [
-                createTextVNode(toDisplayString(data[field] ?? "--."), 1)
+                createTextVNode(toDisplayString(data[field] ?? "---"), 1)
               ]),
               editor: withCtx(({ data, field }) => [
                 withDirectives(createVNode("textarea", {

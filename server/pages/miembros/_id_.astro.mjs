@@ -1,13 +1,13 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { a as formatMoneda, f as formatDate } from '../../chunks/format_DR5bMIry.mjs';
+import { a as formatMoneda, f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, createVNode, toDisplayString, openBlock, createBlock, Fragment } from 'vue';
 import { s as script, a as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
 import { ssrRenderComponent, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_NQzEJyeK.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_lrD154NK.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DsPs4fD1.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
@@ -384,10 +384,10 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
         }, {
           body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="w-20"${_scopeId2}>${ssrInterpolate(data[field])}</div>`);
+              _push3(`<div class="w-20"${_scopeId2}>${ssrInterpolate(data[field] ?? "---")}</div>`);
             } else {
               return [
-                createVNode("div", { class: "w-20" }, toDisplayString(data[field]), 1)
+                createVNode("div", { class: "w-20" }, toDisplayString(data[field] ?? "---"), 1)
               ];
             }
           }),
@@ -451,7 +451,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
             header: "ISSN"
           }, {
             body: withCtx(({ data, field }) => [
-              createVNode("div", { class: "w-20" }, toDisplayString(data[field]), 1)
+              createVNode("div", { class: "w-20" }, toDisplayString(data[field] ?? "---"), 1)
             ]),
             _: 1
           }),

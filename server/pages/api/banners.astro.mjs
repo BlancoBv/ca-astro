@@ -1,7 +1,7 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { I as ImageController } from '../../chunks/ImageController_Vn72BPHB.mjs';
-import { B as Banners } from '../../chunks/index_K0Lb7C1D.mjs';
+import { B as Banners } from '../../chunks/index_CKsFtCw4.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
