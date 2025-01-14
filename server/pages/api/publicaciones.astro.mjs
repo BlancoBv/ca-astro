@@ -2,7 +2,7 @@ import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { e as Publicaciones, d as Miembros, s as sequelize, h as PublicacionesMiembros } from '../../chunks/index_K0Lb7C1D.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
 import * as z from 'zod';
-import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_2nZAise9.mjs';
+import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_7RuNDgkL.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const controller = new ControllerBuilder();
@@ -16,20 +16,17 @@ const pubsObject = z.object({
     noEmptyOrBlankSpaces.message("Titulo")
   ),
   year: z.string().min(4),
-  ISSN: z.string().refine(
-    noEmptyOrBlankSpaces.callback,
-    noEmptyOrBlankSpaces.message("Titulo")
-  ),
-  otrosAutores: z.string().refine(
+  ISSN: z.string().nullable().refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("ISSN")).optional(),
+  otrosAutores: z.string().nullable().refine(
     noEmptyOrBlankSpaces.callback,
     noEmptyOrBlankSpaces.message("Otros autores")
   ).optional(),
-  tipo: z.enum(["arbitrado", "memoria en extenso"]),
-  descripcion: z.string().refine(
+  tipo: z.enum(["arbitrado", "memoria en extenso", "journal", "indexado"]),
+  descripcion: z.string().nullable().refine(
     noEmptyOrBlankSpaces.callback,
     noEmptyOrBlankSpaces.message("Descripción")
   ),
-  url: z.string().url().refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("URL")),
+  url: z.string().url().nullable().refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("URL")).optional(),
   visible: z.boolean()
 });
 const GET = async () => {
