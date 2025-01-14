@@ -3,6 +3,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { formatDate } from '@assets/format';
+import moment from 'moment';
 
 interface listaDocs { method: string, idUsuario: number, ruta: string }
 
@@ -25,7 +26,7 @@ onUnmounted(() => {
         <Column field="idUsuario" header="Usuario" sortable />
         <Column field="createdAt" header="Fecha de creación" sortable>
             <template #body="{ data, field }">
-                {{ formatDate(data[field], "DD-MM-YYYY") }}
+                {{ formatDate(data[field], "DD-MM-YYYY hh:mm:ss") }}
             </template>
         </Column>
     </DataTable>

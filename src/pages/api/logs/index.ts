@@ -28,7 +28,7 @@ export const GET: APIRoute = async ({ locals }) => {
       .delete(); //elimina los registros antiguos a 30 dias
     const response = await controller
       .setModel(Logs)
-      .setOrderFilters([["createdAt", "DESC"]])
+      .setOrderFilters([["idlog", "DESC"]])
       .getResult()
       .getAll();
     return responseAsJson(response);

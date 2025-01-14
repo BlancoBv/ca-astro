@@ -1,10 +1,17 @@
 import moment from "moment";
 
-moment.locale("es-mx");
+moment.locale("es-MX");
 
 export function formatDate(
   date: string | Date,
-  format?: "L" | "LL" | "LLL" | "YYYY" | "MMMM YYYY" | "DD-MM-YYYY"
+  format?:
+    | "L"
+    | "LL"
+    | "LLL"
+    | "YYYY"
+    | "MMMM YYYY"
+    | "DD-MM-YYYY"
+    | "DD-MM-YYYY hh:mm:ss"
 ) {
   return moment(date).format(format ?? "L");
 }

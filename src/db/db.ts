@@ -13,7 +13,7 @@ export const sequelize = new Sequelize(DATABASE, USER_DB, PASSWORD_DB, {
     idle: 10000,
   },
   logging: !import.meta.env.PROD,
-  timezone: "-06:00",
+  timezone: "America/Mexico_City",
 });
 
 /* sequelize
