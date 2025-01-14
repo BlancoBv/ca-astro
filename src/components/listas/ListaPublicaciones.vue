@@ -50,6 +50,7 @@ onUnmounted(() => {
         :class="{ 'skeleton select-none': props.isPending, 'cursor-wait select-none': props.mutationUpdate.isPending.value }"
         v-else :value="props.data" :paginator="true" :rows="5" :edit-mode="'cell'" @cell-edit-complete="handleEdit">
         <Column field="ISSN" header="ISSN">
+            <template #body="{ data, field }">{{ data[field] ?? "---" }}</template>
             <template #editor="{ data, field }">
                 <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
             </template>
@@ -60,6 +61,11 @@ onUnmounted(() => {
             </template>
             <template #editor="{ data, field }">
                 <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
+            </template>
+        </Column>
+        <Column field="year" header="Año">
+            <template #editor="{ data, field }">
+                <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
             </template>
         </Column>
         <Column field="tipo" header="Tipo" sortable>
@@ -73,6 +79,8 @@ onUnmounted(() => {
                     <option disabled selected>Selecciona un tipo</option>
                     <option value="arbitrado">Arbitrado</option>
                     <option value="memoria en extenso">Memoria en extenso</option>
+                    <option value="journa">Journal</option>
+                    <option value="indexado">Indexado</option>
                 </select>
             </template>
         </Column>
@@ -103,7 +111,7 @@ onUnmounted(() => {
         </Column>
         <Column field="descripcion" header="Descripción">
             <template #body="{ data, field }">
-                {{ data[field] ?? "--." }}
+                {{ data[field] ?? "---" }}
             </template>
             <template #editor="{ data, field }">
                 <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
@@ -111,7 +119,7 @@ onUnmounted(() => {
         </Column>
         <Column field="url" header="URL (DOI u otro)">
             <template #body="{ data, field }">
-                {{ data[field] ?? "--." }}
+                {{ data[field] ?? "---" }}
             </template>
             <template #editor="{ data, field }">
                 <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />

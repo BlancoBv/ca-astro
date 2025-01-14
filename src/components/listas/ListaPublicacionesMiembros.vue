@@ -44,7 +44,7 @@ const getCollabs = (element: {
     <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]">
         <Column field="ISSN" header="ISSN">
             <template #body="{ data, field }">
-                <div class="w-20 ">{{ data[field] }}</div>
+                <div class="w-20 ">{{ data[field] ?? "---" }}</div>
             </template>
         </Column>
         <Column field="titulo" header="Titulo">
