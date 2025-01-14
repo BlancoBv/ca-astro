@@ -149,3 +149,55 @@ export const POST: APIRoute = async ({ request }) => {
     return responseAsJson({ error }, { sendAsMessage: true }, 400);
   }
 };
+
+export const PUT: APIRoute = async ({ request }) => {
+  const { idpublicacion, ...body } = await request.json();
+
+  try {
+    pubsObject.partial().parse(body);
+
+    await sequelize.transaction(async (t) => {
+      if (body.miembrosColabAdd || body.miembrosColabDelete) {
+        if ((body.miembrosColabAdd as number[]).length > 0) {
+          await controller
+            .setModel(PublicacionesMiembros)
+            .setTransaction(t)
+            .getResult()
+            .bulkCreate(
+              body.miembrosColabAdd.map((el: number) => ({
+                idpublicacion,
+                idmiembro: el,
+              }))
+            );
+        }
+        if ((body.miembrosColabDelete as number[]).length > 0) {
+          await controller
+            .setModel(PublicacionesMiembros)
+            .setWhereFilters({
+              [controller.Op.and]: {
+                idpublicacion,
+                idmiembro: body.miembrosColabDelete,
+              },
+            })
+            .setTransaction(t)
+            .getResult()
+            .delete();
+        }
+        return responseAsJson({ msg: "Miembros editados correctamente" });
+      }
+      await controller
+        .setModel(Publicaciones)
+        .setTransaction(t)
+        .setWhereFilters({ idpublicacion })
+        .setBody(body)
+        .getResult()
+        .update();
+    });
+    return responseAsJson(
+      { msg: "Actualizado correctamente" },
+      { sendAsMessage: true }
+    );
+  } catch (error) {
+    return responseAsJson({ error }, { sendAsMessage: true }, 400);
+  }
+};

@@ -27,12 +27,12 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
 
                 const idsToDelete = prevValues.difference(newValues)
                 const idsToAdd = newValues.difference(prevValues)
-                props.mutationUpdate.mutate({ idproyecto: data.idproyecto, miembrosColabAdd: Array.from(idsToAdd), miembrosColabDelete: Array.from(idsToDelete) })
+                props.mutationUpdate.mutate({ idpublicacion: data.idpublicacion, miembrosColabAdd: Array.from(idsToAdd), miembrosColabDelete: Array.from(idsToDelete) })
             }
             break handleEdit
         }
 
-        if (newValue !== data[field]) { props.mutationUpdate.mutate({ idproyecto: data.idproyecto, [field]: newValue }) }
+        if (newValue !== data[field]) { props.mutationUpdate.mutate({ idpublicacion: data.idpublicacion, [field]: newValue }) }
         break handleEdit
     }
 }
@@ -67,17 +67,16 @@ onUnmounted(() => {
                 <div class="badge badge-info h-max">
                     {{ data[field].toUpperCase() }}
                 </div>
-
             </template>
             <template #editor="{ data, field }">
                 <select v-model="data[field]" class="select select-bordered w-full max-w-xs">
                     <option disabled selected>Selecciona un tipo</option>
-                    <option value="interno">Interno</option>
-                    <option value="externo">Externo</option>
+                    <option value="arbitrado">Arbitrado</option>
+                    <option value="memoria en extenso">Memoria en extenso</option>
                 </select>
             </template>
         </Column>
-        <Column field="miembrosCol" header="Miembros colaboradores">
+        <Column field="miembrosCol" header="Miembros autores">
             <template #body="{ data }">
                 {{ data.miembros_publicacion.map((el: any) => el.nombreCompleto).join(",") }}
             </template>
@@ -95,9 +94,17 @@ onUnmounted(() => {
                     @keydown.escape.stop />
             </template>
         </Column>
-        <Column field="otrosColaboradores" header="Otros colaboradores">
+        <Column field="otrosAutores" header="Otros autores">
             <template #body="{ data, field }">{{
                 data[field] ?? "---" }}</template>
+            <template #editor="{ data, field }">
+                <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
+            </template>
+        </Column>
+        <Column field="descripcion" header="Descripción">
+            <template #body="{ data, field }">
+                {{ data[field] ?? "--." }}
+            </template>
             <template #editor="{ data, field }">
                 <textarea v-model="data[field]" class="textarea textarea-bordered h-24" />
             </template>

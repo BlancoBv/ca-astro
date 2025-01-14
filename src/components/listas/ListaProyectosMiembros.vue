@@ -42,8 +42,7 @@ const getCollabs = (element: {
 
 </script>
 <template>
-    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
-        selectionMode="single">
+    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]">
         <Column field="clave" header="Clave">
             <template #body="{ data, field }">
                 <div class="w-20 ">{{ data[field] }}</div>

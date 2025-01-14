@@ -5,6 +5,7 @@ import { validateBuilder } from '@assets/zodValidations';
 import { reactive, ref } from 'vue';
 import MultiSelect from 'primevue/multiselect';
 import { toast } from 'vue3-toastify';
+import { computed } from 'vue';
 
 const validator = new validateBuilder()
 
@@ -24,7 +25,11 @@ const addPublicacion = useSendData("publicaciones", "post", {
         refetch()
     }
 })
-const updatePublicaciones = useSendData("publicaciones", "put")
+const updatePublicaciones = useSendData("publicaciones", "put", {
+    onSuccess() {
+        refetch()
+    }
+})
 const body = reactive<{
     titulo: string, ISSN: string,
     descripcion: string,
@@ -35,6 +40,9 @@ const body = reactive<{
     visible: boolean
     tipo: string
 }>({ titulo: "", ISSN: "", descripcion: "", year: "", url: "", miembrosColaboradores: [], visible: true, tipo: "" })
+const proyectos = computed(() => {
+    return data.value?.response.map((el: any) => ({ ...el, miembrosCol: el.miembros_publicacion.map((miembro: any) => miembro.idmiembro) })) ?? []
+})
 
 const handleSubmit = () => {
     handleSubmit: {
@@ -122,7 +130,7 @@ const handleSubmit = () => {
         </div>
         <button class="btn btn-primary">Añadir publicación</button>
     </form>
-    <ListaPublicaciones :data="data?.response ?? []" :is-pending="isPending" :miembros="miembros?.response ?? []"
+    <ListaPublicaciones :data="proyectos ?? []" :is-pending="isPending" :miembros="miembros?.response ?? []"
         :mutation-update="updatePublicaciones" />
 
 </template>

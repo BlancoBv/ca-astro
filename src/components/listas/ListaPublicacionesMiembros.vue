@@ -9,7 +9,7 @@ interface props {
 const props = defineProps<props>()
 
 const getCollabs = (element: {
-    otrosColaboradores: string | null;
+    otrosAutores: string | null;
     miembros_publicacion: {
         nombreCompleto: string;
         nombre: string;
@@ -27,9 +27,9 @@ const getCollabs = (element: {
         miembrosF.push(el.nombreCompleto);
     });
 
-    if (element.otrosColaboradores) {
-        const otherCollabsArr: string[] = element.otrosColaboradores.split(";");
-        miembrosF.push(...otherCollabsArr);
+    if (element.otrosAutores) {
+        const otherAutoresArr: string[] = element.otrosAutores.split(";");
+        miembrosF.push(...otherAutoresArr);
     }
 
     if (miembrosF.length < 1) {
@@ -41,8 +41,7 @@ const getCollabs = (element: {
 
 </script>
 <template>
-    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
-        selectionMode="single">
+    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]">
         <Column field="ISSN" header="ISSN">
             <template #body="{ data, field }">
                 <div class="w-20 ">{{ data[field] }}</div>
@@ -68,7 +67,7 @@ const getCollabs = (element: {
         </Column>
 
         <template #empty>
-            Sin datos.
+            <div class="text-center font-bold">Sin datos.</div>
         </template>
     </DataTable>
 </template>
