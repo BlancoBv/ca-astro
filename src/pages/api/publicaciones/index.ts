@@ -37,20 +37,22 @@ const pubsObject = z.object({
   year: z.string().min(4),
   ISSN: z
     .string()
-    .refine(
-      noEmptyOrBlankSpaces.callback,
-      noEmptyOrBlankSpaces.message("Titulo")
-    ),
+    .nullable()
+    .refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("ISSN"))
+    .optional(),
   otrosAutores: z
     .string()
+    .nullable()
     .refine(
       noEmptyOrBlankSpaces.callback,
       noEmptyOrBlankSpaces.message("Otros autores")
     )
+
     .optional(),
-  tipo: z.enum(["arbitrado", "memoria en extenso"]),
+  tipo: z.enum(["arbitrado", "memoria en extenso", "journal", "indexado"]),
   descripcion: z
     .string()
+    .nullable()
     .refine(
       noEmptyOrBlankSpaces.callback,
       noEmptyOrBlankSpaces.message("Descripción")
@@ -58,7 +60,9 @@ const pubsObject = z.object({
   url: z
     .string()
     .url()
-    .refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("URL")),
+    .nullable()
+    .refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("URL"))
+    .optional(),
   visible: z.boolean(),
 });
 

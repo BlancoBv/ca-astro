@@ -16,12 +16,13 @@ const noMiembrosColab = ref<boolean>(false)
 const addPublicacion = useSendData("publicaciones", "post", {
     onSuccess() {
         body.titulo = "";
-        body.ISSN = "";
-        body.descripcion = "";
+        body.ISSN = null;
+        body.descripcion = null;
         body.year = "";
-        body.url = "";
+        body.url = null;
         body.miembrosColaboradores = [];
         body.tipo = ""
+        body.otrosAutores = null
         refetch()
     }
 })
@@ -31,15 +32,16 @@ const updatePublicaciones = useSendData("publicaciones", "put", {
     }
 })
 const body = reactive<{
-    titulo: string, ISSN: string,
-    descripcion: string,
-    otrosAutores?: string,
+    titulo: string,
+    ISSN: string | null,
+    descripcion: string | null,
+    otrosAutores: string | null,
     year: string,
-    url: string,
+    url: string | null,
     miembrosColaboradores: number[]
     visible: boolean
     tipo: string
-}>({ titulo: "", ISSN: "", descripcion: "", year: "", url: "", miembrosColaboradores: [], visible: true, tipo: "" })
+}>({ titulo: "", ISSN: null, descripcion: null, year: "", url: null, miembrosColaboradores: [], visible: true, tipo: "", otrosAutores: null })
 const proyectos = computed(() => {
     return data.value?.response.map((el: any) => ({ ...el, miembrosCol: el.miembros_publicacion.map((miembro: any) => miembro.idmiembro) })) ?? []
 })
@@ -75,14 +77,13 @@ const handleSubmit = () => {
                 <span class="label-text">Descripción</span>
             </div>
             <textarea v-model="body.descripcion" class="textarea textarea-bordered h-full"
-                :class="{ 'textarea-error': validator.setErrorObject(addPublicacion.error.value).setField('titulo').getValidator().isError() }"
-                required />
+                :class="{ 'textarea-error': validator.setErrorObject(addPublicacion.error.value).setField('titulo').getValidator().isError() }" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
                 <span class="label-text">ISSN</span>
             </div>
-            <input type="text" v-model="body.ISSN" class="input input-bordered w-full max-w-xs" required
+            <input type="text" v-model="body.ISSN" class="input input-bordered w-full max-w-xs"
                 :class="{ 'input-error': validator.setErrorObject(addPublicacion.error.value).setField('clave').getValidator().isError() }" />
         </label>
         <label class="form-control w-full max-w-xs">
@@ -104,17 +105,19 @@ const handleSubmit = () => {
             <div class="label">
                 <span class="label-text">URL (doi, etc.)</span>
             </div>
-            <input type="text" v-model="body.url" class="input input-bordered w-full max-w-xs" required
+            <input type="text" v-model="body.url" class="input input-bordered w-full max-w-xs"
                 :class="{ 'input-error': validator.setErrorObject(addPublicacion.error.value).setField('clave').getValidator().isError() }" />
         </label>
         <label class="form-control w-full max-w-xs">
             <div class="label">
-                <span class="label-text">Estatus</span>
+                <span class="label-text">Tipo</span>
             </div>
             <select class="select select-bordered" v-model="body.tipo" required>
                 <option disabled selected value="">Selecciona un tipo</option>
                 <option value="arbitrado">Arbitrado</option>
                 <option value="memoria en extenso">Memoria en extenso</option>
+                <option value="journal">Journal</option>
+                <option value="indexado">Indexado</option>
             </select>
         </label>
 

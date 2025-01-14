@@ -67,7 +67,10 @@ class zodValidation {
 }
 
 export const noEmptyOrBlankSpaces = {
-  callback: (value: string) => {
+  callback: (value: string | null) => {
+    if (value === null) {
+      return true;
+    }
     return value.trim().length > 0;
   },
   message: (field: string) =>
