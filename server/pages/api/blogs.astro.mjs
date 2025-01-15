@@ -1,20 +1,24 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { b as Blog, E as Etiquetas, s as sequelize, c as EtiquetasBlogs } from '../../chunks/index_CKsFtCw4.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
+import { b as Blog, E as Etiquetas, s as sequelize, c as EtiquetasBlogs } from '../../chunks/index_CM2BeHHC.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const controller = new ControllerBuilder();
-const GET = async ({ url }) => {
+const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
     if (search.idblog) {
-      const response2 = await Blog.findOne({
-        where: { idblog: search.idblog },
-        include: [
-          { model: Etiquetas, required: false, through: { attributes: [] } }
-        ]
-      });
+      const response2 = await controller.setModel(Blog).setWhereFilters({ idblog: search.idblog }).setIncludedModels([
+        {
+          model: Etiquetas,
+          required: false,
+          through: { attributes: [] },
+          attributes: { exclude: ["idUsuario", "createdAt", "updatedAt"] }
+        }
+      ]).setAttributes({
+        exclude: locals.user ? [] : ["fechavigente", "createdAt", "updatedAt", "usuarios_id"]
+      }).getResult().getOne();
       return responseAsJson(response2);
     }
     const limit = Number(search?.limit ?? 10);
@@ -23,7 +27,11 @@ const GET = async ({ url }) => {
     const response = await Blog.findAndCountAll({
       limit,
       offset,
-      ...search.status && { where: { estatus: search.status } }
+      ...search.status && { where: { estatus: search.status } },
+      order: [["fecha", "DESC"]],
+      attributes: {
+        exclude: ["fechavigente", "createdAt", "updatedAt", "usuarios_id"]
+      }
     });
     const totalPages = Math.ceil(response.count / limit);
     return responseAsJson(

@@ -1,10 +1,10 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize, e as Publicaciones } from '../../chunks/index_CKsFtCw4.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
+import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize, e as Publicaciones } from '../../chunks/index_CM2BeHHC.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
-const GET = async ({ url }) => {
+const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   const controller = new ControllerBuilder();
   try {
@@ -19,7 +19,9 @@ const GET = async ({ url }) => {
           required: false,
           attributes: ["tipo", "url"]
         }
-      ]).getResult().getOne();
+      ]).setAttributes({
+        exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"]
+      }).getResult().getOne();
       if (search.includeProyectos === "true" && miembro) {
         proyectos = await controller.setModel(Proyectos).setWhereFilters({
           visible: true,
@@ -59,7 +61,7 @@ const GET = async ({ url }) => {
               "idmiembro"
             ]
           }
-        ]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
+        ]).setOrderFilters([["fechaTermino", "DESC"]]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
       }
       if (search.includePublicaciones === "true" && miembro) {
         publicaciones = await controller.setModel(Publicaciones).setWhereFilters({
@@ -82,7 +84,7 @@ const GET = async ({ url }) => {
             as: "miembros_publicacion",
             through: { attributes: [] }
           }
-        ]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
+        ]).setOrderFilters([["year", "DESC"]]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
       }
       return responseAsJson({
         ...miembro?.toJSON(),

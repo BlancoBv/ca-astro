@@ -40,6 +40,10 @@ class ControllerBuilder {
     this.model.transaction = t;
     return this;
   }
+  setAttributes(att) {
+    this.model.attributes = att;
+    return this;
+  }
   getResult() {
     const result = this.model;
     this.reset();
@@ -48,6 +52,7 @@ class ControllerBuilder {
 }
 class Model {
   _transaction = null;
+  _attributes = void 0;
   _model;
   _replacements;
   whereFilters = void 0;
@@ -59,6 +64,9 @@ class Model {
   } */
   set model(model) {
     this._model = model;
+  }
+  set attributes(att) {
+    this._attributes = att;
   }
   set replacements(replacements) {
     this._replacements = replacements;
@@ -73,7 +81,8 @@ class Model {
     return await this._model.findOne({
       where: this.whereFilters,
       include: this.includedModels,
-      replacements: this._replacements
+      replacements: this._replacements,
+      attributes: this._attributes
     });
   }
   async getAll() {
@@ -81,7 +90,8 @@ class Model {
       include: this.includedModels,
       order: this.orderFilters,
       where: this.whereFilters,
-      replacements: this._replacements
+      replacements: this._replacements,
+      attributes: this._attributes
     });
   }
   async update() {

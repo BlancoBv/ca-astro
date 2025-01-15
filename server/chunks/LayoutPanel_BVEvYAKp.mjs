@@ -1,9 +1,9 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, ac as renderHead, ad as renderSlot, ab as createTransitionScope } from './astro/server_BYikK1dL.mjs';
-import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_NQzEJyeK.mjs';
+import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_C78eRoTi.mjs';
 /* empty css                         */
 /* empty css                           */
-import { R as Roles, f as Permisos } from './index_CKsFtCw4.mjs';
-import { C as ControllerBuilder } from './builder_BlgJlZuX.mjs';
+import { R as Roles, f as Permisos } from './index_CM2BeHHC.mjs';
+import { C as ControllerBuilder } from './builder_Cv7uo8Sa.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { u as useSendData } from './http_yWF3wTfY.mjs';

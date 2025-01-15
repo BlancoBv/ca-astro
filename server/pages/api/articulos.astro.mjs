@@ -1,9 +1,9 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { A as Articulo, E as Etiquetas, s as sequelize, a as EtiquetasArticulos } from '../../chunks/index_CKsFtCw4.mjs';
+import { A as Articulo, E as Etiquetas, s as sequelize, a as EtiquetasArticulos } from '../../chunks/index_CM2BeHHC.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
-const GET = async ({ url }) => {
+const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
     if (search.ruta !== void 0) {
@@ -13,17 +13,24 @@ const GET = async ({ url }) => {
           {
             model: Etiquetas,
             required: false,
-            attributes: ["nombre", "idetiqueta"]
+            attributes: ["nombre", "idetiqueta"],
+            through: { attributes: [] }
           }
         ],
-        attributes: { exclude: ["idUsuario"] }
+        attributes: {
+          exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"]
+        }
       });
       if (!response2) {
         throw new Error("No encontrado");
       }
       return responseAsJson(response2);
     }
-    const response = await Articulo.findAll();
+    const response = await Articulo.findAll({
+      attributes: {
+        exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"]
+      }
+    });
     return responseAsJson(response);
   } catch (error) {
     return responseAsJson(null, { sendAsMessage: true }, 400);

@@ -1,6 +1,6 @@
 import { r as renderers } from './chunks/_@astro-renderers_BnjbwtTW.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_BBSCn0rE.mjs';
-import { manifest } from './manifest_Dw9bfn6k.mjs';
+import { manifest } from './manifest_DGL-C3Hm.mjs';
 
 const serverIslandMap = new Map([
 ]);;
@@ -26,9 +26,9 @@ const _page17 = () => import('./pages/api/roles.astro.mjs');
 const _page18 = () => import('./pages/api/submenus.astro.mjs');
 const _page19 = () => import('./pages/api/user.astro.mjs');
 const _page20 = () => import('./pages/content/articulos/_etiqueta_.astro.mjs');
-const _page21 = () => import('./pages/content/eventos/_etiqueta_.astro.mjs');
-const _page22 = () => import('./pages/content/_id_.astro.mjs');
-const _page23 = () => import('./pages/content.astro.mjs');
+const _page21 = () => import('./pages/content/etiqueta/_etiqueta_.astro.mjs');
+const _page22 = () => import('./pages/content/evento/_id_.astro.mjs');
+const _page23 = () => import('./pages/content/evento.astro.mjs');
 const _page24 = () => import('./pages/documentos/minutas.astro.mjs');
 const _page25 = () => import('./pages/login.astro.mjs');
 const _page26 = () => import('./pages/miembros/_id_.astro.mjs');
@@ -67,9 +67,9 @@ const pageMap = new Map([
     ["src/pages/api/submenus/index.ts", _page18],
     ["src/pages/api/user/index.ts", _page19],
     ["src/pages/content/articulos/[etiqueta].astro", _page20],
-    ["src/pages/content/eventos/[etiqueta].astro", _page21],
-    ["src/pages/content/[id].astro", _page22],
-    ["src/pages/content/index.astro", _page23],
+    ["src/pages/content/etiqueta/[etiqueta].astro", _page21],
+    ["src/pages/content/evento/[id].astro", _page22],
+    ["src/pages/content/evento/index.astro", _page23],
     ["src/pages/documentos/minutas/index.astro", _page24],
     ["src/pages/login/index.astro", _page25],
     ["src/pages/miembros/[id].astro", _page26],

@@ -1,7 +1,7 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$Layout } from '../../../chunks/Layout_DsPs4fD1.mjs';
-import { $ as $$CardBlog } from '../../../chunks/CardBlog_Bdcb8kJu.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_DhZN4Odp.mjs';
+import { $ as $$CardBlog } from '../../../chunks/CardBlog_Cqr6gFI0.mjs';
 export { r as renderers } from '../../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");
@@ -12,17 +12,16 @@ const $$etiqueta = createComponent(async ($$result, $$props, $$slots) => {
   const response = await fetch(
     `http://localhost:4321/api/etiquetas?idetiqueta=${etiqueta}&includeBlogs=true`
   ).then((res) => res.json());
-  console.log(response);
   if (!response) {
     return Astro2.redirect("/404");
   }
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Secciones con la etiqueta" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="w-full prose max-w-full p-4"> <h1 class="flex items-center gap-4 flex-wrap">
 Eventos con la etiqueta:
 <div class="badge badge-accent badge-outline not-prose h-7 flex gap-1"> <i class="bi bi-tag-fill"></i> ${response.response.nombre} </div> </h1> <main class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> ${response.response.blogs.map((el) => renderTemplate`${renderComponent($$result2, "CardBlog", $$CardBlog, { "titulo": el.titulo, "imagen": el.imagen, "id": el.idblog, "fecha": el.fecha })}`)} </main> </div> ` })}`;
-}, "/home/blanco/Documentos/ca-astro/src/pages/content/eventos/[etiqueta].astro", void 0);
+}, "/home/blanco/Documentos/ca-astro/src/pages/content/etiqueta/[etiqueta].astro", void 0);
 
-const $$file = "/home/blanco/Documentos/ca-astro/src/pages/content/eventos/[etiqueta].astro";
-const $$url = "/content/eventos/[etiqueta]";
+const $$file = "/home/blanco/Documentos/ca-astro/src/pages/content/etiqueta/[etiqueta].astro";
+const $$url = "/content/etiqueta/[etiqueta]";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,

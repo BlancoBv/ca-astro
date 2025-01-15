@@ -2,7 +2,7 @@ import './chunks/astro-designed-error-pages_B1KtOiqS.mjs';
 import { d as defineMiddleware, s as sequence } from './chunks/index_DPCZXjyH.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as CookiesManager } from './chunks/CookiesManager_BfWIquu0.mjs';
-import { L as Logs } from './chunks/index_CKsFtCw4.mjs';
+import { L as Logs } from './chunks/index_CM2BeHHC.mjs';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 class VerifyPath {
@@ -23,7 +23,8 @@ class VerifyPath {
     { path: "api/imagenes", method: ["POST", "DELETE", "GET"] },
     {
       path: "api/articulos",
-      method: ["POST", "DELETE", "PUT"]
+      method: ["POST", "DELETE", "PUT", "GET"],
+      bypass: [/[?]ruta=([\w-\/]+)$/]
     },
     { path: "api/user", method: ["POST", "PUT", "DELETE", "GET"] },
     {
@@ -66,6 +67,10 @@ class VerifyPath {
     },
     {
       path: "api/logs",
+      method: ["POST", "DELETE", "PUT", "GET"]
+    },
+    {
+      path: "api/permisos",
       method: ["POST", "DELETE", "PUT", "GET"]
     }
   ];

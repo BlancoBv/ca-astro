@@ -1,19 +1,20 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { I as ImageController } from '../../chunks/ImageController_Vn72BPHB.mjs';
-import { B as Banners } from '../../chunks/index_CKsFtCw4.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
+import { B as Banners } from '../../chunks/index_CM2BeHHC.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const imageController = new ImageController("banners");
 const controller = new ControllerBuilder();
-const GET = async ({ url }) => {
+const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
-    const response = await Banners.findAll({
-      ...search.mostrar === "true" && { where: { mostrar: true } },
-      order: [["createdAt", "DESC"]]
-    });
+    const response = await controller.setModel(Banners).setWhereFilters({
+      ...search.mostrar === "true" && { mostrar: true }
+    }).setOrderFilters([["createdAt", "DESC"]]).setAttributes({
+      exclude: locals.user ? [] : ["createdAt", "updatedAt", "idUsuario", "mostrar"]
+    }).getResult().getAll();
     return responseAsJson(response);
   } catch (error) {
     return responseAsJson(null, { sendAsMessage: true }, 400);

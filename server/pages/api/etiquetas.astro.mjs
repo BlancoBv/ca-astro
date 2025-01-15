@@ -1,9 +1,9 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { E as Etiquetas, A as Articulo, b as Blog } from '../../chunks/index_CKsFtCw4.mjs';
+import { E as Etiquetas, A as Articulo, b as Blog } from '../../chunks/index_CM2BeHHC.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
-const GET = async ({ url }) => {
+const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
     if (search.idetiqueta) {
@@ -13,13 +13,7 @@ const GET = async ({ url }) => {
           ...search.includeArticulos === "true" ? [
             {
               model: Articulo,
-              attributes: [
-                "ruta",
-                "titulo",
-                "fecha",
-                "idarticulo",
-                "createdAt"
-              ],
+              attributes: ["ruta", "titulo", "fecha", "idarticulo"],
               through: {
                 attributes: []
               }
@@ -28,12 +22,23 @@ const GET = async ({ url }) => {
           ...search.includeBlogs === "true" ? [
             {
               model: Blog,
+              attributes: {
+                exclude: locals.user ? [] : [
+                  "usuarios_id",
+                  "fechavigente",
+                  "createdAt",
+                  "updatedAt"
+                ]
+              },
               through: {
                 attributes: []
               }
             }
           ] : []
-        ]
+        ],
+        attributes: {
+          exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"]
+        }
       });
       return responseAsJson(response2);
     }

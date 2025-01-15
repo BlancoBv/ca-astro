@@ -1,10 +1,10 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { M as Menus, S as Submenus, U as Users } from '../../chunks/index_CKsFtCw4.mjs';
-import { C as ControllerBuilder } from '../../chunks/builder_BlgJlZuX.mjs';
+import { M as Menus, S as Submenus, U as Users } from '../../chunks/index_CM2BeHHC.mjs';
+import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
-const GET = async ({ url }) => {
+const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   const controller = new ControllerBuilder();
   controller.setModel(Menus).setIncludedModels([
@@ -13,7 +13,7 @@ const GET = async ({ url }) => {
       required: false,
       attributes: ["ruta", "idsubmenu", "nombre", "descripcion"]
     },
-    ...Boolean(search.showUser) ? [
+    ...search.showUser === "true" ? [
       {
         model: Users,
         attributes: { exclude: ["password", "usuario", "idRol"] }
@@ -22,7 +22,9 @@ const GET = async ({ url }) => {
   ]).setOrderFilters([
     ["idmenu", "ASC"],
     [Submenus, "idsubmenu", "ASC"]
-  ]);
+  ]).setAttributes({
+    exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"]
+  });
   const response = await controller.getResult().getAll();
   return responseAsJson(response);
 };

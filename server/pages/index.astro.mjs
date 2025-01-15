@@ -1,23 +1,23 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, aa as Fragment } from '../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DsPs4fD1.mjs';
-import { $ as $$CardBlog } from '../chunks/CardBlog_Bdcb8kJu.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DhZN4Odp.mjs';
+import { $ as $$CardBlog } from '../chunks/CardBlog_Cqr6gFI0.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment as Fragment$1, renderList } from 'vue';
 import { a as useGetData } from '../chunks/http_yWF3wTfY.mjs';
 import { Carousel as Carousel$1, Navigation, Slide } from 'vue3-carousel';
 /* empty css                                 */
 import { ssrRenderComponent, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_NQzEJyeK.mjs';
+import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_C78eRoTi.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
   const blogs = await fetch(`http://localhost:4321/api/blogs?status=aceptado&limit=3`).then(
     (res) => res.json()
   );
-  return renderTemplate`${maybeRenderHead()}<div class="prose max-w-full p-4"> <h1>Eventos destacados</h1> <div class="not-prose gap-4 place-items-center place-content-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> ${blogs.response?.blogs?.length > 0 && renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result2) => renderTemplate`${blogs.response.blogs.map((el) => renderTemplate`${renderComponent($$result2, "CardBlog", $$CardBlog, { "titulo": el.titulo, "imagen": el.imagen, "fecha": el.fecha, "id": el.idblog })}`)}<div class="md:col-span-2 lg:col-span-3 w-full flex justify-center"> <a class="btn btn-primary w-1/2" href="/content">
+  return renderTemplate`${maybeRenderHead()}<div class="prose max-w-full p-4"> <h1>Eventos destacados</h1> <div class="not-prose gap-4 place-items-center place-content-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> ${blogs.response?.blogs && blogs.response?.blogs.length > 0 && renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result2) => renderTemplate`${blogs.response?.blogs.map((el) => renderTemplate`${renderComponent($$result2, "CardBlog", $$CardBlog, { "titulo": el.titulo, "imagen": el.imagen, "fecha": el.fecha, "id": el.idblog })}`)}<div class="md:col-span-2 lg:col-span-3 w-full flex justify-center"> <a class="btn btn-primary w-1/2" href="/content/evento">
 Ver todos
-</a> </div> ` })}`} ${blogs.response.blogs?.length < 1 && renderTemplate`<div class="h-96 flex flex-col justify-center items-center gap-4 md:col-span-2 lg:col-span-3"> <i class="bi bi-clouds text-9xl"></i> <h1 class="text-xl">Sin eventos recientes</h1> </div>`} </div> </div>`;
+</a> </div> ` })}`} ${blogs.response?.blogs && blogs.response?.blogs.length < 1 && renderTemplate`<div class="h-96 flex flex-col justify-center items-center gap-4 md:col-span-2 lg:col-span-3"> <i class="bi bi-clouds text-9xl"></i> <h1 class="text-xl">Sin eventos recientes</h1> </div>`} </div> </div>`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/BlogsContainer.astro", void 0);
 
 const _sfc_main = /* @__PURE__ */ defineComponent({

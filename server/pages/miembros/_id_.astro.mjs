@@ -6,9 +6,9 @@ import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, c
 import { s as script, a as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
 import { ssrRenderComponent, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_NQzEJyeK.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_DsPs4fD1.mjs';
-import { $ as $$Image } from '../../chunks/_astro_assets_Dp_aSPpe.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_C78eRoTi.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DhZN4Odp.mjs';
+import { $ as $$Image } from '../../chunks/_astro_assets_DarXLmXQ.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -414,8 +414,8 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
           sortable: ""
         }, null, _parent2, _scopeId));
         _push2(ssrRenderComponent($setup["Column"], {
-          field: "miembros_proyecto",
-          header: "Colaboradores"
+          field: "miembros_publicacion",
+          header: "Autores"
         }, {
           body: withCtx(({ data }, _push3, _parent3, _scopeId2) => {
             if (_push3) {
@@ -470,8 +470,8 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
             sortable: ""
           }),
           createVNode($setup["Column"], {
-            field: "miembros_proyecto",
-            header: "Colaboradores"
+            field: "miembros_publicacion",
+            header: "Autores"
           }, {
             body: withCtx(({ data }) => [
               createVNode("div", { class: "w-32" }, toDisplayString($setup.getCollabs(data)), 1)

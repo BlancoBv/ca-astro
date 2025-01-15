@@ -13,7 +13,7 @@ const sequelize = new Sequelize(DATABASE, USER_DB, PASSWORD_DB, {
     idle: 1e4
   },
   logging: false,
-  timezone: "America/Mexico_City"
+  timezone: "-06:00"
 });
 sequelize.authenticate().then(() => console.log("Conectado a la base de datos")).catch((err) => console.log("Error", err));
 

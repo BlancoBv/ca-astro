@@ -1,4 +1,4 @@
-import { S as Submenus } from '../../chunks/index_CKsFtCw4.mjs';
+import { S as Submenus } from '../../chunks/index_CM2BeHHC.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
 
 const POST = async ({ request }) => {
