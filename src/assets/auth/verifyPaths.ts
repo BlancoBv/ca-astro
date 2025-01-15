@@ -21,7 +21,8 @@ export default class VerifyPath {
     { path: "api/imagenes", method: ["POST", "DELETE", "GET"] },
     {
       path: "api/articulos",
-      method: ["POST", "DELETE", "PUT"],
+      method: ["POST", "DELETE", "PUT", "GET"],
+      bypass: [/[?]ruta=([\w-\/]+)$/],
     },
     { path: "api/user", method: ["POST", "PUT", "DELETE", "GET"] },
     {
@@ -64,6 +65,10 @@ export default class VerifyPath {
     },
     {
       path: "api/logs",
+      method: ["POST", "DELETE", "PUT", "GET"],
+    },
+    {
+      path: "api/permisos",
       method: ["POST", "DELETE", "PUT", "GET"],
     },
   ];

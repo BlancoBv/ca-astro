@@ -4,7 +4,7 @@ import searchParamsToObject from "@assets/searchParamsToObject";
 import { Articulo, Blog, Etiquetas } from "@model";
 
 import type { APIRoute } from "astro";
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
     if (search.idetiqueta) {
@@ -15,13 +15,7 @@ export const GET: APIRoute = async ({ url }) => {
             ? [
                 {
                   model: Articulo,
-                  attributes: [
-                    "ruta",
-                    "titulo",
-                    "fecha",
-                    "idarticulo",
-                    "createdAt",
-                  ],
+                  attributes: ["ruta", "titulo", "fecha", "idarticulo"],
                   through: {
                     attributes: [],
                   },
@@ -32,6 +26,16 @@ export const GET: APIRoute = async ({ url }) => {
             ? [
                 {
                   model: Blog,
+                  attributes: {
+                    exclude: locals.user
+                      ? []
+                      : [
+                          "usuarios_id",
+                          "fechavigente",
+                          "createdAt",
+                          "updatedAt",
+                        ],
+                  },
                   through: {
                     attributes: [],
                   },
@@ -39,6 +43,9 @@ export const GET: APIRoute = async ({ url }) => {
               ]
             : []),
         ],
+        attributes: {
+          exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"],
+        },
       });
       return responseAsJson(response);
     }

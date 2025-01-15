@@ -8,14 +8,24 @@ import { ControllerBuilder } from "src/controllers/builder";
 const imageController = new ImageController("banners");
 const controller = new ControllerBuilder();
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   try {
     // Leer los archivos del directorio
-    const response = await Banners.findAll({
-      ...(search.mostrar === "true" && { where: { mostrar: true } }),
-      order: [["createdAt", "DESC"]],
-    });
+
+    const response = await controller
+      .setModel(Banners)
+      .setWhereFilters({
+        ...(search.mostrar === "true" && { mostrar: true }),
+      })
+      .setOrderFilters([["createdAt", "DESC"]])
+      .setAttributes({
+        exclude: locals.user
+          ? []
+          : ["createdAt", "updatedAt", "idUsuario", "mostrar"],
+      })
+      .getResult()
+      .getAll();
     // Retornar los nombres de los archivos en formato JSON
     return responseAsJson(response);
   } catch (error) {

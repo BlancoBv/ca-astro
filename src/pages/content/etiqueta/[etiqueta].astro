@@ -21,8 +21,6 @@ const response: {
   `http://localhost:4321/api/etiquetas?idetiqueta=${etiqueta}&includeBlogs=true`
 ).then((res) => res.json());
 
-console.log(response);
-
 if (!response) {
   return Astro.redirect("/404");
 }

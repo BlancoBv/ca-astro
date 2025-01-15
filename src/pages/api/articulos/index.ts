@@ -4,7 +4,7 @@ import searchParamsToObject from "@assets/searchParamsToObject";
 import { sequelize } from "@db";
 import { EtiquetasArticulos, Etiquetas, Articulo } from "@model";
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
 
   try {
@@ -16,9 +16,12 @@ export const GET: APIRoute = async ({ url }) => {
             model: Etiquetas,
             required: false,
             attributes: ["nombre", "idetiqueta"],
+            through: { attributes: [] },
           },
         ],
-        attributes: { exclude: ["idUsuario"] },
+        attributes: {
+          exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"],
+        },
       });
       if (!response) {
         throw new Error("No encontrado");
@@ -26,7 +29,11 @@ export const GET: APIRoute = async ({ url }) => {
       return responseAsJson(response);
     }
 
-    const response = await Articulo.findAll();
+    const response = await Articulo.findAll({
+      attributes: {
+        exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"],
+      },
+    });
 
     return responseAsJson(response);
   } catch (error) {

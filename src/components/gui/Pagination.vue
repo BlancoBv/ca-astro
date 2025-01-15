@@ -7,7 +7,7 @@ const props = defineProps<{ totalPages: number, actualPage: number }>()
             :class="{ ' btn-disabled': actualPage === 1 }">
             «
         </a>
-        <button class="join-item btn">Página {{ props.actualPage }} de {{ props.totalPages }}</button>
+        <div class="join-item btn">Página {{ props.actualPage }} de {{ props.totalPages }}</div>
         <a class="join-item btn"
             :href="'?page=' + `${props.actualPage === props.totalPages ? totalPages : actualPage + 1}`"
             :class="{ ' btn-disabled': props.actualPage === props.totalPages }">

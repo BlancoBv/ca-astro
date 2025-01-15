@@ -8,6 +8,7 @@ import {
   Op,
   type BindOrReplacements,
   Transaction,
+  type FindAttributeOptions,
 } from "sequelize";
 import type { MakeNullishOptional } from "sequelize/lib/utils";
 
@@ -19,6 +20,7 @@ interface Builder {
   setReplacements(replacements: BindOrReplacements): this;
   setBody(body: { [key in keyof Attributes<any>]: any }): this;
   setTransaction(t: Transaction): this;
+  setAttributes(att: FindAttributeOptions): this;
 }
 
 export class ControllerBuilder<T extends ModelI<T>> implements Builder {
@@ -70,6 +72,11 @@ export class ControllerBuilder<T extends ModelI<T>> implements Builder {
     return this;
   }
 
+  setAttributes(att: FindAttributeOptions) {
+    this.model.attributes = att;
+    return this;
+  }
+
   getResult(): Model<T> {
     const result = this.model;
     this.reset();
@@ -79,6 +86,7 @@ export class ControllerBuilder<T extends ModelI<T>> implements Builder {
 
 class Model<T extends ModelI> {
   private _transaction: Transaction | null = null;
+  private _attributes: FindAttributeOptions | undefined = undefined;
   private _model!: ModelStatic<T>;
   private _replacements: BindOrReplacements | undefined;
   public whereFilters: WhereOptions<Attributes<T>> | undefined = undefined;
@@ -93,6 +101,10 @@ class Model<T extends ModelI> {
 
   public set model(model: ModelStatic<T>) {
     this._model = model;
+  }
+
+  public set attributes(att: FindAttributeOptions) {
+    this._attributes = att;
   }
 
   public set replacements(replacements: BindOrReplacements) {
@@ -110,6 +122,7 @@ class Model<T extends ModelI> {
       where: this.whereFilters,
       include: this.includedModels,
       replacements: this._replacements,
+      attributes: this._attributes,
     });
   }
 
@@ -119,6 +132,7 @@ class Model<T extends ModelI> {
       order: this.orderFilters,
       where: this.whereFilters,
       replacements: this._replacements,
+      attributes: this._attributes,
     });
   }
 

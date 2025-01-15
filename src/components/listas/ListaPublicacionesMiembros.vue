@@ -53,7 +53,7 @@ const getCollabs = (element: {
             </template>
         </Column>
         <Column field="year" header="Año" sortable />
-        <Column field="miembros_proyecto" header="Colaboradores">
+        <Column field="miembros_publicacion" header="Autores">
             <template #body="{ data }">
                 <div class="w-32 ">
                     {{ getCollabs(data) }}

@@ -4,13 +4,21 @@ const { searchParams } = Astro.url;
 import Pagination from "@components/gui/Pagination.vue";
 import CardBlog from "@components/cards/CardBlog.astro";
 
+interface eventos {
+  response?: {
+    blogs: { titulo: string; fecha: string; idblog: number; imagen: string }[];
+    totalPages: number;
+    currentPage: number;
+  };
+}
+
 const page = searchParams.get("page");
 
-const eventos = await fetch(
+const eventos: eventos = await fetch(
   `http://localhost:4321/api/blogs?status=aceptado&limit=10&page=${page ?? 0}`
 ).then((res) => res.json());
 
-if (eventos.response?.blogs?.length < 1) {
+if (eventos.response?.blogs && eventos.response?.blogs.length < 1) {
   return Astro.redirect("/404");
 }
 ---
@@ -30,10 +38,10 @@ if (eventos.response?.blogs?.length < 1) {
         ))
       }
     </div>
-    <div class="not-prose w-full flex justify-center">
+    <div class="not-prose w-full flex justify-center pt-4">
       <Pagination
-        totalPages={eventos.response.totalPages}
-        actualPage={eventos.response.currentPage}
+        totalPages={eventos.response?.totalPages ?? 0}
+        actualPage={eventos.response?.currentPage ?? 0}
       />
     </div>
   </main>

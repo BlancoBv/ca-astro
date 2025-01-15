@@ -4,7 +4,7 @@ import { Menus, Submenus, Users } from "@model";
 import type { APIRoute } from "astro";
 import { ControllerBuilder } from "src/controllers/builder";
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   const controller = new ControllerBuilder();
 
@@ -16,7 +16,7 @@ export const GET: APIRoute = async ({ url }) => {
         required: false,
         attributes: ["ruta", "idsubmenu", "nombre", "descripcion"],
       },
-      ...(Boolean(search.showUser)
+      ...(search.showUser === "true"
         ? [
             {
               model: Users,
@@ -28,7 +28,10 @@ export const GET: APIRoute = async ({ url }) => {
     .setOrderFilters([
       ["idmenu", "ASC"],
       [Submenus, "idsubmenu", "ASC"],
-    ]);
+    ])
+    .setAttributes({
+      exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"],
+    });
   const response = await controller.getResult().getAll();
 
   return responseAsJson(response);

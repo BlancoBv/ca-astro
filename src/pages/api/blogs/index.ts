@@ -7,17 +7,30 @@ import { ControllerBuilder } from "src/controllers/builder";
 
 const controller = new ControllerBuilder();
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
 
   try {
     if (search.idblog) {
-      const response = await Blog.findOne({
-        where: { idblog: search.idblog },
-        include: [
-          { model: Etiquetas, required: false, through: { attributes: [] } },
-        ],
-      });
+      const response = await controller
+        .setModel(Blog)
+        .setWhereFilters({ idblog: search.idblog })
+        .setIncludedModels([
+          {
+            model: Etiquetas,
+            required: false,
+            through: { attributes: [] },
+            attributes: { exclude: ["idUsuario", "createdAt", "updatedAt"] },
+          },
+        ])
+        .setAttributes({
+          exclude: locals.user
+            ? []
+            : ["fechavigente", "createdAt", "updatedAt", "usuarios_id"],
+        })
+        .getResult()
+        .getOne();
+
       return responseAsJson(response);
     }
 
@@ -29,6 +42,10 @@ export const GET: APIRoute = async ({ url }) => {
       limit,
       offset,
       ...(search.status && { where: { estatus: search.status } }),
+      order: [["fecha", "DESC"]],
+      attributes: {
+        exclude: ["fechavigente", "createdAt", "updatedAt", "usuarios_id"],
+      },
     });
 
     const totalPages = Math.ceil(response.count / limit);

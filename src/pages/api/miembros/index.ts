@@ -5,7 +5,7 @@ import { Contactos, Miembros, Proyectos, Publicaciones } from "@model";
 import type { APIRoute } from "astro";
 import { ControllerBuilder } from "src/controllers/builder";
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   const controller = new ControllerBuilder();
 
@@ -25,6 +25,9 @@ export const GET: APIRoute = async ({ url }) => {
             attributes: ["tipo", "url"],
           },
         ])
+        .setAttributes({
+          exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"],
+        })
         .getResult()
         .getOne();
 
@@ -69,6 +72,7 @@ export const GET: APIRoute = async ({ url }) => {
               ],
             },
           ])
+          .setOrderFilters([["fechaTermino", "DESC"]])
           .setReplacements({ idmiembro: search.idmiembro })
           .getResult()
           .getAll();
@@ -98,6 +102,7 @@ export const GET: APIRoute = async ({ url }) => {
               through: { attributes: [] },
             },
           ])
+          .setOrderFilters([["year", "DESC"]])
           .setReplacements({ idmiembro: search.idmiembro })
           .getResult()
           .getAll();
