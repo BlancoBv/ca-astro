@@ -188,7 +188,7 @@ const handleSubmit = () => {
             <div class="label">
                 <span class="label-text">Convocatoria</span>
             </div>
-            <input type="text" v-model="body.convocatoria" placeholder="TECNM"
+            <input type="text" v-model="body.convocatoria" v-uppercase placeholder="TECNM"
                 class="input input-bordered w-full max-w-xs"
                 :class="{ 'input-error': validator.setErrorObject(addProyecto.error.value).setField('convocatoria').getValidator().isError() }" />
         </label>

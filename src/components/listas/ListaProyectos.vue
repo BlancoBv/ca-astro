@@ -160,7 +160,7 @@ onUnmounted(() => {
         </Column>
         <Column field="convocatoria" header="Convocatoria">
             <template #editor="{ data, field }">
-                <input v-model="data[field]" type="text" class="input input-bordered w-full max-w-xs" />
+                <input v-model="data[field]" v-uppercase type="text" class="input input-bordered w-full max-w-xs" />
             </template>
         </Column>
         <Column field="fechaInicio" header="Fecha de inicio del proyecto" sortable>

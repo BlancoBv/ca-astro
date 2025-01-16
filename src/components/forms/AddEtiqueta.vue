@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import Input from './Input.vue';
 import { useGetData, useSendData } from '@assets/http';
-import Table from '@components/Table.vue';
+import ListaEtiquetas from '@components/listas/ListaEtiquetas.vue';
 const props = defineProps<{ user: string | undefined, }>()
 
 const body = reactive<{ nombre: string, idUsuario: string | undefined }>({ nombre: "", idUsuario: props.user })
@@ -27,12 +27,9 @@ const edit = useSendData("etiquetas", "put", {
 
 </script>
 <template>
-    <form @submit.prevent="send.mutate(body)" class="flex justify-center gap-4 items-center">
+    <form @submit.prevent="send.mutate(body)" class="flex justify-center gap-4 items-end mb-4">
         <Input :value="body.nombre" @set-value="handleInput" label="Nombre de la etiqueta" />
         <button type="submit" class="btn btn-primary">Añadir</button>
     </form>
-    <Table :data="data?.response"
-        :columns="[{ field: 'nombre', header: 'Nombre' }, { field: 'createdAt', header: 'Fecha de creación' }]"
-        :pending="isPending" :error="isError" :rows="5"
-        :edit-cells="[{ field: 'nombre', action: (dataRow, newValue) => edit.mutate({ nombre: newValue.toUpperCase(), idetiqueta: dataRow.idetiqueta }) }]" />
+    <ListaEtiquetas :data="data?.response ?? []" :is-pending="isPending" :mutation-update="edit" />
 </template>

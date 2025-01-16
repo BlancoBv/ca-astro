@@ -2,6 +2,8 @@ import type { App } from "vue";
 import { VueQueryPlugin } from "@tanstack/vue-query";
 import Vue3Toastify, { toast, type ToastContainerOptions } from "vue3-toastify";
 import PrimeVue from "primevue/config";
+import { vUppercase } from "@components/vueDirectives/Directives";
+
 export default (app: App) => {
   app.use(VueQueryPlugin);
   app.use(Vue3Toastify, {
@@ -223,4 +225,5 @@ export default (app: App) => {
       },
     },
   });
+  app.directive("uppercase", vUppercase);
 };
