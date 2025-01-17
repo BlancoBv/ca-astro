@@ -3,7 +3,7 @@ import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 import { P as Proyectos, d as Miembros, s as sequelize, g as ProyectosMiembros } from '../../chunks/index_CM2BeHHC.mjs';
 import * as z from 'zod';
 import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const proyectoSchema = z.object({
   miembrosColaboradores: z.number({

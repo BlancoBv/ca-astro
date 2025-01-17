@@ -3,13 +3,13 @@ import { b as createAstro, c as createComponent, r as renderTemplate, a as rende
 import { a as formatMoneda, f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, createVNode, toDisplayString, openBlock, createBlock, Fragment } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
+import { s as script, a as script$1 } from '../../chunks/index_BHTcDF0C.mjs';
 import { ssrRenderComponent, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_C78eRoTi.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_DhZN4Odp.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BRCTKcgz.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_Dl_LH0xV.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_DarXLmXQ.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaProyectosMiembros",

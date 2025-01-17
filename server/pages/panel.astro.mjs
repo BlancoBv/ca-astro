@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, a as renderComponent } from '../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$LayoutPanel } from '../chunks/LayoutPanel_BVEvYAKp.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_BnjbwtTW.mjs';
+import { $ as $$LayoutPanel } from '../chunks/LayoutPanel_DG5Ka4oX.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Inicio" }, { "default": ($$result2) => renderTemplate`

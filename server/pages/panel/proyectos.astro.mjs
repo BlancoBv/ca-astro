@@ -1,18 +1,18 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
 import { toast } from 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, withCtx, withDirectives, createVNode, vModelText, toDisplayString, vModelSelect, createTextVNode, openBlock, createBlock, Fragment, renderList, withModifiers, withKeys, reactive } from 'vue';
+import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, resolveDirective, withCtx, withDirectives, createVNode, vModelText, toDisplayString, vModelSelect, createTextVNode, openBlock, createBlock, Fragment, renderList, withModifiers, withKeys, mergeProps, reactive } from 'vue';
 import { a as useGetData, u as useSendData } from '../../chunks/http_yWF3wTfY.mjs';
 import { v as validateBuilder } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-import { a as script, s as script$1 } from '../../chunks/index_DoPSSCG4.mjs';
-import { s as script$2 } from '../../chunks/index_C0XWHpsJ.mjs';
-import { s as script$3 } from '../../chunks/index_8Q2yTLye.mjs';
+import { a as script, s as script$1 } from '../../chunks/index_BHTcDF0C.mjs';
+import { s as script$2 } from '../../chunks/index_CcU1T5yj.mjs';
+import { s as script$3 } from '../../chunks/index_CHXSBEK9.mjs';
 import { f as formatDate, a as formatMoneda } from '../../chunks/format_Cetxi1N9.mjs';
-import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList } from 'vue/server-renderer';
+import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList, ssrRenderAttrs, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
 /* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_C78eRoTi.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BVEvYAKp.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BRCTKcgz.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DG5Ka4oX.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaProyectos",
@@ -83,6 +83,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _directive_uppercase = resolveDirective("uppercase");
+  let _temp0;
   _push(`<!--[-->`);
   _push(ssrRenderComponent($setup["ContextMenu"], {
     ref: "cm",
@@ -423,7 +425,11 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }, {
             editor: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`<input${ssrRenderAttr("value", data[field])} type="text" class="input input-bordered w-full max-w-xs"${_scopeId2}>`);
+                _push3(`<input${ssrRenderAttrs((_temp0 = mergeProps({
+                  value: data[field],
+                  type: "text",
+                  class: "input input-bordered w-full max-w-xs"
+                }, ssrGetDirectiveProps(_ctx, _directive_uppercase)), mergeProps(_temp0, ssrGetDynamicModelProps(_temp0, data[field]))))}${_scopeId2}>`);
               } else {
                 return [
                   withDirectives(createVNode("input", {
@@ -431,7 +437,8 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                     type: "text",
                     class: "input input-bordered w-full max-w-xs"
                   }, null, 8, ["onUpdate:modelValue"]), [
-                    [vModelText, data[field]]
+                    [vModelText, data[field]],
+                    [_directive_uppercase]
                   ])
                 ];
               }
@@ -857,7 +864,8 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                   type: "text",
                   class: "input input-bordered w-full max-w-xs"
                 }, null, 8, ["onUpdate:modelValue"]), [
-                  [vModelText, data[field]]
+                  [vModelText, data[field]],
+                  [_directive_uppercase]
                 ])
               ]),
               _: 1
@@ -1077,6 +1085,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _directive_uppercase = resolveDirective("uppercase");
+  let _temp0;
   _push(`<!--[--><form class="mb-4 grid grid-cols-4 grid-rows-3 gap-4 items-end"><label class="form-control w-full max-w-xs h-full row-span-2"><div class="label"><span class="label-text">Titulo del proyecto</span></div><textarea class="${ssrRenderClass([{ "textarea-error": $setup.validator.setErrorObject($setup.addProyecto.error.value).setField("titulo").getValidator().isError() }, "textarea textarea-bordered h-full"])}" required>${ssrInterpolate($setup.body.titulo)}</textarea></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Clave</span></div><input type="text"${ssrRenderAttr("value", $setup.body.clave)} required class="${ssrRenderClass([{ "input-error": $setup.validator.setErrorObject($setup.addProyecto.error.value).setField("clave").getValidator().isError() }, "input input-bordered w-full max-w-xs"])}"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Fecha de inicio</span></div><input type="date"${ssrRenderAttr("value", $setup.body.fechaInicio)} class="input input-bordered w-full max-w-xs" required></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Fecha de termino</span></div><input type="date"${ssrRenderAttr("min", $setup.body.fechaInicio)}${ssrRenderAttr("value", $setup.body.fechaTermino)} class="input input-bordered w-full max-w-xs"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Monto del proyecto</span></div><input type="number" placeholder="50.00" step="0.01" min="0.00"${ssrRenderAttr("value", $setup.body.monto)} class="input input-bordered w-full max-w-xs" required></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Estatus</span></div><select class="select select-bordered" required><option disabled selected value="">Selecciona un estatus</option><option value="en proceso"${ssrIncludeBooleanAttr(Array.isArray($setup.body.estatus) ? ssrLooseContain($setup.body.estatus, "en proceso") : ssrLooseEqual($setup.body.estatus, "en proceso")) ? " selected" : ""}>En proceso</option><option value="finalizado"${ssrIncludeBooleanAttr(Array.isArray($setup.body.estatus) ? ssrLooseContain($setup.body.estatus, "finalizado") : ssrLooseEqual($setup.body.estatus, "finalizado")) ? " selected" : ""}>Finalizado</option><option value="no finalizado"${ssrIncludeBooleanAttr(Array.isArray($setup.body.estatus) ? ssrLooseContain($setup.body.estatus, "no finalizado") : ssrLooseEqual($setup.body.estatus, "no finalizado")) ? " selected" : ""}>No finalizado</option></select></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Tipo de proyecto</span></div><select class="select select-bordered" required><option disabled selected value="">Selecciona un tipo</option><option value="interno"${ssrIncludeBooleanAttr(Array.isArray($setup.body.tipo) ? ssrLooseContain($setup.body.tipo, "interno") : ssrLooseEqual($setup.body.tipo, "interno")) ? " selected" : ""}>Interno</option><option value="externo"${ssrIncludeBooleanAttr(Array.isArray($setup.body.tipo) ? ssrLooseContain($setup.body.tipo, "externo") : ssrLooseEqual($setup.body.tipo, "externo")) ? " selected" : ""}>Externo</option></select></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Director</span></div><select class="${ssrRenderClass([{ "skeleton": $setup.miembrosIsPending }, "select select-bordered"])}" required>`);
   if ($setup.miembrosIsPending) {
     _push(`<option disabled selected value=""> Cargando miembros... </option>`);
@@ -1087,7 +1097,12 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     });
     _push(`<!--]--><!--]-->`);
   }
-  _push(`</select></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Otros colaboradores</span><span class="label-text-alt">Separar con &quot;;&quot;</span></div><input type="text"${ssrRenderAttr("value", $setup.body.otrosColaboradores)} class="${ssrRenderClass([{ "input-error": $setup.validator.setErrorObject($setup.addProyecto.error.value).setField("otrosColaboradores").getValidator().isError() }, "input input-bordered w-full max-w-xs"])}"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Fecha de inicio de entrega</span></div><input type="date"${ssrRenderAttr("value", $setup.body.fechaInicioEntrega)} class="input input-bordered w-full max-w-xs"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Fecha de termino de entrega</span></div><input type="date"${ssrRenderAttr("min", $setup.body.fechaInicioEntrega)}${ssrRenderAttr("value", $setup.body.fechaTerminoEntrega)} class="input input-bordered w-full max-w-xs"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Convocatoria</span></div><input type="text"${ssrRenderAttr("value", $setup.body.convocatoria)} placeholder="TECNM" class="${ssrRenderClass([{ "input-error": $setup.validator.setErrorObject($setup.addProyecto.error.value).setField("convocatoria").getValidator().isError() }, "input input-bordered w-full max-w-xs"])}"></label><div class="w-full max-w-xs"><div class="label"><span class="label-text">Miembros colaboradores</span>`);
+  _push(`</select></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Otros colaboradores</span><span class="label-text-alt">Separar con &quot;;&quot;</span></div><input type="text"${ssrRenderAttr("value", $setup.body.otrosColaboradores)} class="${ssrRenderClass([{ "input-error": $setup.validator.setErrorObject($setup.addProyecto.error.value).setField("otrosColaboradores").getValidator().isError() }, "input input-bordered w-full max-w-xs"])}"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Fecha de inicio de entrega</span></div><input type="date"${ssrRenderAttr("value", $setup.body.fechaInicioEntrega)} class="input input-bordered w-full max-w-xs"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Fecha de termino de entrega</span></div><input type="date"${ssrRenderAttr("min", $setup.body.fechaInicioEntrega)}${ssrRenderAttr("value", $setup.body.fechaTerminoEntrega)} class="input input-bordered w-full max-w-xs"></label><label class="form-control w-full max-w-xs"><div class="label"><span class="label-text">Convocatoria</span></div><input${ssrRenderAttrs((_temp0 = mergeProps({
+    type: "text",
+    value: $setup.body.convocatoria,
+    placeholder: "TECNM",
+    class: ["input input-bordered w-full max-w-xs", { "input-error": $setup.validator.setErrorObject($setup.addProyecto.error.value).setField("convocatoria").getValidator().isError() }]
+  }, ssrGetDirectiveProps(_ctx, _directive_uppercase)), mergeProps(_temp0, ssrGetDynamicModelProps(_temp0, $setup.body.convocatoria))))}></label><div class="w-full max-w-xs"><div class="label"><span class="label-text">Miembros colaboradores</span>`);
   if ($setup.noMiembrosColab) {
     _push(`<span class="label-text-alt text-error">**</span>`);
   } else {

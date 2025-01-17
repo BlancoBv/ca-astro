@@ -1,5 +1,5 @@
 import { S as Submenus } from '../../chunks/index_CM2BeHHC.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const POST = async ({ request }) => {
   const body = await request.json();

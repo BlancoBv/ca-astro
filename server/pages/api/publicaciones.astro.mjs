@@ -3,7 +3,7 @@ import { e as Publicaciones, d as Miembros, s as sequelize, h as PublicacionesMi
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 import * as z from 'zod';
 import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const controller = new ControllerBuilder();
 const pubsObject = z.object({

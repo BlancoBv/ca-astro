@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_BYikK1dL.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DhZN4Odp.mjs';
-export { r as renderers } from '../chunks/_@astro-renderers_BnjbwtTW.mjs';
+import { $ as $$Layout } from '../chunks/Layout_Dl_LH0xV.mjs';
+export { r as renderers } from '../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const $$404 = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "404 | No encontrado." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="h-96 flex flex-col justify-center items-center gap-4"> <h1 class="font-bold text-8xl">404</h1> <span class="text-secondary/80">Página no encontrada.</span> <a href="/" class="btn btn-secondary">

@@ -2,7 +2,7 @@ import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
 import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize, e as Publicaciones } from '../../chunks/index_CM2BeHHC.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);

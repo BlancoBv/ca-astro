@@ -1,139 +1,192 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BVEvYAKp.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DG5Ka4oX.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, withCtx, openBlock, createBlock, Fragment, createTextVNode, toDisplayString, renderList, reactive } from 'vue';
-import { I as Input } from '../../chunks/Input_qIVrDWMH.mjs';
+import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, resolveDirective, mergeProps, withCtx, createTextVNode, toDisplayString, withDirectives, createVNode, vModelText, reactive } from 'vue';
+import { I as Input } from '../../chunks/Input_CyypV9uk.mjs';
 import { a as useGetData, u as useSendData } from '../../chunks/http_yWF3wTfY.mjs';
-import { f as script, a as script$1, s as script$2 } from '../../chunks/index_DoPSSCG4.mjs';
-import { ssrRenderComponent, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_C78eRoTi.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_BnjbwtTW.mjs';
+import { a as script, s as script$1 } from '../../chunks/index_BHTcDF0C.mjs';
+import { f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
+/* empty css                                    */
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BRCTKcgz.mjs';
+export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
-  __name: "Table",
+  __name: "ListaEtiquetas",
   props: {
-    pending: { type: Boolean },
-    error: { type: Boolean },
     data: {},
-    columns: {},
-    rows: {},
-    editCells: {}
+    isPending: { type: Boolean },
+    mutationUpdate: {}
   },
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
-    const handleEditCell = (event) => {
-      const { data, newValue, field } = event;
-      const element = props.editCells.find((el) => el.field == field);
-      if (element && data[field] !== newValue) {
-        element.action(data, newValue);
+    const isMounted = ref(false);
+    const handleEdit = (event) => {
+      handleEdit: {
+        const { data, newValue, field } = event;
+        if (newValue !== data[field]) {
+          props.mutationUpdate.mutate({ idetiqueta: data.idetiqueta, [field]: newValue });
+        }
+        break handleEdit;
       }
     };
-    const __returned__ = { props, handleEditCell, get InputText() {
+    onMounted(() => {
+      isMounted.value = true;
+    });
+    onUnmounted(() => {
+      isMounted.value = false;
+    });
+    const __returned__ = { props, isMounted, handleEdit, get DataTable() {
       return script;
-    }, get DataTable() {
-      return script$1;
     }, get Column() {
-      return script$2;
+      return script$1;
+    }, get formatDate() {
+      return formatDate;
     } };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 });
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<!--[-->`);
-  if (!$setup.props.pending && !$setup.props.error) {
-    _push(ssrRenderComponent($setup["DataTable"], {
-      value: $setup.props.data ?? [],
-      paginator: $props.rows ? true : false,
-      rows: $props.rows,
+  const _directive_uppercase = resolveDirective("uppercase");
+  let _temp0;
+  if (!$setup.isMounted) {
+    _push(`<div${ssrRenderAttrs(mergeProps({ class: "skeleton h-96 w-full" }, _attrs))}></div>`);
+  } else {
+    _push(ssrRenderComponent($setup["DataTable"], mergeProps({
+      class: { "skeleton select-none": $setup.props.isPending, "cursor-wait select-none": $setup.props.mutationUpdate.isPending.value },
+      value: $setup.props.data,
+      paginator: true,
+      rows: 5,
       "edit-mode": "cell",
-      onCellEditComplete: $setup.handleEditCell
-    }, {
+      onCellEditComplete: $setup.handleEdit
+    }, _attrs), {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<!--[-->`);
-          ssrRenderList($props.columns, (col) => {
-            _push2(ssrRenderComponent($setup["Column"], {
-              field: col.field,
-              header: col.header,
-              key: col.field
-            }, {
-              editor: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
-                if (_push3) {
-                  if ($props.editCells.find((el) => el.field === field)) {
-                    _push3(ssrRenderComponent($setup["InputText"], {
-                      modelValue: data[field],
-                      "onUpdate:modelValue": ($event) => data[field] = $event,
-                      autofocus: "",
-                      fluid: ""
-                    }, null, _parent3, _scopeId2));
-                  } else {
-                    _push3(`<!--[-->${ssrInterpolate(data[field])}<!--]-->`);
-                  }
-                } else {
-                  return [
-                    $props.editCells.find((el) => el.field === field) ? (openBlock(), createBlock($setup["InputText"], {
-                      key: 0,
-                      modelValue: data[field],
-                      "onUpdate:modelValue": ($event) => data[field] = $event,
-                      autofocus: "",
-                      fluid: ""
-                    }, null, 8, ["modelValue", "onUpdate:modelValue"])) : (openBlock(), createBlock(Fragment, { key: 1 }, [
-                      createTextVNode(toDisplayString(data[field]), 1)
-                    ], 64))
-                  ];
-                }
-              }),
-              _: 2
-            }, _parent2, _scopeId));
-          });
-          _push2(`<!--]-->`);
+          _push2(ssrRenderComponent($setup["Column"], {
+            field: "nombre",
+            header: "Nombre"
+          }, {
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`${ssrInterpolate(data[field] ?? "---")}`);
+              } else {
+                return [
+                  createTextVNode(toDisplayString(data[field] ?? "---"), 1)
+                ];
+              }
+            }),
+            editor: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`<input${ssrRenderAttrs((_temp0 = mergeProps({
+                  value: data[field],
+                  type: "text",
+                  class: "input input-bordered w-full max-w-xs"
+                }, ssrGetDirectiveProps(_ctx, _directive_uppercase, data[field])), mergeProps(_temp0, ssrGetDynamicModelProps(_temp0, data[field]))))}${_scopeId2}>`);
+              } else {
+                return [
+                  withDirectives(createVNode("input", {
+                    "onUpdate:modelValue": ($event) => data[field] = $event,
+                    type: "text",
+                    class: "input input-bordered w-full max-w-xs"
+                  }, null, 8, ["onUpdate:modelValue"]), [
+                    [vModelText, data[field]],
+                    [_directive_uppercase, data[field]]
+                  ])
+                ];
+              }
+            }),
+            _: 1
+          }, _parent2, _scopeId));
+          _push2(ssrRenderComponent($setup["Column"], {
+            field: "createdAt",
+            header: "Fecha de creaci\xF3n",
+            sortable: ""
+          }, {
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`${ssrInterpolate($setup.formatDate(data[field], "DD-MM-YYYY"))}`);
+              } else {
+                return [
+                  createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY")), 1)
+                ];
+              }
+            }),
+            _: 1
+          }, _parent2, _scopeId));
+          _push2(ssrRenderComponent($setup["Column"], {
+            field: "updatedAt",
+            header: "Ultima actualizaci\xF3n",
+            sortable: ""
+          }, {
+            body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`${ssrInterpolate($setup.formatDate(data[field], "DD-MM-YYYY"))}`);
+              } else {
+                return [
+                  createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY")), 1)
+                ];
+              }
+            }),
+            _: 1
+          }, _parent2, _scopeId));
         } else {
           return [
-            (openBlock(true), createBlock(Fragment, null, renderList($props.columns, (col) => {
-              return openBlock(), createBlock($setup["Column"], {
-                field: col.field,
-                header: col.header,
-                key: col.field
-              }, {
-                editor: withCtx(({ data, field }) => [
-                  $props.editCells.find((el) => el.field === field) ? (openBlock(), createBlock($setup["InputText"], {
-                    key: 0,
-                    modelValue: data[field],
-                    "onUpdate:modelValue": ($event) => data[field] = $event,
-                    autofocus: "",
-                    fluid: ""
-                  }, null, 8, ["modelValue", "onUpdate:modelValue"])) : (openBlock(), createBlock(Fragment, { key: 1 }, [
-                    createTextVNode(toDisplayString(data[field]), 1)
-                  ], 64))
-                ]),
-                _: 2
-              }, 1032, ["field", "header"]);
-            }), 128))
+            createVNode($setup["Column"], {
+              field: "nombre",
+              header: "Nombre"
+            }, {
+              body: withCtx(({ data, field }) => [
+                createTextVNode(toDisplayString(data[field] ?? "---"), 1)
+              ]),
+              editor: withCtx(({ data, field }) => [
+                withDirectives(createVNode("input", {
+                  "onUpdate:modelValue": ($event) => data[field] = $event,
+                  type: "text",
+                  class: "input input-bordered w-full max-w-xs"
+                }, null, 8, ["onUpdate:modelValue"]), [
+                  [vModelText, data[field]],
+                  [_directive_uppercase, data[field]]
+                ])
+              ]),
+              _: 1
+            }),
+            createVNode($setup["Column"], {
+              field: "createdAt",
+              header: "Fecha de creaci\xF3n",
+              sortable: ""
+            }, {
+              body: withCtx(({ data, field }) => [
+                createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY")), 1)
+              ]),
+              _: 1
+            }),
+            createVNode($setup["Column"], {
+              field: "updatedAt",
+              header: "Ultima actualizaci\xF3n",
+              sortable: ""
+            }, {
+              body: withCtx(({ data, field }) => [
+                createTextVNode(toDisplayString($setup.formatDate(data[field], "DD-MM-YYYY")), 1)
+              ]),
+              _: 1
+            })
           ];
         }
       }),
       _: 1
     }, _parent));
-  } else {
-    _push(`<!---->`);
   }
-  if ($props.pending) {
-    _push(`<div class="skeleton h-96 w-full"></div>`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`<!--]-->`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/Table.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/listas/ListaEtiquetas.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const Table = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
+const ListaEtiquetas = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "AddEtiqueta",
@@ -159,26 +212,23 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         refetch();
       }
     });
-    const __returned__ = { props, body, data, isError, isPending, refetch, handleInput, send, edit, Input, Table };
+    const __returned__ = { props, body, data, isError, isPending, refetch, handleInput, send, edit, Input, ListaEtiquetas };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<!--[--><form class="flex justify-center gap-4 items-center">`);
+  _push(`<!--[--><form class="flex justify-center gap-4 items-end mb-4">`);
   _push(ssrRenderComponent($setup["Input"], {
     value: $setup.body.nombre,
     onSetValue: $setup.handleInput,
     label: "Nombre de la etiqueta"
   }, null, _parent));
   _push(`<button type="submit" class="btn btn-primary">A\xF1adir</button></form>`);
-  _push(ssrRenderComponent($setup["Table"], {
-    data: $setup.data?.response,
-    columns: [{ field: "nombre", header: "Nombre" }, { field: "createdAt", header: "Fecha de creaci\xF3n" }],
-    pending: $setup.isPending,
-    error: $setup.isError,
-    rows: 5,
-    "edit-cells": [{ field: "nombre", action: (dataRow, newValue) => $setup.edit.mutate({ nombre: newValue.toUpperCase(), idetiqueta: dataRow.idetiqueta }) }]
+  _push(ssrRenderComponent($setup["ListaEtiquetas"], {
+    data: $setup.data?.response ?? [],
+    "is-pending": $setup.isPending,
+    "mutation-update": $setup.edit
   }, null, _parent));
   _push(`<!--]-->`);
 }
