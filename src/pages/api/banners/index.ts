@@ -20,9 +20,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
       })
       .setOrderFilters([["createdAt", "DESC"]])
       .setAttributes({
-        exclude: locals.user
-          ? []
-          : ["createdAt", "updatedAt", "idUsuario", "mostrar"],
+        exclude: locals.user ? [] : ["updatedAt", "idUsuario", "mostrar"],
       })
       .getResult()
       .getAll();
