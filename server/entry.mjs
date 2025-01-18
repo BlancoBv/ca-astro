@@ -1,9 +1,8 @@
-import { r as renderers } from './chunks/_@astro-renderers_5KdtQE-v.mjs';
-import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_BBSCn0rE.mjs';
-import { manifest } from './manifest_C3MhHBNt.mjs';
+import { renderers } from './renderers.mjs';
+import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_Biwcz3nV.mjs';
+import { manifest } from './manifest_BRDZ3DJk.mjs';
 
-const serverIslandMap = new Map([
-]);;
+const serverIslandMap = new Map();;
 
 const _page0 = () => import('./pages/_image.astro.mjs');
 const _page1 = () => import('./pages/404.astro.mjs');
@@ -46,7 +45,7 @@ const _page37 = () => import('./pages/_resource_/_route_.astro.mjs');
 const _page38 = () => import('./pages/_resource_.astro.mjs');
 const _page39 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
-    ["node_modules/.pnpm/astro@5.0.3_@types+node@22.5.5_jiti@1.21.6_rollup@4.28.1_typescript@5.6.2_yaml@2.5.1/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
+    ["node_modules/.pnpm/astro@5.1.7_@types+node@22.5.5_jiti@1.21.6_rollup@4.28.1_typescript@5.6.2_yaml@2.5.1/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/404.astro", _page1],
     ["src/pages/api/articulos/index.ts", _page2],
     ["src/pages/api/banners/index.ts", _page3],

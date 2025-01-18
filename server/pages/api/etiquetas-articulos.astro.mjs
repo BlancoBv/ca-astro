@@ -1,5 +1,5 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
+export { renderers } from '../../renderers.mjs';
 
 const GET = async ({}) => {
   return responseAsJson(null, { sendAsMessage: true }, 404);

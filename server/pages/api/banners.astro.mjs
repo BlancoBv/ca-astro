@@ -3,7 +3,7 @@ import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl
 import { I as ImageController } from '../../chunks/ImageController_Vn72BPHB.mjs';
 import { B as Banners } from '../../chunks/index_CM2BeHHC.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
+export { renderers } from '../../renderers.mjs';
 
 const imageController = new ImageController("banners");
 const controller = new ControllerBuilder();

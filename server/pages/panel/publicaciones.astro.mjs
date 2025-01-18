@@ -1,17 +1,17 @@
 /* empty css                                      */
-import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, mergeProps, withCtx, createTextVNode, toDisplayString, withDirectives, createVNode, vModelText, vModelSelect, withModifiers, withKeys, reactive } from 'vue';
 import { a as useGetData, u as useSendData } from '../../chunks/http_yWF3wTfY.mjs';
-import { a as script, s as script$1 } from '../../chunks/index_BHTcDF0C.mjs';
-import { s as script$2 } from '../../chunks/index_CcU1T5yj.mjs';
+import { a as script, s as script$1 } from '../../chunks/index_CBT2s1oX.mjs';
+import { s as script$2 } from '../../chunks/index_DTPrYIW4.mjs';
 import { f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BRCTKcgz.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_qt5Sn5yA.mjs';
 import { v as validateBuilder } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DG5Ka4oX.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_Gj28N5-o.mjs';
+export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaPublicaciones",

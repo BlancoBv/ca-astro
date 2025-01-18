@@ -1,15 +1,16 @@
 /* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_BYikK1dL.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_DmhofpIV.mjs';
 import { a as formatMoneda, f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, createVNode, toDisplayString, openBlock, createBlock, Fragment } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_BHTcDF0C.mjs';
-import { ssrRenderComponent, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
+import { useSSRContext, defineComponent, ref, mergeProps, withCtx, createVNode, withDirectives, vModelText, toDisplayString, createTextVNode, openBlock, createBlock, Fragment } from 'vue';
+import { s as script, a as script$1 } from '../../chunks/index_CBT2s1oX.mjs';
+import { FilterMatchMode } from '@primevue/core/api';
+import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BRCTKcgz.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_Dl_LH0xV.mjs';
-import { $ as $$Image } from '../../chunks/_astro_assets_DarXLmXQ.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_qt5Sn5yA.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DyQBY4Oz.mjs';
+import { $ as $$Image } from '../../chunks/_astro_assets_t6jYWpBq.mjs';
+export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaProyectosMiembros",
@@ -19,6 +20,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
+    const filters = ref({
+      global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+    });
     const getCollabs = (element) => {
       const formatter = new Intl.ListFormat("es", {
         type: "conjunction",
@@ -37,7 +41,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       }
       return formatter.format(miembrosF);
     };
-    const __returned__ = { props, getCollabs, get Column() {
+    const __returned__ = { props, filters, getCollabs, get Column() {
       return script;
     }, get DataTable() {
       return script$1;
@@ -53,14 +57,38 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     value: $setup.props.data,
     paginator: true,
     rows: 10,
-    rowsPerPageOptions: [5, 10, 20, 50]
+    rowsPerPageOptions: [5, 10, 20, 50],
+    filters: $setup.filters,
+    "onUpdate:filters": ($event) => $setup.filters = $event,
+    globalFilterFields: ["clave", "titulo", "convocatoria", "director_proyecto.nombreCompleto", "otrosColaboradores"]
   }, _attrs), {
-    empty: withCtx((_, _push2, _parent2, _scopeId) => {
+    header: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(` Sin datos. `);
+        _push2(`<div class="flex justify-end mb-4"${_scopeId}><label class="input input-bordered flex items-center gap-2 w-full max-w-xs"${_scopeId}><i class="bi bi-search"${_scopeId}></i><input${ssrRenderAttr("value", $setup.filters.global.value)} type="text" class="grow" placeholder="Buscar proyecto (clave, titulo, convocatoria, director)"${_scopeId}></label></div>`);
       } else {
         return [
-          createTextVNode(" Sin datos. ")
+          createVNode("div", { class: "flex justify-end mb-4" }, [
+            createVNode("label", { class: "input input-bordered flex items-center gap-2 w-full max-w-xs" }, [
+              createVNode("i", { class: "bi bi-search" }),
+              withDirectives(createVNode("input", {
+                "onUpdate:modelValue": ($event) => $setup.filters.global.value = $event,
+                type: "text",
+                class: "grow",
+                placeholder: "Buscar proyecto (clave, titulo, convocatoria, director)"
+              }, null, 8, ["onUpdate:modelValue"]), [
+                [vModelText, $setup.filters.global.value]
+              ])
+            ])
+          ])
+        ];
+      }
+    }),
+    empty: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div class="text-center font-bold"${_scopeId}>Sin datos.</div>`);
+      } else {
+        return [
+          createVNode("div", { class: "text-center font-bold" }, "Sin datos.")
         ];
       }
     }),
@@ -333,6 +361,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
+    const filters = ref({
+      global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+    });
     const getCollabs = (element) => {
       const formatter = new Intl.ListFormat("es", {
         type: "conjunction",
@@ -351,7 +382,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }
       return formatter.format(miembrosF);
     };
-    const __returned__ = { props, getCollabs, get Column() {
+    const __returned__ = { props, filters, getCollabs, get Column() {
       return script;
     }, get DataTable() {
       return script$1;
@@ -365,8 +396,32 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     value: $setup.props.data,
     paginator: true,
     rows: 10,
-    rowsPerPageOptions: [5, 10, 20, 50]
+    rowsPerPageOptions: [5, 10, 20, 50],
+    filters: $setup.filters,
+    "onUpdate:filters": ($event) => $setup.filters = $event,
+    globalFilterFields: ["ISSN", "titulo", "otrosAutores"]
   }, _attrs), {
+    header: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div class="flex justify-end mb-4"${_scopeId}><label class="input input-bordered flex items-center gap-2 w-full max-w-xs"${_scopeId}><i class="bi bi-search"${_scopeId}></i><input${ssrRenderAttr("value", $setup.filters.global.value)} type="text" class="grow" placeholder="Buscar publicaci\xF3n (ISSN, titulo, autores)"${_scopeId}></label></div>`);
+      } else {
+        return [
+          createVNode("div", { class: "flex justify-end mb-4" }, [
+            createVNode("label", { class: "input input-bordered flex items-center gap-2 w-full max-w-xs" }, [
+              createVNode("i", { class: "bi bi-search" }),
+              withDirectives(createVNode("input", {
+                "onUpdate:modelValue": ($event) => $setup.filters.global.value = $event,
+                type: "text",
+                class: "grow",
+                placeholder: "Buscar publicaci\xF3n (ISSN, titulo, autores)"
+              }, null, 8, ["onUpdate:modelValue"]), [
+                [vModelText, $setup.filters.global.value]
+              ])
+            ])
+          ])
+        ];
+      }
+    }),
     empty: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<div class="text-center font-bold"${_scopeId}>Sin datos.</div>`);

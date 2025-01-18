@@ -1,5 +1,5 @@
 import { U as Users } from '../../chunks/index_CM2BeHHC.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
+export { renderers } from '../../renderers.mjs';
 
 const POST = async ({ request, locals }) => {
   const { user } = locals;

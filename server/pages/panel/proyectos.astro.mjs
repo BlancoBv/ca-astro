@@ -1,18 +1,18 @@
 /* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_BYikK1dL.mjs';
+import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, resolveDirective, withCtx, withDirectives, createVNode, vModelText, toDisplayString, vModelSelect, createTextVNode, openBlock, createBlock, Fragment, renderList, withModifiers, withKeys, mergeProps, reactive } from 'vue';
 import { a as useGetData, u as useSendData } from '../../chunks/http_yWF3wTfY.mjs';
 import { v as validateBuilder } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-import { a as script, s as script$1 } from '../../chunks/index_BHTcDF0C.mjs';
-import { s as script$2 } from '../../chunks/index_CcU1T5yj.mjs';
-import { s as script$3 } from '../../chunks/index_CHXSBEK9.mjs';
+import { a as script, s as script$1 } from '../../chunks/index_CBT2s1oX.mjs';
+import { s as script$2 } from '../../chunks/index_DTPrYIW4.mjs';
+import { s as script$3 } from '../../chunks/index_CGsuZwon.mjs';
 import { f as formatDate, a as formatMoneda } from '../../chunks/format_Cetxi1N9.mjs';
 import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList, ssrRenderAttrs, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
 /* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_BRCTKcgz.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DG5Ka4oX.mjs';
-export { r as renderers } from '../../chunks/_@astro-renderers_5KdtQE-v.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_qt5Sn5yA.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_Gj28N5-o.mjs';
+export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "ListaProyectos",
