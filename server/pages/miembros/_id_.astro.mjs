@@ -2,13 +2,13 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_DmhofpIV.mjs';
 import { a as formatMoneda, f as formatDate } from '../../chunks/format_Cetxi1N9.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, mergeProps, withCtx, createVNode, withDirectives, vModelText, toDisplayString, createTextVNode, openBlock, createBlock, Fragment } from 'vue';
+import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createVNode, withDirectives, vModelText, toDisplayString, createTextVNode, openBlock, createBlock, Fragment } from 'vue';
 import { s as script, a as script$1 } from '../../chunks/index_CBT2s1oX.mjs';
 import { FilterMatchMode } from '@primevue/core/api';
 import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass } from 'vue/server-renderer';
 /* empty css                                   */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_qt5Sn5yA.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_DyQBY4Oz.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_CfDbN-aU.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_CUS4SuB5.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_t6jYWpBq.mjs';
 export { renderers } from '../../renderers.mjs';
 
@@ -20,6 +20,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
+    const isMounted = ref(false);
     const filters = ref({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS }
     });
@@ -41,7 +42,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       }
       return formatter.format(miembrosF);
     };
-    const __returned__ = { props, filters, getCollabs, get Column() {
+    onMounted(() => {
+      isMounted.value = true;
+    });
+    onUnmounted(() => {
+      isMounted.value = false;
+    });
+    const __returned__ = { props, isMounted, filters, getCollabs, get Column() {
       return script;
     }, get DataTable() {
       return script$1;
@@ -60,8 +67,18 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     rowsPerPageOptions: [5, 10, 20, 50],
     filters: $setup.filters,
     "onUpdate:filters": ($event) => $setup.filters = $event,
-    globalFilterFields: ["clave", "titulo", "convocatoria", "director_proyecto.nombreCompleto", "otrosColaboradores"]
+    globalFilterFields: ["clave", "titulo", "convocatoria", "director_proyecto.nombreCompleto", "otrosColaboradores"],
+    loading: $setup.props.data.length < 1 ? false : !$setup.isMounted
   }, _attrs), {
+    loading: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn"${_scopeId}></div>`);
+      } else {
+        return [
+          createVNode("div", { class: "absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn" })
+        ];
+      }
+    }),
     header: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<div class="flex justify-end mb-4"${_scopeId}><label class="input input-bordered flex items-center gap-2 w-full max-w-xs"${_scopeId}><i class="bi bi-search"${_scopeId}></i><input${ssrRenderAttr("value", $setup.filters.global.value)} type="text" class="grow" placeholder="Buscar proyecto (clave, titulo, convocatoria, director)"${_scopeId}></label></div>`);
@@ -361,6 +378,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
+    const isMounted = ref(false);
     const filters = ref({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS }
     });
@@ -382,7 +400,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }
       return formatter.format(miembrosF);
     };
-    const __returned__ = { props, filters, getCollabs, get Column() {
+    onMounted(() => {
+      isMounted.value = true;
+    });
+    onUnmounted(() => {
+      isMounted.value = false;
+    });
+    const __returned__ = { props, isMounted, filters, getCollabs, get Column() {
       return script;
     }, get DataTable() {
       return script$1;
@@ -399,8 +423,18 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     rowsPerPageOptions: [5, 10, 20, 50],
     filters: $setup.filters,
     "onUpdate:filters": ($event) => $setup.filters = $event,
-    globalFilterFields: ["ISSN", "titulo", "otrosAutores"]
+    globalFilterFields: ["ISSN", "titulo", "otrosAutores"],
+    loading: $setup.props.data.length < 1 ? false : !$setup.isMounted
   }, _attrs), {
+    loading: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<div class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn"${_scopeId}></div>`);
+      } else {
+        return [
+          createVNode("div", { class: "absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn" })
+        ];
+      }
+    }),
     header: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<div class="flex justify-end mb-4"${_scopeId}><label class="input input-bordered flex items-center gap-2 w-full max-w-xs"${_scopeId}><i class="bi bi-search"${_scopeId}></i><input${ssrRenderAttr("value", $setup.filters.global.value)} type="text" class="grow" placeholder="Buscar publicaci\xF3n (ISSN, titulo, autores)"${_scopeId}></label></div>`);
@@ -581,7 +615,7 @@ const $$id = createComponent(async ($$result, $$props, $$slots) => {
     el.fechaInicioEntrega = el.fechaInicioEntrega ? formatDate(el.fechaInicioEntrega, "LL") : el.fechaInicioEntrega;
     el.fechaTerminoEntrega = el.fechaTerminoEntrega ? formatDate(el.fechaTerminoEntrega, "LL") : el.fechaTerminoEntrega;
   });
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": `${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto}` }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> <div class="stats md:grid-cols-2 shadow stats-vertical md:stats-horizontal w-full not-prose min-h-40"> <div class="stat flex flex-col md:inline-grid place-items-center place"> <div class="stat-figure text-secondary size-40"> ${miembro.response?.imgPerfil && renderTemplate`<div class="avatar size-full"> <div class="rounded-full"> ${renderComponent($$result2, "Image", $$Image, { "src": miembro.response.imgPerfil, "alt": miembro.response.nombreCompleto, "class": "aspect-square", "width": 100, "height": 100, "loading": "eager" })} </div> </div>`} ${!miembro.response?.imgPerfil && renderTemplate`<div class="avatar placeholder size-full"> <div class="bg-neutral text-neutral-content rounded-full"> <span class="text-3xl"> ${miembro.response.nombreCompleto.charAt(0)} </span> </div> </div>`} </div> <div class="stat-value text-wrap text-center"> ${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto} </div> <div class="stat-title">${miembro.response.puesto.toUpperCase()}</div> <div class="stat-desc text-wrap"> ${miembro.response.tipoMiembro.toUpperCase()} </div> </div> <div class="stat place-items-center"> <div class="stat-figure text-secondary"> <i class="bi bi-share-fill text-2xl"></i> </div> <div class="stat-title">Enlaces de contacto</div> <div class="stat-value text-base-content flex flex-wrap gap-4 text-wrap"> ${miembro.response.contactos.length > 0 && miembro.response.contactos.map((el) => renderTemplate`<a class="hover:text-primary hover:scale-105 duration-100 ease-in"${addAttribute(`${el.tipo === "correo" ? "mailto:" : ""}${el.url}`, "href")}${addAttribute(el.tipo, "aria-label")} target="_blank"> <i${addAttribute(redesSocialesIcon[el.tipo], "class")}></i> </a>`)} ${miembro.response.contactos.length < 1 && renderTemplate`<span>Sin información de contacto.</span>`} </div> </div> </div> <p>${miembro.response.resumen}</p> <h2 class="mt-0">Proyectos</h2> ${renderComponent($$result2, "ListaProyectosMiembros", ListaProyectosMiembros, { "data": miembro.response.proyectos, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaProyectosMiembros.vue", "client:component-export": "default" })} <h2 class="mt-0">Publicaciones</h2> ${renderComponent($$result2, "ListaPublicacionesMiembros", ListaPublicacionesMiembros, { "data": miembro.response.publicaciones, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaPublicacionesMiembros.vue", "client:component-export": "default" })} </main> ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": `${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto}` }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> <div class="stats md:grid-cols-2 shadow stats-vertical md:stats-horizontal w-full not-prose min-h-40"> <div class="stat flex flex-col md:inline-grid place-items-center place"> <div class="stat-figure text-secondary size-40"> ${miembro.response?.imgPerfil && renderTemplate`<div class="avatar size-full"> <div class="rounded-full"> ${renderComponent($$result2, "Image", $$Image, { "src": miembro.response.imgPerfil, "alt": miembro.response.nombreCompleto, "class": "aspect-square", "width": 100, "height": 100, "loading": "eager" })} </div> </div>`} ${!miembro.response?.imgPerfil && renderTemplate`<div class="avatar placeholder size-full"> <div class="bg-neutral text-neutral-content rounded-full"> <span class="text-3xl"> ${miembro.response.nombreCompleto.charAt(0)} </span> </div> </div>`} </div> <div class="stat-value text-wrap text-center"> ${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto} </div> <div class="stat-title">${miembro.response.puesto.toUpperCase()}</div> <div class="stat-desc text-wrap"> ${miembro.response.tipoMiembro.toUpperCase()} </div> </div> <div class="stat place-items-center"> <div class="stat-figure text-secondary"> <i class="bi bi-share-fill text-2xl"></i> </div> <div class="stat-title">Enlaces de contacto</div> <div class="stat-value text-base-content flex flex-wrap gap-4 text-wrap"> ${miembro.response.contactos.length > 0 && miembro.response.contactos.map((el) => renderTemplate`<a class="hover:text-primary hover:scale-105 duration-100 ease-in"${addAttribute(`${el.tipo === "correo" ? "mailto:" : ""}${el.url}`, "href")}${addAttribute(el.tipo, "aria-label")} target="_blank"> <i${addAttribute(redesSocialesIcon[el.tipo], "class")}></i> </a>`)} ${miembro.response.contactos.length < 1 && renderTemplate`<span>Sin información de contacto.</span>`} </div> </div> </div> <p>${miembro.response.resumen}</p> <h2 class="mt-0">Proyectos</h2> ${renderComponent($$result2, "ListaProyectosMiembros", ListaProyectosMiembros, { "data": miembro.response.proyectos, "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/listas/ListaProyectosMiembros.vue", "client:component-export": "default" })} <h2 class="mt-0">Publicaciones</h2> ${renderComponent($$result2, "ListaPublicacionesMiembros", ListaPublicacionesMiembros, { "data": miembro.response.publicaciones, "client:visible": true, "client:component-hydration": "visible", "client:component-path": "@components/listas/ListaPublicacionesMiembros.vue", "client:component-export": "default" })} </main> ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/miembros/[id].astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/miembros/[id].astro";

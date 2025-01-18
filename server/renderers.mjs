@@ -178,7 +178,7 @@ const _app = (app) => {
     unstyled: true,
     pt: {
       datatable: {
-        root: "not-prose",
+        root: "not-prose relative",
         table: "table table-zebra"
       },
       paginator: {

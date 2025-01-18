@@ -1,7 +1,7 @@
 /* empty css                                   */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, u as unescapeHTML } from '../chunks/astro/server_DmhofpIV.mjs';
 import { $ as $$EtiquetasHeading, a as $$BadgeEtiquetas } from '../chunks/EtiquetasHeading_Cp6fBb2Y.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DyQBY4Oz.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CUS4SuB5.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://computodistribuido.org");

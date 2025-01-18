@@ -1,6 +1,6 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, ac as Fragment } from '../chunks/astro/server_DmhofpIV.mjs';
-import { $ as $$Layout } from '../chunks/Layout_DyQBY4Oz.mjs';
+import { $ as $$Layout } from '../chunks/Layout_CUS4SuB5.mjs';
 import { $ as $$CardBlog } from '../chunks/CardBlog_BLcP2bsw.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment as Fragment$1, renderList } from 'vue';
@@ -8,7 +8,7 @@ import { a as useGetData } from '../chunks/http_yWF3wTfY.mjs';
 import { Carousel as Carousel$1, Navigation, Slide } from 'vue3-carousel';
 /* empty css                                 */
 import { ssrRenderComponent, ssrRenderList, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_qt5Sn5yA.mjs';
+import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_CfDbN-aU.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
