@@ -167,7 +167,7 @@ export default (app: App) => {
     unstyled: true,
     pt: {
       datatable: {
-        root: "not-prose",
+        root: "not-prose relative",
         table: "table table-zebra",
       },
       paginator: {

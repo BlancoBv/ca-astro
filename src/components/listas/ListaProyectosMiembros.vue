@@ -3,7 +3,7 @@ import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
 import { FilterMatchMode } from '@primevue/core/api';
 import { formatMoneda } from '@assets/format';
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 interface props {
     data: any[]
@@ -11,6 +11,7 @@ interface props {
 
 const props = defineProps<props>()
 
+const isMounted = ref<boolean>(false)
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS }
 });
@@ -46,11 +47,23 @@ const getCollabs = (element: {
     return formatter.format(miembrosF);
 };
 
+onMounted(() => {
+    isMounted.value = true
+})
+onUnmounted(() => {
+    isMounted.value = false
+})
 </script>
 <template>
     <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
         v-model:filters="filters"
-        :globalFilterFields="['clave', 'titulo', 'convocatoria', 'director_proyecto.nombreCompleto', 'otrosColaboradores']">
+        :globalFilterFields="['clave', 'titulo', 'convocatoria', 'director_proyecto.nombreCompleto', 'otrosColaboradores']"
+        :loading="props.data.length < 1 ? false : !isMounted">
+        <template #loading>
+            <div
+                class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn">
+            </div>
+        </template>
         <template #header>
             <div class="flex justify-end mb-4">
                 <label class="input input-bordered flex items-center gap-2 w-full max-w-xs">

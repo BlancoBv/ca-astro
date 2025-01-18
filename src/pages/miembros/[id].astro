@@ -144,11 +144,11 @@ miembro.response.proyectos.forEach((el) => {
     </div>
     <p>{miembro.response.resumen}</p>
     <h2 class="mt-0">Proyectos</h2>
-    <ListaProyectosMiembros data={miembro.response.proyectos} client:idle />
+    <ListaProyectosMiembros data={miembro.response.proyectos} client:visible />
     <h2 class="mt-0">Publicaciones</h2>
     <ListaPublicacionesMiembros
       data={miembro.response.publicaciones}
-      client:idle
+      client:visible
     />
   </main>
 </Layout>
