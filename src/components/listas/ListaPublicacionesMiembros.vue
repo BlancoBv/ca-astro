@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import { FilterMatchMode } from '@primevue/core/api';
 import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
+import { ref } from 'vue';
 
 interface props {
     data: any[]
 }
 
 const props = defineProps<props>()
+
+const filters = ref({
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+});
 
 const getCollabs = (element: {
     otrosAutores: string | null;
@@ -41,7 +47,17 @@ const getCollabs = (element: {
 
 </script>
 <template>
-    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]">
+    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
+        v-model:filters="filters" :globalFilterFields="['ISSN', 'titulo', 'otrosAutores']">
+        <template #header>
+            <div class="flex justify-end mb-4">
+                <label class="input input-bordered flex items-center gap-2 w-full max-w-xs">
+                    <i class="bi bi-search"></i>
+                    <input v-model="filters.global.value" type="text" class="grow"
+                        placeholder="Buscar publicación (ISSN, titulo, autores)" />
+                </label>
+            </div>
+        </template>
         <Column field="ISSN" header="ISSN">
             <template #body="{ data, field }">
                 <div class="w-20 ">{{ data[field] ?? "---" }}</div>
@@ -65,7 +81,6 @@ const getCollabs = (element: {
                 {{ data[field].toUpperCase() }}
             </template>
         </Column>
-
         <template #empty>
             <div class="text-center font-bold">Sin datos.</div>
         </template>
