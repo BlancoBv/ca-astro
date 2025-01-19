@@ -2,11 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import BlogsContainer from "@components/gui/BlogsContainer.astro";
 import Carousel from "@components/gui/Carousel.vue";
+
+const banners = await fetch(
+  "http://localhost:4321/api/banners?mostrar=true"
+).then((res) => res.json());
 ---
 
 <Layout title="CA - cómputo distribuido.">
   <main>
-    <Carousel client:idle />
+    <Carousel banners={banners?.response ?? []} client:idle />
     <BlogsContainer />
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
       <div class="card bg-accent text-accent-content shadow-xl">
