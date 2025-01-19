@@ -1,6 +1,6 @@
 /* empty css                                         */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_RIkt5y_H.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_DFkgkw4R.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
 import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_BbqliuCC.mjs';

@@ -1,6 +1,6 @@
 /* empty css                                      */
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_RIkt5y_H.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_DFkgkw4R.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, resolveDirective, mergeProps, withCtx, createTextVNode, toDisplayString, withDirectives, createVNode, vModelText, reactive } from 'vue';
 import { I as Input } from '../../chunks/Input_JmxTdOFT.mjs';
