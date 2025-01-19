@@ -8,7 +8,7 @@ import moment from 'moment';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_CfDbN-aU.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_lU_eJNPh.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_CzJxooWo.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({

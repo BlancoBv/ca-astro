@@ -10,7 +10,7 @@ import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrI
 /* empty css                                    */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_CfDbN-aU.mjs';
 import { v as validateBuilder } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_lU_eJNPh.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CzJxooWo.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({

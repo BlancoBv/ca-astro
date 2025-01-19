@@ -11,7 +11,7 @@ import { f as formatDate, a as formatMoneda } from '../../chunks/format_Cetxi1N9
 import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList, ssrRenderAttrs, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
 /* empty css                                    */
 import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_CfDbN-aU.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_lU_eJNPh.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_CzJxooWo.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
