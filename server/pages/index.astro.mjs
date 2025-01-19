@@ -1,12 +1,8 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, ac as Fragment, b as createAstro, d as addAttribute } from '../chunks/astro/server_DmhofpIV.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, ac as Fragment, b as createAstro, d as addAttribute, ag as renderScript } from '../chunks/astro/server_DmhofpIV.mjs';
 import { $ as $$Layout } from '../chunks/Layout_ByZJSsIi.mjs';
 import { $ as $$CardBlog } from '../chunks/CardBlog_BLcP2bsw.mjs';
 import { $ as $$Image } from '../chunks/_astro_assets_t6jYWpBq.mjs';
-import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, mergeProps } from 'vue';
-import { ssrRenderAttrs, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_Bxo6ggSM.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
@@ -18,58 +14,18 @@ Ver todos
 </a> </div> ` })}`} ${blogs.response?.blogs && blogs.response?.blogs.length < 1 && renderTemplate`<div class="h-96 flex flex-col justify-center items-center gap-4 md:col-span-2 lg:col-span-3"> <i class="bi bi-clouds text-9xl"></i> <h1 class="text-xl">Sin eventos recientes</h1> </div>`} </div> </div>`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/BlogsContainer.astro", void 0);
 
-const _sfc_main = /* @__PURE__ */ defineComponent({
-  __name: "CarouselPagination",
-  props: {
-    banners: {}
-  },
-  setup(__props, { expose: __expose }) {
-    __expose();
-    const props = __props;
-    const activeIndex = ref(0);
-    const handleClick = (index) => {
-      activeIndex.value = index;
-    };
-    const __returned__ = { props, activeIndex, handleClick };
-    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
-    return __returned__;
-  }
-});
-function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "flex w-full justify-center gap-2 py-2" }, _attrs))}><!--[-->`);
-  ssrRenderList($setup.props.banners, (banner, index) => {
-    _push(`<a${ssrRenderAttr("href", `#banner-${banner.idbanner}`)} class="${ssrRenderClass([{ "btn-active": $setup.activeIndex === index }, "btn btn-circle btn-xs selector-banner"])}">${ssrInterpolate(index + 1)}</a>`);
-  });
-  _push(`<!--]--></div>`);
-}
-const _sfc_setup = _sfc_main.setup;
-_sfc_main.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/gui/CarouselPagination.vue");
-  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
-};
-const CarouselPagination = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
-
 const $$Astro = createAstro("https://computodistribuido.org");
 const $$Carousel = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Carousel;
   const { banners } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<div class="carousel h-60 md:h-[450px] w-full"> ${banners.length > 0 && banners.map((el, index, array) => renderTemplate`<div${addAttribute(`banner-${el.idbanner}`, "id")} class="carousel-item relative w-full scroll-mt-32 overflow-hidden"> ${renderComponent($$result, "Image", $$Image, { "src": el.imagen, "class": "w-full object-cover", "width": 50, "height": 50, "alt": el.createdAt, "loading": "eager" })} ${(el.descripcion || el.url) && renderTemplate`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4"> <div class="card-body"> <p>${el.descripcion}</p> ${el.url && renderTemplate`<div class="card-actions justify-end"> <a target="_blank"${addAttribute(el.url, "href")} class="btn btn-primary btn-sm">
+  return renderTemplate`${maybeRenderHead()}<div class="carousel h-60 md:h-[450px] w-full"> ${banners.length > 0 && banners.map((el, index, array) => renderTemplate`<div${addAttribute(`banner-${el.idbanner}`, "id")} class="carousel-item relative w-full scroll-mt-32 overflow-hidden"> ${renderComponent($$result, "Image", $$Image, { "src": el.imagen, "class": "w-full object-cover", "inferSize": true, "alt": el.createdAt, "loading": "eager" })} ${(el.descripcion || el.url) && renderTemplate`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4"> <div class="card-body"> <p>${el.descripcion}</p> ${el.url && renderTemplate`<div class="card-actions justify-end"> <a target="_blank"${addAttribute(el.url, "href")} class="btn btn-primary btn-sm">
 Ver enlace adjunto
-</a> </div>`} </div> </div>`} <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"> <a${addAttribute(`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`, "href")} class="btn btn-circle">
+</a> </div>`} </div> </div>`} <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"> <a${addAttribute(`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`, "href")} class="btn btn-circle selector-banner-main">
 ❮
-</a> <a${addAttribute(`#banner-${array[(index + 1) % array.length].idbanner}`, "href")} class="btn btn-circle">
+</a> <a${addAttribute(`#banner-${array[(index + 1) % array.length].idbanner}`, "href")} class="btn btn-circle selector-banner-main">
 ❯
-</a> </div> </div>`)} </div> ${renderComponent($$result, "CarouselPagination", CarouselPagination, { "banners": banners, "client:load": true, "client:component-hydration": "load", "client:component-path": "/home/blanco/Documentos/ca-astro/src/components/gui/CarouselPagination.vue", "client:component-export": "default" })} <!-- <div class="flex w-full justify-center gap-2 py-2">
-  {
-    banners.map((el, index) => (
-      <a href={\`#banner-\${el.idbanner}\`} class="btn btn-xs selector-banner">
-        {index + 1}
-      </a>
-    ))
-  }
-</div> -->`;
+</a> </div> </div>`)} </div> <div class="flex w-full justify-center gap-2 py-2"> ${banners.map((el, index) => renderTemplate`<a${addAttribute(`#banner-${el.idbanner}`, "href")} class="btn btn-xs selector-banner"> ${index + 1} </a>`)} </div> ${renderScript($$result, "/home/blanco/Documentos/ca-astro/src/components/gui/Carousel.astro?astro&type=script&index=0&lang.ts")}`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/Carousel.astro", void 0);
 
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
