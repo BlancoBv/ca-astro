@@ -1,13 +1,12 @@
 /* empty css                                   */
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, ac as Fragment } from '../chunks/astro/server_DmhofpIV.mjs';
-import { $ as $$Layout } from '../chunks/Layout_CUS4SuB5.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, ac as Fragment, b as createAstro, d as addAttribute } from '../chunks/astro/server_DmhofpIV.mjs';
+import { $ as $$Layout } from '../chunks/Layout_ByZJSsIi.mjs';
 import { $ as $$CardBlog } from '../chunks/CardBlog_BLcP2bsw.mjs';
+import { $ as $$Image } from '../chunks/_astro_assets_t6jYWpBq.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createVNode, openBlock, createBlock, toDisplayString, createCommentVNode, Fragment as Fragment$1, renderList } from 'vue';
-import { Carousel as Carousel$1, Navigation, Pagination, Slide } from 'vue3-carousel';
-/* empty css                                 */
-import { ssrRenderComponent, ssrRenderList, ssrRenderClass, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_CfDbN-aU.mjs';
+import { useSSRContext, defineComponent, ref, mergeProps } from 'vue';
+import { ssrRenderAttrs, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
+import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_Bxo6ggSM.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$BlogsContainer = createComponent(async ($$result, $$props, $$slots) => {
@@ -20,192 +19,64 @@ Ver todos
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/BlogsContainer.astro", void 0);
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
-  __name: "Carousel",
+  __name: "CarouselPagination",
   props: {
     banners: {}
   },
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
-    const isMounted = ref(false);
-    onMounted(() => {
-      isMounted.value = true;
-    });
-    onUnmounted(() => {
-      isMounted.value = false;
-    });
-    const __returned__ = { props, isMounted, get Carousel() {
-      return Carousel$1;
-    }, get Navigation() {
-      return Navigation;
-    }, get Pagination() {
-      return Pagination;
-    }, get Slide() {
-      return Slide;
-    } };
+    const activeIndex = ref(0);
+    const handleClick = (index) => {
+      activeIndex.value = index;
+    };
+    const __returned__ = { props, activeIndex, handleClick };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(ssrRenderComponent($setup["Carousel"], mergeProps({
-    class: ["block", { "cursor-wait select-none": !$setup.isMounted }],
-    "wrap-around": "",
-    breakpoints: {
-      300: {
-        itemsToShow: 1.3,
-        snapAlign: "start"
-      },
-      // 500px and up
-      640: {
-        itemsToShow: 1.5,
-        snapAlign: "center"
-      }
-    }
-  }, _attrs), {
-    slides: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(`<!--[-->`);
-        ssrRenderList($setup.props.banners, (banner) => {
-          _push2(ssrRenderComponent($setup["Slide"], {
-            class: "w-full h-60 md:h-96 select-none",
-            key: banner.idbanner
-          }, {
-            default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-              if (_push3) {
-                _push3(`<div class="${ssrRenderClass([{ "skeleton": !$setup.isMounted }, "h-full w-full relative flex items-end justify-end"])}"${_scopeId2}><img class="w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box"${ssrRenderAttr("src", banner.imagen)} width="50px" height="50px"${ssrRenderAttr("alt", banner.createdAt)} loading="eager"${_scopeId2}><div class="p-4 w-full lg:w-3/4"${_scopeId2}>`);
-                if (banner.url || banner.descripcion) {
-                  _push3(`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full min-h-32"${_scopeId2}><div class="card-body"${_scopeId2}>`);
-                  if (banner.descripcion) {
-                    _push3(`<p${_scopeId2}>${ssrInterpolate(banner.descripcion)}</p>`);
-                  } else {
-                    _push3(`<!---->`);
-                  }
-                  if (banner.url) {
-                    _push3(`<div class="card-actions justify-end"${_scopeId2}><a target="_blank"${ssrRenderAttr("href", banner.url)} class="btn btn-primary btn-sm"${_scopeId2}> Ver enlace adjunto </a></div>`);
-                  } else {
-                    _push3(`<!---->`);
-                  }
-                  _push3(`</div></div>`);
-                } else {
-                  _push3(`<!---->`);
-                }
-                _push3(`</div></div>`);
-              } else {
-                return [
-                  createVNode("div", {
-                    class: ["h-full w-full relative flex items-end justify-end", { "skeleton": !$setup.isMounted }]
-                  }, [
-                    createVNode("img", {
-                      class: "w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box",
-                      src: banner.imagen,
-                      width: "50px",
-                      height: "50px",
-                      alt: banner.createdAt,
-                      loading: "eager"
-                    }, null, 8, ["src", "alt"]),
-                    createVNode("div", { class: "p-4 w-full lg:w-3/4" }, [
-                      banner.url || banner.descripcion ? (openBlock(), createBlock("div", {
-                        key: 0,
-                        class: "card bg-base-100/70 backdrop-blur-sm shadow-xl w-full min-h-32"
-                      }, [
-                        createVNode("div", { class: "card-body" }, [
-                          banner.descripcion ? (openBlock(), createBlock("p", { key: 0 }, toDisplayString(banner.descripcion), 1)) : createCommentVNode("", true),
-                          banner.url ? (openBlock(), createBlock("div", {
-                            key: 1,
-                            class: "card-actions justify-end"
-                          }, [
-                            createVNode("a", {
-                              target: "_blank",
-                              href: banner.url,
-                              class: "btn btn-primary btn-sm"
-                            }, " Ver enlace adjunto ", 8, ["href"])
-                          ])) : createCommentVNode("", true)
-                        ])
-                      ])) : createCommentVNode("", true)
-                    ])
-                  ], 2)
-                ];
-              }
-            }),
-            _: 2
-          }, _parent2, _scopeId));
-        });
-        _push2(`<!--]-->`);
-      } else {
-        return [
-          (openBlock(true), createBlock(Fragment$1, null, renderList($setup.props.banners, (banner) => {
-            return openBlock(), createBlock($setup["Slide"], {
-              class: "w-full h-60 md:h-96 select-none",
-              key: banner.idbanner
-            }, {
-              default: withCtx(() => [
-                createVNode("div", {
-                  class: ["h-full w-full relative flex items-end justify-end", { "skeleton": !$setup.isMounted }]
-                }, [
-                  createVNode("img", {
-                    class: "w-full h-full object-cover -z-10 absolute top-0 left-0 rounded-box",
-                    src: banner.imagen,
-                    width: "50px",
-                    height: "50px",
-                    alt: banner.createdAt,
-                    loading: "eager"
-                  }, null, 8, ["src", "alt"]),
-                  createVNode("div", { class: "p-4 w-full lg:w-3/4" }, [
-                    banner.url || banner.descripcion ? (openBlock(), createBlock("div", {
-                      key: 0,
-                      class: "card bg-base-100/70 backdrop-blur-sm shadow-xl w-full min-h-32"
-                    }, [
-                      createVNode("div", { class: "card-body" }, [
-                        banner.descripcion ? (openBlock(), createBlock("p", { key: 0 }, toDisplayString(banner.descripcion), 1)) : createCommentVNode("", true),
-                        banner.url ? (openBlock(), createBlock("div", {
-                          key: 1,
-                          class: "card-actions justify-end"
-                        }, [
-                          createVNode("a", {
-                            target: "_blank",
-                            href: banner.url,
-                            class: "btn btn-primary btn-sm"
-                          }, " Ver enlace adjunto ", 8, ["href"])
-                        ])) : createCommentVNode("", true)
-                      ])
-                    ])) : createCommentVNode("", true)
-                  ])
-                ], 2)
-              ]),
-              _: 2
-            }, 1024);
-          }), 128))
-        ];
-      }
-    }),
-    addons: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(ssrRenderComponent($setup["Navigation"], null, null, _parent2, _scopeId));
-        _push2(ssrRenderComponent($setup["Pagination"], null, null, _parent2, _scopeId));
-      } else {
-        return [
-          createVNode($setup["Navigation"]),
-          createVNode($setup["Pagination"])
-        ];
-      }
-    }),
-    _: 1
-  }, _parent));
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "flex w-full justify-center gap-2 py-2" }, _attrs))}><!--[-->`);
+  ssrRenderList($setup.props.banners, (banner, index) => {
+    _push(`<a${ssrRenderAttr("href", `#banner-${banner.idbanner}`)} class="${ssrRenderClass([{ "btn-active": $setup.activeIndex === index }, "btn btn-circle btn-xs selector-banner"])}">${ssrInterpolate(index + 1)}</a>`);
+  });
+  _push(`<!--]--></div>`);
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/gui/Carousel.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/gui/CarouselPagination.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const Carousel = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+const CarouselPagination = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+
+const $$Astro = createAstro("https://computodistribuido.org");
+const $$Carousel = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Carousel;
+  const { banners } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<div class="carousel h-60 md:h-[450px] w-full"> ${banners.length > 0 && banners.map((el, index, array) => renderTemplate`<div${addAttribute(`banner-${el.idbanner}`, "id")} class="carousel-item relative w-full scroll-mt-32 overflow-hidden"> ${renderComponent($$result, "Image", $$Image, { "src": el.imagen, "class": "w-full object-cover", "width": 50, "height": 50, "alt": el.createdAt, "loading": "eager" })} ${(el.descripcion || el.url) && renderTemplate`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4"> <div class="card-body"> <p>${el.descripcion}</p> ${el.url && renderTemplate`<div class="card-actions justify-end"> <a target="_blank"${addAttribute(el.url, "href")} class="btn btn-primary btn-sm">
+Ver enlace adjunto
+</a> </div>`} </div> </div>`} <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"> <a${addAttribute(`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`, "href")} class="btn btn-circle">
+❮
+</a> <a${addAttribute(`#banner-${array[(index + 1) % array.length].idbanner}`, "href")} class="btn btn-circle">
+❯
+</a> </div> </div>`)} </div> ${renderComponent($$result, "CarouselPagination", CarouselPagination, { "banners": banners, "client:load": true, "client:component-hydration": "load", "client:component-path": "/home/blanco/Documentos/ca-astro/src/components/gui/CarouselPagination.vue", "client:component-export": "default" })} <!-- <div class="flex w-full justify-center gap-2 py-2">
+  {
+    banners.map((el, index) => (
+      <a href={\`#banner-\${el.idbanner}\`} class="btn btn-xs selector-banner">
+        {index + 1}
+      </a>
+    ))
+  }
+</div> -->`;
+}, "/home/blanco/Documentos/ca-astro/src/components/gui/Carousel.astro", void 0);
 
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const banners = await fetch(
     "http://localhost:4321/api/banners?mostrar=true"
   ).then((res) => res.json());
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "CA - c\xF3mputo distribuido." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "Carousel", Carousel, { "banners": banners?.response ?? [], "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/gui/Carousel.vue", "client:component-export": "default" })} ${renderComponent($$result2, "BlogsContainer", $$BlogsContainer, {})} <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4"> <div class="card bg-accent text-accent-content shadow-xl"> <div class="card-body"> <h2 class="card-title">Misión</h2> <p class="text-balance">
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "CA - c\xF3mputo distribuido." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main> ${renderComponent($$result2, "CarouselA", $$Carousel, { "banners": banners?.response ?? [] })} ${renderComponent($$result2, "BlogsContainer", $$BlogsContainer, {})} <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4"> <div class="card bg-accent text-accent-content shadow-xl"> <div class="card-body"> <h2 class="card-title">Misión</h2> <p class="text-balance">
 Contribuir con el mejoramiento de la formación académica de los
             estudiantes de la carrera de Ingeniería en Sistemas computacionales
             del Instituto tecnológico Superior de los Ríos.
