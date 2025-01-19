@@ -174,7 +174,20 @@ const rateLimiter = defineMiddleware(
   }
 );
 
-const onRequest$1 = sequence(rateLimiter, panelAuth, apiAuth);
+const noCache = defineMiddleware(async ({ url, request }, next) => {
+  if (url.pathname.startsWith("/api/")) {
+    const res = await next();
+    return new Response(res.body, {
+      headers: {
+        "Cache-Control": "public, max-age=0",
+        "Content-Type": "application/json"
+      }
+    });
+  }
+  return next();
+});
+
+const onRequest$1 = sequence(rateLimiter, noCache, panelAuth, apiAuth);
 
 const onRequest = sequence(
 	
