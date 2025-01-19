@@ -9,6 +9,7 @@ import "vue3-toastify/dist/index.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { validatePerm, permType } from "@assets/auth/validatePerm";
 import LogoutButton from "@components/panel/LogoutButton.vue";
+Astro.response.headers.set("Cache-Control", "public, max-age=0");
 ---
 
 <!doctype html>
