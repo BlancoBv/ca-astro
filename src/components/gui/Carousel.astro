@@ -1,0 +1,106 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  banners: {
+    idbanner: number;
+    createdAt: string;
+    imagen: string;
+    descripcion: string;
+    url: string;
+  }[];
+}
+const { banners } = Astro.props;
+---
+
+<div class="carousel h-60 md:h-[450px] w-full">
+  {
+    banners.length > 0 &&
+      banners.map((el, index, array) => (
+        <div
+          id={`banner-${el.idbanner}`}
+          class="carousel-item relative w-full scroll-mt-32 overflow-hidden"
+        >
+          <Image
+            src={el.imagen}
+            class="w-full object-cover"
+            inferSize
+            alt={el.createdAt}
+            loading="eager"
+          />
+          {(el.descripcion || el.url) && (
+            <div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4">
+              <div class="card-body">
+                <p>{el.descripcion}</p>
+                {el.url && (
+                  <div class="card-actions justify-end">
+                    <a
+                      target="_blank"
+                      href={el.url}
+                      class="btn btn-primary btn-sm"
+                    >
+                      Ver enlace adjunto
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a
+              href={`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`}
+              class="btn btn-circle selector-banner-main"
+            >
+              ❮
+            </a>
+            <a
+              href={`#banner-${array[(index + 1) % array.length].idbanner}`}
+              class="btn btn-circle selector-banner-main"
+            >
+              ❯
+            </a>
+          </div>
+        </div>
+      ))
+  }
+</div>
+<div class="flex w-full justify-center gap-2 py-2">
+  {
+    banners.map((el, index) => (
+      <a href={`#banner-${el.idbanner}`} class="btn btn-xs selector-banner">
+        {index + 1}
+      </a>
+    ))
+  }
+</div>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const selectors = document.getElementsByClassName("selector-banner");
+    const selectorsMain = document.getElementsByClassName(
+      "selector-banner-main"
+    );
+    selectors[0]?.classList.add("btn-active");
+
+    for (const element of selectorsMain) {
+      (element as HTMLAnchorElement).addEventListener("click", () => {
+        for (const el of selectors) {
+          const { hash: hashMain } = element as HTMLAnchorElement;
+          const { hash } = el as HTMLAnchorElement;
+          el.classList.remove("btn-active");
+          if (hashMain === hash) {
+            el.classList.add("btn-active");
+          }
+        }
+      });
+    }
+
+    for (const element of selectors) {
+      (element as HTMLAnchorElement).addEventListener("click", () => {
+        for (const el of selectors) {
+          el.classList.remove("btn-active");
+        }
+        element.classList.add("btn-active");
+      });
+    }
+  });
+</script>

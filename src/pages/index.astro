@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlogsContainer from "@components/gui/BlogsContainer.astro";
-import Carousel from "@components/gui/Carousel.vue";
+import CarouselA from "@components/gui/Carousel.astro";
 
 const banners = await fetch(
   "http://localhost:4321/api/banners?mostrar=true"
@@ -10,7 +10,7 @@ const banners = await fetch(
 
 <Layout title="CA - cómputo distribuido.">
   <main>
-    <Carousel banners={banners?.response ?? []} client:idle />
+    <CarouselA banners={banners?.response ?? []} />
     <BlogsContainer />
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
       <div class="card bg-accent text-accent-content shadow-xl">

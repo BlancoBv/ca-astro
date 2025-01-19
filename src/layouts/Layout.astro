@@ -65,7 +65,7 @@ Astro.response.headers.set(
 </style>
 
 <script>
-  document.addEventListener("astro:page-load", (ev) => {
+  document.addEventListener("astro:page-load", () => {
     const isDark = JSON.parse(localStorage.getItem("isDark") ?? "false");
     if (isDark) {
       document.documentElement.setAttribute("data-theme", "night");
