@@ -2,7 +2,7 @@ import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, mergeProps } from 'vue';
 import { EditorContent, useEditor } from '@tiptap/vue-3';
 import { ssrRenderClass, ssrRenderAttr, ssrRenderComponent, ssrRenderAttrs, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from './_plugin-vue_export-helper_Bxo6ggSM.mjs';
+import { _ as _export_sfc } from './_plugin-vue_export-helper_Dvd9eRQw.mjs';
 import { a as useGetData } from './http_yWF3wTfY.mjs';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';

@@ -1,6 +1,6 @@
 /* empty css                                   */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, ac as Fragment, b as createAstro, d as addAttribute, ag as renderScript } from '../chunks/astro/server_DmhofpIV.mjs';
-import { $ as $$Layout } from '../chunks/Layout_ByZJSsIi.mjs';
+import { $ as $$Layout } from '../chunks/Layout_C07dpu0_.mjs';
 import { $ as $$CardBlog } from '../chunks/CardBlog_Bj2QypEr.mjs';
 import { $ as $$Image } from '../chunks/_astro_assets_t6jYWpBq.mjs';
 export { renderers } from '../renderers.mjs';
@@ -19,13 +19,9 @@ const $$Carousel = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Carousel;
   const { banners } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<div class="carousel h-60 md:h-[450px] w-full"> ${banners.length > 0 && banners.map((el, index, array) => renderTemplate`<div${addAttribute(`banner-${el.idbanner}`, "id")} class="carousel-item relative w-full scroll-mt-32 overflow-hidden"> ${renderComponent($$result, "Image", $$Image, { "src": el.imagen, "class": "w-full object-cover", "inferSize": true, "alt": el.createdAt, "loading": "eager" })} ${(el.descripcion || el.url) && renderTemplate`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4"> <div class="card-body"> <p>${el.descripcion}</p> ${el.url && renderTemplate`<div class="card-actions justify-end"> <a target="_blank"${addAttribute(el.url, "href")} class="btn btn-primary btn-sm">
+  return renderTemplate`${maybeRenderHead()}<div class="carousel h-60 md:h-96 lg:h-[450px] w-full"> ${banners.length > 0 && banners.map((el, index, array) => renderTemplate`<div${addAttribute(`banner-${el.idbanner}`, "id")} class="carousel-item relative w-full scroll-mt-40"> ${renderComponent($$result, "Image", $$Image, { "src": el.imagen, "class": "w-full object-cover", "height": "100", "width": "100", "alt": el.createdAt, "loading": "eager" })} ${(el.descripcion || el.url) && renderTemplate`<div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4"> <div class="card-body"> <p>${el.descripcion}</p> ${el.url && renderTemplate`<div class="card-actions justify-end"> <a target="_blank"${addAttribute(el.url, "href")} class="btn btn-primary btn-sm">
 Ver enlace adjunto
-</a> </div>`} </div> </div>`} <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"> <a${addAttribute(`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`, "href")} class="btn btn-circle selector-banner-main">
-❮
-</a> <a${addAttribute(`#banner-${array[(index + 1) % array.length].idbanner}`, "href")} class="btn btn-circle selector-banner-main">
-❯
-</a> </div> </div>`)} </div> <div class="flex w-full justify-center gap-2 py-2"> ${banners.map((el, index) => renderTemplate`<a${addAttribute(`#banner-${el.idbanner}`, "href")} class="btn btn-xs selector-banner"> ${index + 1} </a>`)} </div> ${renderScript($$result, "/home/blanco/Documentos/ca-astro/src/components/gui/Carousel.astro?astro&type=script&index=0&lang.ts")}`;
+</a> </div>`} </div> </div>`} <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"> <a${addAttribute(`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`, "href")} class="btn btn-circle selector-banner-main"> <i class="bi bi-caret-left-fill text-xl"></i> </a> <a${addAttribute(`#banner-${array[(index + 1) % array.length].idbanner}`, "href")} class="btn btn-circle selector-banner-main"> <i class="bi bi-caret-right-fill text-xl"></i> </a> </div> </div>`)} </div> <div class="flex w-full justify-center gap-2 py-2"> ${banners.map((el, index) => renderTemplate`<a${addAttribute(`#banner-${el.idbanner}`, "href")} class="btn btn-xs selector-banner"> ${index + 1} </a>`)} </div> ${renderScript($$result, "/home/blanco/Documentos/ca-astro/src/components/gui/Carousel.astro?astro&type=script&index=0&lang.ts")}`;
 }, "/home/blanco/Documentos/ca-astro/src/components/gui/Carousel.astro", void 0);
 
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
