@@ -6,6 +6,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
 
 interface props {
     data: any[]
+    rows?: number
 }
 
 const props = defineProps<props>()
@@ -54,9 +55,9 @@ onUnmounted(() => {
 })
 </script>
 <template>
-    <DataTable :value="props.data" :paginator="true" :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
-        v-model:filters="filters" :globalFilterFields="['ISSN', 'titulo', 'otrosAutores']"
-        :loading="props.data.length < 1 ? false : !isMounted">
+    <DataTable :value="props.data" :paginator="true" :rows="props.rows ?? 10"
+        :rowsPerPageOptions="props.rows ? undefined : [5, 10, 20, 50]" v-model:filters="filters"
+        :globalFilterFields="['ISSN', 'titulo', 'otrosAutores']" :loading="props.data.length < 1 ? false : !isMounted">
         <template #loading>
             <div
                 class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn">

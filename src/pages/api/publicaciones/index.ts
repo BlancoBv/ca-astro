@@ -66,7 +66,7 @@ const pubsObject = z.object({
   visible: z.boolean(),
 });
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
   const response = await controller
     .setModel(Publicaciones)
     .setIncludedModels([
@@ -83,7 +83,8 @@ export const GET: APIRoute = async () => {
         through: { attributes: [] },
       },
     ])
-    .setOrderFilters([["createdAt", "DESC"]])
+    .setOrderFilters([["year", "DESC"]])
+    .setAttributes({ exclude: locals.user ? [] : ["createdAt", "updatedAt"] })
     .getResult()
     .getAll();
 

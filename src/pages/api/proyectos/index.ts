@@ -93,7 +93,7 @@ const proyectoSchema = z.object({
     .optional(),
 });
 const controller = new ControllerBuilder();
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ locals }) => {
   const response = await controller
     .setModel(Proyectos)
     .setIncludedModels([
@@ -122,6 +122,11 @@ export const GET: APIRoute = async () => {
       },
     ])
     .setOrderFilters([["createdAt", "DESC"]])
+    .setAttributes({
+      exclude: locals.user
+        ? []
+        : ["descripcion", "url", "createdAt", "updatedAt"],
+    })
     .getResult()
     .getAll();
   return responseAsJson(response);
