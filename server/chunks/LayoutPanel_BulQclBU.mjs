@@ -1,5 +1,5 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, d as addAttribute, a as renderComponent, ae as renderHead, af as renderSlot, ad as createTransitionScope } from './astro/server_DmhofpIV.mjs';
-import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_Dvd9eRQw.mjs';
+import { _ as _export_sfc, $ as $$ClientRouter } from './_plugin-vue_export-helper_3ktPLYsj.mjs';
 /* empty css                         */
 /* empty css                           */
 import { R as Roles, f as Permisos } from './index_CM2BeHHC.mjs';

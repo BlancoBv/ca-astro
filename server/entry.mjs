@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_Biwcz3nV.mjs';
-import { manifest } from './manifest_D4P0HI2Z.mjs';
+import { manifest } from './manifest_C-LuuFup.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -41,9 +41,11 @@ const _page33 = () => import('./pages/panel/logs.astro.mjs');
 const _page34 = () => import('./pages/panel/proyectos.astro.mjs');
 const _page35 = () => import('./pages/panel/publicaciones.astro.mjs');
 const _page36 = () => import('./pages/panel.astro.mjs');
-const _page37 = () => import('./pages/_resource_/_route_.astro.mjs');
-const _page38 = () => import('./pages/_resource_.astro.mjs');
-const _page39 = () => import('./pages/index.astro.mjs');
+const _page37 = () => import('./pages/produccion-academica/articulos.astro.mjs');
+const _page38 = () => import('./pages/produccion-academica/proyectos.astro.mjs');
+const _page39 = () => import('./pages/_resource_/_route_.astro.mjs');
+const _page40 = () => import('./pages/_resource_.astro.mjs');
+const _page41 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
     ["node_modules/.pnpm/astro@5.1.7_@types+node@22.5.5_jiti@1.21.6_rollup@4.28.1_typescript@5.6.2_yaml@2.5.1/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/404.astro", _page1],
@@ -82,9 +84,11 @@ const pageMap = new Map([
     ["src/pages/panel/proyectos/index.astro", _page34],
     ["src/pages/panel/publicaciones/index.astro", _page35],
     ["src/pages/panel/index.astro", _page36],
-    ["src/pages/[resource]/[route].astro", _page37],
-    ["src/pages/[resource]/index.astro", _page38],
-    ["src/pages/index.astro", _page39]
+    ["src/pages/produccion-academica/articulos/index.astro", _page37],
+    ["src/pages/produccion-academica/proyectos/index.astro", _page38],
+    ["src/pages/[resource]/[route].astro", _page39],
+    ["src/pages/[resource]/index.astro", _page40],
+    ["src/pages/index.astro", _page41]
 ]);
 
 const _manifest = Object.assign(manifest, {

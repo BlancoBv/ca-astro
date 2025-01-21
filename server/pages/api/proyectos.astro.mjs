@@ -52,7 +52,7 @@ const proyectoSchema = z.object({
   }).array().optional()
 });
 const controller = new ControllerBuilder();
-const GET = async () => {
+const GET = async ({ locals }) => {
   const response = await controller.setModel(Proyectos).setIncludedModels([
     {
       model: Miembros,
@@ -77,7 +77,9 @@ const GET = async () => {
         "idmiembro"
       ]
     }
-  ]).setOrderFilters([["createdAt", "DESC"]]).getResult().getAll();
+  ]).setOrderFilters([["createdAt", "DESC"]]).setAttributes({
+    exclude: locals.user ? [] : ["descripcion", "url", "createdAt", "updatedAt"]
+  }).getResult().getAll();
   return responseAsJson(response);
 };
 const POST = async ({ request }) => {

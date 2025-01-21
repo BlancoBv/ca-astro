@@ -29,7 +29,7 @@ const pubsObject = z.object({
   url: z.string().url().nullable().refine(noEmptyOrBlankSpaces.callback, noEmptyOrBlankSpaces.message("URL")).optional(),
   visible: z.boolean()
 });
-const GET = async () => {
+const GET = async ({ locals }) => {
   const response = await controller.setModel(Publicaciones).setIncludedModels([
     {
       model: Miembros,
@@ -43,7 +43,7 @@ const GET = async () => {
       as: "miembros_publicacion",
       through: { attributes: [] }
     }
-  ]).setOrderFilters([["createdAt", "DESC"]]).getResult().getAll();
+  ]).setOrderFilters([["year", "DESC"]]).setAttributes({ exclude: locals.user ? [] : ["createdAt", "updatedAt"] }).getResult().getAll();
   return responseAsJson(response);
 };
 const POST = async ({ request }) => {

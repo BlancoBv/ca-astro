@@ -58,11 +58,11 @@ class VerifyPath {
     },
     {
       path: "api/proyectos",
-      method: ["POST", "DELETE", "PUT", "GET"]
+      method: ["POST", "DELETE", "PUT"]
     },
     {
       path: "api/publicaciones",
-      method: ["POST", "DELETE", "PUT", "GET"]
+      method: ["POST", "DELETE", "PUT"]
     },
     {
       path: "api/logs",

@@ -18,4 +18,4 @@ function formatMoneda(monto) {
   return formatter.format(Number(monto));
 }
 
-export { formatMoneda as a, formatYear as b, formatDate as f };
+export { formatYear as a, formatMoneda as b, formatDate as f };
