@@ -4,6 +4,11 @@ import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
 import { onMounted, onUnmounted, ref } from 'vue';
 
+interface rowData {
+    descripcion?: string | null,
+    url?: string | null
+    titulo?: string
+}
 interface props {
     data: any[]
     rows?: number
@@ -11,6 +16,7 @@ interface props {
 
 const props = defineProps<props>()
 
+const rowData = ref<rowData>({})
 const isMounted = ref<boolean>(false)
 const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS }
@@ -47,6 +53,11 @@ const getCollabs = (element: {
     return formatter.format(miembrosF);
 };
 
+const handleClick = (ev: { originalEvent: Event, data: rowData }) => {
+    rowData.value = ev.data
+    const modal = document.getElementById("modal-articulos") as HTMLDialogElement
+    modal.showModal()
+}
 onMounted(() => {
     isMounted.value = true
 })
@@ -55,9 +66,28 @@ onUnmounted(() => {
 })
 </script>
 <template>
+    <dialog id="modal-articulos" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    <i class="bi bi-x"></i>
+                </button>
+            </form>
+            <h3 class="text-lg font-bold">{{ rowData.titulo }}</h3>
+            <p class="py-4">{{ rowData.descripcion ?? "Sin resumen." }}</p>
+            <a v-if="rowData.url" class="btn btn-primary" :href="rowData.url ?? '#'" target="_blank">
+                Ver artículo <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
     <DataTable :value="props.data" :paginator="true" :rows="props.rows ?? 10"
         :rowsPerPageOptions="props.rows ? undefined : [5, 10, 20, 50]" v-model:filters="filters"
-        :globalFilterFields="['ISSN', 'titulo', 'otrosAutores']" :loading="props.data.length < 1 ? false : !isMounted">
+        :globalFilterFields="['ISSN', 'titulo', 'otrosAutores']" :loading="props.data.length < 1 ? false : !isMounted"
+        @row-click="handleClick" :pt="{ bodyrow: { class: 'hover cursor-pointer' } }">
+
         <template #loading>
             <div
                 class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn">
