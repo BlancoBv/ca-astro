@@ -1,6 +1,6 @@
 /* empty css                                      */
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_DmhofpIV.mjs';
-import { L as ListaPublicacionesMiembros } from '../../chunks/ListaPublicacionesMiembros_nD6g0eJR.mjs';
+import { L as ListaPublicacionesMiembros } from '../../chunks/ListaPublicacionesMiembros_C0qNGPON.mjs';
 import { $ as $$Layout } from '../../chunks/Layout_CYu2Rs5Q.mjs';
 export { renderers } from '../../renderers.mjs';
 

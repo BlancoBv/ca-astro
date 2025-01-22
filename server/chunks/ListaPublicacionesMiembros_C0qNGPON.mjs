@@ -1,8 +1,8 @@
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createVNode, withDirectives, vModelText, toDisplayString, createTextVNode } from 'vue';
+import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, withCtx, createVNode, withDirectives, vModelText, toDisplayString, createTextVNode } from 'vue';
 import { FilterMatchMode } from '@primevue/core/api';
 import { a as script, s as script$1 } from './index_h5t5GPhD.mjs';
-import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
+import { ssrInterpolate, ssrRenderAttr, ssrRenderComponent } from 'vue/server-renderer';
 /* empty css                        */
 import { _ as _export_sfc } from './_plugin-vue_export-helper_3ktPLYsj.mjs';
 
@@ -15,6 +15,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
+    const rowData = ref({});
     const isMounted = ref(false);
     const filters = ref({
       global: { value: null, matchMode: FilterMatchMode.CONTAINS }
@@ -37,13 +38,18 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }
       return formatter.format(miembrosF);
     };
+    const handleClick = (ev) => {
+      rowData.value = ev.data;
+      const modal = document.getElementById("modal-articulos");
+      modal.showModal();
+    };
     onMounted(() => {
       isMounted.value = true;
     });
     onUnmounted(() => {
       isMounted.value = false;
     });
-    const __returned__ = { props, isMounted, filters, getCollabs, get Column() {
+    const __returned__ = { props, rowData, isMounted, filters, getCollabs, handleClick, get Column() {
       return script;
     }, get DataTable() {
       return script$1;
@@ -53,7 +59,14 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(ssrRenderComponent($setup["DataTable"], mergeProps({
+  _push(`<!--[--><dialog id="modal-articulos" class="modal modal-bottom sm:modal-middle"><div class="modal-box"><form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"><i class="bi bi-x"></i></button></form><h3 class="text-lg font-bold">${ssrInterpolate($setup.rowData.titulo)}</h3><p class="py-4">${ssrInterpolate($setup.rowData.descripcion ?? "Sin resumen.")}</p>`);
+  if ($setup.rowData.url) {
+    _push(`<a class="btn btn-primary"${ssrRenderAttr("href", $setup.rowData.url ?? "#")} target="_blank"> Ver art\xEDculo <i class="bi bi-box-arrow-up-right"></i></a>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div><form method="dialog" class="modal-backdrop"><button>close</button></form></dialog>`);
+  _push(ssrRenderComponent($setup["DataTable"], {
     value: $setup.props.data,
     paginator: true,
     rows: $setup.props.rows ?? 10,
@@ -61,8 +74,10 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     filters: $setup.filters,
     "onUpdate:filters": ($event) => $setup.filters = $event,
     globalFilterFields: ["ISSN", "titulo", "otrosAutores"],
-    loading: $setup.props.data.length < 1 ? false : !$setup.isMounted
-  }, _attrs), {
+    loading: $setup.props.data.length < 1 ? false : !$setup.isMounted,
+    onRowClick: $setup.handleClick,
+    pt: { bodyrow: { class: "hover cursor-pointer" } }
+  }, {
     loading: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<div class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn"${_scopeId}></div>`);
@@ -219,6 +234,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     }),
     _: 1
   }, _parent));
+  _push(`<!--]-->`);
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {

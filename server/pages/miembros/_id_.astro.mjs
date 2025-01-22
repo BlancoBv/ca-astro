@@ -2,7 +2,7 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, d as addAttribute } from '../../chunks/astro/server_DmhofpIV.mjs';
 import { f as formatDate } from '../../chunks/format_CRU5uAFP.mjs';
 import { L as ListaProyectosMiembros } from '../../chunks/ListaProyectosMiembros_TlUWCWYL.mjs';
-import { L as ListaPublicacionesMiembros } from '../../chunks/ListaPublicacionesMiembros_nD6g0eJR.mjs';
+import { L as ListaPublicacionesMiembros } from '../../chunks/ListaPublicacionesMiembros_C0qNGPON.mjs';
 import { $ as $$Layout } from '../../chunks/Layout_CYu2Rs5Q.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_t6jYWpBq.mjs';
 export { renderers } from '../../renderers.mjs';
