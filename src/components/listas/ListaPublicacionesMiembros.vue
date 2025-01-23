@@ -70,7 +70,7 @@ onUnmounted(() => {
         <div class="modal-box">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    <i class="bi bi-x"></i>
+                    <i class="bi bi-x text-xl"></i>
                 </button>
             </form>
             <h3 class="text-lg font-bold">{{ rowData.titulo }}</h3>

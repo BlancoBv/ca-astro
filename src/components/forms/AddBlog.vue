@@ -55,7 +55,7 @@ const handleChangeFecha = (value: string) => {
 const handleEtiquetas = (value: number[]) => {
     body.etiquetas = value
 }
-const editor = editorInstance(body)
+const editor = editorInstance(body, "<p>¡Eliminame y empieza a redactar el contenido!</p>")
 </script>
 <template>
     <AddImage />

@@ -1,13 +1,13 @@
-import { useEditor, EditorContent, Editor } from "@tiptap/vue-3";
+import { useEditor } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import TextAlign from "@tiptap/extension-text-align";
 import Color from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 
-export function editorInstance(contentStore: any) {
+export function editorInstance(contentStore: any, content?: string) {
   const editor = useEditor({
-    content: "<p>Hola</p>",
+    content: content,
     extensions: [
       StarterKit,
       TextStyle,

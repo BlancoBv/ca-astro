@@ -1,28 +1,20 @@
 <script setup lang="ts">
 import { EditorContent, type Editor } from "@tiptap/vue-3"
-
+import { onMounted } from "vue";
 
 const props = defineProps<{ editor: Editor | undefined }>()
 const emit = defineEmits(["updateContent", "addImage"])
-
-
-const addImage = () => {
-    const url = window.prompt('URL')
-
-    if (url) {
-
-        props.editor?.chain().focus().setImage({ src: url }).run()
-    }
-}
-
 const openImageSel = () => {
     const modal = document.getElementById("modal-images") as HTMLDialogElement
     modal.showModal()
 }
 
+onMounted(() => {
+    console.log("montado")
+})
 </script>
-<template>
-    <div class="grid gap-4 grid-flow-col auto-cols-max p-4 place-items-center">
+<template class="grid gap-4 grid-flow-col auto-cols-max p-4 place-items-center">
+    <div class="flex gap-4 flex-wrap items-center">
         <button type="button" class="btn btn-ghost" @click="openImageSel"><i class="bi bi-image"></i></button>
         <button type="button" class="btn btn-ghost"
             @click="props.editor?.chain().focus().toggleHeading({ level: 1 }).run()"
@@ -43,14 +35,6 @@ const openImageSel = () => {
             :class="{ 'btn-active': props.editor?.isActive('bold') }">
             <i class="bi bi-type-bold"></i>
         </button>
-        <!--         <button type="button" class="btn btn-ghost" @click="editor?.chain().focus().setBold().run()"
-            :disabled="editor?.isActive('bold')">
-            Set bold
-        </button>
-        <button type="button" class="btn btn-ghost" @click="editor?.chain().focus().unsetBold().run()"
-            :disabled="!editor?.isActive('bold')">
-            Unset bold
-        </button> -->
         <button type="button" class="btn btn-ghost" @click="props.editor?.chain().focus().setTextAlign('left').run()"
             :class="{ 'btn-active': props.editor?.isActive({ textAlign: 'left' }) }">
             <i class="bi bi-text-left"></i>
@@ -71,5 +55,5 @@ const openImageSel = () => {
             @input="props.editor?.chain().focus().setColor(($event.target as HTMLInputElement).value).run()"
             :value="props.editor?.getAttributes('textStyle').color">
     </div>
-    <editor-content :editor="props.editor" class="prose max-w-full w-full px-4" />
+    <editor-content :editor="props.editor" class="prose max-w-full w-full px-4 h-96 overflow-y-auto" />
 </template>
