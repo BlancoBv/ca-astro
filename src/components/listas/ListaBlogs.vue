@@ -5,10 +5,10 @@ import Column from 'primevue/column';
 import ContextMenu from 'primevue/contextmenu';
 import Textarea from 'primevue/textarea';
 import moment from 'moment';
-import { reactive, ref, useTemplateRef } from 'vue';
+import { ref, useTemplateRef } from 'vue';
 import { editorInstance } from '@components/editor/EditorInstance';
 import Editor from '@components/editor/Editor.vue';
-import { watch } from 'vue';
+import ImageSelector from '@components/editor/ImageSelector.vue';
 
 const props = defineProps<{ noEdit: boolean }>()
 
@@ -16,29 +16,32 @@ interface blog {
     idblog: number;
     titulo: string;
     fecha: string;
-    contenido: string;
+    contenido: string | null;
 }
 
-const body = reactive<Partial<blog>>({})
+const modal = useTemplateRef("modal-edit-blog-content")
+const contenido = ref<Partial<blog>>({ contenido: null })
 
 const { data, isError, isPending, refetch } = useGetData("blogs", "listaBlogsData")
 const cm = useTemplateRef("cm");
 const selectedItem = ref<blog | null>(null);
-
-const editor = editorInstance(body)
+const editor = editorInstance(contenido.value)
 
 const items = [
     {
         label: 'Editar contenido', icon: 'bi bi-pencil-square', command() {
-            const dialog = document.getElementById("modal-edit-blog-content") as HTMLDialogElement
             editor.value?.commands.setContent(selectedItem.value?.contenido ?? "<p>Sin contenido</p>")
-            dialog.showModal()
+            modal.value?.showModal()
         }
     },
 ]
 const updateBlog = useSendData("blogs", "put", {
     onSuccess() {
+        modal.value?.close()
         refetch()
+        if (contenido.value.contenido) {
+            contenido.value = {}
+        }
     },
 })
 
@@ -50,10 +53,17 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
     const { data, newValue, field } = event
     if (data[field] !== newValue) { updateBlog.mutate({ idblog: data.idblog, [field]: newValue }) }
 }
+const handleUpdateContent = () => {
+    updateBlog.mutate({ idblog: selectedItem.value?.idblog, contenido: contenido.value.contenido })
+}
+const handleClose = () => {
+    contenido.value.contenido = null
+}
 
 </script>
 <template>
-    <dialog id="modal-edit-blog-content" class="modal modal-bottom sm:modal-middle">
+    <ImageSelector :editor-instance="editor" />
+    <dialog ref="modal-edit-blog-content" class="modal modal-bottom sm:modal-middle" @close="handleClose">
         <div class="modal-box">
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -61,8 +71,13 @@ const handleEdit = (event: DataTableCellEditCompleteEvent) => {
                 </button>
             </form>
             <h3 class="text-lg font-bold">{{ selectedItem?.titulo }}</h3>
-            <Editor :editor="editor" />
-
+            <form @submit.prevent="handleUpdateContent">
+                <Editor :editor="editor" />
+                <div class="w-full flex justify-end">
+                    <button type="submit" class="btn btn-primary"
+                        :disabled="contenido?.contenido === null || updateBlog.isPending.value">Actualizar</button>
+                </div>
+            </form>
         </div>
         <form method="dialog" class="modal-backdrop">
             <button>close</button>
