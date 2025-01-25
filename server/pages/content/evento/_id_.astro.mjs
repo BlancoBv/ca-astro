@@ -19,7 +19,18 @@ const $$id = createComponent(async ($$result, $$props, $$slots) => {
   if (!blog) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": blog.response?.titulo ?? "", "data-astro-cid-m7vt4mq7": true }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4" data-astro-cid-m7vt4mq7> <h1 data-astro-cid-m7vt4mq7>${blog.response?.titulo}</h1> ${renderComponent($$result2, "Image", $$Image, { "class": "object-contain lg:object-cover aspect-video h-96 lg:h-[500px] w-full revealing-image rounded-box", "src": blog.response.imagen, "width": 100, "height": 100, "loading": "lazy", "alt": blog.response.titulo, "data-astro-cid-m7vt4mq7": true, "data-astro-transition-scope": renderTransition($$result2, "t6l4l4nc", "", `img-${id}`) })} <span class="font-bold flex gap-2" data-astro-cid-m7vt4mq7> <i class="bi bi-calendar-fill" data-astro-cid-m7vt4mq7></i> ${formatDate(blog.response.fecha, "LL")}.</span> <div data-astro-cid-m7vt4mq7>${unescapeHTML(blog.response?.contenido)}</div> ${renderComponent($$result2, "EtiquetasHeading", $$EtiquetasHeading, { "data-astro-cid-m7vt4mq7": true })} <div class="flex gap-4 flex-wrap not-prose" data-astro-cid-m7vt4mq7> ${blog.response?.etiquetas.map((el) => renderTemplate`${renderComponent($$result2, "BadgeEtiquetas", $$BadgeEtiquetas, { "nombre": el.nombre, "ruta": `/content/etiqueta/${el.idetiqueta}`, "data-astro-cid-m7vt4mq7": true })}`)} </div> </main> ` })} `;
+  function reemplazarCarousel(contenido) {
+    return contenido.replace(
+      /;carousel-start([\s\S]*?);carousel-end/g,
+      (_match, contenido2) => {
+        const images = contenido2.match(/<img[^>]*>/g) || [];
+        return `<div class="carousel carousel-center bg-neutral rounded-box space-x-4 p-4 h-96 revealing-image w-full">
+  ${images.map((img) => `<div class="carousel-item">${img}</div>`).join("\n")}
+</div>`.trim();
+      }
+    );
+  }
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": blog.response?.titulo ?? "", "data-astro-cid-m7vt4mq7": true }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4 main-container" data-astro-cid-m7vt4mq7> <h1 data-astro-cid-m7vt4mq7>${blog.response?.titulo}</h1> ${renderComponent($$result2, "Image", $$Image, { "class": "object-cover aspect-video h-60 lg:h-[500px] w-full revealing-image rounded-box", "src": blog.response.imagen, "width": 100, "height": 100, "loading": "lazy", "alt": blog.response.titulo, "data-astro-cid-m7vt4mq7": true, "data-astro-transition-scope": renderTransition($$result2, "t6l4l4nc", "", `img-${id}`) })} <span class="font-bold flex gap-2" data-astro-cid-m7vt4mq7> <i class="bi bi-calendar-fill" data-astro-cid-m7vt4mq7></i> ${formatDate(blog.response.fecha, "LL")}.</span> <div data-astro-cid-m7vt4mq7>${unescapeHTML(reemplazarCarousel(blog.response.contenido))}</div> ${renderComponent($$result2, "EtiquetasHeading", $$EtiquetasHeading, { "data-astro-cid-m7vt4mq7": true })} <div class="flex gap-4 flex-wrap not-prose" data-astro-cid-m7vt4mq7> ${blog.response?.etiquetas.map((el) => renderTemplate`${renderComponent($$result2, "BadgeEtiquetas", $$BadgeEtiquetas, { "nombre": el.nombre, "ruta": `/content/etiqueta/${el.idetiqueta}`, "data-astro-cid-m7vt4mq7": true })}`)} </div> </main> ` })} `;
 }, "/home/blanco/Documentos/ca-astro/src/pages/content/evento/[id].astro", "self");
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/content/evento/[id].astro";

@@ -8,7 +8,7 @@ import { s as script, a as script$1 } from '../../../chunks/index_h5t5GPhD.mjs';
 import { s as script$2 } from '../../../chunks/index_dlobLWwo.mjs';
 import { s as script$3 } from '../../../chunks/index_3IzgFPBi.mjs';
 import moment from 'moment';
-import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_BYlzlM_v.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_DfqF16C2.mjs';
 import { ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
 export { renderers } from '../../../renderers.mjs';

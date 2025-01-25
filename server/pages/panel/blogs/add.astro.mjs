@@ -2,7 +2,7 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_BYlzlM_v.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_DfqF16C2.mjs';
 import { I as Input } from '../../../chunks/Input_BTSzd8Wz.mjs';
 import moment from 'moment';
 import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_2E7e0ZWw.mjs';

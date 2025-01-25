@@ -3,7 +3,7 @@ import { b as createAstro, c as createComponent, r as renderTemplate, a as rende
 import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BulQclBU.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_BYlzlM_v.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_DfqF16C2.mjs';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
 import { ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderComponent } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
