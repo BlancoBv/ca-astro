@@ -1,26 +1,6 @@
-import {
-  keepPreviousData,
-  useMutation,
-  useQuery,
-  type QueryObserverResult,
-  type RefetchOptions,
-} from "@tanstack/vue-query";
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/vue-query";
 import Axios from "./Axios";
 import { toast, type Id } from "vue3-toastify";
-import { type Ref } from "vue";
-
-interface getData {
-  data: any | { response: any[] | any };
-  isError: Ref<true, true> | Ref<false, false>;
-  isPending: Ref<true, true> | Ref<false, false>;
-  refetch: (
-    options?: RefetchOptions
-  ) => Promise<QueryObserverResult<any, Error>>;
-}
-
-interface ErrorInterface extends Error {
-  response?: { data?: string };
-}
 
 export function useGetData(url: string, queryKey: string) {
   const { isPending, isFetching, isError, data, refetch } = useQuery({

@@ -1,6 +1,6 @@
 import { defineMiddleware } from "astro:middleware";
 
-export const noCache = defineMiddleware(async ({ url, request }, next) => {
+export const noCache = defineMiddleware(async ({ url }, next) => {
   if (url.pathname.startsWith("/api/")) {
     const res = await next();
     return new Response(res.body, {
