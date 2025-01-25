@@ -24,14 +24,26 @@ const blog: blog = await fetch(
 if (!blog) {
   return Astro.redirect("/404");
 }
+
+function reemplazarCarousel(contenido: string) {
+  return contenido.replace(
+    /;carousel-start([\s\S]*?);carousel-end/g,
+    (_match, contenido: string) => {
+      const images: string[] = contenido.match(/<img[^>]*>/g) || [];
+      return `<div class="carousel carousel-center bg-neutral rounded-box space-x-4 p-4 h-96 revealing-image w-full">
+  ${images.map((img) => `<div class="carousel-item">${img}</div>`).join("\n")}
+</div>`.trim();
+    }
+  );
+}
 ---
 
 <Layout title={blog.response?.titulo ?? ""}>
-  <main class="prose max-w-full p-4">
+  <main class="prose max-w-full p-4 main-container">
     <h1>{blog.response?.titulo}</h1>
     <Image
       transition:name={`img-${id}`}
-      class="object-contain lg:object-cover aspect-video h-96 lg:h-[500px] w-full revealing-image rounded-box"
+      class="object-cover aspect-video h-60 lg:h-[500px] w-full revealing-image rounded-box"
       src={blog.response!.imagen}
       width={100}
       height={100}
@@ -42,7 +54,7 @@ if (!blog) {
       <i class="bi bi-calendar-fill"></i>
       {formatDate(blog.response!.fecha, "LL")}.</span
     >
-    <div set:html={blog.response?.contenido} />
+    <div set:html={reemplazarCarousel(blog.response!.contenido)} />
     <EtiquetasHeading />
     <div class="flex gap-4 flex-wrap not-prose">
       {
@@ -67,35 +79,13 @@ if (!blog) {
       clip-path: inset(0% 0% 0% 0%);
     }
   }
-  .revealing-image {
-    /* Create View Timeline */
+  :global(.revealing-image) {
     view-timeline-name: --revealing-image;
     view-timeline-axis: block;
 
-    /* Attach animation, linked to the  View Timeline */
     animation: linear reveal both;
     animation-timeline: --revealing-image;
 
-    /* Tweak range when effect should run*/
     animation-range: entry 25% cover 50%;
   }
-
-  /*   @keyframes reveal-header {
-    from {
-      height: 100vh;
-    }
-    to {
-      opacity: 1;
-      height: 10vh;
-    }
-  }
-  .header-image {
-    view-timeline-name: --revealing-image;
-    view-timeline-axis: block;
-
-    animation: linear reveal-header both;
-    animation-timeline: --revealing-image;
-
-    animation-range: entry 0% cover 80%;
-  } */
 </style>

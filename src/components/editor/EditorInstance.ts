@@ -17,8 +17,9 @@ export function editorInstance(contentStore: any, content?: string) {
       Color,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Image.configure({
-        inline: true,
-        HTMLAttributes: { class: "mx-auto object-contain revealing-image" },
+        HTMLAttributes: {
+          class: "object-cover revealing-image rounded-box mx-auto",
+        },
       }),
       BulletList,
       ItemList,
