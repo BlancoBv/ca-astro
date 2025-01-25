@@ -59,7 +59,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<!--[--><dialog id="modal-articulos" class="modal modal-bottom sm:modal-middle"><div class="modal-box"><form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"><i class="bi bi-x"></i></button></form><h3 class="text-lg font-bold">${ssrInterpolate($setup.rowData.titulo)}</h3><p class="py-4">${ssrInterpolate($setup.rowData.descripcion ?? "Sin resumen.")}</p>`);
+  _push(`<!--[--><dialog id="modal-articulos" class="modal modal-bottom sm:modal-middle"><div class="modal-box"><form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"><i class="bi bi-x text-xl"></i></button></form><h3 class="text-lg font-bold">${ssrInterpolate($setup.rowData.titulo)}</h3><p class="py-4">${ssrInterpolate($setup.rowData.descripcion ?? "Sin resumen.")}</p>`);
   if ($setup.rowData.url) {
     _push(`<a class="btn btn-primary"${ssrRenderAttr("href", $setup.rowData.url ?? "#")} target="_blank"> Ver art\xEDculo <i class="bi bi-box-arrow-up-right"></i></a>`);
   } else {

@@ -3,10 +3,11 @@ import { b as createAstro, c as createComponent, r as renderTemplate, a as rende
 import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BulQclBU.mjs';
 import { toast } from 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, useTemplateRef, watch, reactive } from 'vue';
-import { e as editorInstance, E as Editor, S as SelectEtiqueta, I as ImageSelector } from '../../../chunks/EditorInstance_Du2A2M78.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_BYlzlM_v.mjs';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
 import { ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderComponent } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
+import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_2E7e0ZWw.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({

@@ -2,9 +2,10 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector, S as SelectEtiqueta } from '../../../chunks/EditorInstance_Du2A2M78.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_BYlzlM_v.mjs';
 import { I as Input } from '../../../chunks/Input_BTSzd8Wz.mjs';
 import moment from 'moment';
+import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_2E7e0ZWw.mjs';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
@@ -89,7 +90,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const handleEtiquetas = (value) => {
       body.etiquetas = value;
     };
-    const editor = editorInstance(body);
+    const editor = editorInstance(body, "<p>\xA1Eliminame y empieza a redactar el contenido!</p>");
     const __returned__ = { props, dateLocal, m, send, body, openImageSelector, handleClick, handleChangeTitulo, handleChangeFecha, handleEtiquetas, editor, Editor, Input, ImageSelector, SelectEtiqueta, AddImage };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;

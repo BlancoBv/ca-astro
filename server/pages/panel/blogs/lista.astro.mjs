@@ -2,13 +2,14 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
 import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BulQclBU.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, withCtx, createVNode, createTextVNode, toDisplayString } from 'vue';
+import { useSSRContext, defineComponent, useTemplateRef, ref, withCtx, createVNode, createTextVNode, toDisplayString } from 'vue';
 import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
 import { s as script, a as script$1 } from '../../../chunks/index_h5t5GPhD.mjs';
 import { s as script$2 } from '../../../chunks/index_dlobLWwo.mjs';
 import { s as script$3 } from '../../../chunks/index_3IzgFPBi.mjs';
 import moment from 'moment';
-import { ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_BYlzlM_v.mjs';
+import { ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
 export { renderers } from '../../../renderers.mjs';
 
@@ -20,24 +21,47 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const props = __props;
+    const modal = useTemplateRef("modal-edit-blog-content");
+    const contenido = ref({ contenido: null });
     const { data, isError, isPending, refetch } = useGetData("blogs", "listaBlogsData");
-    const selectedItem = ref();
-    const items = ref([
-      { label: "Copy", icon: "pi pi-copy" },
-      { label: "Rename", icon: "pi pi-file-edit" }
-    ]);
+    const cm = useTemplateRef("cm");
+    const selectedItem = ref(null);
+    const editor = editorInstance(contenido.value);
+    const items = [
+      {
+        label: "Editar contenido",
+        icon: "bi bi-pencil-square",
+        command() {
+          editor.value?.commands.setContent(selectedItem.value?.contenido ?? "<p>Sin contenido</p>");
+          modal.value?.showModal();
+        }
+      }
+    ];
     const updateBlog = useSendData("blogs", "put", {
       onSuccess() {
+        modal.value?.close();
         refetch();
+        if (contenido.value.contenido) {
+          contenido.value = {};
+        }
       }
     });
+    const onRowContextMenu = (event) => {
+      cm.value?.show(event.originalEvent);
+    };
     const handleEdit = (event) => {
       const { data: data2, newValue, field } = event;
       if (data2[field] !== newValue) {
         updateBlog.mutate({ idblog: data2.idblog, [field]: newValue });
       }
     };
-    const __returned__ = { props, data, isError, isPending, refetch, selectedItem, items, updateBlog, handleEdit, get DataTable() {
+    const handleUpdateContent = () => {
+      updateBlog.mutate({ idblog: selectedItem.value?.idblog, contenido: contenido.value.contenido });
+    };
+    const handleClose = () => {
+      contenido.value.contenido = null;
+    };
+    const __returned__ = { props, modal, contenido, data, isError, isPending, refetch, cm, selectedItem, editor, items, updateBlog, onRowContextMenu, handleEdit, handleUpdateContent, handleClose, get DataTable() {
       return script;
     }, get Column() {
       return script$1;
@@ -47,26 +71,52 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       return script$3;
     }, get moment() {
       return moment;
-    } };
+    }, Editor, ImageSelector };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 });
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<!--[-->`);
+  _push(ssrRenderComponent($setup["ImageSelector"], { "editor-instance": $setup.editor }, null, _parent));
+  _push(`<dialog class="modal modal-bottom sm:modal-middle"><div class="modal-box"><form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"><i class="bi bi-x text-xl"></i></button></form><h3 class="text-lg font-bold">${ssrInterpolate($setup.selectedItem?.titulo)}</h3><form>`);
+  _push(ssrRenderComponent($setup["Editor"], { editor: $setup.editor }, null, _parent));
+  _push(`<div class="w-full flex justify-end"><button type="submit" class="btn btn-primary"${ssrIncludeBooleanAttr($setup.contenido?.contenido === null || $setup.updateBlog.isPending.value) ? " disabled" : ""}>Actualizar</button></div></form></div><form method="dialog" class="modal-backdrop"><button>close</button></form></dialog>`);
   _push(ssrRenderComponent($setup["ContextMenu"], {
     ref: "cm",
-    model: $setup.items,
-    onHide: ($event) => $setup.selectedItem = null
+    model: $setup.items
   }, null, _parent));
-  if (!$setup.isPending && !$setup.isError) {
+  if (!$setup.isError) {
     _push(ssrRenderComponent($setup["DataTable"], {
-      value: $setup.data?.response?.blogs,
+      loading: $setup.isPending,
+      value: $setup.data?.response?.blogs ?? [],
       paginator: true,
       rows: 5,
       "edit-mode": $setup.props.noEdit ? null : "cell",
-      onCellEditComplete: $setup.handleEdit
+      onCellEditComplete: $setup.handleEdit,
+      onRowContextmenu: $setup.onRowContextMenu,
+      "context-menu": "",
+      contextMenuSelection: $setup.selectedItem,
+      "onUpdate:contextMenuSelection": ($event) => $setup.selectedItem = $event
     }, {
+      loading: withCtx((_, _push2, _parent2, _scopeId) => {
+        if (_push2) {
+          _push2(`<div class="absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn"${_scopeId}></div>`);
+        } else {
+          return [
+            createVNode("div", { class: "absolute top-0 left-0 h-full w-full z-30 select-none skeleton bg-base-300/60 backdrop-blur-[0.5px] rounded-btn" })
+          ];
+        }
+      }),
+      empty: withCtx((_, _push2, _parent2, _scopeId) => {
+        if (_push2) {
+          _push2(`<div class="text-center font-bold"${_scopeId}>Sin datos.</div>`);
+        } else {
+          return [
+            createVNode("div", { class: "text-center font-bold" }, "Sin datos.")
+          ];
+        }
+      }),
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
           _push2(ssrRenderComponent($setup["Column"], {
@@ -157,11 +207,6 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
       }),
       _: 1
     }, _parent));
-  } else {
-    _push(`<!---->`);
-  }
-  if ($setup.isPending) {
-    _push(`<div class="skeleton h-96 w-full"></div>`);
   } else {
     _push(`<!---->`);
   }
