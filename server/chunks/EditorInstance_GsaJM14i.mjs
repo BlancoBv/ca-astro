@@ -3,7 +3,7 @@ import { useSSRContext, defineComponent, mergeProps } from 'vue';
 import { EditorContent, useEditor } from '@tiptap/vue-3';
 import { ssrRenderClass, ssrIncludeBooleanAttr, ssrRenderAttr, ssrRenderComponent, ssrRenderAttrs, ssrInterpolate, ssrRenderList } from 'vue/server-renderer';
 import { _ as _export_sfc } from './_plugin-vue_export-helper_3ktPLYsj.mjs';
-import { a as useGetData } from './http_yWF3wTfY.mjs';
+import { a as useGetData } from './http_Bm1iQncX.mjs';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import TextAlign from '@tiptap/extension-text-align';

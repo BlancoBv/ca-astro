@@ -1,6 +1,6 @@
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, mergeProps } from 'vue';
-import { a as useGetData } from './http_yWF3wTfY.mjs';
+import { a as useGetData } from './http_Bm1iQncX.mjs';
 import { ssrRenderAttrs, ssrRenderList, ssrInterpolate } from 'vue/server-renderer';
 import { _ as _export_sfc } from './_plugin-vue_export-helper_3ktPLYsj.mjs';
 

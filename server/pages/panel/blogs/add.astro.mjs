@@ -2,14 +2,14 @@
 import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_DfqF16C2.mjs';
+import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_GsaJM14i.mjs';
 import { I as Input } from '../../../chunks/Input_BTSzd8Wz.mjs';
 import moment from 'moment';
-import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_2E7e0ZWw.mjs';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_yWF3wTfY.mjs';
+import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_D1QWiHI3.mjs';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_Bm1iQncX.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BulQclBU.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BmeFtKuc.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({

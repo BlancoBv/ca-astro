@@ -159,22 +159,20 @@ const rateLimiter$1 = new RateLimiterMemory({
   blockDuration: 30
 });
 
-const rateLimiter = defineMiddleware(
-  async ({ url, request, cookies, redirect, locals, clientAddress }, next) => {
-    try {
-      await rateLimiter$1.consume(clientAddress, 1);
-      return next();
-    } catch (err) {
-      return responseAsJson(
-        { msg: "Demasiadas peticiones" },
-        { sendAsMessage: true },
-        429
-      );
-    }
+const rateLimiter = defineMiddleware(async ({ clientAddress }, next) => {
+  try {
+    await rateLimiter$1.consume(clientAddress, 1);
+    return next();
+  } catch (err) {
+    return responseAsJson(
+      { msg: "Demasiadas peticiones" },
+      { sendAsMessage: true },
+      429
+    );
   }
-);
+});
 
-const noCache = defineMiddleware(async ({ url, request }, next) => {
+const noCache = defineMiddleware(async ({ url }, next) => {
   if (url.pathname.startsWith("/api/")) {
     const res = await next();
     return new Response(res.body, {

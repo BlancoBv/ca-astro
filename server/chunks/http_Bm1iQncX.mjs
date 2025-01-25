@@ -1,7 +1,6 @@
 import { useQuery, keepPreviousData, useMutation } from '@tanstack/vue-query';
 import axios from 'axios';
 import { toast } from 'vue3-toastify';
-import 'vue';
 
 const Axios = axios.create({
   baseURL: `${"https://computodistribuido.org" }/api/`,

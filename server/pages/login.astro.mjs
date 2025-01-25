@@ -3,7 +3,7 @@ import { c as createComponent, r as renderTemplate, a as renderComponent } from 
 import { $ as $$Layout } from '../chunks/Layout_CYu2Rs5Q.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, ref, reactive, onMounted, mergeProps } from 'vue';
-import { u as useSendData } from '../chunks/http_yWF3wTfY.mjs';
+import { u as useSendData } from '../chunks/http_Bm1iQncX.mjs';
 import { ssrRenderAttrs, ssrRenderAttr, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { _ as _export_sfc } from '../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
 /* empty css                                 */

@@ -6,7 +6,7 @@ import { R as Roles, f as Permisos } from './index_CM2BeHHC.mjs';
 import { C as ControllerBuilder } from './builder_Cv7uo8Sa.mjs';
 import 'vue3-toastify';
 import { useSSRContext, defineComponent, mergeProps } from 'vue';
-import { u as useSendData } from './http_yWF3wTfY.mjs';
+import { u as useSendData } from './http_Bm1iQncX.mjs';
 import { ssrRenderAttrs } from 'vue/server-renderer';
 /* empty css                         */
 
