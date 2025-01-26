@@ -6,7 +6,6 @@ import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
 import { formatDate } from "@assets/format";
 
 const { id } = Astro.params;
-
 interface blog {
   response?: {
     titulo: string;
@@ -30,9 +29,12 @@ function reemplazarCarousel(contenido: string) {
     /;carousel-start([\s\S]*?);carousel-end/g,
     (_match, contenido: string) => {
       const images: string[] = contenido.match(/<img[^>]*>/g) || [];
-      return `<div class="carousel carousel-center bg-neutral rounded-box space-x-4 p-4 h-96 revealing-image w-full">
-  ${images.map((img) => `<div class="carousel-item">${img}</div>`).join("\n")}
-</div>`.trim();
+      return `
+      <div class="flex items-center justify-center w-full">
+        <div class="carousel carousel-center bg-neutral rounded-box w-full md:w-11/12 space-x-4 p-4 revealing-image">
+          ${images.map((img) => `<div class="carousel-item">${img}</div>`).join("\n")}
+        </div>
+      </div>`.trim();
     }
   );
 }
@@ -68,7 +70,17 @@ function reemplazarCarousel(contenido: string) {
     </div>
   </main>
 </Layout>
-<style>
+<style is:global>
+  @media (min-width: 768px) {
+    .carousel {
+      scrollbar-width: auto;
+    }
+  }
+  .carousel-item img {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    height: 24rem;
+  }
   @keyframes reveal {
     from {
       opacity: 0;
@@ -79,13 +91,13 @@ function reemplazarCarousel(contenido: string) {
       clip-path: inset(0% 0% 0% 0%);
     }
   }
-  :global(.revealing-image) {
+  .revealing-image {
     view-timeline-name: --revealing-image;
     view-timeline-axis: block;
 
     animation: linear reveal both;
     animation-timeline: --revealing-image;
 
-    animation-range: entry 25% cover 50%;
+    animation-range: entry 10% cover 40%;
   }
 </style>

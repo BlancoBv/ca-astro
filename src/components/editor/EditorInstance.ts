@@ -19,6 +19,7 @@ export function editorInstance(contentStore: any, content?: string) {
       Image.configure({
         HTMLAttributes: {
           class: "object-cover revealing-image rounded-box mx-auto",
+          draggable: "false",
         },
       }),
       BulletList,
