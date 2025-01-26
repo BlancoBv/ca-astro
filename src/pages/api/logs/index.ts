@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { ControllerBuilder } from "src/controllers/builder";
+import { ControllerBuilder } from "src/controllers/controllerBuilder";
 import { Logs } from "@model";
 import responseAsJson from "@assets/responseAsJson";
 import moment from "moment";
@@ -20,16 +20,17 @@ export const GET: APIRoute = async ({ locals }) => {
       400
     );
   }
+
   try {
     await controller
       .setModel(Logs)
       .setWhereFilters({ createdAt: { [controller.Op.lt]: thirtyDaysAgo } })
-      .getResult()
+      .getModelResult()
       .delete(); //elimina los registros antiguos a 30 dias
     const response = await controller
       .setModel(Logs)
       .setOrderFilters([["idlog", "DESC"]])
-      .getResult()
+      .getModelResult()
       .getAll();
     return responseAsJson(response);
   } catch (error) {

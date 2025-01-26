@@ -33,8 +33,8 @@ export const apiAuth = defineMiddleware(
         await Logs.create({
           ruta: request.url,
           method: request.method,
-          status: res.status,
-          idUsuario: user?.id ?? null,
+          status: String(res.status),
+          idUsuario: Number(user?.id),
         });
       } catch (error) {
         console.log(error);
