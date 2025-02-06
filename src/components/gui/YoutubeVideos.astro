@@ -1,0 +1,26 @@
+---
+import "lite-youtube-embed/src/lite-yt-embed.css";
+import YoutubeVideoCard from "@components/cards/YoutubeVideoCard.astro";
+
+const videos: { response?: { url: string; titulo: string }[] } = await fetch(
+  "http://localhost:4321/api/youtube-links"
+).then((res) => res.json());
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 md:h-96 gap-4 p-4">
+  {
+    videos.response?.map((el) => (
+      <YoutubeVideoCard url={el.url} title={el.titulo} />
+    ))
+  }
+</div>
+<script>
+  import "lite-youtube-embed";
+  document.addEventListener("astro:page-load", () => {
+    const iframe: HTMLElement | null = document.querySelector("lite-youtube");
+
+    if (iframe) {
+      iframe.click();
+    }
+  });
+</script>

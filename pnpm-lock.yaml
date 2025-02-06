@@ -89,6 +89,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      lite-youtube-embed:
+        specifier: ^0.3.3
+        version: 0.3.3
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2256,6 +2259,9 @@ packages:
 
   linkifyjs@4.1.4:
     resolution: {integrity: sha512-0/NxkHNpiJ0k9VrYCkAn9OtU1eu8xEr1tCCpDtSsVRm/SF0xAak2Gzv3QimSfgUgqLBCDlfhMbu73XvaEHUTPQ==}
+
+  lite-youtube-embed@0.3.3:
+    resolution: {integrity: sha512-gFfVVnj6NRjxVfJKo3qoLtpi0v5mn3AcR4eKD45wrxQuxzveFJUb+7Cr6uV6n+DjO8X3p0UzPPquhGt0H/y+NA==}
 
   load-yaml-file@0.2.0:
     resolution: {integrity: sha512-OfCBkGEw4nN6JLtgRidPX6QxjBQGQf72q3si2uvqyFEMbycSFFHwAZeXx6cJgFM9wmLrf9zBwCP3Ivqa+LLZPw==}
@@ -6002,6 +6008,8 @@ snapshots:
       uc.micro: 2.1.0
 
   linkifyjs@4.1.4: {}
+
+  lite-youtube-embed@0.3.3: {}
 
   load-yaml-file@0.2.0:
     dependencies:

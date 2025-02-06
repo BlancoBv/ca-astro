@@ -17,6 +17,7 @@ import Banners from "./Banners";
 import Logs from "./Logs";
 import Publicaciones from "./Publicaciones";
 import PublicacionesMiembros from "./PublicacionesMiembros";
+import YoutubeLinks from "./YoutubeLinks";
 
 Roles.belongsToMany(Permisos, {
   through: RolesPermisos,
@@ -104,4 +105,5 @@ export {
   Logs,
   Publicaciones,
   PublicacionesMiembros,
+  YoutubeLinks,
 };

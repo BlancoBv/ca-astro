@@ -8,17 +8,6 @@ import {
   type InferCreationAttributes,
 } from "sequelize";
 
-/* class Logs extends Model<
-  InferAttributes<LogsModel>,
-  InferCreationAttributes<LogsModel>
-> {
-  declare idlog: number;
-  declare ruta: string;
-  declare method: string;
-  declare status: string;
-  declare idUsuario: ForeignKey<number>;
-} */
-
 interface LogsModel
   extends Model<
     InferAttributes<LogsModel>,
