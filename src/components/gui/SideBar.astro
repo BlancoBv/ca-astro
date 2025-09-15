@@ -3,7 +3,10 @@ import SidebarItems from "./SidebarItems.astro";
 const { user } = Astro.locals;
 ---
 
-<ul class="menu bg-base-200 min-h-full w-80 p-4" transition:persist>
+<ul
+  class="menu bg-base-200 min-h-full rounded-e-box w-80 p-4"
+  transition:persist
+>
   <SidebarItems />
   <li>
     <details open>
