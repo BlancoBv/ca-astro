@@ -13,7 +13,7 @@ interface Props {
 const { banners } = Astro.props;
 ---
 
-<div class="carousel h-60 md:h-96 lg:h-[450px] w-full">
+<div class="carousel h-60 sm:h-96 md:h-[600px] lg:h-[750px] w-full">
   {
     banners.length > 0 &&
       banners.map((el, index, array) => (
@@ -30,9 +30,23 @@ const { banners } = Astro.props;
             loading="eager"
           />
           {(el.descripcion || el.url) && (
-            <div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-3/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4">
+            <div class="stats bg-base-100 bottom-4 sm:right-4 shadow absolute w-full sm:w-fit">
+              <div class="stat">
+                <div class="stat-value text-secondary text-wrap">
+                  {el.descripcion}
+                </div>
+                {el.url && (
+                  <div class="stat-desc">
+                    <a href={el.url} class="link">
+                      Enlace adjunto <i class="bi bi-box-arrow-up-right" />
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+            /* <div class="card bg-base-100/70 backdrop-blur-sm shadow-xl w-full md:w-2/4 md:min-h-32 min-h-24 absolute bottom-4 md:right-4">
               <div class="card-body">
-                <p>{el.descripcion}</p>
+                <p class="font-light text-2xl">{el.descripcion} </p>
                 {el.url && (
                   <div class="card-actions justify-end">
                     <a
@@ -40,13 +54,14 @@ const { banners } = Astro.props;
                       href={el.url}
                       class="btn btn-primary btn-sm"
                     >
-                      Ver enlace adjunto
+                      Enlace adjunto <i class="bi bi-box-arrow-up-right" />
                     </a>
                   </div>
                 )}
               </div>
-            </div>
+            </div> */
           )}
+          {/* Controles de navegación */}
           <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a
               href={`#banner-${array[(index - 1 + array.length) % array.length].idbanner}`}
