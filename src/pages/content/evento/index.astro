@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 const { searchParams } = Astro.url;
 import Pagination from "@components/gui/Pagination.vue";
 import CardBlog from "@components/cards/CardBlog.astro";
+import CardBlog2 from "@components/cards/CardBlog2.astro";
 
 interface eventos {
   response?: {
@@ -26,10 +27,12 @@ if (eventos.response?.blogs && eventos.response?.blogs.length < 1) {
 <Layout title="Todos los eventos">
   <main class="prose max-w-full w-full p-4">
     <h1>Todos los eventos</h1>
-    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 not-prose">
+    <div
+      class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 not-prose"
+    >
       {
         eventos.response?.blogs.map((el: any) => (
-          <CardBlog
+          <CardBlog2
             titulo={el.titulo}
             fecha={el.fecha}
             id={el.idblog}

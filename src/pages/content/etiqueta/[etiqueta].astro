@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 const { etiqueta } = Astro.params;
 
 import CardBlog from "@components/cards/CardBlog.astro";
+import CardBlog2 from "@components/cards/CardBlog2.astro";
 
 const response: {
   response: {
@@ -40,7 +41,7 @@ if (!response) {
     >
       {
         response.response.blogs.map((el) => (
-          <CardBlog
+          <CardBlog2
             titulo={el.titulo}
             imagen={el.imagen}
             id={el.idblog}
