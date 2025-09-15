@@ -15,6 +15,7 @@ type UserAttributes = {
   idUsuario: number;
   nombreCompleto: string;
   tipoMiembro: "lider" | "miembro";
+  uuid: string;
 };
 
 // we're telling the Model that 'id' is optional
@@ -82,6 +83,10 @@ const Miembros = sequelize.define<
       const { nombre, apemat, apepat } = this.dataValues;
       return `${nombre} ${apepat} ${apemat}`;
     },
+  },
+  uuid: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
   },
 });
 

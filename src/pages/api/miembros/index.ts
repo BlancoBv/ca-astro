@@ -10,13 +10,13 @@ export const GET: APIRoute = async ({ url, locals }) => {
   const controller = new ControllerBuilder();
 
   try {
-    if (search.idmiembro) {
+    if (search.uuid) {
       let proyectos: any[] | null = null;
       let publicaciones: any[] | null = null;
       const miembro = await controller
         .setModel(Miembros)
         .setWhereFilters({
-          idmiembro: search.idmiembro,
+          uuid: search.uuid,
         })
         .setIncludedModels([
           {
@@ -37,7 +37,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
           .setWhereFilters({
             visible: true,
             [controller.Op.or]: [
-              { director: search.idmiembro }, // Condición para la columna director
+              { director: miembro!.idmiembro }, // Condición para la columna director
               {
                 idproyecto: {
                   [controller.Op.in]: sequelize.literal(
@@ -73,7 +73,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
             },
           ])
           .setOrderFilters([["fechaTermino", "DESC"]])
-          .setReplacements({ idmiembro: search.idmiembro })
+          .setReplacements({ idmiembro: miembro.idmiembro })
           .getResult()
           .getAll();
       }
@@ -103,7 +103,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
             },
           ])
           .setOrderFilters([["year", "DESC"]])
-          .setReplacements({ idmiembro: search.idmiembro })
+          .setReplacements({ idmiembro: miembro.idmiembro })
           .getResult()
           .getAll();
       }

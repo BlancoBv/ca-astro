@@ -5,7 +5,7 @@ import ListaPublicacionesMiembros from "@components/listas/ListaPublicacionesMie
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 
-const { id } = Astro.params;
+const { uuid } = Astro.params;
 
 interface icons {
   facebook: string;
@@ -41,7 +41,7 @@ const miembro: {
     contactos: { tipo: string; url: string }[];
   };
 } = await fetch(
-  `http://localhost:4321/api/miembros?idmiembro=${id}&includeProyectos=true&includePublicaciones=true`
+  `http://localhost:4321/api/miembros?uuid=${uuid}&includeProyectos=true&includePublicaciones=true`
 ).then((res) => res.json());
 
 const redesSocialesIcon: icons = {

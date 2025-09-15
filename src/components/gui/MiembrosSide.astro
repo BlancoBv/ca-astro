@@ -3,7 +3,7 @@ interface Props {
   colaboradores?: boolean;
 }
 interface miembros {
-  response?: { nombreCompleto: string; idmiembro: number }[];
+  response?: { nombreCompleto: string; idmiembro: number; uuid: string }[];
 }
 const { colaboradores } = Astro.props;
 const res: miembros = await fetch(
@@ -21,7 +21,7 @@ const res: miembros = await fetch(
         res.response?.map((miembro) => {
           return (
             <li>
-              <a href={`/miembros/${miembro.idmiembro}`} class="text-balance">
+              <a href={`/miembros/${miembro.uuid}`} class="text-balance">
                 {miembro.nombreCompleto}
               </a>
             </li>

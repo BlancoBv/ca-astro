@@ -40,8 +40,8 @@ export default class VerifyPath {
       path: "api/miembros",
       method: ["POST", "DELETE", "PUT", "GET"],
       bypass: [
-        /[?]idmiembro=\w+&includeProyectos=true&includePublicaciones=true/ /* (?:&|$)/ */,
-        /[?]colaborador=(false|true)(?:&|$)/,
+        /[?]uuid=(\w|\-)+&includeProyectos=true&includePublicaciones=true/,
+        /* /[?]uuid=\w+&includeProyectos=true&includePublicaciones=true/ /* (?:&|$)/ */ /[?]colaborador=(false|true)(?:&|$)/,
         /*  /[?&]idmiembro=\w+(?:&|$)/, */
       ],
     },
