@@ -1,5 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: winter --default, dark --prefersdark;
+}
+@plugin "@tailwindcss/typography";
 
 th[data-pc-section="headercell"] div {
   display: flex;

@@ -29,12 +29,34 @@ onMounted(() => {
     />
 
     <!-- sun icon -->
+    <div
+      class="swap-off h-10 w-10 fill-current flex justify-center items-center"
+    >
+      <i class="bi bi-sun-fill text-xl"></i>
+    </div>
+
+    <!-- moon icon -->
+    <div
+      class="swap-on h-10 w-10 fill-current flex justify-center items-center"
+    >
+      <i class="bi bi-moon-fill text-xl"></i>
+    </div>
+  </label>
+
+  <!--   <label class="swap swap-rotate">
+
+    <input
+      type="checkbox"
+      class="theme-controller"
+      @input="handle"
+      :checked="active"
+    />
+
     <div class="swap-on fill-current flex justify-center items-center size-10">
       <i class="bi bi-sun-fill text-xl"></i>
     </div>
     <div class="swap-off fill-current flex justify-center items-center size-10">
       <i class="bi bi-moon-fill text-xl"></i>
     </div>
-    <!-- moon icon -->
-  </label>
+  </label> -->
 </template>

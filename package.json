@@ -17,7 +17,6 @@
     "@lucia-auth/adapter-mysql": "^3.0.2",
     "@primevue/core": "^4.2.5",
     "@primevue/themes": "^4.1.0",
-    "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.1.13",
     "@tanstack/vue-query": "^5.56.2",
     "@tiptap/extension-bullet-list": "^2.11.3",
@@ -55,6 +54,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@types/bcrypt": "^5.0.2",
     "@types/lodash": "^4.17.13",
     "gh-pages": "^6.2.0"

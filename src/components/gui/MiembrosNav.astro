@@ -1,4 +1,6 @@
 ---
+import DropdownNavBar from "./DropdownNavBar.astro";
+
 interface Props {
   colaboradores?: boolean;
 }
@@ -11,7 +13,24 @@ const res: miembros = await fetch(
 ).then((res) => res.json());
 ---
 
-<div class="dropdown dropdown-hover group">
+<DropdownNavBar>
+  <Fragment slot="dropdown-name">
+    {colaboradores ? "Colaboradores" : "Miembros"}
+  </Fragment>
+  <Fragment slot="dropdown-items">
+    {
+      res.response?.map((miembro) => (
+        <li>
+          <a href={`/miembros/${miembro.uuid}`} class="text-balance">
+            {miembro.nombreCompleto}
+          </a>
+        </li>
+      ))
+    }
+  </Fragment>
+</DropdownNavBar>
+
+<!-- <div class="dropdown dropdown-hover group">
   <div
     tabindex="0"
     role="button"
@@ -39,4 +58,4 @@ const res: miembros = await fetch(
       })
     }
   </ul>
-</div>
+</div> -->

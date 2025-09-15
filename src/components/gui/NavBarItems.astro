@@ -1,4 +1,5 @@
 ---
+import DropdownNavBar from "./DropdownNavBar.astro";
 import MiembrosNav from "./MiembrosNav.astro";
 interface menus {
   response?: {
@@ -24,30 +25,16 @@ const res: menus = await fetch("http://localhost:4321/api/menus").then((res) =>
       }
       if (menu.dropcollapse)
         return (
-          <div class="dropdown dropdown-hover group">
-            <div
-              tabindex="0"
-              role="button"
-              class="rounded-btn hover:bg-base-content/10 py-2 px-4 text-sm mb-1 flex gap-1"
-            >
-              {menu.nombre}
-
-              <div class="swap swap-rotate group-hover:swap-active">
-                <i class="bi bi-caret-down-fill swap-off" />
-                <i class="bi bi-caret-up-fill swap-on" />
-              </div>
-            </div>
-            <ul
-              tabindex="0"
-              class="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
-            >
+          <DropdownNavBar>
+            <Fragment slot="dropdown-name">{menu.nombre}</Fragment>
+            <Fragment slot="dropdown-items">
               {menu.submenus?.map((submenu) => (
                 <li>
                   <a href={`/${menu.ruta}/${submenu.ruta}`}>{submenu.nombre}</a>
                 </li>
               ))}
-            </ul>
-          </div>
+            </Fragment>
+          </DropdownNavBar>
         );
 
       return (
