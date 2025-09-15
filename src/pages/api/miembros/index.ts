@@ -3,14 +3,31 @@ import searchParamsToObject from "@assets/searchParamsToObject";
 import { sequelize } from "@db";
 import { Contactos, Miembros, Proyectos, Publicaciones } from "@model";
 import type { APIRoute } from "astro";
+import { z } from "astro/zod";
 import { ControllerBuilder } from "src/controllers/builder";
+
+const querysObject = z.object({
+  uuid: z
+    .string()
+    .refine((val) => {
+      const regExp = new RegExp(/\D+/);
+      return regExp.test(val);
+    })
+    .optional(),
+  colaborador: z.enum(["true", "false"]).optional(),
+});
 
 export const GET: APIRoute = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   const controller = new ControllerBuilder();
 
   try {
-    if (search.uuid) {
+    const querys = querysObject.safeParse(search);
+    if (!querys.success) {
+      throw querys.error;
+    }
+
+    if (querys.data.uuid) {
       let proyectos: any[] | null = null;
       let publicaciones: any[] | null = null;
       const miembro = await controller

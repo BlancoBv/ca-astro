@@ -10,6 +10,7 @@ import Footer from "@components/gui/Footer.astro";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBarServer from "@components/gui/NavBarServer.astro";
 import SideBar from "@components/gui/SideBar.astro";
+import "../styles/global.css";
 Astro.response.headers.set(
   "Cache-Control",
   "public, s-maxage=360, stale-while-revalidate=180"
