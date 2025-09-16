@@ -18,9 +18,9 @@ const banners = await fetch(
     <div
       class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 px-4 py-10 gap-4 place-items-center"
     >
-      <CardMVO color="secondary">
+      <CardMVO>
         <Fragment slot="card-icon">
-          <i class="bi bi-search text-7xl"></i>
+          <i class="bi bi-search text-7xl text-secondary"></i>
         </Fragment>
         <Fragment slot="card-title">Misión</Fragment>
         <Fragment slot="card-body">
@@ -29,9 +29,9 @@ const banners = await fetch(
           del Instituto tecnológico Superior de los Ríos.
         </Fragment>
       </CardMVO>
-      <CardMVO color="accent">
+      <CardMVO>
         <Fragment slot="card-icon">
-          <i class="bi bi-eye text-7xl"></i>
+          <i class="bi bi-eye text-7xl text-accent"></i>
         </Fragment>
         <Fragment slot="card-title">Visión</Fragment>
         <Fragment slot="card-body">
@@ -41,9 +41,9 @@ const banners = await fetch(
         </Fragment>
       </CardMVO>
 
-      <CardMVO color="info">
+      <CardMVO>
         <Fragment slot="card-icon">
-          <i class="bi bi-graph-up-arrow text-7xl"></i>
+          <i class="bi bi-graph-up-arrow text-7xl text-info"></i>
         </Fragment>
         <Fragment slot="card-title">Objetivos</Fragment>
         <Fragment slot="card-body">

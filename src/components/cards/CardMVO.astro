@@ -1,17 +1,6 @@
----
-interface Props {
-  color: string;
-}
-
-const { color } = Astro.props;
-
-const fullClass = `text-${color}`;
----
-
 <div class="indicator group w-full">
   <div
     class="indicator-item indicator-bottom indicator-center size-22 flex items-center justify-center group-hover:scale-110 ease-in duration-150"
-    class:list={[fullClass]}
   >
     <slot name="card-icon" />
   </div>
