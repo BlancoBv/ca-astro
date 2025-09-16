@@ -1,5 +1,4 @@
 ---
-import CardBlog from "@components/cards/CardBlog.astro";
 import CardBlog2 from "@components/cards/CardBlog2.astro";
 
 const blogs: {
@@ -32,15 +31,10 @@ const blogs: {
               <img
                 class="object-cover h-full w-full"
                 src="/eventos.webp"
-                alt="Shoes"
+                alt="Eventos"
               />
             </figure>
             <div class="card-body items-end justify-end">
-              {/* <h2 class="card-title">Card Title</h2> */}
-              {/* <p>
-                A card component has a figure, a body part, and inside body
-                there are title and actions parts
-              </p> */}
               <div class="card-actions justify-end">
                 <a href="/content/evento" class="btn btn-primary">
                   Ver todos los eventos
@@ -48,11 +42,6 @@ const blogs: {
               </div>
             </div>
           </div>
-          {/*           <div class="md:col-span-2 lg:col-span-3 w-full flex justify-center">
-            <a class="btn btn-primary w-1/2" href="/content/evento">
-              Ver todos
-            </a>
-          </div> */}
         </>
       )
     }
