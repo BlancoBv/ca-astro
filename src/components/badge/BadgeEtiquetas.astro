@@ -6,10 +6,7 @@ interface Props {
 const { nombre, ruta } = Astro.props;
 ---
 
-<a
-  href={ruta}
-  class="badge badge-accent badge-outline hover:scale-105 transition-all duration-100 ease-in flex gap-1"
->
+<a href={ruta} class="badge badge-soft badge-accent">
   <i class="bi bi-tag-fill"></i>
   {nombre}
 </a>
