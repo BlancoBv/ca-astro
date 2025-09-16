@@ -168,7 +168,7 @@ export default (app: App) => {
     pt: {
       datatable: {
         root: "not-prose relative",
-        table: "table table-zebra",
+        table: "table",
       },
       paginator: {
         root: "py-4",
