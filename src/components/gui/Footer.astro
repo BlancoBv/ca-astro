@@ -5,75 +5,34 @@ const actualDate = new Date(Date.now());
 const fDate = formatYear(actualDate);
 ---
 
-<div class="footer bg-base-300 text-base-content p-10">
-  <nav>
-    <h6 class="footer-title"><i class="bi bi-geo-alt-fill"></i> Ubicación</h6>
-    <p>
-      Dirección: Km. 3 carretera Balancán-Villahermosa, Balancán, Tabasco C.P.
-      86930
-    </p>
-    <p>Teléfono: 934 - 115 - 1443</p>
-    <a
-      href="https://maps.app.goo.gl/DVs2mPFzfHBDdCXj9"
-      class="link"
-      target="_blank"
-    >
-      Ver en Google Maps <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    <!-- <iframe
-      title="location map"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.199083036566!2d-91.5346115538867!3d17.82929994302398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f3c2bd64971569%3A0x237ff6dacda499f4!2sInstituto%20Tecnol%C3%B3gico%20Superior%20de%20los%20R%C3%ADos!5e0!3m2!1ses-419!2smx!4v1729784470010!5m2!1ses-419!2smx"
-      height="350"
-      width="350"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      transition:name="mapa-location"
-      transition:persist></iframe> -->
-    <!--  <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a> -->
-  </nav>
-  <!--   <nav>
-    <h6 class="footer-title">Transparencia</h6>
-    <a class="link" href="#">About us</a>
-    <a class="link" href="#">Contact</a>
-    <a class="link" href="#">Jobs</a>
-    <a class="link" href="#">Press kit</a>
-  </nav> -->
-  <nav>
-    <h6 class="footer-title">Ultima actualización</h6>
-    <span>30 de octubre de 2024</span>
-  </nav>
-</div>
 <footer
-  class="footer place-items-center md:place-items-start bg-base-300 text-base-content border-base-300 border-t px-10 py-4"
+  class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10"
 >
-  <aside class="grid-flow-col items-center">
+  <aside>
+    <img src="/logo.webp" width="150px" />
     <p>
-      <i class="bi bi-c-circle"></i>
-      <span>{fDate}</span>
-      Cuerpo Académico - Computo Distribuido
+      <p>
+        <i class="bi bi-c-circle"></i>
+        <span>{fDate}</span> Cuerpo Académico - Cómputo Distribuido
+      </p>
+      <br />
+      Última actualización, septiembre 2025.
     </p>
   </aside>
-  <nav class="md:place-self-center md:justify-self-end">
-    <div class="grid grid-flow-col gap-4 text-2xl">
+  <nav>
+    <h6 class="footer-title">Ubicación</h6>
+    <div class="grid grid-cols-1 gap-4">
+      <p>
+        <i class="bi bi-geo-alt-fill"></i> Km. 3 carretera Balancán-Villahermosa,
+        Balancán, Tabasco C.P. 86930
+      </p>
+      <p><i class="bi bi-telephone-fill"></i> 934 - 115 - 1443</p>
       <a
-        href="mailto:cdistribuido2018@gmail.com"
-        title="Mail"
-        aria-label="Correo"
-      >
-        <i class="bi bi-envelope-fill"></i>
-      </a>
-      <a
-        href="https://www.facebook.com/ComputoDistribuido/"
+        href="https://maps.app.goo.gl/DVs2mPFzfHBDdCXj9"
+        class="link"
         target="_blank"
-        title="Facebook"
-        aria-label="Facebook"
       >
-        <i class="bi bi-facebook"></i>
+        Ver en Google Maps <i class="bi bi-box-arrow-up-right"></i>
       </a>
     </div>
   </nav>

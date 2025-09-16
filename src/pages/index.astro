@@ -1,4 +1,5 @@
 ---
+import CardMVO from "@components/cards/CardMVO.astro";
 import Layout from "../layouts/Layout.astro";
 import BlogsContainer from "@components/gui/BlogsContainer.astro";
 import CarouselA from "@components/gui/Carousel.astro";
@@ -9,43 +10,69 @@ const banners = await fetch(
 ).then((res) => res.json());
 ---
 
-<Layout title="CA - cómputo distribuido.">
+<Layout title="Cuerpo Académico - Cómputo Distribuido">
   <main>
     <CarouselA banners={banners?.response ?? []} />
     <!-- <YoutubeVideos /> -->
     <BlogsContainer />
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-      <div class="card bg-accent text-accent-content shadow-xl">
-        <div class="card-body">
-          <h2 class="card-title">Misión</h2>
-          <p class="text-balance">
-            Contribuir con el mejoramiento de la formación académica de los
-            estudiantes de la carrera de Ingeniería en Sistemas computacionales
-            del Instituto tecnológico Superior de los Ríos.
-          </p>
-        </div>
-      </div>
-      <div class="card bg-secondary text-secondary-content shadow-xl">
-        <div class="card-body">
-          <h2 class="card-title">Visión</h2>
-          <p class="text-balance">
-            Lograr la consolidación del cuerpo académico a través del incremento
-            de nuestra producción académica, investigación con reconocimiento
-            nacional e internacional.
-          </p>
-        </div>
-      </div>
-      <div class="card bg-neutral text-neutral-content shadow-xl">
-        <div class="card-body">
-          <h2 class="card-title">Objetivos</h2>
-          <p class="text-balance">
-            Desarrollar un cuerpo académico para el desarrollo de proyectos de
-            investigación, dirección de tesís, desarrollo de aplicación de
-            sistema distribuido, así como el mejoramiento de los planes de
-            estudios de la carrera.
-          </p>
-        </div>
-      </div>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 px-4 py-10 gap-4 place-items-center"
+    >
+      <CardMVO color="secondary">
+        <Fragment slot="card-icon">
+          <i class="bi bi-search text-7xl"></i>
+        </Fragment>
+        <Fragment slot="card-title">Misión</Fragment>
+        <Fragment slot="card-body">
+          Contribuir con el mejoramiento de la formación académica de los
+          estudiantes de la carrera de Ingeniería en Sistemas computacionales
+          del Instituto tecnológico Superior de los Ríos.
+        </Fragment>
+      </CardMVO>
+      <CardMVO color="accent">
+        <Fragment slot="card-icon">
+          <i class="bi bi-eye text-7xl"></i>
+        </Fragment>
+        <Fragment slot="card-title">Visión</Fragment>
+        <Fragment slot="card-body">
+          Lograr la consolidación del cuerpo académico a través del incremento
+          de nuestra producción académica, investigación con reconocimiento
+          nacional e internacional.
+        </Fragment>
+      </CardMVO>
+
+      <CardMVO color="info">
+        <Fragment slot="card-icon">
+          <i class="bi bi-graph-up-arrow text-7xl"></i>
+        </Fragment>
+        <Fragment slot="card-title">Objetivos</Fragment>
+        <Fragment slot="card-body">
+          Desarrollar un cuerpo académico para el desarrollo de proyectos de
+          investigación, dirección de tesís, desarrollo de aplicación de sistema
+          distribuido, así como el mejoramiento de los planes de estudios de la
+          carrera.
+        </Fragment>
+      </CardMVO>
     </div>
   </main>
 </Layout>
+<style>
+  .bg-image {
+    background-image: url("/mision.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .bg-image-1 {
+    background-image: url("/mision.png");
+    background-position: top left;
+  }
+  .bg-image-2 {
+    background-image: url("/mision.png");
+    background-position: top right;
+  }
+  .bg-image-3 {
+    background-image: url("/mision.png");
+    background-position: center right;
+  }
+</style>
