@@ -72,6 +72,33 @@ miembro.response.proyectos.forEach((el) => {
   title={`${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto}`}
 >
   <main class="prose max-w-full p-4">
+    <div class="stats bg-base-100 shadow-sm w-full not-prose">
+      <div class="stat">
+        <div class="stat-figure text-secondary">
+          <div class="avatar">
+            <div class="w-32 rounded-full">
+              <img src={miembro.response.imgPerfil} />
+            </div>
+          </div>
+        </div>
+        <div class="stat-value">
+          {miembro.response.gradoEstudio}. {miembro.response.nombreCompleto}
+        </div>
+        <div class="stat-title">{miembro.response.puesto.toUpperCase()}</div>
+        <div class="stat-desc text-secondary">
+          {miembro.response.tipoMiembro.toUpperCase()}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Current balance</div>
+        <div class="stat-value">$89,400</div>
+        <div class="stat-actions">
+          <button class="btn btn-xs">Withdrawal</button>
+          <button class="btn btn-xs">Deposit</button>
+        </div>
+      </div>
+    </div>
     <div
       class="stats md:grid-cols-2 shadow stats-vertical md:stats-horizontal w-full not-prose min-h-40"
     >
