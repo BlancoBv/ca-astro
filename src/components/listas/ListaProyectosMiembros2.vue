@@ -137,7 +137,7 @@ onUnmounted(() => {
           </div>
         </div>
         <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
-          <i class="bi bi-box-arrow-up text-2xl"></i>
+          <i class="bi bi-arrows-fullscreen text-xl"></i>
         </button>
         <!--     <button class="btn btn-square btn-ghost">
           <svg
