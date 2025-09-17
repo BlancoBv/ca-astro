@@ -3,7 +3,7 @@ import Column from "primevue/column";
 import DataTable from "primevue/datatable";
 import { FilterMatchMode } from "@primevue/core/api";
 import { formatMoneda } from "@assets/format";
-import { onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
 interface props {
   data: any[];
@@ -13,6 +13,7 @@ interface props {
 const props = defineProps<props>();
 
 const isMounted = ref<boolean>(false);
+const rowData = ref<any>({});
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 });
@@ -52,6 +53,14 @@ const recortarTitulo = (titulo: string) => {
   return titulo.slice(0, 30) + "...";
 };
 
+const rowDataMemo = computed(() => rowData.value);
+
+const openModal = (data: any) => {
+  const modal = document.getElementById("modal_proyectos") as HTMLDialogElement;
+  rowData.value = data;
+  modal.showModal();
+};
+
 onMounted(() => {
   isMounted.value = true;
 });
@@ -60,6 +69,45 @@ onUnmounted(() => {
 });
 </script>
 <template>
+  <!-- You can open the modal using ID.showModal() method -->
+  <button class="btn" onclick="modal_proyectos.showModal()">open modal</button>
+  <dialog
+    id="modal_proyectos"
+    class="modal modal-bottom sm:modal-middle not-prose"
+  >
+    <div class="modal-box">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <i class="bi bi-x text-2xl"></i>
+        </button>
+      </form>
+      <h3 class="text-lg text-balance font-bold">{{ rowDataMemo.titulo }}</h3>
+      <div class="py-4">
+        <ul class="steps w-full">
+          <li
+            class="step step-info"
+            :class="{
+              'step-info': !(rowData.estatus === 'finalizado'),
+              'step-success': rowData.estatus === 'finalizado',
+            }"
+          >
+            <span class="step-icon"><i class="bi bi-flag"></i></span>En proceso
+          </li>
+          <li
+            class="step"
+            :class="{
+              'step-success': rowData.estatus === 'finalizado',
+            }"
+          >
+            <span class="step-icon"><i class="bi bi-flag-fill"></i></span
+            >Finalizado
+          </li>
+        </ul>
+        Press ESC key or click on ✕ button to close
+      </div>
+    </div>
+  </dialog>
+
   <div class="sm:px-20 lg:px-40">
     <ul class="list bg-base-100 rounded-box shadow-md not-prose">
       <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
@@ -79,7 +127,7 @@ onUnmounted(() => {
         </div>
         <div class="list-col-wrap text-xs">
           <div
-            class="badge"
+            class="badge badge-xs"
             :class="{
               'badge-success': proyecto.estatus === 'finalizado',
               'badge-info': proyecto.estatus === 'en proceso',
@@ -88,7 +136,7 @@ onUnmounted(() => {
             {{ proyecto.estatus.toUpperCase() }}
           </div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
           <i class="bi bi-box-arrow-up text-2xl"></i>
         </button>
         <!--     <button class="btn btn-square btn-ghost">
