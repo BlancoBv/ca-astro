@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Column from "primevue/column";
-import DataTable from "primevue/datatable";
 import { FilterMatchMode } from "@primevue/core/api";
 import { formatMoneda } from "@assets/format";
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import StatInfoPP from "@components/stat/StatInfoPublic.vue";
 
 interface props {
   data: any[];
@@ -13,7 +12,13 @@ interface props {
 const props = defineProps<props>();
 
 const isMounted = ref<boolean>(false);
+const page = ref<number>(1);
+const maxRows = ref<number>(5);
 const rowData = ref<any>({});
+const filtroEstatus = ref<string>("");
+const filtroTipo = ref<string>("");
+const filtroMonto = ref<string>("");
+
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 });
@@ -32,6 +37,8 @@ const getCollabs = (element: {
     style: "long",
   });
   const miembrosF: string[] = [];
+
+  if (Object.keys(element).length < 1) return "---";
 
   element.miembros_proyecto.forEach((el) => {
     miembrosF.push(el.nombreCompleto);
@@ -53,6 +60,53 @@ const recortarTitulo = (titulo: string) => {
   return titulo.slice(0, 30) + "...";
 };
 
+const totalFiltros = computed(() =>
+  [filtroEstatus.value, filtroMonto.value, filtroTipo.value].reduce((a, b) => {
+    if (b !== "") return a + 1;
+    return a;
+  }, 0)
+);
+
+const filteredData = computed(() => {
+  const defaultData = props.data;
+  var newData = defaultData;
+
+  if (filtroEstatus.value !== "") {
+    newData = newData.filter((el) => el.estatus === filtroEstatus.value);
+  }
+  if (filtroTipo.value !== "") {
+    newData = newData.filter((el) => el.tipo === filtroTipo.value);
+  }
+  return newData;
+});
+
+const sortedData = computed(() => {
+  if (filtroMonto.value === "ASC") {
+    return filteredData.value.toSorted(
+      (a, b) => Number(a.monto) - Number(b.monto)
+    );
+  }
+  if (filtroMonto.value === "DESC") {
+    return filteredData.value.toSorted(
+      (a, b) => Number(b.monto) - Number(a.monto)
+    );
+  }
+  return filteredData.value;
+});
+
+const paginatedData = computed(() => {
+  const indexStart = (page.value - 1) * maxRows.value;
+  const indexEnd = indexStart + maxRows.value;
+  const defaultData = sortedData.value.slice(indexStart, indexEnd);
+
+  return defaultData;
+});
+
+const totalPages = computed(() => {
+  console.log(sortedData.value.length / maxRows.value);
+  return Math.ceil(sortedData.value.length / maxRows.value);
+});
+
 const rowDataMemo = computed(() => rowData.value);
 
 const openModal = (data: any) => {
@@ -69,8 +123,6 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <!-- You can open the modal using ID.showModal() method -->
-  <button class="btn" onclick="modal_proyectos.showModal()">open modal</button>
   <dialog
     id="modal_proyectos"
     class="modal modal-bottom sm:modal-middle not-prose"
@@ -83,7 +135,7 @@ onUnmounted(() => {
       </form>
       <h3 class="text-lg text-balance font-bold">{{ rowDataMemo.titulo }}</h3>
       <div class="py-4">
-        <ul class="steps w-full">
+        <ul class="steps w-full pb-4">
           <li
             class="step step-info"
             :class="{
@@ -103,43 +155,226 @@ onUnmounted(() => {
             >Finalizado
           </li>
         </ul>
-        Press ESC key or click on ✕ button to close
+        <div class="grid grid-cols-2 grid-rows-6 gap-2">
+          <StatInfoPP>
+            <template #icon><i class="bi bi-key-fill"></i></template>
+            <template #title>Clave</template>
+            <template #data>{{ rowDataMemo.clave }}</template>
+          </StatInfoPP>
+          <StatInfoPP>
+            <template #icon><i class="bi bi-info-circle-fill"></i></template>
+            <template #title>Tipo</template>
+            <template #data>{{ rowDataMemo.tipo?.toUpperCase() }}</template>
+          </StatInfoPP>
+          <StatInfoPP>
+            <template #icon><i class="bi bi-file-earmark-fill"></i></template>
+            <template #title>Convocatoria</template>
+            <template #data>{{ rowDataMemo.convocatoria }}</template>
+          </StatInfoPP>
+          <StatInfoPP>
+            <template #icon><i class="bi bi-currency-dollar"></i></template>
+            <template #title>Monto</template>
+            <template #data>{{ formatMoneda(rowDataMemo.monto) }}</template>
+          </StatInfoPP>
+          <StatInfoPP :row-span="2">
+            <template #icon><i class="bi bi-calendar-range"></i></template>
+            <template #title>Vigencia</template>
+            <template #data
+              >{{ rowDataMemo.fechaInicio }} -
+              {{ rowDataMemo.fechaTermino }}</template
+            >
+          </StatInfoPP>
+          <StatInfoPP :row-span="2">
+            <template #icon><i class="bi bi-calendar-range-fill"></i></template>
+            <template #title>Entrega final</template>
+            <template #data
+              >{{ rowDataMemo.fechaInicio }} -
+              {{ rowDataMemo.fechaTermino }}</template
+            >
+          </StatInfoPP>
+          <StatInfoPP :col-span="2">
+            <template #icon><i class="bi bi-person-fill"></i></template>
+            <template #title>Director de proyecto</template>
+            <template #data>{{
+              rowDataMemo.director_proyecto?.nombreCompleto
+            }}</template>
+          </StatInfoPP>
+          <StatInfoPP :col-span="2">
+            <template #title>Otros colaboradores</template>
+            <template #data>{{ getCollabs(rowDataMemo ?? {}) }}</template>
+          </StatInfoPP>
+        </div>
       </div>
     </div>
   </dialog>
 
-  <div class="sm:px-20 lg:px-40">
-    <ul class="list bg-base-100 rounded-box shadow-md not-prose">
-      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
-        Todos los proyectos
-      </li>
+  <div class="sm:px-20 lg:px-40 not-prose">
+    <div class="grid grid-cols-2 pb-2">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn m-1">
+          <i class="bi bi-filter"></i> Filtros
+          <div class="badge badge-sm badge-secondary">{{ totalFiltros }}</div>
+        </div>
 
-      <li v-for="proyecto in data" class="list-row">
-        <div>
-          <i class="bi bi-puzzle-fill text-4xl"></i>
-        </div>
-        <div>
-          <div>{{ proyecto.director_proyecto.nombreCompleto }}</div>
-          <div class="text-xs uppercase font-semibold opacity-60">
-            <span class="hidden sm:block">{{ proyecto.titulo }}</span>
-            <span class="sm:hidden">{{ recortarTitulo(proyecto.titulo) }}</span>
-          </div>
-        </div>
-        <div class="list-col-wrap text-xs">
+        <div
+          tabindex="0"
+          class="dropdown-content bg-base-100 shadow menu rounded-box w-80 sm:w-96"
+        >
           <div
-            class="badge badge-xs"
-            :class="{
-              'badge-success': proyecto.estatus === 'finalizado',
-              'badge-info': proyecto.estatus === 'en proceso',
-            }"
+            class="collapse collapse-arrow bg-base-100 border border-base-300"
           >
-            {{ proyecto.estatus.toUpperCase() }}
+            <input type="radio" name="my-accordion-2" checked />
+            <div class="collapse-title font-semibold">
+              Estatus {{ filtroEstatus }}
+            </div>
+            <div class="collapse-content text-sm">
+              <form class="filter">
+                <input
+                  class="btn btn-square"
+                  type="reset"
+                  value="×"
+                  @click="filtroEstatus = ''"
+                />
+                <input
+                  v-model="filtroEstatus"
+                  value="en proceso"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="En proceso"
+                />
+                <input
+                  v-model="filtroEstatus"
+                  value="finalizado"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="Finalizado"
+                />
+              </form>
+            </div>
+          </div>
+          <div
+            class="collapse collapse-arrow bg-base-100 border border-base-300"
+          >
+            <input type="radio" name="my-accordion-2" />
+            <div class="collapse-title font-semibold">
+              Monto {{ filtroMonto }}
+            </div>
+            <div class="collapse-content text-sm">
+              <form class="filter">
+                <input
+                  class="btn btn-square"
+                  type="reset"
+                  value="×"
+                  @click="filtroMonto = ''"
+                />
+                <input
+                  v-model="filtroMonto"
+                  value="DESC"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="De mayor a menor"
+                />
+                <input
+                  v-model="filtroMonto"
+                  value="ASC"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="De menor a mayor"
+                />
+              </form>
+            </div>
+          </div>
+          <div
+            class="collapse collapse-arrow bg-base-100 border border-base-300"
+          >
+            <input type="radio" name="my-accordion-2" />
+            <div class="collapse-title font-semibold">
+              Tipo {{ filtroMonto }}
+            </div>
+            <div class="collapse-content text-sm">
+              <form class="filter">
+                <input
+                  class="btn btn-square"
+                  type="reset"
+                  value="×"
+                  @click="filtroTipo = ''"
+                />
+                <input
+                  v-model="filtroTipo"
+                  value="interno"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="Interno"
+                />
+                <input
+                  v-model="filtroTipo"
+                  value="externo"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="Externo"
+                />
+              </form>
+            </div>
           </div>
         </div>
-        <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
-          <i class="bi bi-arrows-fullscreen text-xl"></i>
+      </div>
+
+      <div class="join place-self-end">
+        <button
+          class="join-item btn"
+          :disabled="totalPages === 0 || page <= 1"
+          @click="page--"
+        >
+          <i class="bi bi-caret-left-fill"></i>
         </button>
-        <!--     <button class="btn btn-square btn-ghost">
+        <button
+          class="join-item btn"
+          :disabled="totalPages === 0 || page >= totalPages"
+          @click="page++"
+        >
+          <i class="bi bi-caret-right-fill"></i>
+        </button>
+      </div>
+    </div>
+    <ul class="list bg-base-100 rounded-box shadow-sm">
+      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
+        Todos lo proyectos {{ totalPages }}
+      </li>
+      <template v-if="data.length > 0">
+        <li v-for="proyecto in paginatedData" class="list-row">
+          <div>
+            <i class="bi bi-puzzle-fill text-4xl"></i>
+          </div>
+          <div>
+            <div>{{ proyecto.director_proyecto.nombreCompleto }}</div>
+            <div class="text-xs uppercase font-semibold opacity-60">
+              <span class="hidden sm:block">{{ proyecto.titulo }}</span>
+              <span class="sm:hidden">{{
+                recortarTitulo(proyecto.titulo)
+              }}</span>
+            </div>
+          </div>
+          <div class="list-col-wrap text-xs">
+            <div
+              class="badge badge-xs"
+              :class="{
+                'badge-success': proyecto.estatus === 'finalizado',
+                'badge-info': proyecto.estatus === 'en proceso',
+              }"
+            >
+              {{ proyecto.estatus.toUpperCase() }}
+            </div>
+          </div>
+          <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
+            <i class="bi bi-arrows-fullscreen text-xl"></i>
+          </button>
+          <!--     <button class="btn btn-square btn-ghost">
           <svg
             class="size-[1.2em]"
             xmlns="http://www.w3.org/2000/svg"
@@ -158,118 +393,20 @@ onUnmounted(() => {
             </g>
           </svg>
         </button> -->
-      </li>
+        </li>
+      </template>
 
-      <li class="list-row">
+      <li v-else class="list-row">
         <div>
-          <img
-            class="size-10 rounded-box"
-            src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-          />
+          <i class="bi bi-emoji-frown-fill text-4xl"></i>
         </div>
         <div>
-          <div>Ellie Beilish</div>
-          <div class="text-xs uppercase font-semibold opacity-60">
-            Bears of a fever
-          </div>
+          <div>Sin proyectos</div>
         </div>
         <p class="list-col-wrap text-xs">
-          "Bears of a Fever" captivated audiences with its intense energy and
-          mysterious lyrics. Its popularity skyrocketed after fans shared it
-          widely online, earning Ellie critical acclaim.
+          No existen registros que incluyan a este miembro del cuerpo academico
+          como director o colaborador.
         </p>
-        <button class="btn btn-square btn-ghost">
-          <svg
-            class="size-[1.2em]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path d="M6 3L20 12 6 21 6 3z"></path>
-            </g>
-          </svg>
-        </button>
-        <button class="btn btn-square btn-ghost">
-          <svg
-            class="size-[1.2em]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-              ></path>
-            </g>
-          </svg>
-        </button>
-      </li>
-
-      <li class="list-row">
-        <div>
-          <img
-            class="size-10 rounded-box"
-            src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-          />
-        </div>
-        <div>
-          <div>Sabrino Gardener</div>
-          <div class="text-xs uppercase font-semibold opacity-60">
-            Cappuccino
-          </div>
-        </div>
-        <p class="list-col-wrap text-xs">
-          "Cappuccino" quickly gained attention for its smooth melody and
-          relatable themes. The song’s success propelled Sabrino into the
-          spotlight, solidifying their status as a rising star.
-        </p>
-        <button class="btn btn-square btn-ghost">
-          <svg
-            class="size-[1.2em]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path d="M6 3L20 12 6 21 6 3z"></path>
-            </g>
-          </svg>
-        </button>
-        <button class="btn btn-square btn-ghost">
-          <svg
-            class="size-[1.2em]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-              ></path>
-            </g>
-          </svg>
-        </button>
       </li>
     </ul>
   </div>
