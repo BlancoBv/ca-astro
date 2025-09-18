@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { FilterMatchMode } from "@primevue/core/api";
 import { formatMoneda } from "@assets/format";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import StatInfoPP from "@components/stat/StatInfoPublic.vue";
+import DebounceInputSearch from "@components/input/DebounceInputSearch.vue";
 
 interface props {
   data: any[];
@@ -18,10 +18,7 @@ const rowData = ref<any>({});
 const filtroEstatus = ref<string>("");
 const filtroTipo = ref<string>("");
 const filtroMonto = ref<string>("");
-
-const filters = ref({
-  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-});
+const filtroTexto = ref<string>("");
 
 const getCollabs = (element: {
   otrosColaboradores: string | null;
@@ -60,6 +57,15 @@ const recortarTitulo = (titulo: string) => {
   return titulo.slice(0, 30) + "...";
 };
 
+const normalize = (text: string) =>
+  text
+    .normalize("NFD")
+    .replace(
+      /([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,
+      "$1"
+    )
+    .normalize();
+
 const totalFiltros = computed(() =>
   [filtroEstatus.value, filtroMonto.value, filtroTipo.value].reduce((a, b) => {
     if (b !== "") return a + 1;
@@ -76,6 +82,18 @@ const filteredData = computed(() => {
   }
   if (filtroTipo.value !== "") {
     newData = newData.filter((el) => el.tipo === filtroTipo.value);
+  }
+
+  if (filtroTexto.value !== "") {
+    const searchText = normalize(filtroTexto.value);
+    newData = newData.filter((el) => {
+      const regExp = new RegExp(searchText, "gi");
+      const rowText = normalize(
+        `${el.titulo} ${el.director_proyecto?.nombreCompleto} ${getCollabs(el)}`
+      );
+
+      return regExp.test(rowText);
+    });
   }
   return newData;
 });
@@ -107,7 +125,11 @@ const totalPages = computed(() => {
   return Math.ceil(sortedData.value.length / maxRows.value);
 });
 
-const rowDataMemo = computed(() => rowData.value);
+const totalElements = computed(() =>
+  String(sortedData.value.length).padStart(3, "0")
+);
+
+const modalData = computed(() => rowData.value);
 
 const openModal = (data: any) => {
   const modal = document.getElementById("modal_proyectos") as HTMLDialogElement;
@@ -123,6 +145,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
+  <!-- Modal de mas información -->
   <dialog
     id="modal_proyectos"
     class="modal modal-bottom sm:modal-middle not-prose"
@@ -133,7 +156,7 @@ onUnmounted(() => {
           <i class="bi bi-x text-2xl"></i>
         </button>
       </form>
-      <h3 class="text-lg text-balance font-bold">{{ rowDataMemo.titulo }}</h3>
+      <h3 class="text-lg text-balance font-bold">{{ modalData.titulo }}</h3>
       <div class="py-4">
         <ul class="steps w-full pb-4">
           <li
@@ -159,49 +182,49 @@ onUnmounted(() => {
           <StatInfoPP>
             <template #icon><i class="bi bi-key-fill"></i></template>
             <template #title>Clave</template>
-            <template #data>{{ rowDataMemo.clave }}</template>
+            <template #data>{{ modalData.clave }}</template>
           </StatInfoPP>
           <StatInfoPP>
             <template #icon><i class="bi bi-info-circle-fill"></i></template>
             <template #title>Tipo</template>
-            <template #data>{{ rowDataMemo.tipo?.toUpperCase() }}</template>
+            <template #data>{{ modalData.tipo?.toUpperCase() }}</template>
           </StatInfoPP>
           <StatInfoPP>
             <template #icon><i class="bi bi-file-earmark-fill"></i></template>
             <template #title>Convocatoria</template>
-            <template #data>{{ rowDataMemo.convocatoria }}</template>
+            <template #data>{{ modalData.convocatoria }}</template>
           </StatInfoPP>
           <StatInfoPP>
             <template #icon><i class="bi bi-currency-dollar"></i></template>
             <template #title>Monto</template>
-            <template #data>{{ formatMoneda(rowDataMemo.monto) }}</template>
+            <template #data>{{ formatMoneda(modalData.monto) }}</template>
           </StatInfoPP>
           <StatInfoPP :row-span="2">
             <template #icon><i class="bi bi-calendar-range"></i></template>
             <template #title>Vigencia</template>
             <template #data
-              >{{ rowDataMemo.fechaInicio }} -
-              {{ rowDataMemo.fechaTermino }}</template
+              >{{ modalData.fechaInicio }} -
+              {{ modalData.fechaTermino }}</template
             >
           </StatInfoPP>
           <StatInfoPP :row-span="2">
             <template #icon><i class="bi bi-calendar-range-fill"></i></template>
             <template #title>Entrega final</template>
             <template #data
-              >{{ rowDataMemo.fechaInicio }} -
-              {{ rowDataMemo.fechaTermino }}</template
+              >{{ modalData.fechaInicio }} -
+              {{ modalData.fechaTermino }}</template
             >
           </StatInfoPP>
           <StatInfoPP :col-span="2">
             <template #icon><i class="bi bi-person-fill"></i></template>
             <template #title>Director de proyecto</template>
             <template #data>{{
-              rowDataMemo.director_proyecto?.nombreCompleto
+              modalData.director_proyecto?.nombreCompleto
             }}</template>
           </StatInfoPP>
           <StatInfoPP :col-span="2">
             <template #title>Otros colaboradores</template>
-            <template #data>{{ getCollabs(rowDataMemo ?? {}) }}</template>
+            <template #data>{{ getCollabs(modalData ?? {}) }}</template>
           </StatInfoPP>
         </div>
       </div>
@@ -209,9 +232,10 @@ onUnmounted(() => {
   </dialog>
 
   <div class="sm:px-20 lg:px-40 not-prose">
-    <div class="grid grid-cols-2 pb-2">
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn m-1">
+    <!-- Fitros, buscador y cambiar páginas -->
+    <div class="grid grid-cols-2 mb-2">
+      <div class="dropdown col-span-2">
+        <div tabindex="0" role="button" class="btn mb-2">
           <i class="bi bi-filter"></i> Filtros
           <div class="badge badge-sm badge-secondary">{{ totalFiltros }}</div>
         </div>
@@ -225,7 +249,13 @@ onUnmounted(() => {
           >
             <input type="radio" name="my-accordion-2" checked />
             <div class="collapse-title font-semibold">
-              Estatus {{ filtroEstatus }}
+              <div class="indicator">
+                <span
+                  v-if="filtroEstatus !== ''"
+                  class="indicator-item status status-success"
+                ></span>
+                Estatus
+              </div>
             </div>
             <div class="collapse-content text-sm">
               <form class="filter">
@@ -259,7 +289,13 @@ onUnmounted(() => {
           >
             <input type="radio" name="my-accordion-2" />
             <div class="collapse-title font-semibold">
-              Monto {{ filtroMonto }}
+              <div class="indicator">
+                <span
+                  v-if="filtroMonto !== ''"
+                  class="indicator-item status status-success"
+                ></span>
+                Monto
+              </div>
             </div>
             <div class="collapse-content text-sm">
               <form class="filter">
@@ -293,7 +329,13 @@ onUnmounted(() => {
           >
             <input type="radio" name="my-accordion-2" />
             <div class="collapse-title font-semibold">
-              Tipo {{ filtroMonto }}
+              <div class="indicator">
+                <span
+                  v-if="filtroTipo !== ''"
+                  class="indicator-item status status-success"
+                ></span>
+                Tipo
+              </div>
             </div>
             <div class="collapse-content text-sm">
               <form class="filter">
@@ -324,6 +366,12 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
+      <div>
+        <DebounceInputSearch
+          v-model:value="filtroTexto"
+          placeholder="Nombre miembro/colaborador o título de proyecto"
+        />
+      </div>
 
       <div class="join place-self-end">
         <button
@@ -342,12 +390,24 @@ onUnmounted(() => {
         </button>
       </div>
     </div>
-    <ul class="list bg-base-100 rounded-box shadow-sm">
-      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
-        Todos lo proyectos {{ totalPages }}
+    <!-- Lista -->
+    <TransitionGroup
+      name="list"
+      tag="ul"
+      class="list bg-base-100 rounded-box shadow-sm mb-2"
+    >
+      <li
+        class="p-4 pb-2 text-xs opacity-60 tracking-wide"
+        key="proyecto-titulo"
+      >
+        Todos lo proyectos
       </li>
-      <template v-if="data.length > 0">
-        <li v-for="proyecto in paginatedData" class="list-row">
+      <template v-if="paginatedData.length > 0">
+        <li
+          v-for="proyecto in paginatedData"
+          class="list-row"
+          :key="`proyecto-${proyecto.idproyecto}`"
+        >
           <div>
             <i class="bi bi-puzzle-fill text-4xl"></i>
           </div>
@@ -360,7 +420,14 @@ onUnmounted(() => {
               }}</span>
             </div>
           </div>
-          <div class="list-col-wrap text-xs">
+          <div class="list-col-wrap flex flex-wrap gap-2">
+            <div class="badge badge-accent badge-xs">
+              {{ formatMoneda(proyecto.monto) }}
+            </div>
+            <div class="badge badge-neutral badge-xs">
+              <i class="bi bi-info-circle-fill"></i
+              >{{ proyecto.tipo?.toUpperCase() }}
+            </div>
             <div
               class="badge badge-xs"
               :class="{
@@ -368,7 +435,8 @@ onUnmounted(() => {
                 'badge-info': proyecto.estatus === 'en proceso',
               }"
             >
-              {{ proyecto.estatus.toUpperCase() }}
+              <i class="bi bi-flag-fill"></i
+              >{{ proyecto.estatus.toUpperCase() }}
             </div>
           </div>
           <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
@@ -396,7 +464,7 @@ onUnmounted(() => {
         </li>
       </template>
 
-      <li v-else class="list-row">
+      <li v-else class="list-row" key="proyecto-empty">
         <div>
           <i class="bi bi-emoji-frown-fill text-4xl"></i>
         </div>
@@ -408,6 +476,29 @@ onUnmounted(() => {
           como director o colaborador.
         </p>
       </li>
-    </ul>
+    </TransitionGroup>
+    <!-- Total de elementos -->
+    <p class="font-light text-sm opacity-60 text-end">
+      {{ totalElements }} elementos
+    </p>
   </div>
 </template>
+<style>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+</style>
