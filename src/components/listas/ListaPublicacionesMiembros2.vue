@@ -26,12 +26,12 @@ const maxRows = ref<number>(5);
 const rowData = ref<any>({});
 const filtroEstatus = ref<string>("");
 const filtroTipo = ref<string>("");
-const filtroMonto = ref<string>("");
+const filtroYear = ref<string>("");
 const filtroTexto = ref<string>("");
 
 const getCollabs = (element: {
-  otrosColaboradores: string | null;
-  miembros_proyecto: {
+  otrosAutores: string | null;
+  miembros_publicacion: {
     nombreCompleto: string;
     nombre: string;
     apepat: string;
@@ -46,12 +46,12 @@ const getCollabs = (element: {
 
   if (Object.keys(element).length < 1) return "---";
 
-  element.miembros_proyecto.forEach((el) => {
+  element.miembros_publicacion.forEach((el) => {
     miembrosF.push(el.nombreCompleto);
   });
 
-  if (element.otrosColaboradores) {
-    const otherCollabsArr: string[] = element.otrosColaboradores.split(";");
+  if (element.otrosAutores) {
+    const otherCollabsArr: string[] = element.otrosAutores.split(";");
     miembrosF.push(...otherCollabsArr);
   }
 
@@ -76,7 +76,7 @@ const normalize = (text: string) =>
     .normalize();
 
 const totalFiltros = computed(() =>
-  [filtroEstatus.value, filtroMonto.value, filtroTipo.value].reduce((a, b) => {
+  [filtroEstatus.value, filtroYear.value, filtroTipo.value].reduce((a, b) => {
     if (b !== "") return a + 1;
     return a;
   }, 0)
@@ -97,9 +97,7 @@ const filteredData = computed(() => {
     const searchText = normalize(filtroTexto.value);
     newData = newData.filter((el) => {
       const regExp = new RegExp(searchText, "gi");
-      const rowText = normalize(
-        `${el.titulo} ${el.director_proyecto?.nombreCompleto} ${getCollabs(el)}`
-      );
+      const rowText = normalize(`${el.titulo} ${getCollabs(el)}`);
 
       return regExp.test(rowText);
     });
@@ -108,14 +106,14 @@ const filteredData = computed(() => {
 });
 
 const sortedData = computed(() => {
-  if (filtroMonto.value === "ASC") {
+  if (filtroYear.value === "ASC") {
     return filteredData.value.toSorted(
-      (a, b) => Number(a.monto) - Number(b.monto)
+      (a, b) => Number(a.year) - Number(b.year)
     );
   }
-  if (filtroMonto.value === "DESC") {
+  if (filtroYear.value === "DESC") {
     return filteredData.value.toSorted(
-      (a, b) => Number(b.monto) - Number(a.monto)
+      (a, b) => Number(b.year) - Number(a.year)
     );
   }
   return filteredData.value;
@@ -140,7 +138,9 @@ const totalElements = computed(() =>
 const modalData = computed(() => rowData.value);
 
 const openModal = (data: any) => {
-  const modal = document.getElementById("modal_proyectos") as HTMLDialogElement;
+  const modal = document.getElementById(
+    "modal_publicaciones"
+  ) as HTMLDialogElement;
   rowData.value = data;
   modal.showModal();
 };
@@ -163,7 +163,7 @@ onUnmounted(() => {
 <template>
   <!-- Modal de mas información -->
   <dialog
-    id="modal_proyectos"
+    id="modal_publicaciones"
     class="modal modal-bottom sm:modal-middle not-prose"
   >
     <div class="modal-box">
@@ -174,7 +174,7 @@ onUnmounted(() => {
       </form>
       <h3 class="text-lg text-balance font-bold">{{ modalData.titulo }}</h3>
       <div class="py-4">
-        <ul class="steps w-full pb-4">
+        <!--         <ul class="steps w-full pb-4">
           <li
             class="step step-info"
             :class="{
@@ -193,12 +193,17 @@ onUnmounted(() => {
             <span class="step-icon"><i class="bi bi-flag-fill"></i></span
             >Finalizado
           </li>
-        </ul>
-        <div class="grid grid-cols-2 grid-rows-6 gap-2">
+        </ul> -->
+        <div class="grid grid-cols-2 grid-rows-3 gap-2 mb-2">
+          <StatInfoPP class="row-span-3">
+            <template #icon><i class="bi bi-person-fill"></i></template>
+            <template #title>Autores</template>
+            <template #data>{{ getCollabs(modalData ?? {}) }}</template>
+          </StatInfoPP>
           <StatInfoPP>
-            <template #icon><i class="bi bi-key-fill"></i></template>
-            <template #title>Clave</template>
-            <template #data>{{ modalData.clave }}</template>
+            <template #icon><i class="bi bi-book-fill"></i></template>
+            <template #title>ISSN</template>
+            <template #data>{{ modalData.ISSN ?? "---" }}</template>
           </StatInfoPP>
           <StatInfoPP>
             <template #icon><i class="bi bi-info-circle-fill"></i></template>
@@ -206,47 +211,29 @@ onUnmounted(() => {
             <template #data>{{ modalData.tipo?.toUpperCase() }}</template>
           </StatInfoPP>
           <StatInfoPP>
-            <template #icon><i class="bi bi-file-earmark-fill"></i></template>
-            <template #title>Convocatoria</template>
-            <template #data>{{ modalData.convocatoria }}</template>
+            <template #icon><i class="bi bi-calendar-fill"></i></template>
+            <template #title>Año de publicación</template>
+            <template #data>{{ modalData.year }}</template>
           </StatInfoPP>
-          <StatInfoPP>
-            <template #icon><i class="bi bi-currency-dollar"></i></template>
-            <template #title>Monto</template>
-            <template #data>{{ formatMoneda(modalData.monto) }}</template>
-          </StatInfoPP>
-          <StatInfoPP class="row-span-2">
-            <template #icon><i class="bi bi-calendar-range"></i></template>
-            <template #title>Vigencia</template>
-            <template #data
-              >{{ modalData.fechaInicio }} -
-              {{ modalData.fechaTermino }}</template
-            >
-          </StatInfoPP>
-          <StatInfoPP class="row-span-2">
-            <template #icon><i class="bi bi-calendar-range-fill"></i></template>
-            <template #title>Entrega final</template>
-            <template #data
-              >{{ modalData.fechaInicio }} -
-              {{ modalData.fechaTermino }}</template
-            >
-          </StatInfoPP>
-          <StatInfoPP class="col-span-2">
-            <template #icon><i class="bi bi-person-fill"></i></template>
-            <template #title>Director de proyecto</template>
-            <template #data>{{
-              modalData.director_proyecto?.nombreCompleto
-            }}</template>
-          </StatInfoPP>
-          <StatInfoPP class="col-span-2">
-            <template #title>Otros colaboradores</template>
-            <template #data>{{ getCollabs(modalData ?? {}) }}</template>
-          </StatInfoPP>
+        </div>
+        <StatInfoPP class="w-full min-h-50">
+          <template #icon><i class="bi bi-body-text"></i></template>
+          <template #title>Resumen</template>
+          <template #data>{{ modalData.descripcion ?? "---" }}</template>
+        </StatInfoPP>
+        <div class="flex justify-end mt-2">
+          <a
+            v-if="modalData.url"
+            class="btn btn-primary"
+            :href="modalData.url ?? '#'"
+            target="_blank"
+          >
+            Ver artículo <i class="bi bi-box-arrow-up-right"></i>
+          </a>
         </div>
       </div>
     </div>
   </dialog>
-
   <template v-if="!isMounted">
     <PlaceholderListPP />
   </template>
@@ -263,7 +250,7 @@ onUnmounted(() => {
           tabindex="0"
           class="dropdown-content bg-base-100 shadow menu rounded-box w-80 sm:w-96"
         >
-          <div
+          <!--           <div
             class="collapse collapse-arrow bg-base-100 border border-base-300"
           >
             <input type="radio" name="filtros-proyectos" checked />
@@ -302,7 +289,7 @@ onUnmounted(() => {
                 />
               </form>
             </div>
-          </div>
+          </div> -->
           <div
             class="collapse collapse-arrow bg-base-100 border border-base-300"
           >
@@ -310,10 +297,10 @@ onUnmounted(() => {
             <div class="collapse-title font-semibold">
               <div class="indicator">
                 <span
-                  v-if="filtroMonto !== ''"
+                  v-if="filtroYear !== ''"
                   class="indicator-item status status-secondary"
                 ></span>
-                Monto
+                Año de publicación
               </div>
             </div>
             <div class="collapse-content text-sm">
@@ -322,23 +309,23 @@ onUnmounted(() => {
                   class="btn btn-square"
                   type="reset"
                   value="×"
-                  @click="filtroMonto = ''"
+                  @click="filtroYear = ''"
                 />
                 <input
-                  v-model="filtroMonto"
+                  v-model="filtroYear"
                   value="DESC"
                   class="btn"
                   type="radio"
                   name="frameworks"
-                  aria-label="De mayor a menor"
+                  aria-label="Del más reciente al más antigüo"
                 />
                 <input
-                  v-model="filtroMonto"
+                  v-model="filtroYear"
                   value="ASC"
                   class="btn"
                   type="radio"
                   name="frameworks"
-                  aria-label="De menor a mayor"
+                  aria-label="Del más antigüo al más reciente"
                 />
               </form>
             </div>
@@ -366,19 +353,35 @@ onUnmounted(() => {
                 />
                 <input
                   v-model="filtroTipo"
-                  value="interno"
+                  value="arbitrado"
                   class="btn"
                   type="radio"
                   name="frameworks"
-                  aria-label="Interno"
+                  aria-label="Arbitrado"
                 />
                 <input
                   v-model="filtroTipo"
-                  value="externo"
+                  value="memoria en extenso"
                   class="btn"
                   type="radio"
                   name="frameworks"
-                  aria-label="Externo"
+                  aria-label="Memoría en extenso"
+                />
+                <input
+                  v-model="filtroTipo"
+                  value="journal"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="Journal"
+                />
+                <input
+                  v-model="filtroTipo"
+                  value="indexado"
+                  class="btn"
+                  type="radio"
+                  name="frameworks"
+                  aria-label="Indexado"
                 />
               </form>
             </div>
@@ -411,35 +414,29 @@ onUnmounted(() => {
     </div>
     <!-- Lista -->
     <List :data="paginatedData ?? []">
-      <template #titulo>Todos los proyectos</template>
+      <template #titulo>Todos las publicaciones</template>
       <template #row="{ data }">
-        <li class="list-row" :key="`proyecto-${data.idproyecto}`">
+        <li class="list-row" :key="`publicacion-${data.idpublicacion}`">
           <div>
-            <i class="bi bi-puzzle-fill text-4xl"></i>
+            <i class="bi bi-journal text-4xl"></i>
           </div>
           <div>
-            <div>{{ data.director_proyecto?.nombreCompleto }}</div>
+            <div>{{ getCollabs(data) }}</div>
             <div class="text-xs uppercase font-semibold opacity-60">
               <span class="hidden sm:block">{{ data.titulo }}</span>
               <span class="sm:hidden">{{ recortarTexto(data.titulo) }}</span>
             </div>
           </div>
           <div class="list-col-wrap flex flex-wrap gap-2">
-            <div class="badge badge-accent badge-xs">
-              {{ formatMoneda(data.monto) }}
+            <div class="badge badge-info badge-xs">
+              <i class="bi bi-calendar-fill"></i>{{ data.year }}
             </div>
             <div class="badge badge-neutral badge-xs">
               <i class="bi bi-info-circle-fill"></i
               >{{ data.tipo?.toUpperCase() }}
             </div>
-            <div
-              class="badge badge-xs"
-              :class="{
-                'badge-success': data.estatus === 'finalizado',
-                'badge-info': data.estatus === 'en proceso',
-              }"
-            >
-              <i class="bi bi-flag-fill"></i>{{ data.estatus?.toUpperCase() }}
+            <div class="badge badge-secondary badge-xs">
+              <i class="bi bi-book-fill"></i>{{ data.ISSN ?? "---" }}
             </div>
           </div>
           <button class="btn btn-square btn-ghost" @click="openModal(data)">
@@ -453,11 +450,11 @@ onUnmounted(() => {
             <i class="bi bi-emoji-frown-fill text-4xl"></i>
           </div>
           <div>
-            <div>Sin proyectos</div>
+            <div>Sin publicaciones</div>
           </div>
           <p class="list-col-wrap text-xs">
             No existen registros que incluyan a este miembro del cuerpo
-            academico como director o colaborador.
+            academico como autor.
           </p>
         </li>
       </template>

@@ -1,9 +1,9 @@
 ---
 import { formatDate } from "@assets/format";
-import responseAsJson from "@assets/responseAsJson";
-import ListaProyectosMiembros from "@components/listas/ListaProyectosMiembros.vue";
+
 import ListaProyectosMiembros2 from "@components/listas/ListaProyectosMiembros2.vue";
-import ListaPublicacionesMiembros from "@components/listas/ListaPublicacionesMiembros.vue";
+
+import ListaPublicacionesMiembros2 from "@components/listas/ListaPublicacionesMiembros2.vue";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 
@@ -230,7 +230,7 @@ miembro.response.proyectos.forEach((el) => {
     <ListaProyectosMiembros2 data={miembro.response.proyectos} client:visible />
 
     <h2 class="mt-0">Publicaciones</h2>
-    <ListaPublicacionesMiembros
+    <ListaPublicacionesMiembros2
       data={miembro.response.publicaciones}
       client:visible
     />

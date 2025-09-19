@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
-const props = defineProps<{ colSpan?: number; rowSpan?: number }>();
+const props = defineProps<{
+  colSpan?: number;
+  rowSpan?: number;
+  mainClass?: string;
+}>();
 </script>
 
 <template>
-  <div
-    class="stats shadow"
-    :class="`col-span-${props.colSpan ?? 1} row-span-${props.rowSpan ?? 1}`"
-  >
+  <div class="stats shadow">
     <div class="stat">
       <div v-if="$slots.icon" class="stat-figure text-2xl">
         <slot name="icon"></slot>
