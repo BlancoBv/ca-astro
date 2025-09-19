@@ -6,6 +6,8 @@ import ListaProyectosMiembros2 from "@components/listas/ListaProyectosMiembros2.
 import ListaPublicacionesMiembros2 from "@components/listas/ListaPublicacionesMiembros2.vue";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
+import Breadcrumb from "@components/breadcumb/Breadcumb.astro";
+import { Miembros } from "@model";
 
 const { uuid } = Astro.params;
 
@@ -74,6 +76,9 @@ miembro.response.proyectos.forEach((el) => {
   title={`${miembro.response.gradoEstudio}. ${miembro.response.nombreCompleto}`}
 >
   <main class="prose max-w-full p-4">
+    <Breadcrumb
+      items={[{ name: "Miembros" }, { name: miembro.response.nombreCompleto }]}
+    />
     <div
       class="stats stats-vertical lg:stats-horizontal bg-base-100 shadow-sm w-full not-prose"
     >

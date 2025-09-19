@@ -1,5 +1,6 @@
 ---
 import { formatDate } from "@assets/format";
+import Breadcumb from "@components/breadcumb/Breadcumb.astro";
 import DocumentList from "@components/DocumentList.vue";
 import Layout from "@layouts/Layout.astro";
 
@@ -28,6 +29,7 @@ minutas.files.forEach(
 
 <Layout title="Minutas del CA">
   <main class="prose max-w-full p-4">
+    <Breadcumb items={[{ name: "Documentos" }, { name: "Minutas" }]} />
     <h1>Minutas</h1>
     <DocumentList
       years={Array.from(years)}

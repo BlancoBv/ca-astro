@@ -1,9 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
 const { etiqueta } = Astro.params;
-
-import CardBlog from "@components/cards/CardBlog.astro";
 import CardBlog2 from "@components/cards/CardBlog2.astro";
+import Breadcumb from "@components/breadcumb/Breadcumb.astro";
 
 const response: {
   response: {
@@ -28,7 +27,13 @@ if (!response) {
 ---
 
 <Layout title="Secciones con la etiqueta">
-  <div class="w-full prose max-w-full p-4">
+  <main class="w-full prose max-w-full p-4">
+    <Breadcumb
+      items={[
+        { name: "Eventos", url: "/content/evento" },
+        { name: response.response.nombre },
+      ]}
+    />
     <h1 class="flex items-center gap-4 flex-wrap">
       Eventos con la etiqueta:
       <div class="badge badge-accent badge-outline not-prose h-7 flex gap-1">
@@ -36,9 +41,7 @@ if (!response) {
         {response.response.nombre}
       </div>
     </h1>
-    <main
-      class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-    >
+    <div class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {
         response.response.blogs.map((el) => (
           <CardBlog2
@@ -49,6 +52,6 @@ if (!response) {
           />
         ))
       }
-    </main>
-  </div>
+    </div>
+  </main>
 </Layout>

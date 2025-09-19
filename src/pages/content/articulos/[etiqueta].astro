@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { formatDate } from "@assets/format";
+import Breadcumb from "@components/breadcumb/Breadcumb.astro";
 const { etiqueta } = Astro.params;
 
 const response: {
@@ -19,7 +20,10 @@ if (!response) {
 ---
 
 <Layout title="Secciones con la etiqueta">
-  <div class="w-full prose max-w-full p-4">
+  <main class="w-full prose max-w-full p-4">
+    <Breadcumb
+      items={[{ name: "Secciones" }, { name: response.response.nombre }]}
+    />
     <h1 class="flex items-center gap-4 flex-wrap">
       Contenido del sitio con la etiqueta:
       <div class="badge badge-accent badge-outline not-prose h-7 flex gap-1">
@@ -27,9 +31,7 @@ if (!response) {
         {response.response.nombre}
       </div>
     </h1>
-    <main
-      class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-    >
+    <div class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {
         response.response.articulos.map((el) => (
           <div class="card bg-base-100 max-w-screen-sm shadow-xl">
@@ -45,6 +47,6 @@ if (!response) {
           </div>
         ))
       }
-    </main>
-  </div>
+    </div>
+  </main>
 </Layout>

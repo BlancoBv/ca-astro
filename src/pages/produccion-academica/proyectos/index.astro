@@ -1,4 +1,5 @@
 ---
+import Breadcumb from "@components/breadcumb/Breadcumb.astro";
 import ListaProyectosMiembros from "@components/listas/ListaProyectosMiembros.vue";
 import Layout from "@layouts/Layout.astro";
 
@@ -9,6 +10,9 @@ const proyectos = await fetch("http://localhost:4321/api/proyectos").then(
 
 <Layout title="Articulos publicados">
   <main class="prose max-w-full p-4">
+    <Breadcumb
+      items={[{ name: "Producción academica" }, { name: "Proyectos" }]}
+    />
     <h1>Proyectos realizados</h1>
     <p>
       Lista de todos los proyectos realizados por los miembros del cuerpo

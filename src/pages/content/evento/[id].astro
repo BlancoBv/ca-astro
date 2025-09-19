@@ -4,6 +4,7 @@ import BadgeEtiquetas from "@components/badge/BadgeEtiquetas.astro";
 import { Image } from "astro:assets";
 import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
 import { formatDate } from "@assets/format";
+import Breadcumb from "@components/breadcumb/Breadcumb.astro";
 
 const { id } = Astro.params;
 interface blog {
@@ -42,6 +43,12 @@ function reemplazarCarousel(contenido: string) {
 
 <Layout title={blog.response?.titulo ?? ""}>
   <main class="prose max-w-full p-4 main-container">
+    <Breadcumb
+      items={[
+        { name: "Eventos", url: "/content/evento" },
+        { name: blog.response?.titulo ?? "" },
+      ]}
+    />
     <h1>{blog.response?.titulo}</h1>
     <Image
       transition:name={`img-${id}`}

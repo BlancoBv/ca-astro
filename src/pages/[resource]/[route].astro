@@ -1,5 +1,6 @@
 ---
 import BadgeEtiquetas from "@components/badge/BadgeEtiquetas.astro";
+import Breadcumb from "@components/breadcumb/Breadcumb.astro";
 import EtiquetasHeading from "@components/gui/EtiquetasHeading.astro";
 import Layout from "@layouts/Layout.astro";
 
@@ -25,6 +26,7 @@ if (!content) {
 
 <Layout title={content.response.titulo}>
   <main class="prose max-w-full p-4">
+    <Breadcumb items={[{ name: content.response.titulo }]} />
     <h1>{content.response.titulo}</h1>
     <div set:html={content.response.contenido} />
     <EtiquetasHeading />

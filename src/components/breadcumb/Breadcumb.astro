@@ -1,0 +1,24 @@
+---
+interface Props {
+  items: { url?: string; name: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="breadcrumbs text-sm not-prose">
+  <ul>
+    <li>
+      <a href="/">
+        <i class="bi bi-house-fill"></i>
+        Inicio
+      </a>
+    </li>
+    {
+      items.length > 0 &&
+        items.map((item) => (
+          <li>{item.url ? <a href={item.url}>{item.name}</a> : item.name}</li>
+        ))
+    }
+  </ul>
+</div>
