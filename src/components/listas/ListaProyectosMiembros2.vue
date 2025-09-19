@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import { formatMoneda } from "@assets/format";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  onWatcherCleanup,
+  ref,
+  watch,
+  watchEffect,
+} from "vue";
 import StatInfoPP from "@components/stat/StatInfoPublic.vue";
 import DebounceInputSearch from "@components/input/DebounceInputSearch.vue";
+import List from "@components/list/List.vue";
 
 interface props {
   data: any[];
@@ -137,6 +146,14 @@ const openModal = (data: any) => {
   modal.showModal();
 };
 
+watch(sortedData, () => {
+  page.value = 1;
+
+  onWatcherCleanup(() => {
+    page.value = 1;
+  });
+});
+
 onMounted(() => {
   isMounted.value = true;
 });
@@ -237,7 +254,7 @@ onUnmounted(() => {
       <div class="dropdown col-span-2">
         <div tabindex="0" role="button" class="btn mb-2">
           <i class="bi bi-filter"></i> Filtros
-          <div class="badge badge-sm badge-secondary">{{ totalFiltros }}</div>
+          <div class="badge badge-xs badge-secondary">{{ totalFiltros }}</div>
         </div>
 
         <div
@@ -247,12 +264,12 @@ onUnmounted(() => {
           <div
             class="collapse collapse-arrow bg-base-100 border border-base-300"
           >
-            <input type="radio" name="my-accordion-2" checked />
+            <input type="radio" name="filtros-proyectos" checked />
             <div class="collapse-title font-semibold">
               <div class="indicator">
                 <span
                   v-if="filtroEstatus !== ''"
-                  class="indicator-item status status-success"
+                  class="indicator-item status status-secondary"
                 ></span>
                 Estatus
               </div>
@@ -287,12 +304,12 @@ onUnmounted(() => {
           <div
             class="collapse collapse-arrow bg-base-100 border border-base-300"
           >
-            <input type="radio" name="my-accordion-2" />
+            <input type="radio" name="filtros-proyectos" />
             <div class="collapse-title font-semibold">
               <div class="indicator">
                 <span
                   v-if="filtroMonto !== ''"
-                  class="indicator-item status status-success"
+                  class="indicator-item status status-secondary"
                 ></span>
                 Monto
               </div>
@@ -327,12 +344,12 @@ onUnmounted(() => {
           <div
             class="collapse collapse-arrow bg-base-100 border border-base-300"
           >
-            <input type="radio" name="my-accordion-2" />
+            <input type="radio" name="filtros-proyectos" />
             <div class="collapse-title font-semibold">
               <div class="indicator">
                 <span
                   v-if="filtroTipo !== ''"
-                  class="indicator-item status status-success"
+                  class="indicator-item status status-secondary"
                 ></span>
                 Tipo
               </div>
@@ -391,7 +408,59 @@ onUnmounted(() => {
       </div>
     </div>
     <!-- Lista -->
-    <TransitionGroup
+    <List :data="paginatedData ?? []">
+      <template #titulo>Todos los proyectos</template>
+      <template #row="{ data }">
+        <li class="list-row" :key="`proyecto-${data.idproyecto}`">
+          <div>
+            <i class="bi bi-puzzle-fill text-4xl"></i>
+          </div>
+          <div>
+            <div>{{ data.director_proyecto.nombreCompleto }}</div>
+            <div class="text-xs uppercase font-semibold opacity-60">
+              <span class="hidden sm:block">{{ data.titulo }}</span>
+              <span class="sm:hidden">{{ recortarTitulo(data.titulo) }}</span>
+            </div>
+          </div>
+          <div class="list-col-wrap flex flex-wrap gap-2">
+            <div class="badge badge-accent badge-xs">
+              {{ formatMoneda(data.monto) }}
+            </div>
+            <div class="badge badge-neutral badge-xs">
+              <i class="bi bi-info-circle-fill"></i
+              >{{ data.tipo?.toUpperCase() }}
+            </div>
+            <div
+              class="badge badge-xs"
+              :class="{
+                'badge-success': data.estatus === 'finalizado',
+                'badge-info': data.estatus === 'en proceso',
+              }"
+            >
+              <i class="bi bi-flag-fill"></i>{{ data.estatus.toUpperCase() }}
+            </div>
+          </div>
+          <button class="btn btn-square btn-ghost" @click="openModal(data)">
+            <i class="bi bi-arrows-fullscreen text-xl"></i>
+          </button>
+        </li>
+      </template>
+      <template #empty>
+        <li class="list-row" key="proyecto-empty">
+          <div>
+            <i class="bi bi-emoji-frown-fill text-4xl"></i>
+          </div>
+          <div>
+            <div>Sin proyectos</div>
+          </div>
+          <p class="list-col-wrap text-xs">
+            No existen registros que incluyan a este miembro del cuerpo
+            academico como director o colaborador.
+          </p>
+        </li>
+      </template>
+    </List>
+    <!--     <TransitionGroup
       name="list"
       tag="ul"
       class="list bg-base-100 rounded-box shadow-sm mb-2"
@@ -442,25 +511,6 @@ onUnmounted(() => {
           <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
             <i class="bi bi-arrows-fullscreen text-xl"></i>
           </button>
-          <!--     <button class="btn btn-square btn-ghost">
-          <svg
-            class="size-[1.2em]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke-width="2"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-              ></path>
-            </g>
-          </svg>
-        </button> -->
         </li>
       </template>
 
@@ -476,7 +526,7 @@ onUnmounted(() => {
           como director o colaborador.
         </p>
       </li>
-    </TransitionGroup>
+    </TransitionGroup> -->
     <!-- Total de elementos -->
     <p class="font-light text-sm opacity-60 text-end">
       {{ totalElements }} elementos
