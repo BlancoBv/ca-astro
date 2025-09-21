@@ -3,7 +3,6 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import { onMounted, onUnmounted, ref } from "vue";
 import { formatDate } from "@assets/format";
-import moment from "moment";
 
 interface listaDocs {
   method: string;
