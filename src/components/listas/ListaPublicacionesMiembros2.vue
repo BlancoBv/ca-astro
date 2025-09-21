@@ -413,7 +413,11 @@ onUnmounted(() => {
       </div>
     </div>
     <!-- Lista -->
-    <List :data="paginatedData ?? []">
+    <List
+      :data="paginatedData ?? []"
+      key-title="proyecto-title"
+      key-empty="proyecto-empty"
+    >
       <template #titulo>Todos las publicaciones</template>
       <template #row="{ data }">
         <li class="list-row" :key="`publicacion-${data.idpublicacion}`">
@@ -459,95 +463,9 @@ onUnmounted(() => {
         </li>
       </template>
     </List>
-    <!--     <TransitionGroup
-      name="list"
-      tag="ul"
-      class="list bg-base-100 rounded-box shadow-sm mb-2"
-    >
-      <li
-        class="p-4 pb-2 text-xs opacity-60 tracking-wide"
-        key="proyecto-titulo"
-      >
-        Todos lo proyectos
-      </li>
-      <template v-if="paginatedData.length > 0">
-        <li
-          v-for="proyecto in paginatedData"
-          class="list-row"
-          :key="`proyecto-${proyecto.idproyecto}`"
-        >
-          <div>
-            <i class="bi bi-puzzle-fill text-4xl"></i>
-          </div>
-          <div>
-            <div>{{ proyecto.director_proyecto.nombreCompleto }}</div>
-            <div class="text-xs uppercase font-semibold opacity-60">
-              <span class="hidden sm:block">{{ proyecto.titulo }}</span>
-              <span class="sm:hidden">{{
-                recortarTitulo(proyecto.titulo)
-              }}</span>
-            </div>
-          </div>
-          <div class="list-col-wrap flex flex-wrap gap-2">
-            <div class="badge badge-accent badge-xs">
-              {{ formatMoneda(proyecto.monto) }}
-            </div>
-            <div class="badge badge-neutral badge-xs">
-              <i class="bi bi-info-circle-fill"></i
-              >{{ proyecto.tipo?.toUpperCase() }}
-            </div>
-            <div
-              class="badge badge-xs"
-              :class="{
-                'badge-success': proyecto.estatus === 'finalizado',
-                'badge-info': proyecto.estatus === 'en proceso',
-              }"
-            >
-              <i class="bi bi-flag-fill"></i
-              >{{ proyecto.estatus.toUpperCase() }}
-            </div>
-          </div>
-          <button class="btn btn-square btn-ghost" @click="openModal(proyecto)">
-            <i class="bi bi-arrows-fullscreen text-xl"></i>
-          </button>
-        </li>
-      </template>
-
-      <li v-else class="list-row" key="proyecto-empty">
-        <div>
-          <i class="bi bi-emoji-frown-fill text-4xl"></i>
-        </div>
-        <div>
-          <div>Sin proyectos</div>
-        </div>
-        <p class="list-col-wrap text-xs">
-          No existen registros que incluyan a este miembro del cuerpo academico
-          como director o colaborador.
-        </p>
-      </li>
-    </TransitionGroup> -->
     <!-- Total de elementos -->
-    <p class="font-light text-sm opacity-60 text-end">
+    <p class="font-light text-sm opacity-60 text-end mt-2">
       {{ totalElements }} elementos
     </p>
   </div>
 </template>
-<style>
-.list-move, /* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.list-leave-active {
-  position: absolute;
-}
-</style>

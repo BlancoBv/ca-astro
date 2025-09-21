@@ -1,14 +1,18 @@
 <script setup lang="ts">
-const props = defineProps<{ data: any[] }>();
+const props = defineProps<{
+  data: any[];
+  keyTitle: string;
+  keyEmpty: string;
+}>();
 </script>
 
 <template>
   <TransitionGroup
     name="list"
     tag="ul"
-    class="list bg-base-100 rounded-box shadow-sm mb-2"
+    class="list bg-base-100 rounded-box shadow-sm overflow-hidden relative"
   >
-    <li class="p-4 pb-2 text-xs opacity-60 tracking-wide" key="proyecto-titulo">
+    <li class="p-4 pb-2 text-xs opacity-60 tracking-wide" :key="keyTitle">
       <slot name="titulo"></slot>
     </li>
 
@@ -74,7 +78,7 @@ const props = defineProps<{ data: any[] }>();
       <template v-if="$slots.empty">
         <slot name="empty"></slot>
       </template>
-      <li v-else class="list-row" key="proyecto-empty">
+      <li v-else class="list-row" :key="keyEmpty">
         <div>
           <i class="bi bi-emoji-frown-fill text-4xl"></i>
         </div>
@@ -86,3 +90,22 @@ const props = defineProps<{ data: any[] }>();
     </template>
   </TransitionGroup>
 </template>
+<style>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+</style>

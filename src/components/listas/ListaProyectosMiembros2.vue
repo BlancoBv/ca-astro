@@ -410,7 +410,11 @@ onUnmounted(() => {
       </div>
     </div>
     <!-- Lista -->
-    <List :data="paginatedData ?? []">
+    <List
+      :data="paginatedData ?? []"
+      key-title="proyecto-title"
+      key-empty="proyecto-empty"
+    >
       <template #titulo>Todos los proyectos</template>
       <template #row="{ data }">
         <li class="list-row" :key="`proyecto-${data.idproyecto}`">
@@ -530,7 +534,7 @@ onUnmounted(() => {
       </li>
     </TransitionGroup> -->
     <!-- Total de elementos -->
-    <p class="font-light text-sm opacity-60 text-end">
+    <p class="font-light text-sm opacity-60 text-end mt-2">
       {{ totalElements }} elementos
     </p>
   </div>

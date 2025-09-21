@@ -1,6 +1,7 @@
 ---
 import Breadcumb from "@components/breadcumb/Breadcumb.astro";
-import ListaPublicacionesMiembros from "@components/listas/ListaPublicacionesMiembros.vue";
+
+import ListaPublicacionesMiembros2 from "@components/listas/ListaPublicacionesMiembros2.vue";
 import Layout from "@layouts/Layout.astro";
 
 const articulos = await fetch("http://localhost:4321/api/publicaciones").then(
@@ -18,10 +19,6 @@ const articulos = await fetch("http://localhost:4321/api/publicaciones").then(
       Lista de todos los artículos publicados por los miembros del cuerpo
       académico de Cómputo Distribuido.
     </p>
-    <ListaPublicacionesMiembros
-      data={articulos?.response ?? []}
-      rows={20}
-      client:idle
-    />
+    <ListaPublicacionesMiembros2 data={articulos?.response ?? []} client:idle />
   </main>
 </Layout>
