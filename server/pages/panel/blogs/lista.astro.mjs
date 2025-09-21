@@ -1,16 +1,15 @@
-/* empty css                                         */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../../chunks/astro/server_PXGLLX5r.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, useTemplateRef, ref, withCtx, createVNode, createTextVNode, toDisplayString } from 'vue';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_Bm1iQncX.mjs';
-import { s as script, a as script$1 } from '../../../chunks/index_h5t5GPhD.mjs';
-import { s as script$2 } from '../../../chunks/index_dlobLWwo.mjs';
-import { s as script$3 } from '../../../chunks/index_3IzgFPBi.mjs';
+import { defineComponent, useSSRContext, useTemplateRef, ref, withCtx, createVNode, createTextVNode, toDisplayString } from 'vue';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_BVCTMF4U.mjs';
+import { a as script$2, b as script$3 } from '../../../chunks/index_C__mFKYf.mjs';
+import { s as script$1 } from '../../../chunks/index_D1Ts3fHg.mjs';
+import { s as script } from '../../../chunks/index_D2LuqRg1.mjs';
 import moment from 'moment';
-import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_GsaJM14i.mjs';
+import { e as editorInstance, I as ImageSelector, E as Editor } from '../../../chunks/EditorInstance_DodcFnLF.mjs';
 import { ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -62,13 +61,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       contenido.value.contenido = null;
     };
     const __returned__ = { props, modal, contenido, data, isError, isPending, refetch, cm, selectedItem, editor, items, updateBlog, onRowContextMenu, handleEdit, handleUpdateContent, handleClose, get DataTable() {
-      return script;
-    }, get Column() {
-      return script$1;
-    }, get ContextMenu() {
-      return script$2;
-    }, get Textarea() {
       return script$3;
+    }, get Column() {
+      return script$2;
+    }, get ContextMenu() {
+      return script$1;
+    }, get Textarea() {
+      return script;
     }, get moment() {
       return moment;
     }, Editor, ImageSelector };
@@ -230,7 +229,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (isInvalid) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de blogs" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaBlogs", ListaBlogs, { "client:idle": true, "noEdit": updateIsInvalid, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaBlogs.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de blogs" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaBlogs", ListaBlogs, { "client:idle": true, "noEdit": updateIsInvalid, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaBlogs.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/lista/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/lista/index.astro";

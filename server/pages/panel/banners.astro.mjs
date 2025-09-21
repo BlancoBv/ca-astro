@@ -1,14 +1,13 @@
-/* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../chunks/astro/server_PXGLLX5r.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode, reactive } from 'vue';
-import { a as useGetData, u as useSendData } from '../../chunks/http_Bm1iQncX.mjs';
-import { s as script, a as script$1, b as script$2 } from '../../chunks/index_h5t5GPhD.mjs';
-import { s as script$3 } from '../../chunks/index_3IzgFPBi.mjs';
+import { defineComponent, useSSRContext, ref, onMounted, onUnmounted, mergeProps, withCtx, createVNode, createTextVNode, toDisplayString, reactive } from 'vue';
+import { a as useGetData, u as useSendData } from '../../chunks/http_BVCTMF4U.mjs';
+import { s as script$1, a as script$2, b as script$3 } from '../../chunks/index_C__mFKYf.mjs';
+import { s as script } from '../../chunks/index_D2LuqRg1.mjs';
 import moment from 'moment';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderClass } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -39,13 +38,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       }
     };
     const __returned__ = { props, isMounted, selectMostrarItems, handleEdit, get DataTable() {
-      return script;
-    }, get Column() {
-      return script$1;
-    }, get Select() {
-      return script$2;
-    }, get Textarea() {
       return script$3;
+    }, get Column() {
+      return script$2;
+    }, get Select() {
+      return script$1;
+    }, get Textarea() {
+      return script;
     }, get moment() {
       return moment;
     } };
@@ -323,7 +322,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (isInvalid) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de banners" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBanner", AddBanner, { "idUsuario": user?.id, "client:idle": true, "noEdit": updateIsInvalid, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBanner.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de banners" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBanner", AddBanner, { "idUsuario": user?.id, "client:idle": true, "noEdit": updateIsInvalid, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBanner.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/banners/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/banners/index.astro";

@@ -1,17 +1,15 @@
-/* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../chunks/astro/server_PXGLLX5r.mjs';
 import { toast } from 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, computed, onMounted, onUnmounted, toRaw, resolveDirective, withCtx, withDirectives, createVNode, vModelText, toDisplayString, vModelSelect, createTextVNode, openBlock, createBlock, Fragment, renderList, withModifiers, withKeys, mergeProps, reactive } from 'vue';
-import { a as useGetData, u as useSendData } from '../../chunks/http_Bm1iQncX.mjs';
+import { defineComponent, useSSRContext, ref, computed, onMounted, onUnmounted, toRaw, resolveDirective, withCtx, withDirectives, createVNode, vModelText, toDisplayString, vModelSelect, createBlock, openBlock, Fragment, renderList, createTextVNode, withModifiers, withKeys, mergeProps, reactive } from 'vue';
+import { a as useGetData, u as useSendData } from '../../chunks/http_BVCTMF4U.mjs';
 import { v as validateBuilder } from '../../chunks/zodValidations_7RuNDgkL.mjs';
-import { s as script, a as script$1 } from '../../chunks/index_h5t5GPhD.mjs';
-import { s as script$2 } from '../../chunks/index_CnhkfiX6.mjs';
-import { s as script$3 } from '../../chunks/index_dlobLWwo.mjs';
-import { f as formatDate, b as formatMoneda } from '../../chunks/format_CRU5uAFP.mjs';
-import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrRenderClass, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderList, ssrRenderAttrs, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
-/* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { a as script$2, b as script$3 } from '../../chunks/index_C__mFKYf.mjs';
+import { s as script$1 } from '../../chunks/index_7KjEc75M.mjs';
+import { s as script } from '../../chunks/index_D1Ts3fHg.mjs';
+import { b as formatMoneda, f as formatDate } from '../../chunks/format_CRU5uAFP.mjs';
+import { ssrRenderComponent, ssrRenderAttr, ssrInterpolate, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderClass, ssrRenderList, ssrRenderAttrs, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -37,7 +35,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       }
     ]);
     const miembros = computed(() => {
-      return props?.miembros.map((el) => ({ label: el.nombreCompleto, value: el.idmiembro })) ?? [];
+      return props?.miembros.map((el) => ({
+        label: el.nombreCompleto,
+        value: el.idmiembro
+      })) ?? [];
     });
     const colaboradores = ref([]);
     const handleEdit = (event) => {
@@ -49,12 +50,19 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             const newValues = new Set(toRaw(colaboradores.value));
             const idsToDelete = prevValues.difference(newValues);
             const idsToAdd = newValues.difference(prevValues);
-            props.mutationUpdate.mutate({ idproyecto: data.idproyecto, miembrosColabAdd: Array.from(idsToAdd), miembrosColabDelete: Array.from(idsToDelete) });
+            props.mutationUpdate.mutate({
+              idproyecto: data.idproyecto,
+              miembrosColabAdd: Array.from(idsToAdd),
+              miembrosColabDelete: Array.from(idsToDelete)
+            });
           }
           break handleEdit;
         }
         if (newValue !== data[field]) {
-          props.mutationUpdate.mutate({ idproyecto: data.idproyecto, [field]: newValue });
+          props.mutationUpdate.mutate({
+            idproyecto: data.idproyecto,
+            [field]: newValue
+          });
         }
         break handleEdit;
       }
@@ -66,13 +74,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       isMounted.value = false;
     });
     const __returned__ = { props, selectedItem, isMounted, items, miembros, colaboradores, handleEdit, get DataTable() {
-      return script;
-    }, get Column() {
-      return script$1;
-    }, get MultiSelect() {
-      return script$2;
-    }, get ContextMenu() {
       return script$3;
+    }, get Column() {
+      return script$2;
+    }, get MultiSelect() {
+      return script$1;
+    }, get ContextMenu() {
+      return script;
     }, get formatDate() {
       return formatDate;
     }, get formatMoneda() {
@@ -95,7 +103,10 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<div class="skeleton h-96 w-full"></div>`);
   } else {
     _push(ssrRenderComponent($setup["DataTable"], {
-      class: { "skeleton select-none": $setup.props.isPending, "cursor-wait select-none": $setup.props.mutationUpdate.isPending.value },
+      class: {
+        "skeleton select-none": $setup.props.isPending,
+        "cursor-wait select-none": $setup.props.mutationUpdate.isPending.value
+      },
       value: $setup.props.data,
       paginator: true,
       rows: 5,
@@ -162,11 +173,17 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }, {
             body: withCtx(({ data, field }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`<div class="${ssrRenderClass([{ "badge-accent": data[field] === "externo", "badge-info": data[field] !== "externo" }, "badge h-max"])}"${_scopeId2}>${ssrInterpolate(data[field].toUpperCase())}</div>`);
+                _push3(`<div class="${ssrRenderClass([{
+                  "badge-accent": data[field] === "externo",
+                  "badge-info": data[field] !== "externo"
+                }, "badge h-max"])}"${_scopeId2}>${ssrInterpolate(data[field].toUpperCase())}</div>`);
               } else {
                 return [
                   createVNode("div", {
-                    class: ["badge h-max", { "badge-accent": data[field] === "externo", "badge-info": data[field] !== "externo" }]
+                    class: ["badge h-max", {
+                      "badge-accent": data[field] === "externo",
+                      "badge-info": data[field] !== "externo"
+                    }]
                   }, toDisplayString(data[field].toUpperCase()), 3)
                 ];
               }
@@ -253,7 +270,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             }),
             editor: withCtx(({ data, field, editorSaveCallback, editorCancelCallback }, _push3, _parent3, _scopeId2) => {
               if (_push3) {
-                _push3(`<div class="flex gap-4 items-center mb-4"${_scopeId2}><form${_scopeId2}><button type="submit" class="btn btn-error btn-xs"${_scopeId2}>Cancelar</button></form><form${_scopeId2}><button type="submit" class="btn btn-primary btn-xs"${_scopeId2}>Guardar</button></form></div>`);
+                _push3(`<div class="flex gap-4 items-center mb-4"${_scopeId2}><form${_scopeId2}><button type="submit" class="btn btn-error btn-xs"${_scopeId2}>Cancelar</button></form><form${_scopeId2}><button type="submit" class="btn btn-primary btn-xs"${_scopeId2}> Guardar </button></form></div>`);
                 _push3(ssrRenderComponent($setup["MultiSelect"], {
                   modelValue: $setup.colaboradores,
                   "onUpdate:modelValue": ($event) => $setup.colaboradores = $event,
@@ -284,7 +301,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                       createVNode("button", {
                         type: "submit",
                         class: "btn btn-primary btn-xs"
-                      }, "Guardar")
+                      }, " Guardar ")
                     ], 40, ["onSubmit"])
                   ]),
                   createVNode($setup["MultiSelect"], {
@@ -690,7 +707,10 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             }, {
               body: withCtx(({ data, field }) => [
                 createVNode("div", {
-                  class: ["badge h-max", { "badge-accent": data[field] === "externo", "badge-info": data[field] !== "externo" }]
+                  class: ["badge h-max", {
+                    "badge-accent": data[field] === "externo",
+                    "badge-info": data[field] !== "externo"
+                  }]
                 }, toDisplayString(data[field].toUpperCase()), 3)
               ]),
               editor: withCtx(({ data, field }) => [
@@ -761,7 +781,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                     createVNode("button", {
                       type: "submit",
                       class: "btn btn-primary btn-xs"
-                    }, "Guardar")
+                    }, " Guardar ")
                   ], 40, ["onSubmit"])
                 ]),
                 createVNode($setup["MultiSelect"], {
@@ -1078,7 +1098,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }
     };
     const __returned__ = { data, isPending, refetch, noMiembrosColab, miembros, miembrosIsPending, addProyecto, updateProyecto, body, proyectos, validator, handleSubmit, ListaProyectos, get MultiSelect() {
-      return script$2;
+      return script$1;
     } };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
@@ -1148,17 +1168,17 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (isInvalid) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de proyectos" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddProyecto", AddProyecto, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddProyecto.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de proyectos" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "AddProyecto", AddProyecto, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddProyecto.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/proyectos/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/proyectos/index.astro";
 const $$url = "/panel/proyectos";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    default: $$Index,
-    file: $$file,
-    url: $$url
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

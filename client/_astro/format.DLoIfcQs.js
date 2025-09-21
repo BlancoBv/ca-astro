@@ -1,0 +1,1 @@
+import{h as e}from"./moment.BLMuvzoS.js";e.locale("es-MX");function a(r,t){return e(r).format(t??"L")}function n(r){return r===null?"---":new Intl.NumberFormat("es-MX",{style:"currency",currency:"MXN"}).format(Number(r))}export{n as a,a as f};

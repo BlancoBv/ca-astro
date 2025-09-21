@@ -1,14 +1,11 @@
-/* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
-import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../chunks/astro/server_PXGLLX5r.mjs';
+import { $ as $$LayoutPanel } from '../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode } from 'vue';
-import { s as script, a as script$1 } from '../../chunks/index_h5t5GPhD.mjs';
+import { defineComponent, useSSRContext, ref, onMounted, onUnmounted, mergeProps, withCtx, createTextVNode, toDisplayString, createVNode } from 'vue';
+import { a as script, b as script$1 } from '../../chunks/index_C__mFKYf.mjs';
 import { f as formatDate } from '../../chunks/format_CRU5uAFP.mjs';
-import 'moment';
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
-/* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -27,9 +24,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       isMounted.value = false;
     });
     const __returned__ = { props, isMounted, get DataTable() {
-      return script;
-    }, get Column() {
       return script$1;
+    }, get Column() {
+      return script;
     }, get formatDate() {
       return formatDate;
     } };
@@ -132,16 +129,16 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const data = await fetch(`${SITE }/api/logs`, {
     headers: { Cookie: request.headers.get("cookie") ?? "" }
   }).then((res) => res.json());
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Logs" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaLogs", ListaLogs, { "data": data?.response ?? [], "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaLogs.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Logs" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "ListaLogs", ListaLogs, { "data": data?.response ?? [], "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/listas/ListaLogs.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/logs/index.astro", void 0);
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/logs/index.astro";
 const $$url = "/panel/logs";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    default: $$Index,
-    file: $$file,
-    url: $$url
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

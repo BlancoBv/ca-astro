@@ -1,8 +1,9 @@
-import './chunks/astro-designed-error-pages_Cq9WQRyw.mjs';
-import { d as defineMiddleware, s as sequence } from './chunks/index_Cd3TYS_Q.mjs';
+import './chunks/astro-designed-error-pages_vaRmL7yb.mjs';
+import './chunks/astro/server_PXGLLX5r.mjs';
+import { d as defineMiddleware, s as sequence } from './chunks/index_BzidBbP0.mjs';
 import { r as responseAsJson } from './chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as CookiesManager } from './chunks/CookiesManager_BfWIquu0.mjs';
-import { L as Logs } from './chunks/index_CM2BeHHC.mjs';
+import { L as Logs } from './chunks/index_DRmzzIYG.mjs';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 class VerifyPath {
@@ -42,7 +43,8 @@ class VerifyPath {
       path: "api/miembros",
       method: ["POST", "DELETE", "PUT", "GET"],
       bypass: [
-        /[?]idmiembro=\w+&includeProyectos=true&includePublicaciones=true/,
+        /[?]uuid=(\w|\-)+&includeProyectos=true&includePublicaciones=true/,
+        /* /[?]uuid=\w+&includeProyectos=true&includePublicaciones=true/ /* (?:&|$)/ */
         /[?]colaborador=(false|true)(?:&|$)/
         /*  /[?&]idmiembro=\w+(?:&|$)/, */
       ]
@@ -121,8 +123,8 @@ const apiAuth = defineMiddleware(
         await Logs.create({
           ruta: request.url,
           method: request.method,
-          status: res.status,
-          idUsuario: user?.id ?? null
+          status: String(res.status),
+          idUsuario: Number(user?.id)
         });
       } catch (error) {
         console.log(error);

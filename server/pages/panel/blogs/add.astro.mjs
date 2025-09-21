@@ -1,15 +1,14 @@
-/* empty css                                         */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../../chunks/astro/server_PXGLLX5r.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, mergeProps, reactive } from 'vue';
-import { e as editorInstance, E as Editor, I as ImageSelector } from '../../../chunks/EditorInstance_GsaJM14i.mjs';
-import { I as Input } from '../../../chunks/Input_BTSzd8Wz.mjs';
+import { defineComponent, useSSRContext, mergeProps, reactive } from 'vue';
+import { e as editorInstance, I as ImageSelector, E as Editor } from '../../../chunks/EditorInstance_DodcFnLF.mjs';
+import { I as Input } from '../../../chunks/Input_CnxJ8EI2.mjs';
 import moment from 'moment';
-import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_D1QWiHI3.mjs';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_Bm1iQncX.mjs';
+import { S as SelectEtiqueta } from '../../../chunks/SelectEtiqueta_q1u3lIMp.mjs';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_BVCTMF4U.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -149,7 +148,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (isInvalid) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "A\xF1adir blog" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBlog", AddBlog, { "idUsuario": user?.id, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBlog.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "A\xF1adir blog" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "AddBlog", AddBlog, { "idUsuario": user?.id, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddBlog.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/add/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/blogs/add/index.astro";

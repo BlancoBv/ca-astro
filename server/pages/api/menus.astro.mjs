@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { M as Menus, S as Submenus, U as Users } from '../../chunks/index_CM2BeHHC.mjs';
+import { M as Menus, S as Submenus, U as Users } from '../../chunks/index_DRmzzIYG.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { renderers } from '../../renderers.mjs';
 

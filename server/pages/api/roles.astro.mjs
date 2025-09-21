@@ -1,5 +1,5 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
-import { R as Roles, f as Permisos } from '../../chunks/index_CM2BeHHC.mjs';
+import { R as Roles, f as Permisos } from '../../chunks/index_DRmzzIYG.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { renderers } from '../../renderers.mjs';
 

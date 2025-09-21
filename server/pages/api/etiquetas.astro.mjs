@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { E as Etiquetas, A as Articulo, b as Blog } from '../../chunks/index_CM2BeHHC.mjs';
+import { E as Etiquetas, A as Articulo, b as Blog } from '../../chunks/index_DRmzzIYG.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async ({ url, locals }) => {

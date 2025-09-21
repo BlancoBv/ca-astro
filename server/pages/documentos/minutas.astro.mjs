@@ -1,11 +1,11 @@
-/* empty css                                      */
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_DmhofpIV.mjs';
+import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_PXGLLX5r.mjs';
 import { f as formatDate } from '../../chunks/format_CRU5uAFP.mjs';
+import { $ as $$Breadcumb } from '../../chunks/Breadcumb_S2ffQydz.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, computed } from 'vue';
+import { defineComponent, useSSRContext, ref, computed } from 'vue';
 import { ssrRenderList, ssrRenderAttr, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_CYu2Rs5Q.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DeXEjhey.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -61,7 +61,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   minutas.files.forEach(
     (el) => el.fechaCreacionFormated = formatDate(el.fechaCreacion, "MMMM YYYY")
   );
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Minutas del CA" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> <h1>Minutas</h1> ${renderComponent($$result2, "DocumentList", DocumentList, { "years": Array.from(years), "minutas": minutas.files, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/DocumentList.vue", "client:component-export": "default" })} </main> ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Minutas del CA" }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full p-4"> ${renderComponent($$result2, "Breadcumb", $$Breadcumb, { "items": [{ name: "Documentos" }, { name: "Minutas" }] })} <h1>Minutas</h1> ${renderComponent($$result2, "DocumentList", DocumentList, { "years": Array.from(years), "minutas": minutas.files, "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/DocumentList.vue", "client:component-export": "default" })} </main> ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/documentos/minutas/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/documentos/minutas/index.astro";

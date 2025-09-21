@@ -1,11 +1,11 @@
-/* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_DmhofpIV.mjs';
-import { $ as $$Layout } from '../../chunks/Layout_CYu2Rs5Q.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_PXGLLX5r.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DeXEjhey.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, mergeProps } from 'vue';
+import { defineComponent, useSSRContext, mergeProps } from 'vue';
 import { ssrRenderAttrs, ssrRenderAttr, ssrRenderClass, ssrInterpolate } from 'vue/server-renderer';
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
-import { $ as $$CardBlog } from '../../chunks/CardBlog_B2WtcCG0.mjs';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
+import { $ as $$CardBlog2 } from '../../chunks/CardBlog2_J_SNEbue.mjs';
+import { $ as $$Breadcumb } from '../../chunks/Breadcumb_S2ffQydz.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main = /* @__PURE__ */ defineComponent({
@@ -45,7 +45,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (eventos.response?.blogs && eventos.response?.blogs.length < 1) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Todos los eventos" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full w-full p-4"> <h1>Todos los eventos</h1> <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 not-prose"> ${eventos.response?.blogs.map((el) => renderTemplate`${renderComponent($$result2, "CardBlog", $$CardBlog, { "titulo": el.titulo, "fecha": el.fecha, "id": el.idblog, "imagen": el.imagen })}`)} </div> <div class="not-prose w-full flex justify-center pt-4"> ${renderComponent($$result2, "Pagination", Pagination, { "totalPages": eventos.response?.totalPages ?? 0, "actualPage": eventos.response?.currentPage ?? 0 })} </div> </main> ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Todos los eventos" }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="prose max-w-full w-full p-4"> ${renderComponent($$result2, "Breadcumb", $$Breadcumb, { "items": [{ name: "Eventos" }] })} <h1>Todos los eventos</h1> <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 not-prose"> ${eventos.response?.blogs.map((el) => renderTemplate`${renderComponent($$result2, "CardBlog2", $$CardBlog2, { "titulo": el.titulo, "fecha": el.fecha, "id": el.idblog, "imagen": el.imagen })}`)} </div> <div class="not-prose w-full flex justify-center pt-4"> ${renderComponent($$result2, "Pagination", Pagination, { "totalPages": eventos.response?.totalPages ?? 0, "actualPage": eventos.response?.currentPage ?? 0 })} </div> </main> ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/content/evento/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/content/evento/index.astro";

@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
-import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_Biwcz3nV.mjs';
-import { manifest } from './manifest_CLeMo8yX.mjs';
+import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_iUKsbXIE.mjs';
+import { manifest } from './manifest_rkSmBVvx.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -24,30 +24,31 @@ const _page16 = () => import('./pages/api/publicaciones.astro.mjs');
 const _page17 = () => import('./pages/api/roles.astro.mjs');
 const _page18 = () => import('./pages/api/submenus.astro.mjs');
 const _page19 = () => import('./pages/api/user.astro.mjs');
-const _page20 = () => import('./pages/content/articulos/_etiqueta_.astro.mjs');
-const _page21 = () => import('./pages/content/etiqueta/_etiqueta_.astro.mjs');
-const _page22 = () => import('./pages/content/evento/_id_.astro.mjs');
-const _page23 = () => import('./pages/content/evento.astro.mjs');
-const _page24 = () => import('./pages/documentos/minutas.astro.mjs');
-const _page25 = () => import('./pages/login.astro.mjs');
-const _page26 = () => import('./pages/miembros/_id_.astro.mjs');
-const _page27 = () => import('./pages/panel/articulos/crear.astro.mjs');
-const _page28 = () => import('./pages/panel/banners.astro.mjs');
-const _page29 = () => import('./pages/panel/blogs/add.astro.mjs');
-const _page30 = () => import('./pages/panel/blogs/lista.astro.mjs');
-const _page31 = () => import('./pages/panel/documentos/minutas.astro.mjs');
-const _page32 = () => import('./pages/panel/etiquetas.astro.mjs');
-const _page33 = () => import('./pages/panel/logs.astro.mjs');
-const _page34 = () => import('./pages/panel/proyectos.astro.mjs');
-const _page35 = () => import('./pages/panel/publicaciones.astro.mjs');
-const _page36 = () => import('./pages/panel.astro.mjs');
-const _page37 = () => import('./pages/produccion-academica/articulos.astro.mjs');
-const _page38 = () => import('./pages/produccion-academica/proyectos.astro.mjs');
-const _page39 = () => import('./pages/_resource_/_route_.astro.mjs');
-const _page40 = () => import('./pages/_resource_.astro.mjs');
-const _page41 = () => import('./pages/index.astro.mjs');
+const _page20 = () => import('./pages/api/youtube-links.astro.mjs');
+const _page21 = () => import('./pages/content/articulos/etiqueta/_etiqueta_.astro.mjs');
+const _page22 = () => import('./pages/content/evento/etiqueta/_etiqueta_.astro.mjs');
+const _page23 = () => import('./pages/content/evento/_id_.astro.mjs');
+const _page24 = () => import('./pages/content/evento.astro.mjs');
+const _page25 = () => import('./pages/documentos/minutas.astro.mjs');
+const _page26 = () => import('./pages/login.astro.mjs');
+const _page27 = () => import('./pages/miembros/_uuid_.astro.mjs');
+const _page28 = () => import('./pages/panel/articulos/crear.astro.mjs');
+const _page29 = () => import('./pages/panel/banners.astro.mjs');
+const _page30 = () => import('./pages/panel/blogs/add.astro.mjs');
+const _page31 = () => import('./pages/panel/blogs/lista.astro.mjs');
+const _page32 = () => import('./pages/panel/documentos/minutas.astro.mjs');
+const _page33 = () => import('./pages/panel/etiquetas.astro.mjs');
+const _page34 = () => import('./pages/panel/logs.astro.mjs');
+const _page35 = () => import('./pages/panel/proyectos.astro.mjs');
+const _page36 = () => import('./pages/panel/publicaciones.astro.mjs');
+const _page37 = () => import('./pages/panel.astro.mjs');
+const _page38 = () => import('./pages/produccion-academica/articulos.astro.mjs');
+const _page39 = () => import('./pages/produccion-academica/proyectos.astro.mjs');
+const _page40 = () => import('./pages/_resource_/_route_.astro.mjs');
+const _page41 = () => import('./pages/_resource_.astro.mjs');
+const _page42 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
-    ["node_modules/.pnpm/astro@5.1.7_@types+node@22.5.5_jiti@1.21.6_rollup@4.28.1_typescript@5.6.2_yaml@2.5.1/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
+    ["node_modules/.pnpm/astro@5.13.7_@types+node@22.5.5_jiti@2.5.1_lightningcss@1.30.1_rollup@4.50.1_typescript@5.6.2_yaml@2.5.1/node_modules/astro/dist/assets/endpoint/node.js", _page0],
     ["src/pages/404.astro", _page1],
     ["src/pages/api/articulos/index.ts", _page2],
     ["src/pages/api/banners/index.ts", _page3],
@@ -67,34 +68,36 @@ const pageMap = new Map([
     ["src/pages/api/roles/index.ts", _page17],
     ["src/pages/api/submenus/index.ts", _page18],
     ["src/pages/api/user/index.ts", _page19],
-    ["src/pages/content/articulos/[etiqueta].astro", _page20],
-    ["src/pages/content/etiqueta/[etiqueta].astro", _page21],
-    ["src/pages/content/evento/[id].astro", _page22],
-    ["src/pages/content/evento/index.astro", _page23],
-    ["src/pages/documentos/minutas/index.astro", _page24],
-    ["src/pages/login/index.astro", _page25],
-    ["src/pages/miembros/[id].astro", _page26],
-    ["src/pages/panel/articulos/crear/index.astro", _page27],
-    ["src/pages/panel/banners/index.astro", _page28],
-    ["src/pages/panel/blogs/add/index.astro", _page29],
-    ["src/pages/panel/blogs/lista/index.astro", _page30],
-    ["src/pages/panel/documentos/minutas/index.astro", _page31],
-    ["src/pages/panel/etiquetas/index.astro", _page32],
-    ["src/pages/panel/logs/index.astro", _page33],
-    ["src/pages/panel/proyectos/index.astro", _page34],
-    ["src/pages/panel/publicaciones/index.astro", _page35],
-    ["src/pages/panel/index.astro", _page36],
-    ["src/pages/produccion-academica/articulos/index.astro", _page37],
-    ["src/pages/produccion-academica/proyectos/index.astro", _page38],
-    ["src/pages/[resource]/[route].astro", _page39],
-    ["src/pages/[resource]/index.astro", _page40],
-    ["src/pages/index.astro", _page41]
+    ["src/pages/api/youtube-links/index.ts", _page20],
+    ["src/pages/content/articulos/etiqueta/[etiqueta].astro", _page21],
+    ["src/pages/content/evento/etiqueta/[etiqueta].astro", _page22],
+    ["src/pages/content/evento/[id].astro", _page23],
+    ["src/pages/content/evento/index.astro", _page24],
+    ["src/pages/documentos/minutas/index.astro", _page25],
+    ["src/pages/login/index.astro", _page26],
+    ["src/pages/miembros/[uuid].astro", _page27],
+    ["src/pages/panel/articulos/crear/index.astro", _page28],
+    ["src/pages/panel/banners/index.astro", _page29],
+    ["src/pages/panel/blogs/add/index.astro", _page30],
+    ["src/pages/panel/blogs/lista/index.astro", _page31],
+    ["src/pages/panel/documentos/minutas/index.astro", _page32],
+    ["src/pages/panel/etiquetas/index.astro", _page33],
+    ["src/pages/panel/logs/index.astro", _page34],
+    ["src/pages/panel/proyectos/index.astro", _page35],
+    ["src/pages/panel/publicaciones/index.astro", _page36],
+    ["src/pages/panel/index.astro", _page37],
+    ["src/pages/produccion-academica/articulos/index.astro", _page38],
+    ["src/pages/produccion-academica/proyectos/index.astro", _page39],
+    ["src/pages/[resource]/[route].astro", _page40],
+    ["src/pages/[resource]/index.astro", _page41],
+    ["src/pages/index.astro", _page42]
 ]);
 
 const _manifest = Object.assign(manifest, {
     pageMap,
     serverIslandMap,
     renderers,
+    actions: () => import('./_noop-actions.mjs'),
     middleware: () => import('./_astro-internal_middleware.mjs')
 });
 const _args = {
@@ -103,14 +106,15 @@ const _args = {
     "server": "file:///home/blanco/Documentos/ca-astro/dist/server/",
     "host": true,
     "port": 4321,
-    "assets": "_astro"
+    "assets": "_astro",
+    "experimentalStaticHeaders": false
 };
 const _exports = createExports(_manifest, _args);
 const handler = _exports['handler'];
 const startServer = _exports['startServer'];
 const options = _exports['options'];
 const _start = 'start';
-if (_start in serverEntrypointModule) {
+if (Object.prototype.hasOwnProperty.call(serverEntrypointModule, _start)) {
 	serverEntrypointModule[_start](_manifest, _args);
 }
 

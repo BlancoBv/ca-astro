@@ -1,15 +1,13 @@
-/* empty css                                      */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../chunks/astro/server_DmhofpIV.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../chunks/astro/server_PXGLLX5r.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, ref, onMounted, onUnmounted, resolveDirective, mergeProps, withCtx, createTextVNode, toDisplayString, withDirectives, createVNode, vModelText, reactive } from 'vue';
-import { I as Input } from '../../chunks/Input_BTSzd8Wz.mjs';
-import { a as useGetData, u as useSendData } from '../../chunks/http_Bm1iQncX.mjs';
-import { s as script, a as script$1 } from '../../chunks/index_h5t5GPhD.mjs';
+import { defineComponent, useSSRContext, ref, onMounted, onUnmounted, resolveDirective, mergeProps, withCtx, withDirectives, createVNode, vModelText, createTextVNode, toDisplayString, reactive } from 'vue';
+import { I as Input } from '../../chunks/Input_CnxJ8EI2.mjs';
+import { a as useGetData, u as useSendData } from '../../chunks/http_BVCTMF4U.mjs';
+import { a as script, b as script$1 } from '../../chunks/index_C__mFKYf.mjs';
 import { f as formatDate } from '../../chunks/format_CRU5uAFP.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrGetDirectiveProps, ssrGetDynamicModelProps } from 'vue/server-renderer';
-/* empty css                                    */
-import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrGetDirectiveProps, ssrGetDynamicModelProps, ssrInterpolate } from 'vue/server-renderer';
+import { _ as _export_sfc } from '../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
@@ -27,7 +25,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       handleEdit: {
         const { data, newValue, field } = event;
         if (newValue !== data[field]) {
-          props.mutationUpdate.mutate({ idetiqueta: data.idetiqueta, [field]: newValue });
+          props.mutationUpdate.mutate({
+            idetiqueta: data.idetiqueta,
+            [field]: newValue
+          });
         }
         break handleEdit;
       }
@@ -39,9 +40,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       isMounted.value = false;
     });
     const __returned__ = { props, isMounted, handleEdit, get DataTable() {
-      return script;
-    }, get Column() {
       return script$1;
+    }, get Column() {
+      return script;
     }, get formatDate() {
       return formatDate;
     } };
@@ -56,7 +57,10 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<div${ssrRenderAttrs(mergeProps({ class: "skeleton h-96 w-full" }, _attrs))}></div>`);
   } else {
     _push(ssrRenderComponent($setup["DataTable"], mergeProps({
-      class: { "skeleton select-none": $setup.props.isPending, "cursor-wait select-none": $setup.props.mutationUpdate.isPending.value },
+      class: {
+        "skeleton select-none": $setup.props.isPending,
+        "cursor-wait select-none": $setup.props.mutationUpdate.isPending.value
+      },
       value: $setup.props.data,
       paginator: true,
       rows: 5,
@@ -249,17 +253,17 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (isInvalid) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de etiquetas de la p\xE1gina" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddEtiqueta", AddEtiqueta, { "user": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddEtiqueta.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de etiquetas de la p\xE1gina" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "AddEtiqueta", AddEtiqueta, { "user": user?.id, "client:load": true, "client:component-hydration": "load", "client:component-path": "@components/forms/AddEtiqueta.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/etiquetas/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/etiquetas/index.astro";
 const $$url = "/panel/etiquetas";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    default: $$Index,
-    file: $$file,
-    url: $$url
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;

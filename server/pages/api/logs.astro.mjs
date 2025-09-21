@@ -1,5 +1,5 @@
-import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
-import { L as Logs } from '../../chunks/index_CM2BeHHC.mjs';
+import { C as ControllerBuilder } from '../../chunks/controllerBuilder_D2x1Pjlp.mjs';
+import { L as Logs } from '../../chunks/index_DRmzzIYG.mjs';
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import moment from 'moment';
 export { renderers } from '../../renderers.mjs';
@@ -17,8 +17,8 @@ const GET = async ({ locals }) => {
     );
   }
   try {
-    await controller.setModel(Logs).setWhereFilters({ createdAt: { [controller.Op.lt]: thirtyDaysAgo } }).getResult().delete();
-    const response = await controller.setModel(Logs).setOrderFilters([["idlog", "DESC"]]).getResult().getAll();
+    await controller.setModel(Logs).setWhereFilters({ createdAt: { [controller.Op.lt]: thirtyDaysAgo } }).getModelResult().delete();
+    const response = await controller.setModel(Logs).setOrderFilters([["idlog", "DESC"]]).getModelResult().getAll();
     return responseAsJson(response);
   } catch (error) {
     return responseAsJson(

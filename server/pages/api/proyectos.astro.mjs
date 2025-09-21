@@ -1,6 +1,6 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
-import { P as Proyectos, d as Miembros, s as sequelize, g as ProyectosMiembros } from '../../chunks/index_CM2BeHHC.mjs';
+import { P as Proyectos, d as Miembros, s as sequelize, g as ProyectosMiembros } from '../../chunks/index_DRmzzIYG.mjs';
 import * as z from 'zod';
 import { n as noEmptyOrBlankSpaces } from '../../chunks/zodValidations_7RuNDgkL.mjs';
 export { renderers } from '../../renderers.mjs';

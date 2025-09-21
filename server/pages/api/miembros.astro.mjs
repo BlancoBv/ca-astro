@@ -1,18 +1,30 @@
 import { r as responseAsJson } from '../../chunks/responseAsJson_B4yFc9jl.mjs';
 import { s as searchParamsToObject } from '../../chunks/searchParamsToObject_Dwl9vmnE.mjs';
-import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize, e as Publicaciones } from '../../chunks/index_CM2BeHHC.mjs';
+import { d as Miembros, C as Contactos, P as Proyectos, s as sequelize, e as Publicaciones } from '../../chunks/index_DRmzzIYG.mjs';
+import * as z from 'zod';
 import { C as ControllerBuilder } from '../../chunks/builder_Cv7uo8Sa.mjs';
 export { renderers } from '../../renderers.mjs';
 
+const querysObject = z.object({
+  uuid: z.string().refine((val) => {
+    const regExp = new RegExp(/\D+/);
+    return regExp.test(val);
+  }).optional(),
+  colaborador: z.enum(["true", "false"]).optional()
+});
 const GET = async ({ url, locals }) => {
   const search = searchParamsToObject(url.searchParams);
   const controller = new ControllerBuilder();
   try {
-    if (search.idmiembro) {
+    const querys = querysObject.safeParse(search);
+    if (!querys.success) {
+      throw querys.error;
+    }
+    if (querys.data.uuid) {
       let proyectos = null;
       let publicaciones = null;
       const miembro = await controller.setModel(Miembros).setWhereFilters({
-        idmiembro: search.idmiembro
+        uuid: search.uuid
       }).setIncludedModels([
         {
           model: Contactos,
@@ -26,7 +38,7 @@ const GET = async ({ url, locals }) => {
         proyectos = await controller.setModel(Proyectos).setWhereFilters({
           visible: true,
           [controller.Op.or]: [
-            { director: search.idmiembro },
+            { director: miembro.idmiembro },
             // Condición para la columna director
             {
               idproyecto: {
@@ -61,7 +73,7 @@ const GET = async ({ url, locals }) => {
               "idmiembro"
             ]
           }
-        ]).setOrderFilters([["fechaTermino", "DESC"]]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
+        ]).setOrderFilters([["fechaTermino", "DESC"]]).setReplacements({ idmiembro: miembro.idmiembro }).getResult().getAll();
       }
       if (search.includePublicaciones === "true" && miembro) {
         publicaciones = await controller.setModel(Publicaciones).setWhereFilters({
@@ -84,7 +96,7 @@ const GET = async ({ url, locals }) => {
             as: "miembros_publicacion",
             through: { attributes: [] }
           }
-        ]).setOrderFilters([["year", "DESC"]]).setReplacements({ idmiembro: search.idmiembro }).getResult().getAll();
+        ]).setOrderFilters([["year", "DESC"]]).setReplacements({ idmiembro: miembro.idmiembro }).getResult().getAll();
       }
       return responseAsJson({
         ...miembro?.toJSON(),

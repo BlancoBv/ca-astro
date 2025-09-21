@@ -1,14 +1,12 @@
-/* empty css                                         */
-import { b as createAstro, c as createComponent, r as renderTemplate, a as renderComponent } from '../../../chunks/astro/server_DmhofpIV.mjs';
-import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_BmeFtKuc.mjs';
+import { b as createAstro, c as createComponent, r as renderComponent, a as renderTemplate } from '../../../chunks/astro/server_PXGLLX5r.mjs';
+import { v as validatePerm, p as permType, $ as $$LayoutPanel } from '../../../chunks/LayoutPanel_2cEuQ9dt.mjs';
 import 'vue3-toastify';
-import { useSSRContext, defineComponent, useTemplateRef, ref, onMounted, onUnmounted, withCtx, createVNode, reactive, computed } from 'vue';
-import { a as useGetData, u as useSendData } from '../../../chunks/http_Bm1iQncX.mjs';
-import { s as script, a as script$1 } from '../../../chunks/index_h5t5GPhD.mjs';
-import { s as script$2 } from '../../../chunks/index_dlobLWwo.mjs';
+import { defineComponent, useSSRContext, useTemplateRef, ref, onMounted, onUnmounted, withCtx, createVNode, reactive, computed } from 'vue';
+import { a as useGetData, u as useSendData } from '../../../chunks/http_BVCTMF4U.mjs';
+import { a as script$1, b as script$2 } from '../../../chunks/index_C__mFKYf.mjs';
+import { s as script } from '../../../chunks/index_D1Ts3fHg.mjs';
 import { ssrRenderComponent, ssrRenderAttr } from 'vue/server-renderer';
-/* empty css                                       */
-import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_3ktPLYsj.mjs';
+import { _ as _export_sfc } from '../../../chunks/_plugin-vue_export-helper_tWar_dvF.mjs';
 import moment from 'moment';
 export { renderers } from '../../../renderers.mjs';
 
@@ -44,11 +42,11 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       isMounted.value = false;
     });
     const __returned__ = { props, cm, selectedItem, isMounted, items, onRowContextMenu, get DataTable() {
-      return script;
+      return script$2;
     }, get Column() {
       return script$1;
     }, get ContextMenu() {
-      return script$2;
+      return script;
     } };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
@@ -179,17 +177,17 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   if (isInvalid) {
     return Astro2.redirect("/404");
   }
-  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de minutas" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "AddMinuta", AddMinuta, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddMinuta.vue", "client:component-export": "default" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "LayoutPanel", $$LayoutPanel, { "sectionTitle": "Lista de minutas" }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "AddMinuta", AddMinuta, { "client:idle": true, "client:component-hydration": "idle", "client:component-path": "@components/forms/AddMinuta.vue", "client:component-export": "default" })} ` })}`;
 }, "/home/blanco/Documentos/ca-astro/src/pages/panel/documentos/minutas/index.astro", void 0);
 
 const $$file = "/home/blanco/Documentos/ca-astro/src/pages/panel/documentos/minutas/index.astro";
 const $$url = "/panel/documentos/minutas";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-    __proto__: null,
-    default: $$Index,
-    file: $$file,
-    url: $$url
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
