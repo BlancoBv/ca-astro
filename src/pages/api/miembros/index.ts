@@ -30,7 +30,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
     if (querys.data.uuid) {
       let proyectos: any[] | null = null;
       let publicaciones: any[] | null = null;
-      const miembro = await controller
+      const miembro = (await controller
         .setModel(Miembros)
         .setWhereFilters({
           uuid: search.uuid,
@@ -46,7 +46,10 @@ export const GET: APIRoute = async ({ url, locals }) => {
           exclude: locals.user ? [] : ["idUsuario", "createdAt", "updatedAt"],
         })
         .getResult()
-        .getOne();
+        .getOne()) as unknown as {
+        idmiembro: number;
+        toJSON: () => { [key: string]: any };
+      };
 
       if (search.includeProyectos === "true" && miembro) {
         proyectos = await controller
